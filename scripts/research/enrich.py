@@ -46,6 +46,7 @@ def work(x):
     return x
 if __name__=="__main__":
     d=json.load(open(sys.argv[1],encoding="utf-8"))
-    with ThreadPoolExecutor(12) as ex: d["targets"]=list(ex.map(work,d["targets"]))
+    import os
+    with ThreadPoolExecutor(int(os.environ.get("ENRICH_THREADS","5"))) as ex: d["targets"]=list(ex.map(work,d["targets"]))
     json.dump(d,open(sys.argv[2],"w",encoding="utf-8"),ensure_ascii=False,indent=1)
     ts=d["targets"]; print(len(ts),"email",sum(1 for x in ts if x.get("email")),"phone",sum(1 for x in ts if x.get("phone")),"wa",sum(1 for x in ts if x.get("whatsapp")))

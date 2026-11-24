@@ -130,6 +130,10 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
   - الإضافة: `python3 scripts/targets_tool.py import --country <Country> --file <json>`
   - إحصائيات ومزامنة عمود "تم التواصل؟": `python3 scripts/targets_tool.py stats`
   - كل صف يجب أن يكون له رابط مصدر علني. الخانة غير المعروفة تبقى فارغة.
+  - عمود "درجة الصلة": **عالية** (تربية خاصة/توحد/تأهيل/جمعيات/منظمات) – **متوسطة** (مدارس/جامعات/جهات حكومية) – **منخفضة** (مراكز تدريب عامة). ابدأ التقديم بالعالية.
+  - أرقام الجهات القادمة من الصفحات الصفراء غالباً بلا إيميل (الإيميل خلف تسجيل دخول) ← استخدم الواتساب/الهاتف أو أثرِ الإيميل من موقع الجهة.
+  - إثراء الناقص: `targets_tool.py export-missing` ← `scripts/research/enrich.py` ← `import`.
+  - أدوات ومصادر البحث موثقة في `scripts/research/README.md`.
 
 ---
 

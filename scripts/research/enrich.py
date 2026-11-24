@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
 BAD=re.compile(r"(example|sentry|wixpress|domain\.com|email\.com|yourmail|\.(png|jpe?g|gif|webp|svg|css|js)$|@2x|godaddy|cloudflare|schema\.org|w3\.org|jquery|bootstrap)",re.I)
 def get(u):
+    # the sandbox only reaches the web through an HTTPS proxy: plain http:// fails DNS, so upgrade
+    if u.startswith("http://"): u = "https://" + u[7:]
     try:
         r=subprocess.run(["curl","-s","-m","20","-L","--max-filesize","3000000","-A",UA,u],capture_output=True,timeout=30)
         return r.stdout.decode("utf-8","ignore")
@@ -26,7 +28,7 @@ def contact_links(base,t):
 def norm_site(w):
     w=(w or "").split(",")[0].strip()
     if not w: return ""
-    if not w.startswith("http"): w="http://"+w
+    if not w.startswith("http"): w="https://"+w
     return w
 def work(x):
     site=norm_site(x.get("website"))

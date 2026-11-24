@@ -1,4 +1,8 @@
-import json,sys,re
+import json,sys,re,urllib.parse
+def fixweb(w):
+    if w.startswith("/redir/"): w=urllib.parse.parse_qs(urllib.parse.urlparse(w).query).get("u",[""])[0]
+    if re.search(r"facebook\.com/login|^instagram\.com/?$",w): w=""
+    return ("http://"+w) if w and not w.startswith("http") else w
 d=json.load(open(sys.argv[1],encoding="utf-8")); out=[]
 SN=re.compile(r"special (need|educ)|autis|disab|rehab|determination|learning (difficult|disab)|dyslex|speech|therap|down syndrome|deaf|blind|تربية خاصة|توحد|إعاقة|تأهيل|صعوبات|همم|نطق",re.I)
 for x in d:
@@ -7,5 +11,5 @@ for x in d:
     elif re.search(r"universit|college|جامعة|كلية",x["name"],re.I): t="جامعة"
     elif re.search(r"school|academy|مدرسة|مدارس|kindergarten|nursery|روضة",x["name"],re.I): t="مدرسة"
     elif re.search(r"training|institute|cent(er|re)|tutor|معهد|مركز",x["name"],re.I): t="مركز تدريب"
-    out.append({"name":x["name"],"type":t,"phone":x["phone"],"email":x["email"],"website":x["website"],"city":x["city"],"source":x["source"]})
+    out.append({"name":x["name"],"type":t,"phone":x["phone"],"email":x["email"],"website":fixweb(x["website"]),"city":x["city"],"source":x["source"]})
 json.dump({"targets":out},open(sys.argv[2],"w",encoding="utf-8"),ensure_ascii=False,indent=1); print(len(out))

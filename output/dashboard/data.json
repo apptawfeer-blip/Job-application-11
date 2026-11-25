@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 18:53",
+ "generated": "2026-11-25 19:02",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,26 +14,26 @@
  },
  "today": {
   "email_drafted": 50,
-  "email_sent": 4,
+  "email_sent": 5,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 4,
+  "email_sent": 5,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 46,
+  "drafted": 45,
   "queued": 0,
   "sent": 4,
   "replied": 0,
-  "bounced": 0
+  "bounced": 1
  },
  "remaining": {
   "Jordan": {
-   "remaining": 3507,
-   "email_ready": 921,
-   "whatsapp_ready": 401
+   "remaining": 3506,
+   "email_ready": 920,
+   "whatsapp_ready": 400
   },
   "Qatar": {
    "remaining": 625,
@@ -68,19 +68,19 @@
  },
  "weeks_left": {
   "email": 23.9,
-  "whatsapp": 23.9
+  "whatsapp": 23.7
  },
  "daily": [
   {
    "date": "2026-11-25",
    "email_prepared": 50,
-   "email_sent": 4,
+   "email_sent": 5,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 46,
+  "drafts_waiting_send": 45,
   "whatsapp_ready": 0,
   "replies": []
  },
@@ -175,6 +175,12 @@
    "kind": "موافقة",
    "op": "batch_01: إيميلات مشكوك فيها (مواقع معروضة للبيع أو متوقفة أو نطاق إيميل لا يستجيب) – الرسائل 2، 7، 21، 22، 23، 24، 28، 29، 30، 43، 45، 50؛ والرسالتان 4 و44 ليستا تربية خاصة",
    "need": "في مكتب الإرسال يظهر تنبيه أحمر على هذه الرسائل؛ قرر: استبعاد أو إرسال"
+  },
+  {
+   "row": 23,
+   "kind": "خطأ",
+   "op": "ارتداد إيميل: مركز سكاد للتوحد (info@scadd-center.com)",
+   "need": "لا شيء – استُبعد الإيميل؛ جرّب الواتساب لهذه الجهة إن وُجد"
   }
  ]
 }

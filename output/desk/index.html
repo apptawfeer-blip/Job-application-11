@@ -78,6 +78,11 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .tr-sub{font-weight:600;margin:8px 0 4px}
 #mTrBody p{margin:0 0 8px}
 #mTrBody ul{margin:0 0 8px;padding:0 18px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.facts>div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.facts .fl{font-size:.78rem;color:var(--muted)}
+.facts b{font-size:1.05rem;font-variant-numeric:tabular-nums}
+.list td.when{font-size:.8rem;color:var(--muted);white-space:nowrap}
 .mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
 .tw{overflow-x:auto}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
@@ -103,6 +108,13 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   <section class="panel" id="autoPanel">
     <div class="meta"><h2>الإرسال التلقائي</h2><span class="st" id="autoState">يعمل</span></div>
     <p class="muted" id="autoText">أرسل كل ساعة رسالة أو رسالتين من طابور الإرسال، حتى الحد اليومي، مع السيرة المناسبة لكل جهة.</p>
+    <div class="facts">
+      <div><span class="fl">الجولة القادمة</span><b id="fNext">—</b><span class="muted" id="fNextIn"></span></div>
+      <div><span class="fl">آخر رسالة أُرسلت</span><b id="fLast">—</b><span class="muted" id="fLastName"></span></div>
+      <div><span class="fl">ينتهي الطابور تقريباً</span><b id="fEnd">—</b><span class="muted" id="fEndN"></span></div>
+      <div><span class="fl">تعذّر إرسالها / ارتدّت</span><b id="fFail">0</b><span class="muted">تظهر بالأحمر في القائمة</span></div>
+    </div>
+    <p class="muted">المواعيد بتوقيت الأردن. الجولات عند الدقيقة 58 من كل ساعة، وقد تتأخر دقائق قليلة. الرسالة الثانية في الجولة تخرج بعد 2–5 دقائق من الأولى.</p>
     <div class="actions"><button class="btn b-ghost" id="pauseBtn" type="button">إيقاف مؤقت</button></div>
   </section>
 
@@ -152,7 +164,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 
   <section class="panel">
     <h2>كل الرسائل</h2>
-    <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="4" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
+    <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th>الموعد</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="6" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
   </section>
 </div>
 
@@ -180,6 +192,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
     $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
     $("savedCount").textContent = S.rows.filter((r) => r.status === "saved").length;
+    queueMicrotask(renderFacts);
     const paused = !!S.cfg.paused, st = $("autoState");
     st.textContent = paused ? "متوقف مؤقتاً" : "يعمل"; st.className = "st " + (paused ? "st-skipped" : "st-sent");
     $("pauseBtn").textContent = paused ? "استئناف الإرسال" : "إيقاف مؤقت";
@@ -187,6 +200,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("autoText").textContent = paused ? "الإرسال التلقائي متوقف. ما في الطابور ينتظر حتى تستأنف."
       : approved().length ? `في الطابور ${approved().length} رسالة. أرسل كل ساعة رسالة أو رسالتين، وبقي اليوم ${left} من ${S.cfg.daily_max}.`
       : "الطابور فارغ. أضف رسائل بعد مراجعتها وسأرسلها تلقائياً.";
+    S.paused = paused; const sched = schedule();
     const tb = $("qBody"); tb.replaceChildren();
     const rows = S.rows.slice().sort((a, b) => a.n - b.n);
     if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
@@ -198,6 +212,11 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       const s = document.createElement("span"); s.className = "st st-" + r.status; s.textContent = LABEL[r.status] || r.status;
       if (r.status === "sent" && r.sent_at) s.title = r.sent_at;
       tr.insertCell().append(s);
+      const when = tr.insertCell(); when.className = "when";
+      if (r.status === "sent" && r.sent_at) when.textContent = "أُرسلت " + fmtStamp(r.sent_at);
+      else if (r.status === "approved") when.textContent = S.paused ? "متوقف مؤقتاً" : (sched[r.id] ? "متوقع: " + sched[r.id] : "—");
+      else if (r.status === "saved" && r.saved_at) when.textContent = "حُفظت " + fmtStamp(r.saved_at);
+      else if (r.status === "ready") when.textContent = "بعد موافقتك";
       const c = tr.insertCell();
       if (r.status === "approved" || r.status === "skipped" || r.status === "failed" || r.status === "saved") {
         const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "أعدها للمراجعة";
@@ -211,6 +230,41 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     try { await S.db.doc("queue/" + r.id).update(patch); Object.assign(r, patch); renderStats(); if (!S.current) nextMessage(); return true; }
     catch (e) { banner("لم أستطع حفظ التغيير. تأكد أنك مسجّل الدخول وحاول مجدداً.", "n-bad"); return false; }
   }
+
+  // ---------- timing (Asia/Amman), mirrors scripts/pipeline.py send-plan ----------
+  const AFMT = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Amman", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short" });
+  const WD = { Sun: "الأحد", Mon: "الاثنين", Tue: "الثلاثاء", Wed: "الأربعاء", Thu: "الخميس", Fri: "الجمعة", Sat: "السبت" };
+  function amman(ms) { const p = {}; AFMT.formatToParts(new Date(ms)).forEach((x) => { p[x.type] = x.value; }); return { day: `${p.year}-${p.month}-${p.day}`, h: +p.hour % 24, mi: +p.minute, hm: `${p.hour}:${p.minute}`, wd: WD[p.weekday] || p.weekday, dm: `${+p.day}/${+p.month}` }; }
+  function dayLabel(a) { const t = amman(Date.now()), tm = amman(Date.now() + 864e5); return a.day === t.day ? "اليوم" : a.day === tm.day ? "غداً" : `${a.wd} ${a.dm}`; }
+  function fmtStamp(s) { const d = String(s).replace(" ", "T"); const t = amman(Date.now()); const day = d.slice(0, 10), hm = d.slice(11, 16); const lbl = day === t.day ? "اليوم" : day === amman(Date.now() - 864e5).day ? "أمس" : `${+day.slice(8, 10)}/${+day.slice(5, 7)}`; return `${lbl} ${hm}`; }
+  function schedule() {
+    const out = {}; S.endAt = null; S.nextRun = null; const now = Date.now(), a0 = amman(now);
+    let run = now + (((58 - a0.mi) + 60) % 60 || 60) * 60000; if (a0.mi < 58) run = now + (58 - a0.mi) * 60000;
+    S.nextRun = run;
+    const q = approved().slice().sort((x, y) => String(x.approved_at || "").localeCompare(String(y.approved_at || "")) || x.n - y.n);
+    if (S.cfg.paused || !q.length) return out;
+    const sentBy = {}; S.rows.forEach((r) => { if (r.status === "sent" && r.sent_at) { const d = String(r.sent_at).slice(0, 10); sentBy[d] = (sentBy[d] || 0) + 1; } });
+    let i = 0, guard = 0;
+    while (i < q.length && guard++ < 24 * 60) {
+      const a = amman(run), max = +S.cfg.daily_max || 30, rem = Math.max(0, max - (sentBy[a.day] || 0)), runsLeft = Math.max(1, 24 - a.h);
+      const k = rem ? Math.min(2, q.length - i, rem, Math.max(1, Math.ceil(rem / runsLeft))) : 0;
+      for (let j = 0; j < k; j++) { const at = run + j * 3.5 * 60000, b = amman(at); out[q[i].id] = `${dayLabel(b)} ${j ? "حوالي " : ""}${b.hm}`; S.endAt = at; i++; }
+      sentBy[a.day] = (sentBy[a.day] || 0) + k; run += 3600000;
+    }
+    return out;
+  }
+  function renderFacts() {
+    const paused = !!S.cfg.paused, nr = S.nextRun ? amman(S.nextRun) : null;
+    $("fNext").textContent = paused ? "متوقف" : nr ? `${dayLabel(nr)} ${nr.hm}` : "—";
+    const mins = S.nextRun ? Math.max(0, Math.round((S.nextRun - Date.now()) / 60000)) : 0;
+    $("fNextIn").textContent = paused ? "اضغط استئناف الإرسال" : approved().length ? `بعد ${mins} دقيقة` : "لا شيء في الطابور";
+    const sent = S.rows.filter((r) => r.status === "sent" && r.sent_at).sort((x, y) => String(y.sent_at).localeCompare(String(x.sent_at)));
+    $("fLast").textContent = sent[0] ? fmtStamp(sent[0].sent_at) : "لم يُرسل شيء بعد"; $("fLastName").textContent = sent[0] ? sent[0].name : "";
+    if (S.endAt && !paused) { const e = amman(S.endAt); $("fEnd").textContent = `${dayLabel(e)} ${e.hm}`; $("fEndN").textContent = `${approved().length} رسالة في الطابور`; }
+    else { $("fEnd").textContent = "—"; $("fEndN").textContent = ""; }
+    $("fFail").textContent = S.rows.filter((r) => r.status === "failed").length;
+  }
+  setInterval(() => { renderStats(); }, 60000);
 
   function show(id) { ["msgPanel", "donePanel"].forEach((p) => { $(p).hidden = p !== id; }); }
 

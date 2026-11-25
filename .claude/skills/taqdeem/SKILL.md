@@ -50,6 +50,7 @@ git pull --ff-only origin claude/job-application-profile-nj3oqj
 - `pipeline.py quota --channel email|whatsapp` ← إن كان `stop: true` توقف وأبلغ المستخدم.
 
 ### Helper-1: الاختيار
+> التوزيع على الدول بالأوزان في `config/sending_policy.json` (`country_weights`): **قطر أولاً، نحو 50% من كل دفعة** بطلب المستخدم. إذا قلّت جهات قطر الجاهزة (أقل من 30) ← نبّه المستخدم ونفّذ "تقديم بحث قطر" لإضافة جهات قطرية جديدة.
 ```
 python3 scripts/pipeline.py select --channel email|whatsapp --count N
 ```

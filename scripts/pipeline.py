@@ -150,10 +150,15 @@ def select(a):
                                      "whatsapp": contact if a.channel == "whatsapp" else "", "phone": phone, "city": row[7],
                                      "website": row[8], "source": row[10], "lang": lang_for(name, typ, row[8]), "cv": row[12], "relevance": rel}))
         pool.sort(key=lambda x: (x[0], x[1])); pools[c] = [p[2] for p in pool]
-    picked, i = [], 0
+    # weighted spread across countries (smooth weighted round-robin); user priority: Qatar ~50%
+    W = POLICY.get("country_weights", {})
+    w = {c: float(W.get(c, 1)) for c in countries}; cur = {c: 0.0 for c in countries}; picked = []
     while len(picked) < a.count and any(pools.values()):
-        c = countries[i % len(countries)]; i += 1
-        if pools.get(c): picked.append(pools[c].pop(0))
+        live = [c for c in countries if pools.get(c)]
+        tot = sum(w[c] for c in live)
+        for c in live: cur[c] += w[c]
+        c = max(live, key=lambda x: cur[x]); cur[c] -= tot
+        picked.append(pools[c].pop(0))
     stamp = datetime.datetime.now(TZ).strftime("%Y-%m-%d_%H%M")
     run = os.path.join(RUNS, f"{stamp}_{a.channel}"); os.makedirs(run, exist_ok=True)
     for n, p in enumerate(picked, 1): p["id"] = n

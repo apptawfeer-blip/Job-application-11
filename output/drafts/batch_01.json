@@ -211,7 +211,7 @@
  },
  {
   "id": 11,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 873,
   "name": "The Middle East Academy for Special Education",
@@ -232,7 +232,7 @@
  },
  {
   "id": 12,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 862,
   "name": "Irada Development & Wellness Center",
@@ -253,7 +253,7 @@
  },
  {
   "id": 13,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 918,
   "name": "مركز التميز لصعوبات التعلم",
@@ -274,7 +274,7 @@
  },
  {
   "id": 14,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 54,
   "name": "Academy Excellence Comprehensive Autism",
@@ -295,7 +295,7 @@
  },
  {
   "id": 15,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 57,
   "name": "Amman Centre for Autism",
@@ -316,7 +316,7 @@
  },
  {
   "id": 16,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 60,
   "name": "Consulting Center for Autism",
@@ -337,7 +337,7 @@
  },
  {
   "id": 17,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 64,
   "name": "Jordanian Society for Autism",
@@ -358,7 +358,7 @@
  },
  {
   "id": 18,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 65,
   "name": "People of determination center for special education",
@@ -379,7 +379,7 @@
  },
  {
   "id": 19,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 67,
   "name": "Sanabel center for Autism",
@@ -400,7 +400,7 @@
  },
  {
   "id": 20,
-  "group": "B",
+  "group": "A",
   "country": "Jordan",
   "row": 59,
   "name": "Awj Centrer",
@@ -421,7 +421,7 @@
  },
  {
   "id": 21,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 947,
   "name": "Aran Center Academic Psy Assessment & Support",
@@ -442,7 +442,7 @@
  },
  {
   "id": 22,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 949,
   "name": "Reach Out Dubai",
@@ -463,7 +463,7 @@
  },
  {
   "id": 23,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 950,
   "name": "Sunshine Learning Difficulties Center",
@@ -484,7 +484,7 @@
  },
  {
   "id": 24,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 951,
   "name": "Wilson Centre for Children",
@@ -505,7 +505,7 @@
  },
  {
   "id": 25,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 952,
   "name": "ABA Center for Special Needs",
@@ -526,7 +526,7 @@
  },
  {
   "id": 26,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 954,
   "name": "Child Early Intervention Medical Center (CEIMC)",
@@ -547,7 +547,7 @@
  },
  {
   "id": 27,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 955,
   "name": "Doris Duan Young Autism Center",
@@ -568,7 +568,7 @@
  },
  {
   "id": 28,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 956,
   "name": "Down Syndrome Dubai",
@@ -589,7 +589,7 @@
  },
  {
   "id": 29,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 961,
   "name": "Hope Centre Al Ain",
@@ -610,7 +610,7 @@
  },
  {
   "id": 30,
-  "group": "C",
+  "group": "A",
   "country": "UAE",
   "row": 962,
   "name": "Kalimati Speech and Communication Center",
@@ -631,7 +631,7 @@
  },
  {
   "id": 31,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 125,
   "name": "Awsaj Academy",
@@ -652,7 +652,7 @@
  },
  {
   "id": 32,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 126,
   "name": "Child Development Center",
@@ -673,7 +673,7 @@
  },
  {
   "id": 33,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 129,
   "name": "HOPE Qatar",
@@ -694,7 +694,7 @@
  },
  {
   "id": 34,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 144,
   "name": "Step by Step Qatar",
@@ -715,7 +715,7 @@
  },
  {
   "id": 35,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 577,
   "name": "مركز أوميجا لتعليم ذوي الاحتياجات الخاصة- Omega",
@@ -736,7 +736,7 @@
  },
  {
   "id": 36,
-  "group": "D",
+  "group": "B",
   "country": "Qatar",
   "row": 578,
   "name": "مركز أونتاريو لذوي الاحتياجات الخاصة",
@@ -757,7 +757,7 @@
  },
  {
   "id": 37,
-  "group": "D",
+  "group": "B",
   "country": "Saudi",
   "row": 304,
   "name": "فريق التأهيل الدولي",
@@ -778,7 +778,7 @@
  },
  {
   "id": 38,
-  "group": "D",
+  "group": "B",
   "country": "Saudi",
   "row": 312,
   "name": "Autism Center of Excellence (ACE)",
@@ -799,7 +799,7 @@
  },
  {
   "id": 39,
-  "group": "D",
+  "group": "B",
   "country": "Saudi",
   "row": 317,
   "name": "Abdulatif Al Fozan Autism Center (AFAC)",
@@ -820,7 +820,7 @@
  },
  {
   "id": 40,
-  "group": "D",
+  "group": "B",
   "country": "Saudi",
   "row": 4002,
   "name": "شموع الأمل للتربية الخاصة و التأهيل",
@@ -841,7 +841,7 @@
  },
  {
   "id": 41,
-  "group": "E",
+  "group": "B",
   "country": "Saudi",
   "row": 4265,
   "name": "مركز أمل للرعاية النهارية",
@@ -862,7 +862,7 @@
  },
  {
   "id": 42,
-  "group": "E",
+  "group": "B",
   "country": "Saudi",
   "row": 4279,
   "name": "مركز اكسل",
@@ -883,7 +883,7 @@
  },
  {
   "id": 43,
-  "group": "E",
+  "group": "B",
   "country": "Kuwait",
   "row": 104,
   "name": "Integrated Care Association for Special Needs",
@@ -904,7 +904,7 @@
  },
  {
   "id": 44,
-  "group": "E",
+  "group": "B",
   "country": "Kuwait",
   "row": 1605,
   "name": "حضانة سمية النموذجية للاجتياحات الخاصة",
@@ -925,7 +925,7 @@
  },
  {
   "id": 45,
-  "group": "E",
+  "group": "B",
   "country": "Kuwait",
   "row": 93,
   "name": "Suluki Center",
@@ -946,7 +946,7 @@
  },
  {
   "id": 46,
-  "group": "E",
+  "group": "B",
   "country": "Kuwait",
   "row": 91,
   "name": "Kuwait Centre for Autism (Reach School)",
@@ -967,7 +967,7 @@
  },
  {
   "id": 47,
-  "group": "E",
+  "group": "B",
   "country": "Bahrain",
   "row": 54,
   "name": "Bahrain Institute for Special Education (BISE)",
@@ -988,7 +988,7 @@
  },
  {
   "id": 48,
-  "group": "E",
+  "group": "B",
   "country": "Bahrain",
   "row": 78,
   "name": "Think – Behavior and Development Center for Children",
@@ -1009,7 +1009,7 @@
  },
  {
   "id": 49,
-  "group": "E",
+  "group": "B",
   "country": "Oman",
   "row": 576,
   "name": "جمعية التدخل المبكر للأطفال ذوي الإعاقة",
@@ -1030,7 +1030,7 @@
  },
  {
   "id": 50,
-  "group": "E",
+  "group": "B",
   "country": "Oman",
   "row": 90,
   "name": "Muscat Autism Center (MAC)",

@@ -5,21 +5,46 @@
  ],
  "email": {
   "start_date": "2026-11-26",
-  "daily_by_week": {"1": 10, "2": 15, "3": 20, "4": 25},
+  "daily_by_week": {
+   "1": 30
+  },
   "absolute_max_per_day": 30,
-  "gap_minutes": [2, 5],
-  "send_window_local": ["08:30", "14:00"],
+  "gap_minutes": [
+   2,
+   5
+  ],
+  "send_window_local": [
+   "08:30",
+   "14:00"
+  ],
   "stop_if_bounce_rate_over": 0.05,
-  "bounce_window": 50
+  "bounce_window": 50,
+  "_note": "2026-11-25: المستخدم طلب الحد الأقصى (30/يوم) من البداية بدل التدرج 10←25، مع العلم بخطر تقييد الحساب"
  },
  "whatsapp": {
   "start_date": "2026-11-26",
-  "daily_by_week": {"1": 10, "2": 15, "3": 20},
+  "daily_by_week": {
+   "1": 10,
+   "2": 15,
+   "3": 20
+  },
   "absolute_max_per_day": 25,
-  "gap_minutes": [3, 6],
-  "send_window_local": ["09:00", "15:00"],
+  "gap_minutes": [
+   3,
+   6
+  ],
+  "send_window_local": [
+   "09:00",
+   "15:00"
+  ],
   "min_reply_rate_after_50": 0.05
  },
  "timezone": "Asia/Amman",
- "workdays": ["Sun", "Mon", "Tue", "Wed", "Thu"]
+ "workdays": [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu"
+ ]
 }

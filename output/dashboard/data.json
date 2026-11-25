@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-25 13:51",
+ "generated": "2026-11-25 13:59",
  "quota": {
   "email": {
-   "allowed": 10,
+   "allowed": 30,
    "week": 1,
    "used": 0
   },
@@ -67,7 +67,7 @@
   }
  },
  "weeks_left": {
-  "email": 29.9,
+  "email": 23.9,
   "whatsapp": 23.9
  },
  "daily": [
@@ -84,9 +84,7 @@
   "whatsapp_ready": 0,
   "replies": []
  },
- "alerts": [
-  "50 مسودة إيميل جاهزة لم تُرسل بعد (≈ 5.0 يوم إرسال بالحصة الحالية)"
- ],
+ "alerts": [],
  "open_issues": [
   {
    "row": 3,

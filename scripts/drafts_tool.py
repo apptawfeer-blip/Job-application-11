@@ -77,7 +77,7 @@ def build(a):
         cvf = os.path.join(ROOT, "cv", CV[(e["lang"], e["cv"])])
         open(os.path.join(out_dir, f"{e['id']:02d}.html"), "w", encoding="utf-8").write(h)
         open(os.path.join(out_dir, f"{e['id']:02d}.txt"), "w", encoding="utf-8").write(f"To: {x['email']}\nSubject: {e['subject']}\nAttachment: {os.path.basename(cvf)}\n\n{t}")
-        rows.append({"id": e["id"], "group": GROUPS[i // 10], "country": x["country"], "row": x["row"], "name": x["name"],
+        rows.append({"id": e["id"], "group": GROUPS[i // 30], "country": x["country"], "row": x["row"], "name": x["name"],
                      "type": x["type"], "city": x["city"], "email": x["email"], "lang": e["lang"], "cv": e["cv"],
                      "cv_file": cvf, "cv_sha": sha(cvf), "send_name": SEND_NAME[e["lang"]], "subject": e["subject"], "html": h, "text": t,
                      "draft_id": "", "draft_url": "", "status": "جاهز"})

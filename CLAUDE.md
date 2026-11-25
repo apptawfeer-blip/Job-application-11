@@ -148,7 +148,7 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 - كل رسالة مكتوبة لجهة محددة: معلومة حقيقية من موقعها + 2–3 إنجازات بأفعال الصورة (Achieved/Led/Improved/Managed/Delivered = حققت/قدت/حسّنت/أدرت/قدّمت) مرتبطة بإنجازات السيرة فقط. اتبع مهارة humanizer، بلا شرطات طويلة ولا كلمات سبام.
 - الملفات: `output/drafts/batch_NN_selection.json` (الجهات) ← `batch_NN_emails.py` (النصوص) ← `python3 scripts/drafts_tool.py build|excel|record --batch NN` ← `batch_NN.json/xlsx`.
 - علّم الجهات في ملفات الدول (العمود 14 "مسودة إيميل – batch_NN") حتى لا تُختار مرة أخرى.
-- **جدول الإرسال الموصى به:** 10 يومياً لأول 3 أيام، ثم 15، ثم 20–25 كحد أقصى، بفاصل 2–5 دقائق بين الرسائل. المجموعات A..E في batch_01.xlsx = يوم لكل مجموعة.
+- **جدول الإرسال (بطلب المستخدم):** الحد الأقصى 30 إيميل يومياً من البداية، بفاصل 2–5 دقائق بين الرسائل. المجموعات في batch_01.xlsx: A (1–30) يوم، B (31–50) اليوم التالي.
 - بعد الإرسال: ابحث `in:sent` في Gmail وسجّل كل رسالة مرسلة بـ `log_tool.py add --method Email` ثم `targets_tool.py stats` ثم commit/push. راقب الارتدادات (bounce) واحذف الإيميلات المرتدة.
 
 ## 6ج) الروتين اليومي – مهارة "تقديم" (`.claude/skills/taqdeem/SKILL.md`)
@@ -157,7 +157,7 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 - **ممنوع إرسال أي إيميل نهائياً**: المسموح `create_draft` فقط. أدوات send/reply/forward محظورة تقنياً في `.claude/settings.json`.
 - كل مرحلة ينفذها مساعد مستقل (تحقق ← اختيار ← بحث ← كتابة + humanizer ← إنشاء)، ثم **مراجع مستقل** لم يشارك في العمل؛ لا تُعلَّم مهمة مكتملة إلا بنتيجة PASS (`review.md` في مجلد التشغيل).
 - الأداة الموحدة: `scripts/pipeline.py` (quota, select, build, record, wa-queue, mark, sync-sent, sync-bounces, sync-replies, sync-wa, stats). الدفتر: `output/pipeline_ledger.json`. كل تشغيل في `output/runs/<stamp>_<channel>/`.
-- الحصص والفواصل: `config/sending_policy.json` (إيميل 10←15←20←25/يوم، سقف 30، فاصل 2–5 د؛ واتساب 10←15←20، سقف 25، فاصل 3–6 د؛ الأحد–الخميس؛ بدء التسخين 2026-11-26). طلب أكثر من المسموح ← تنبيه المستخدم وعدم التجاوز إلا بموافقته. تراكم مسودات غير مرسلة ≥ 3 أيام ← تنبيه.
+- الحصص والفواصل: `config/sending_policy.json` (إيميل 30/يوم من البداية بطلب المستخدم، فاصل 2–5 د؛ واتساب 10←15←20، سقف 25، فاصل 3–6 د؛ الأحد–الخميس؛ بدء التسخين 2026-11-26). طلب أكثر من المسموح ← تنبيه المستخدم وعدم التجاوز إلا بموافقته. تراكم مسودات غير مرسلة ≥ 3 أيام ← تنبيه.
 - طابور الواتساب: `output/whatsapp/queue_*.json|csv`، الصيغة في `docs/whatsapp_queue_format.md`.
 - لوحة المتابعة: صفحة ويب https://claude.ai/artifact/K72UnkftTqSLYjh8jq43ZP (بياناتها `output/dashboard/{summary,countries,daily,alerts}.json` تُرفع بعد كل تشغيل) + `output/dashboard.xlsx`.
 - التذكير الصباحي: مهمة مجدولة يومياً 10:00 بتوقيت الأردن (`trig_01G8w34SHbSBeLACFGa9QxwT`) تنفذ "تقديم حالة" فقط، بلا إنشاء مسودات.

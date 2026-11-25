@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """يبني 4 نسخ من السيرة (docx + pdf) في مجلد cv/:
   Amer_AlSaaideh_CV_Arabic / _English          (كاملة: للمراكز والمنظمات وغيرها)
-  Amer_AlSaaideh_CV_Arabic_NoPhD / _English_NoPhD (بدون الدكتوراه: للمدارس والجامعات)
+  Amer_AlSaaideh_CV_Arabic_S / _English_NoPhD (بدون الدكتوراه: للمدارس والجامعات)
 الاستخدام: python3 scripts/build_cv.py
 """
 import os, subprocess, sys
@@ -109,13 +109,17 @@ def build(data, no_phd, path):
                     p.paragraph_format.left_indent = Cm(0.5)
                 else:
                     p = para(doc, b, LATIN, BODY - (1 if rtl else 0), False, space_after=3, style="List Bullet")
+    cp = doc.core_properties
+    cp.author = cp.last_modified_by = EN["name"]
+    cp.title = ("السيرة الذاتية – " if rtl else "CV – ") + data["name"]
+    cp.subject = cp.keywords = cp.comments = ""
     doc.save(path)
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    jobs = [(AR, False, "Amer_AlSaaideh_CV_Arabic"), (AR, True, "Amer_AlSaaideh_CV_Arabic_NoPhD"),
-            (EN, False, "Amer_AlSaaideh_CV_English"), (EN, True, "Amer_AlSaaideh_CV_English_NoPhD")]
+    jobs = [(AR, False, "Amer_AlSaaideh_CV_Arabic"), (AR, True, "Amer_AlSaaideh_CV_Arabic_S"),
+            (EN, False, "Amer_AlSaaideh_CV_English"), (EN, True, "Amer_AlSaaideh_CV_English_S")]
     for data, nophd, name in jobs:
         p = os.path.join(OUT, name + ".docx")
         build(data, nophd, p)

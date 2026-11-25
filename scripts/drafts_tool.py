@@ -11,9 +11,11 @@ from openpyxl.styles import Font, PatternFill, Alignment
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DR = os.path.join(ROOT, "output", "drafts")
-CV = {("AR", "Full"): "Amer_AlSaaideh_CV_Arabic.pdf", ("AR", "NoPhD"): "Amer_AlSaaideh_CV_Arabic_NoPhD.pdf",
-      ("EN", "Full"): "Amer_AlSaaideh_CV_English.pdf", ("EN", "NoPhD"): "Amer_AlSaaideh_CV_English_NoPhD.pdf"}
+CV = {("AR", "Full"): "Amer_AlSaaideh_CV_Arabic.pdf", ("AR", "NoPhD"): "Amer_AlSaaideh_CV_Arabic_S.pdf",
+      ("EN", "Full"): "Amer_AlSaaideh_CV_English.pdf", ("EN", "NoPhD"): "Amer_AlSaaideh_CV_English_S.pdf"}
 GROUPS = "ABCDE"
+# the filename the recipient sees: same for both versions, never reveals the _S (schools/universities) variant
+SEND_NAME = {"AR": "Amer_AlSaaideh_CV_Arabic.pdf", "EN": "Amer_AlSaaideh_CV_English.pdf"}
 
 
 def sha(path):
@@ -77,7 +79,7 @@ def build(a):
         open(os.path.join(out_dir, f"{e['id']:02d}.txt"), "w", encoding="utf-8").write(f"To: {x['email']}\nSubject: {e['subject']}\nAttachment: {os.path.basename(cvf)}\n\n{t}")
         rows.append({"id": e["id"], "group": GROUPS[i // 10], "country": x["country"], "row": x["row"], "name": x["name"],
                      "type": x["type"], "city": x["city"], "email": x["email"], "lang": e["lang"], "cv": e["cv"],
-                     "cv_file": cvf, "cv_sha": sha(cvf), "subject": e["subject"], "html": h, "text": t,
+                     "cv_file": cvf, "cv_sha": sha(cvf), "send_name": SEND_NAME[e["lang"]], "subject": e["subject"], "html": h, "text": t,
                      "draft_id": "", "draft_url": "", "status": "جاهز"})
     p = os.path.join(DR, f"batch_{a.batch}.json")
     old = {r["id"]: r for r in json.load(open(p, encoding="utf-8"))} if os.path.exists(p) else {}

@@ -46,10 +46,11 @@
 |---|---|
 | `Amer_AlSaaideh_CV_Arabic.pdf` | مراكز، منظمات، مراكز تدريب، جهات أخرى – عربي |
 | `Amer_AlSaaideh_CV_English.pdf` | مراكز، منظمات، مراكز تدريب، جهات أخرى – إنجليزي |
-| `Amer_AlSaaideh_CV_Arabic_NoPhD.pdf` | **مدارس وجامعات** – عربي |
-| `Amer_AlSaaideh_CV_English_NoPhD.pdf` | **مدارس وجامعات** – إنجليزي |
+| `Amer_AlSaaideh_CV_Arabic_S.pdf` | **مدارس وجامعات** – عربي |
+| `Amer_AlSaaideh_CV_English_S.pdf` | **مدارس وجامعات** – إنجليزي |
 
 - يُرفق دائماً **PDF** (ليس Word).
+- **اسم المرفق الذي تراه الجهة** يكون دائماً `Amer_AlSaaideh_CV_Arabic.pdf` أو `Amer_AlSaaideh_CV_English.pdf` حتى لنسخة `_S`؛ الرمز `_S` داخلي فقط ولا يظهر للجهة (الحقل `send_name` في batch_NN.json).
 - المصدر الوحيد للمحتوى: `scripts/cv_content.py` (النسخة العربية هي المرجع، والإنجليزية ترجمة مطابقة لها). بعد أي تعديل: `python3 scripts/build_cv.py`.
 - النسخ الأصلية المرفوعة محفوظة في `cv/original/` للرجوع فقط.
 

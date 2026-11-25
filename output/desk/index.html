@@ -69,6 +69,11 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .about-h{font-weight:700;font-size:.92rem}
 .about ul{margin:0;padding:0 18px 0 0;font-size:.9rem;color:var(--muted)}
 .about a{color:var(--sea-deep);font-size:.88rem;font-weight:600}
+.tr{background:var(--soft-sun);border-radius:14px;padding:10px 14px}
+.tr summary{cursor:pointer;font-weight:700;font-size:.9rem}
+.tr-sub{font-weight:600;margin:8px 0 4px}
+#mTrBody p{margin:0 0 8px}
+#mTrBody ul{margin:0 0 8px;padding:0 18px 0 0}
 .mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
 .tw{overflow-x:auto}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
@@ -114,6 +119,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     <div><label for="mTo">إلى</label><input type="text" id="mTo" dir="ltr"></div>
     <div><label for="mSubject">الموضوع</label><input type="text" id="mSubject"></div>
     <div><label for="mBody">نص الرسالة (الفقرات يفصلها سطر فارغ، والسطر الذي يبدأ بـ "- " يصبح نقطة. التوقيع يُضاف تلقائياً)</label><textarea id="mBody"></textarea></div>
+    <details class="tr" id="mTr" hidden open>
+      <summary>الترجمة العربية (للفهم فقط، الرسالة تُرسل بالإنجليزية)</summary>
+      <p class="tr-sub" id="mTrSub"></p>
+      <div id="mTrBody"></div>
+      <p class="muted" id="mTrStale" hidden>عدّلت النص الإنجليزي، فهذه ترجمة النسخة الأصلية.</p>
+    </details>
     <div class="att"><span id="mAtt"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10 17.8a1.7 1.7 0 0 1-2.4-2.4L15.5 7.5"/></svg></div>
     <div id="mNote" class="note" hidden></div>
     <div class="actions">
@@ -201,6 +212,17 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
     const ln = $("mLink"), u = r.about_url || r.website || ""; ln.hidden = !/^https?:\/\//.test(u); if (!ln.hidden) ln.href = u;
     $("mAbout").hidden = !(r.about || fl.children.length);
+    const tr = $("mTr"), tb = $("mTrBody"); tb.replaceChildren();
+    if (r.lang === "EN" && r.body_ar) {
+      $("mTrSub").textContent = r.subject_ar || "";
+      r.body_ar.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean).forEach((b) => {
+        const lines = b.split("\n").map((l) => l.trim()).filter(Boolean);
+        if (lines.every((l) => l.startsWith("- "))) { const ul = document.createElement("ul"); lines.forEach((l) => { const li = document.createElement("li"); li.textContent = l.slice(2); ul.append(li); }); tb.append(ul); }
+        else { const p = document.createElement("p"); p.textContent = lines.join(" "); tb.append(p); }
+      });
+      tr.hidden = false;
+      const stale = () => { $("mTrStale").hidden = $("mBody").value === r.body; }; stale(); $("mBody").oninput = stale;
+    } else { tr.hidden = true; $("mBody").oninput = null; }
     const wn = $("mWarn"); wn.textContent = r.warn ? "تنبيه: " + r.warn + " قد تفضّل استبعادها." : ""; wn.hidden = !r.warn;
     show("msgPanel");
   }

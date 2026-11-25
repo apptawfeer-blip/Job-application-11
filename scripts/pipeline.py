@@ -448,7 +448,8 @@ def _desk_rows(items, emails, prefix, start_n, about=None):
             "body": drafts_tool.editable_text(e), "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
             "cv_url": A[cvf], "send_name": drafts_tool.SEND_NAME[it["lang"]],
             "draft_id": it.get("draft_id", ""), "view_url": it.get("draft_url") or it.get("view_url") or "",
-            "status": "ready", "sent_at": "", "edited": False, **_about_fields(about or {}, it)}})
+            "status": "ready", "sent_at": "", "edited": False, **_about_fields(about or {}, it),
+            "subject_ar": e.get("subject_ar", ""), "body_ar": e.get("body_ar", "")}})
     return out
 
 
@@ -459,6 +460,10 @@ def desk_export(a):
     if a.batch:
         sys.path.insert(0, os.path.join(ROOT, "output", "drafts"))
         mod = __import__(f"batch_{a.batch}_emails"); emails = {e["id"]: e for e in mod.EMAILS}
+        trp = os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}_body_ar.json")
+        if os.path.exists(trp):
+            for x in json.load(open(trp, encoding="utf-8")):
+                emails[x["id"]] = dict(emails[x["id"]], subject_ar=x["subject_ar"], body_ar=x["body_ar"])
         items = json.load(open(os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}.json"), encoding="utf-8"))
         abp = os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}_about.json")
         about = {x["id"]: x for x in json.load(open(abp, encoding="utf-8"))} if os.path.exists(abp) else {}

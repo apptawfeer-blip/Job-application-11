@@ -359,6 +359,16 @@ def stats(_=None):
 AR_C = {"Jordan": "الأردن", "Qatar": "قطر", "Saudi": "السعودية", "UAE": "الإمارات", "Kuwait": "الكويت", "Oman": "عُمان", "Bahrain": "البحرين"}
 
 
+def streak(daily):
+    """consecutive days (ending today or yesterday) with at least one message actually sent"""
+    sent = {r["date"] for r in daily if r.get("email_sent", 0) + r.get("whatsapp_sent", 0) > 0}
+    d = today(); n = 0
+    if d.isoformat() not in sent: d -= datetime.timedelta(days=1)
+    while d.isoformat() in sent:
+        n += 1; d -= datetime.timedelta(days=1)
+    return n
+
+
 def write_flat(d):
     """flat row files for the web dashboard (one JSON array per dataset)"""
     q, tt, wk = d["quota"], d["totals"], d["week"]
@@ -370,7 +380,11 @@ def write_flat(d):
                 "week_email_sent": wk["email_sent"], "week_wa_sent": wk["whatsapp_sent"],
                 "weeks_left_email": d["weeks_left"]["email"], "weeks_left_wa": d["weeks_left"]["whatsapp"],
                 "remaining_total": sum(v["remaining"] for v in d["remaining"].values()),
-                "alerts": len(d["alerts"]), "open_issues": len(d["open_issues"])}]
+                "alerts": len(d["alerts"]), "open_issues": len(d["open_issues"]),
+                "today_email_sent": d["today"]["email_sent"], "today_wa_sent": d["today"]["whatsapp_sent"],
+                "contacted_total": sum(tt.values()),
+                "all_total": sum(tt.values()) + sum(v["remaining"] for v in d["remaining"].values()),
+                "streak": streak(d["daily"])}]
     countries = [{"country": AR_C.get(c, c), **v} for c, v in d["remaining"].items()]
     alerts = [{"kind": "تنبيه", "text": a, "need": ""} for a in d["alerts"]] + \
              [{"kind": i["kind"] or "", "text": i["op"] or "", "need": i["need"] or ""} for i in d["open_issues"]]

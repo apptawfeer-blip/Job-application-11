@@ -36,13 +36,13 @@
   },
   {
    "country": "Saudi",
-   "row": 292,
-   "name": "معهد الأمل الابتدائي ( بنين)",
+   "row": 303,
+   "name": "برنامج التوحد بمعهد التربية الفكرية للبنين",
    "type": "مركز تربية خاصة",
-   "email": "ppmmalamal@sol.net.sa",
+   "email": "almahad9999@hotmail.com",
    "whatsapp": "",
-   "phone": "009661 14920863",
-   "city": "الرياض",
+   "phone": "009661 3826792",
+   "city": "الدمام",
    "website": null,
    "source": "https://www.sayidaty.net/node/448641",
    "lang": "AR",
@@ -100,15 +100,15 @@
   },
   {
    "country": "Bahrain",
-   "row": 289,
-   "name": "Bahrain Blinds Manufacturer - Sitra",
-   "type": "مركز تربية خاصة",
-   "email": "accounts@l5g.b2f.myftpupload.com, info@l5g.b2f.myftpupload.com",
+   "row": 76,
+   "name": "Saudi Bahraini Institute for the Blind",
+   "type": "منظمة",
+   "email": "sbiblind@batelco.com.bh",
    "whatsapp": "",
-   "phone": "+973 1773 5454",
-   "city": "Sitra",
-   "website": "http://bahrainblinds.com/",
-   "source": "https://www.bahrainyellow.com/company/7835/Bahrain_Blinds_Manufacturer",
+   "phone": "00973 780818",
+   "city": "Isa Town",
+   "website": "www.blindinstitute.org",
+   "source": "https://disability-hub.com/arab-world-directory/page/7/",
    "lang": "AR",
    "cv": "Full",
    "relevance": "عالية",
@@ -161,6 +161,18 @@
    "cv": "Full",
    "relevance": "عالية",
    "id": 10
+  }
+ ],
+ "replaced": [
+  {
+   "id": 3,
+   "dropped": "معهد الأمل الابتدائي ( بنين) Saudi row 292",
+   "reason": "نطاق الإيميل sol.net.sa لا يستجيب في DNS (SERVFAIL)"
+  },
+  {
+   "id": 7,
+   "dropped": "Bahrain Blinds Manufacturer - Sitra, Bahrain row 289",
+   "reason": "شركة ستائر وليست جهة تربية خاصة، والإيميل على نطاق استضافة مؤقت myftpupload"
   }
  ]
 }

@@ -79,7 +79,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "sent",
+  "status": "bounced",
   "country": "Jordan",
   "row": 2722,
   "name": "Handicap International",

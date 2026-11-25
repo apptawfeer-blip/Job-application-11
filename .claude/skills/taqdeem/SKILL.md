@@ -122,6 +122,13 @@ python3 scripts/pipeline.py wa-queue --run <run>
 5. الارتدادات: `search_threads from:mailer-daemon newer_than:2d` ← الإيميل المرتد في الطابور يصبح `failed/bounce` + `pipeline.py sync-bounces`. أكثر من 5% من آخر 50 ← `config/settings {paused: true}` + `issues_tool`.
 6. أعد قراءة الطابور ثم `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل في applications_log وملفات الدول) ثم `pipeline.py desk-saved --dir output/runs/_sync/desk` (يحدّث `output/saved_for_later.xlsx` بما حفظه المستخدم للرجوع) ثم `pipeline.py stats` ثم commit/push. سطر واحد للمستخدم: كم أُرسل وكم بقي اليوم وأي خطأ.
 
+### متابعة الردود (كل ساعة، ضمن جولة الإرسال)
+1. `python3 scripts/pipeline.py reply-query --dir output/runs/_sync/desk` ← يطبع استعلام Gmail للردود من الجهات التي أُرسل لها (الإيميل نفسه، أو نطاق الجهة إن لم يكن بريداً عاماً)، ويستبعد إشعارات الارتداد.
+2. `mcp__Gmail__search_threads` بالاستعلام (`THREAD_VIEW_SUMMARY`)، ولكل محادثة جديدة `mcp__Gmail__get_thread` لقراءة نص الرد (رسائل الجهة فقط، لا رسائلنا). إشعار Undeliverable/postmaster = **ارتداد** لا رد ← عالجه كارتداد.
+3. اكتب `output/runs/_sync/replies_found.json` = `[{thread_id, message_id, from, date, subject, text}]` ← `python3 scripts/pipeline.py replies-export --dir output/runs/_sync/desk --file output/runs/_sync/replies_found.json` (يطابق الرد مع الرسالة المرسلة، ويحدّث الدفتر وملف الدولة وسجل الإرسال "Replied").
+4. `ArtifactData batch` على collection `replies` بالمكتب من `output/desk/replies/_index.json` (`set` للجديد فقط؛ لا تعيد كتابة رد موجود حتى لا يضيع "قرأته")، ثم `update queue/<queue_id> {replied: true}`.
+5. **أي رد جديد = أولوية:** أخبر المستخدم فوراً بسطر: اسم الجهة + ملخص الرد بكلمات قليلة. لا ترد نيابة عنه أبداً (الرد والتحويل محظوران).
+
 ### Reviewer: المراجع المستقل
 مساعد جديد **لم يشارك** في المراحل السابقة. يقرأ `selection.json`, `research.json`, `texts.json`, `drafts.json`/`queue.json` و`scripts/cv_content.py` و`output/applications_log.xlsx`، ويتحقق من:
 - [ ] لا جهة موجودة مسبقاً في السجل أو الدفتر (`log_tool.py check`).

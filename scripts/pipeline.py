@@ -642,6 +642,68 @@ def desk_edits(a):
     print("new edits:", len(out)); [print(x) for x in out]
 
 
+FREE_MAIL = {"gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "live.com", "icloud.com", "maktoob.com", "msn.com", "aol.com"}
+
+
+def reply_query(a):
+    """Gmail search query for replies from organizations we emailed (exact address, or the org's own domain)."""
+    terms, seen = [], set()
+    for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
+        d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
+        if d.get("status") not in ("sent",) and not d.get("replied"): continue
+        em = str(d.get("to", "")).strip().lower()
+        if "@" not in em: continue
+        dom = em.split("@")[1]
+        t = f"from:{em}" if dom in FREE_MAIL else f"from:{dom}"
+        if t not in seen: seen.add(t); terms.append(t)
+    q = (f"in:inbox newer_than:{a.days}d -from:mailer-daemon -from:postmaster -subject:Undeliverable -subject:\"Delivery Status\" "
+         f"({' OR '.join(terms)})") if terms else ""
+    open(os.path.join(DESK, "reply_query.txt"), "w", encoding="utf-8").write(q); print(q)
+
+
+def replies_export(a):
+    """a.file: [{thread_id, message_id, from, date, subject, text}] from Gmail -> desk 'replies' docs + logs.
+    Matches each reply to the sent desk message by sender address or domain."""
+    found = json.load(open(a.file, encoding="utf-8"))
+    sent = {}
+    for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
+        d = json.load(open(f, encoding="utf-8")); d = d.get("data", d); d["_id"] = os.path.basename(f)[:-5]
+        if d.get("status") == "sent" or d.get("replied"):
+            em = str(d.get("to", "")).strip().lower(); sent[em] = d
+            dom = em.split("@")[-1]
+            if dom not in FREE_MAIL: sent.setdefault("@" + dom, d)
+    out_dir = os.path.join(DESK, "replies"); os.makedirs(out_dir, exist_ok=True)
+    for x in glob.glob(os.path.join(out_dir, "*.json")): os.remove(x)
+    idx, matched = [], []
+    for r in found:
+        fr = log_tool.norm_email(re.sub(r".*<([^>]+)>.*", r"\1", str(r.get("from", ""))))
+        d = sent.get(fr) or sent.get("@" + fr.split("@")[-1])
+        if not d: continue
+        doc = {"thread_id": r.get("thread_id"), "message_id": r.get("message_id"), "from": r.get("from"), "date": r.get("date", ""),
+               "subject": r.get("subject", ""), "text": str(r.get("text", ""))[:4000], "queue_id": d["_id"], "name": d.get("name"),
+               "country": d.get("country"), "sent_at": d.get("sent_at", ""),
+               "gmail_url": f"https://mail.google.com/mail/u/0/#all/{r.get('thread_id')}", "read": False}
+        did = "r-" + str(r.get("message_id") or r.get("thread_id"))
+        fp = os.path.join(out_dir, did + ".json"); json.dump(doc, open(fp, "w", encoding="utf-8"), ensure_ascii=False)
+        idx.append({"doc_id": did, "file_path": fp, "queue_id": d["_id"]}); matched.append({"from": d.get("to"), "date": doc["date"], "subject": doc["subject"]})
+    json.dump(idx, open(os.path.join(out_dir, "_index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    # logs: ledger + country file + applications_log status "Replied"
+    if matched:
+        mf = os.path.join(out_dir, "_matched.json"); json.dump(matched, open(mf, "w", encoding="utf-8"), ensure_ascii=False)
+        sync_replies(argparse.Namespace(file=mf))
+        from openpyxl import load_workbook as _lw
+        wb = _lw(log_tool.LOG); ws = wb["Applications"]
+        for m in matched:
+            for r_ in log_tool.find(ws, m["from"], None, None) or []:
+                row = r_[0] if isinstance(r_, (list, tuple)) else r_
+                try:
+                    ws.cell(row, log_tool.C["الحالة"]).value = "Replied"
+                    ws.cell(row, log_tool.C["تاريخ آخر تحديث"]).value = today().isoformat()
+                except Exception: pass
+        wb.save(log_tool.LOG)
+    print("replies matched:", len(idx))
+
+
 # ---------------- migrate ----------------
 def migrate_batch01(_):
     rows = json.load(open(os.path.join(ROOT, "output", "drafts", "batch_01.json"), encoding="utf-8")); L = load_ledger()
@@ -671,12 +733,14 @@ def main():
     x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
     x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)
     x = sp.add_parser("desk-edits"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("reply-query"); x.add_argument("--dir", required=True); x.add_argument("--days", type=int, default=14)
+    x = sp.add_parser("replies-export"); x.add_argument("--dir", required=True); x.add_argument("--file", required=True)
     for n in ("sync-wa", "stats", "migrate-batch01"):
         sp.add_parser(n)
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "desk-edits": desk_edits}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "desk-edits": desk_edits, "reply-query": reply_query, "replies-export": replies_export}[a.cmd](a)
 
 
 if __name__ == "__main__":

@@ -83,6 +83,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .facts .fl{font-size:.78rem;color:var(--muted)}
 .facts b{font-size:1.05rem;font-variant-numeric:tabular-nums}
 .list td.when{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.replies{display:flex;flex-direction:column;gap:10px}
+.reply{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.reply.new{border-color:var(--sun);box-shadow:0 0 0 3px var(--soft-sun)}
+.reply .rh{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.reply .rt{white-space:pre-wrap;font-size:.92rem;line-height:1.7;max-height:12em;overflow:auto;direction:auto}
+.reply a{color:var(--sea-deep);font-weight:600;font-size:.88rem}
 .mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
 .tw{overflow-x:auto}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
@@ -155,6 +161,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   <section class="panel" id="donePanel" hidden>
     <h2>راجعت كل الرسائل</h2>
     <p class="muted">لا توجد رسائل بانتظار مراجعتك. ما أضفته للطابور سيُرسل تلقائياً. لدفعة جديدة اطلب من Claude: تقديم ايميل</p>
+  </section>
+
+  <section class="panel" id="repliesPanel">
+    <div class="meta"><h2>ردود الجهات</h2><span class="st st-sent" id="repCount">0</span><span class="st st-approved" id="repNew" hidden></span></div>
+    <p class="muted" id="repInfo">أفحص بريدك كل ساعة بحثاً عن ردود من الجهات التي راسلتها، وأضعها هنا مع نص الرد ورابط المحادثة في Gmail.</p>
+    <div class="replies" id="repList"><p class="muted">لا توجد ردود بعد. الردود تحتاج عادة من أيام إلى أسابيع، وستظهر هنا فور وصولها.</p></div>
   </section>
 
   <section class="panel" id="savedPanel">
@@ -373,6 +385,26 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     if (!db) { banner("لا أستطيع قراءة الطابور في هذا العرض. افتح الصفحة من claude.ai وأنت مسجّل الدخول.", "n-bad"); return; }
     S.db = db;
     db.doc("config/settings").onSnapshot((s) => { if (s.exists) { Object.assign(S.cfg, s.data()); renderStats(); } });
+    db.collection("replies").onSnapshot((snap) => {
+      const reps = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+      const list = $("repList"); $("repCount").textContent = reps.length;
+      const fresh = reps.filter((r) => !r.read).length; const rn = $("repNew"); rn.hidden = !fresh; rn.textContent = fresh + " جديد";
+      if (!reps.length) return;
+      list.replaceChildren();
+      reps.forEach((r) => {
+        const box = document.createElement("div"); box.className = "reply" + (r.read ? "" : " new");
+        const h = document.createElement("div"); h.className = "rh";
+        const t = document.createElement("b"); t.textContent = `${r.name || r.from} · ${COUNTRY[r.country] || r.country || ""}`;
+        const dt = document.createElement("span"); dt.className = "muted"; dt.textContent = (r.date ? "وصل " + String(r.date).replace("T", " ").slice(0, 16) : "") + (r.sent_at ? " · أرسلنا " + String(r.sent_at).slice(0, 10) : "");
+        h.append(t, dt);
+        const sub = document.createElement("div"); sub.className = "muted"; sub.textContent = (r.from || "") + (r.subject ? " — " + r.subject : "");
+        const tx = document.createElement("div"); tx.className = "rt"; tx.textContent = r.text || "";
+        const act = document.createElement("div"); act.className = "actions";
+        if (/^https:\/\//.test(r.gmail_url || "")) { const a = document.createElement("a"); a.href = r.gmail_url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح المحادثة في Gmail وردّ عليها"; act.append(a); }
+        if (!r.read) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قرأته"; b.addEventListener("click", () => db.doc("replies/" + r.id).update({ read: true }).catch(() => {})); act.append(b); }
+        box.append(h, sub, tx, act); list.append(box);
+      });
+    }, () => {});
     db.collection("queue").onSnapshot((snap) => {
       S.rows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
       if (S.current) { const fresh = S.rows.find((x) => x.id === S.current.id); S.current = fresh && (S.pinned || fresh.status === "ready") ? fresh : null; }

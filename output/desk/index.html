@@ -100,6 +100,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <div class="chip"><b class="num" id="sMax">30</b><span>حصة اليوم</span></div>
       <div class="chip"><b class="num" id="sApproved">0</b><span>في طابور الإرسال</span></div>
       <div class="chip"><b class="num" id="sLeft">0</b><span>بانتظار مراجعتك</span></div>
+      <div class="chip"><b class="num" id="sReserve">0</b><span>بدائل جاهزة</span></div>
     </div>
   </section>
 
@@ -192,6 +193,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
     $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
     $("savedCount").textContent = S.rows.filter((r) => r.status === "saved").length;
+    $("sReserve").textContent = S.rows.filter((r) => r.status === "reserve").length;
     queueMicrotask(renderFacts);
     const paused = !!S.cfg.paused, st = $("autoState");
     st.textContent = paused ? "متوقف مؤقتاً" : "يعمل"; st.className = "st " + (paused ? "st-skipped" : "st-sent");
@@ -202,7 +204,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       : "الطابور فارغ. أضف رسائل بعد مراجعتها وسأرسلها تلقائياً.";
     S.paused = paused; const sched = schedule();
     const tb = $("qBody"); tb.replaceChildren();
-    const rows = S.rows.slice().sort((a, b) => a.n - b.n);
+    const rows = S.rows.filter((x) => x.status !== "reserve").sort((a, b) => a.n - b.n);
     if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
     rows.forEach((r) => {
       const tr = tb.insertRow(); tr.className = "row" + (S.current && S.current.id === r.id ? " on" : ""); tr.tabIndex = 0;
@@ -314,12 +316,21 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   }
 
   $("approveBtn").addEventListener("click", approve);
-  $("skipBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { later: Date.now() }); nextMessage(); });
-  $("dropBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { status: "skipped" }); nextMessage(); });
+  // replacement: when a message is postponed, excluded or saved for later, promote the next reserve message (another organization) to review at once
+  async function promoteReserve(forRow) {
+    const res = S.rows.filter((x) => x.status === "reserve").sort((a, b) => a.n - b.n)[0];
+    if (!res) { banner("لا توجد رسائل احتياطية الآن لتعويضها. سأجهّز بدائل جديدة في التجهيز الصباحي.", "n-warn"); return; }
+    try {
+      await S.db.doc("queue/" + res.id).update({ status: "ready", promoted_for: forRow.id, promoted_at: new Date().toISOString().slice(0, 19) });
+      res.status = "ready"; banner(`أضفت رسالة بديلة لجهة أخرى: ${res.name} (${COUNTRY[res.country] || res.country}).`, "n-ok"); setTimeout(() => banner(""), 5000);
+    } catch (e) { banner("تعذّر إضافة رسالة بديلة. أعد تحميل الصفحة.", "n-bad"); }
+  }
+  $("skipBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { later: Date.now() }); await promoteReserve(r); nextMessage(); });
+  $("dropBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { status: "skipped" }); await promoteReserve(r); nextMessage(); });
   $("saveBtn").addEventListener("click", async () => {
     const r = S.current; if (!r) return; S.current = null;
     await setStatus(r, { status: "saved", saved_at: new Date().toISOString().slice(0, 19), to: $("mTo").value.trim(), subject: $("mSubject").value.trim(), body: $("mBody").value });
-    banner(`حُفظت ${r.name} في قائمة "المحفوظة للرجوع".`, "n-ok"); setTimeout(() => banner(""), 4000); nextMessage();
+    await promoteReserve(r); nextMessage();
   });
   const COLS = [["n", "#"], ["name", "الجهة"], ["country", "الدولة"], ["city", "المدينة"], ["type", "النوع"], ["to", "الإيميل"], ["website", "الموقع"], ["about_url", "رابط المصدر"], ["about", "نبذة"], ["facts", "نقاط"], ["warn", "تنبيه"], ["status", "الحالة"], ["lang", "اللغة"], ["send_name", "السيرة"], ["subject", "الموضوع"], ["body", "نص الرسالة"], ["saved_at", "تاريخ الحفظ"], ["sent_at", "تاريخ الإرسال"]];
   async function downloadXlsx(rows, filename) {

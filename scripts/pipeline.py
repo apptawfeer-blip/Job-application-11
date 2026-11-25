@@ -443,7 +443,7 @@ def _about_fields(ab, it):
             "about_limited": bool(a.get("limited"))}
 
 
-def _desk_rows(items, emails, prefix, start_n, about=None):
+def _desk_rows(items, emails, prefix, start_n, about=None, status="ready"):
     """items: dicts with country,row,name,type,email/to,lang,cv,subject,draft_id,view_url; emails: id -> {paras,items,after,...}"""
     import drafts_tool
     A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]
@@ -458,7 +458,7 @@ def _desk_rows(items, emails, prefix, start_n, about=None):
             "body": drafts_tool.editable_text(e), "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
             "cv_url": A[cvf], "send_name": drafts_tool.SEND_NAME[it["lang"]],
             "draft_id": it.get("draft_id", ""), "view_url": it.get("draft_url") or it.get("view_url") or "",
-            "status": "ready", "sent_at": "", "edited": False, **_about_fields(about or {}, it),
+            "status": status, "sent_at": "", "edited": False, **_about_fields(about or {}, it),
             "subject_ar": e.get("subject_ar", ""), "body_ar": e.get("body_ar", "")}})
     return out
 
@@ -484,7 +484,7 @@ def desk_export(a):
         items = [dict(sel[e["id"]], id=e["id"], lang=e["lang"], cv=e["cv"], subject=e["subject"]) for e in texts]
         rp = os.path.join(a.run, "research.json")
         about = {x["id"]: x for x in json.load(open(rp, encoding="utf-8"))} if os.path.exists(rp) else {}
-        rows = _desk_rows(items, {e["id"]: e for e in texts}, os.path.basename(a.run).replace("_", "-"), a.start, about)
+        rows = _desk_rows(items, {e["id"]: e for e in texts}, os.path.basename(a.run).replace("_", "-"), a.start, about, a.status)
     idx = []
     for r in rows:
         f = os.path.join(exp, r["doc_id"] + ".json")
@@ -626,6 +626,7 @@ def main():
     for n in ("sync-sent", "sync-bounces", "sync-replies"):
         x = sp.add_parser(n); x.add_argument("--file", required=True)
     x = sp.add_parser("desk-export"); x.add_argument("--batch"); x.add_argument("--run"); x.add_argument("--start", type=int, default=1)
+    x.add_argument("--status", default="ready", choices=["ready", "reserve"], help="reserve = hidden replacements promoted when the user postpones/excludes")
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
     x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
     x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)

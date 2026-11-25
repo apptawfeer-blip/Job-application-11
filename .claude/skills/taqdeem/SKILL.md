@@ -55,8 +55,11 @@ python3 scripts/pipeline.py select --channel email|whatsapp --count N
 ```
 يطبع مسار التشغيل `output/runs/<stamp>_<channel>/`. ثم لكل جهة: `python3 scripts/log_tool.py check --email ... --phone ... --name ...`، وأي تطابق يُحذف من `selection.json` ويُستبدل.
 
-### Helper-2: البحث للتخصيص
-لكل جهة: افتح موقعها (`website`) أو رابط المصدر (`source`) واستخرج **معلومة حقيقية واحدة** تصلح للتخصيص (برنامج، فئة يخدمونها، منهج، فرع، رسالة الجهة). احفظ في `research.json`: `[{id, fact, url}]`. إن تعذّر: `fact: ""` ولا تخمّن. أدوات مساعدة: `scripts/research/enrich.py`, `scripts/research/pw_fetch.js` (حوّل http إلى https).
+### Helper-2: البحث للتخصيص + نبذة الجهة
+لكل جهة: افتح موقعها (`website`) أو رابط المصدر (`source`) واستخرج:
+- **معلومة حقيقية واحدة** للتخصيص في الرسالة (برنامج، فئة يخدمونها، منهج، فرع، رسالة الجهة).
+- **نبذة بالعربية** (2–3 جمل) يراها المستخدم في مكتب الإرسال قبل الموافقة: ما الجهة، من تخدم (أعمار/إعاقات/مراحل)، أهم خدماتها، وأي معلومة لافتة (سنة التأسيس، فروع، اعتماد) فقط إن ذكرها مصدر. + 2–4 نقاط قصيرة.
+احفظ في `research.json`: `[{id, fact, about, facts: [...], url, limited}]`. إن تعذّر: جملة صادقة مما هو معروف (النوع + المدينة) و`limited: true`، ولا تخمّن. `desk-export` يضع النبذة تلقائياً في المكتب (`about`, `about_facts`, `about_url`). أدوات مساعدة: `scripts/research/enrich.py`, `scripts/research/pw_fetch.js` (حوّل http إلى https).
 
 ### Helper-3: الكتابة (+ humanizer)
 اكتب `texts.json` في مجلد التشغيل.

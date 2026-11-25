@@ -65,6 +65,10 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .list th{color:var(--muted);font-weight:600;font-size:.8rem}
 .st{font-size:.78rem;border-radius:99px;padding:1px 9px;white-space:nowrap}
 .st-ready{background:var(--soft-sea)} .st-approved{background:var(--soft-sun)} .st-sent{background:var(--soft-leaf)} .st-skipped,.st-failed{background:var(--soft-coral)}
+.about{background:var(--soft-sea);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.about-h{font-weight:700;font-size:.92rem}
+.about ul{margin:0;padding:0 18px 0 0;font-size:.9rem;color:var(--muted)}
+.about a{color:var(--sea-deep);font-size:.88rem;font-weight:600}
 .mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
 .tw{overflow-x:auto}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
@@ -99,6 +103,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <span class="tag" id="mCountry"></span>
       <span class="tag sun" id="mType"></span>
       <span class="tag" id="mPos"></span>
+    </div>
+    <div class="about" id="mAbout" hidden>
+      <div class="about-h">نبذة عن الجهة <span class="muted" id="mCity"></span></div>
+      <p id="mAboutText"></p>
+      <ul id="mFacts"></ul>
+      <a id="mLink" href="#" target="_blank" rel="noopener" hidden>موقع الجهة</a>
     </div>
     <div><label for="mTo">إلى</label><input type="text" id="mTo" dir="ltr"></div>
     <div><label for="mSubject">الموضوع</label><input type="text" id="mSubject"></div>
@@ -185,6 +195,11 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("mTo").value = r.to; $("mSubject").value = r.subject;
     const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr"; $("mSubject").dir = ta.dir;
     $("mAtt").textContent = r.send_name; note(""); $("approveBtn").disabled = false;
+    $("mCity").textContent = r.city ? "· " + r.city : "";
+    $("mAboutText").textContent = r.about || "لا تتوفر نبذة عن هذه الجهة بعد.";
+    const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
+    const ln = $("mLink"), u = r.about_url || r.website || ""; ln.hidden = !/^https?:\/\//.test(u); if (!ln.hidden) ln.href = u;
+    $("mAbout").hidden = !(r.about || fl.children.length);
     show("msgPanel");
   }
 

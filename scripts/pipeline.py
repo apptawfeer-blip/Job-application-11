@@ -426,7 +426,13 @@ def write_xlsx(d):
 DESK = os.path.join(ROOT, "output", "desk")
 
 
-def _desk_rows(items, emails, prefix, start_n):
+def _about_fields(ab, it):
+    a = ab.get(it["id"], {})
+    return {"about": a.get("about", ""), "about_facts": a.get("facts", []), "about_url": a.get("url", ""),
+            "city": it.get("city") or "", "website": it.get("website") or ""}
+
+
+def _desk_rows(items, emails, prefix, start_n, about=None):
     """items: dicts with country,row,name,type,email/to,lang,cv,subject,draft_id,view_url; emails: id -> {paras,items,after,...}"""
     import drafts_tool
     A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]
@@ -441,7 +447,7 @@ def _desk_rows(items, emails, prefix, start_n):
             "body": drafts_tool.editable_text(e), "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
             "cv_url": A[cvf], "send_name": drafts_tool.SEND_NAME[it["lang"]],
             "draft_id": it.get("draft_id", ""), "view_url": it.get("draft_url") or it.get("view_url") or "",
-            "status": "ready", "sent_at": "", "edited": False}})
+            "status": "ready", "sent_at": "", "edited": False, **_about_fields(about or {}, it)}})
     return out
 
 
@@ -453,12 +459,16 @@ def desk_export(a):
         sys.path.insert(0, os.path.join(ROOT, "output", "drafts"))
         mod = __import__(f"batch_{a.batch}_emails"); emails = {e["id"]: e for e in mod.EMAILS}
         items = json.load(open(os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}.json"), encoding="utf-8"))
-        rows = _desk_rows(items, emails, f"b{a.batch}", a.start)
+        abp = os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}_about.json")
+        about = {x["id"]: x for x in json.load(open(abp, encoding="utf-8"))} if os.path.exists(abp) else {}
+        rows = _desk_rows(items, emails, f"b{a.batch}", a.start, about)
     else:
         sel = {t["id"]: t for t in json.load(open(os.path.join(a.run, "selection.json"), encoding="utf-8"))["targets"]}
         texts = json.load(open(os.path.join(a.run, "texts.json"), encoding="utf-8"))
         items = [dict(sel[e["id"]], id=e["id"], lang=e["lang"], cv=e["cv"], subject=e["subject"]) for e in texts]
-        rows = _desk_rows(items, {e["id"]: e for e in texts}, os.path.basename(a.run).replace("_", "-"), a.start)
+        rp = os.path.join(a.run, "research.json")
+        about = {x["id"]: x for x in json.load(open(rp, encoding="utf-8"))} if os.path.exists(rp) else {}
+        rows = _desk_rows(items, {e["id"]: e for e in texts}, os.path.basename(a.run).replace("_", "-"), a.start, about)
     idx = []
     for r in rows:
         f = os.path.join(exp, r["doc_id"] + ".json")

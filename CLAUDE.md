@@ -151,6 +151,17 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 - **جدول الإرسال الموصى به:** 10 يومياً لأول 3 أيام، ثم 15، ثم 20–25 كحد أقصى، بفاصل 2–5 دقائق بين الرسائل. المجموعات A..E في batch_01.xlsx = يوم لكل مجموعة.
 - بعد الإرسال: ابحث `in:sent` في Gmail وسجّل كل رسالة مرسلة بـ `log_tool.py add --method Email` ثم `targets_tool.py stats` ثم commit/push. راقب الارتدادات (bounce) واحذف الإيميلات المرتدة.
 
+## 6ج) الروتين اليومي – مهارة "تقديم" (`.claude/skills/taqdeem/SKILL.md`)
+
+- الأوامر: **تقديم ايميل N** (مسودات Gmail فقط) – **تقديم واتس N** (طابور لإضافة Chrome) – **تقديم بحث [دولة]** – **تقديم حالة** – **تقديم سيرة**. التفاصيل الكاملة في ملف المهارة.
+- **ممنوع إرسال أي إيميل نهائياً**: المسموح `create_draft` فقط. أدوات send/reply/forward محظورة تقنياً في `.claude/settings.json`.
+- كل مرحلة ينفذها مساعد مستقل (تحقق ← اختيار ← بحث ← كتابة + humanizer ← إنشاء)، ثم **مراجع مستقل** لم يشارك في العمل؛ لا تُعلَّم مهمة مكتملة إلا بنتيجة PASS (`review.md` في مجلد التشغيل).
+- الأداة الموحدة: `scripts/pipeline.py` (quota, select, build, record, wa-queue, mark, sync-sent, sync-bounces, sync-replies, sync-wa, stats). الدفتر: `output/pipeline_ledger.json`. كل تشغيل في `output/runs/<stamp>_<channel>/`.
+- الحصص والفواصل: `config/sending_policy.json` (إيميل 10←15←20←25/يوم، سقف 30، فاصل 2–5 د؛ واتساب 10←15←20، سقف 25، فاصل 3–6 د؛ الأحد–الخميس؛ بدء التسخين 2026-11-26). طلب أكثر من المسموح ← تنبيه المستخدم وعدم التجاوز إلا بموافقته. تراكم مسودات غير مرسلة ≥ 3 أيام ← تنبيه.
+- طابور الواتساب: `output/whatsapp/queue_*.json|csv`، الصيغة في `docs/whatsapp_queue_format.md`.
+- لوحة المتابعة: صفحة ويب https://claude.ai/artifact/K72UnkftTqSLYjh8jq43ZP (بياناتها `output/dashboard/{summary,countries,daily,alerts}.json` تُرفع بعد كل تشغيل) + `output/dashboard.xlsx`.
+- التذكير الصباحي: مهمة مجدولة يومياً 10:00 بتوقيت الأردن (`trig_01G8w34SHbSBeLACFGa9QxwT`) تنفذ "تقديم حالة" فقط، بلا إنشاء مسودات.
+
 ## 7) سجل الأخطاء والعمليات المتعثرة (إلزامي)
 
 - **أي عملية فشلت بخطأ، أو لم تبدأ/لم تكتمل لعدم وجود موافقة** ← تُسجَّل فوراً:

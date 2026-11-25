@@ -83,6 +83,8 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .facts .fl{font-size:.78rem;color:var(--muted)}
 .facts b{font-size:1.05rem;font-variant-numeric:tabular-nums}
 .list td.when{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.chip-rep{color:#fff;text-decoration:none;cursor:pointer}
+.chip-rep.has{background:#fff;color:var(--sea-deep);border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 .replies{display:flex;flex-direction:column;gap:10px}
 .reply{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
 .reply.new{border-color:var(--sun);box-shadow:0 0 0 3px var(--soft-sun)}
@@ -107,6 +109,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <div class="chip"><b class="num" id="sApproved">0</b><span>في طابور الإرسال</span></div>
       <div class="chip"><b class="num" id="sLeft">0</b><span>بانتظار مراجعتك</span></div>
       <div class="chip"><b class="num" id="sReserve">0</b><span>بدائل جاهزة</span></div>
+      <a class="chip chip-rep" id="sRepChip" href="#repliesPanel"><b class="num" id="sReplies">0</b><span id="sRepLbl">ردود الجهات</span></a>
     </div>
   </section>
 
@@ -388,6 +391,8 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     db.collection("replies").onSnapshot((snap) => {
       const reps = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
       const list = $("repList"); $("repCount").textContent = reps.length;
+      $("sReplies").textContent = reps.length; const unread = reps.filter((r) => !r.read).length;
+      $("sRepChip").classList.toggle("has", unread > 0); $("sRepLbl").textContent = unread ? `ردود (${unread} جديد)` : "ردود الجهات";
       const fresh = reps.filter((r) => !r.read).length; const rn = $("repNew"); rn.hidden = !fresh; rn.textContent = fresh + " جديد";
       if (!reps.length) return;
       list.replaceChildren();

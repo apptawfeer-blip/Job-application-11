@@ -64,7 +64,8 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .list td,.list th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
 .list th{color:var(--muted);font-weight:600;font-size:.8rem}
 .st{font-size:.78rem;border-radius:99px;padding:1px 9px;white-space:nowrap}
-.st-ready{background:var(--soft-sea)} .st-sent{background:var(--soft-leaf)} .st-skipped{background:var(--soft-coral)}
+.st-ready{background:var(--soft-sea)} .st-approved{background:var(--soft-sun)} .st-sent{background:var(--soft-leaf)} .st-skipped,.st-failed{background:var(--soft-coral)}
+.mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
 .tw{overflow-x:auto}
 @media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
 </style>
@@ -74,33 +75,22 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   <section class="hero">
     <div>
       <h1>مكتب الإرسال</h1>
-      <p class="muted">رسالة واحدة في كل مرة. عدّلها هنا كما تحب، ثم أرسلها من Gmail.</p>
+      <p class="muted">راجع كل رسالة وعدّلها، ثم أضفها لطابور الإرسال. أنا أرسلها تلقائياً ليلاً ونهاراً ضمن الحد الآمن.</p>
     </div>
     <div class="stats">
       <div class="chip"><b class="num" id="sToday">0</b><span>أرسلت اليوم</span></div>
       <div class="chip"><b class="num" id="sMax">30</b><span>حصة اليوم</span></div>
-      <div class="chip"><b class="num" id="sLeft">0</b><span>في الطابور</span></div>
+      <div class="chip"><b class="num" id="sApproved">0</b><span>في طابور الإرسال</span></div>
+      <div class="chip"><b class="num" id="sLeft">0</b><span>بانتظار مراجعتك</span></div>
     </div>
   </section>
 
   <div id="banner" class="note n-warn" hidden></div>
 
-  <section class="panel" id="startPanel">
-    <h2>جاهز لجلسة اليوم؟</h2>
-    <ol class="steps muted">
-      <li>اضغط "ابدأ الجلسة" فتظهر أول رسالة.</li>
-      <li>اقرأها وعدّل ما تريد، ثم اضغط "افتح في Gmail" وأرسلها من هناك.</li>
-      <li>ارجع واضغط "أرسلتها". بعد 2 إلى 5 دقائق يصدر صوت وتظهر الرسالة التالية.</li>
-    </ol>
-    <div class="actions"><button class="btn b-main" id="startBtn" type="button">ابدأ الجلسة</button></div>
-    <p class="muted" id="windowNote"></p>
-  </section>
-
-  <section class="panel" id="waitPanel" hidden>
-    <h2>استراحة قصيرة قبل الرسالة التالية</h2>
-    <div class="wait"><div class="clock" id="clock">0:00</div><div class="bar"><i id="waitBar"></i></div></div>
-    <p class="muted">الفاصل بين الرسائل يحمي حسابك من التقييد. ستسمع صوتاً عندما يحين الوقت، حتى لو كانت الصفحة في الخلفية.</p>
-    <div class="actions"><button class="btn b-ghost" id="nowBtn" type="button">اعرضها الآن</button></div>
+  <section class="panel" id="autoPanel">
+    <div class="meta"><h2>الإرسال التلقائي</h2><span class="st" id="autoState">يعمل</span></div>
+    <p class="muted" id="autoText">أرسل كل ساعة رسالة أو رسالتين من طابور الإرسال، حتى الحد اليومي، مع السيرة المناسبة لكل جهة.</p>
+    <div class="actions"><button class="btn b-ghost" id="pauseBtn" type="button">إيقاف مؤقت</button></div>
   </section>
 
   <section class="panel card" id="msgPanel" hidden>
@@ -116,21 +106,20 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     <div class="att"><span id="mAtt"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10 17.8a1.7 1.7 0 0 1-2.4-2.4L15.5 7.5"/></svg></div>
     <div id="mNote" class="note" hidden></div>
     <div class="actions">
-      <button class="btn b-main" id="prepBtn" type="button">افتح في Gmail</button>
-      <a class="btn b-sun" id="openLink" href="#" target="_blank" rel="noopener" hidden>المسودة جاهزة: افتحها واضغط إرسال</a>
-      <button class="btn b-leaf" id="sentBtn" type="button" disabled>أرسلتها</button>
+      <button class="btn b-main" id="approveBtn" type="button">أضف لطابور الإرسال</button>
       <button class="btn b-ghost" id="skipBtn" type="button">أجّلها</button>
+      <button class="btn b-ghost" id="dropBtn" type="button">استبعدها</button>
     </div>
   </section>
 
   <section class="panel" id="donePanel" hidden>
-    <h2 id="doneTitle">أنجزت حصة اليوم</h2>
-    <p class="muted" id="doneText">أحسنت. توقف هنا اليوم، فالالتزام بالحصة يحمي حسابك، وغداً نكمل.</p>
+    <h2>راجعت كل الرسائل</h2>
+    <p class="muted">لا توجد رسائل بانتظار مراجعتك. ما أضفته للطابور سيُرسل تلقائياً. لدفعة جديدة اطلب من Claude: تقديم ايميل</p>
   </section>
 
   <section class="panel">
-    <h2>طابور اليوم</h2>
-    <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th></tr></thead><tbody id="qBody"><tr><td colspan="4" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
+    <h2>كل الرسائل</h2>
+    <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="4" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
   </section>
 </div>
 
@@ -138,7 +127,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 (function () {
   const $ = (id) => document.getElementById(id);
   const S = { db: null, mcp: null, rows: [], cfg: { daily_max: 30, gap_min: 2, gap_max: 5, window: ["08:30", "14:00"] },
-              current: null, timer: null, waitUntil: 0, waitTotal: 0, started: false, audio: null, fileArgs: false, blobs: {} };
+              current: null };
   const COUNTRY = { Jordan: "الأردن", Qatar: "قطر", Saudi: "السعودية", UAE: "الإمارات", Kuwait: "الكويت", Oman: "عُمان", Bahrain: "البحرين" };
   const todayKey = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
   const lsGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
@@ -150,178 +139,86 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   // ---------- data ----------
   const sentToday = () => S.rows.filter((r) => r.status === "sent" && String(r.sent_at || "").slice(0, 10) === todayKey()).length;
   const pending = () => S.rows.filter((r) => r.status === "ready").sort((a, b) => (a.later || 0) - (b.later || 0) || a.n - b.n);
+  const approved = () => S.rows.filter((r) => r.status === "approved");
+  const LABEL = { ready: "بانتظار مراجعتك", approved: "في طابور الإرسال", sent: "أُرسلت", skipped: "مستبعدة", failed: "تعذّر إرسالها" };
 
   function renderStats() {
-    $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max; $("sLeft").textContent = pending().length;
+    $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
+    $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
+    const paused = !!S.cfg.paused, st = $("autoState");
+    st.textContent = paused ? "متوقف مؤقتاً" : "يعمل"; st.className = "st " + (paused ? "st-skipped" : "st-sent");
+    $("pauseBtn").textContent = paused ? "استئناف الإرسال" : "إيقاف مؤقت";
+    const left = Math.max(0, S.cfg.daily_max - sentToday());
+    $("autoText").textContent = paused ? "الإرسال التلقائي متوقف. ما في الطابور ينتظر حتى تستأنف."
+      : approved().length ? `في الطابور ${approved().length} رسالة. أرسل كل ساعة رسالة أو رسالتين، وبقي اليوم ${left} من ${S.cfg.daily_max}.`
+      : "الطابور فارغ. أضف رسائل بعد مراجعتها وسأرسلها تلقائياً.";
     const tb = $("qBody"); tb.replaceChildren();
     const rows = S.rows.slice().sort((a, b) => a.n - b.n);
-    if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 4; td.className = "muted"; td.textContent = "الطابور فارغ. اطلب من Claude: تقديم ايميل"; return; }
+    if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
     rows.forEach((r) => {
       const tr = tb.insertRow();
       tr.insertCell().textContent = r.n; tr.insertCell().textContent = r.name; tr.insertCell().textContent = COUNTRY[r.country] || r.country;
-      const s = document.createElement("span"); s.className = "st st-" + r.status;
-      s.textContent = r.status === "sent" ? "أُرسلت" : r.status === "skipped" ? "مؤجلة" : r.later ? "مؤجلة لآخر الطابور" : "جاهزة";
+      const s = document.createElement("span"); s.className = "st st-" + r.status; s.textContent = LABEL[r.status] || r.status;
+      if (r.status === "sent" && r.sent_at) s.title = r.sent_at;
       tr.insertCell().append(s);
+      const c = tr.insertCell();
+      if (r.status === "approved" || r.status === "skipped" || r.status === "failed") {
+        const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "أعدها للمراجعة";
+        b.addEventListener("click", () => setStatus(r, { status: "ready", approved_at: "" }));
+        c.append(b);
+      }
     });
   }
 
-  function windowNote() {
-    const [a, b] = S.cfg.window, d = new Date(), hm = String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
-    $("windowNote").textContent = hm < a || hm > b ? `أفضل وقت للإرسال بين ${a} و${b} بتوقيت الأردن. يمكنك المتابعة، لكن الإرسال في وقت الدوام يحصل على ردود أكثر.` : `وقت مناسب للإرسال (النافذة ${a}–${b}).`;
+  async function setStatus(r, patch) {
+    try { await S.db.doc("queue/" + r.id).update(patch); Object.assign(r, patch); renderStats(); if (!S.current) nextMessage(); return true; }
+    catch (e) { banner("لم أستطع حفظ التغيير. تأكد أنك مسجّل الدخول وحاول مجدداً.", "n-bad"); return false; }
   }
 
-  // ---------- message building (mirrors scripts/drafts_tool.py render) ----------
-  const esc = (t) => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
-  function buildEmail(r, subject, bodyText) {
-    const rtl = r.lang === "AR", blocks = bodyText.replace(/\r/g, "").split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
-    const p = (t) => `<p style="margin:0 0 14px 0;">${esc(t)}</p>`, parts = [];
-    blocks.forEach((b) => {
-      const lines = b.split("\n").map((l) => l.trim()).filter(Boolean);
-      if (lines.every((l) => l.startsWith("- "))) {
-        const pad = rtl ? "padding:0 22px 0 0;" : "padding:0 0 0 22px;";
-        parts.push(`<ul style="margin:0 0 14px 0;${pad}">` + lines.map((l) => `<li style="margin:0 0 8px 0;">${esc(l.slice(2))}</li>`).join("") + "</ul>");
-      } else parts.push(p(lines.join(" ")));
-    });
-    const font = rtl ? "Tahoma, Arial, sans-serif" : "Arial, Helvetica, sans-serif";
-    const html = `<div ${rtl ? 'dir="rtl" ' : ""}style="font-family:${font};font-size:15px;line-height:1.7;color:#222;text-align:${rtl ? "right" : "left"};max-width:640px;">` + parts.join("") + r.sig_html + "</div>";
-    const text = blocks.join("\n\n") + "\n\n" + r.sig_text;
-    return { html, text, subject };
-  }
+  function show(id) { ["msgPanel", "donePanel"].forEach((p) => { $(p).hidden = p !== id; }); }
 
-  // ---------- sound + attention ----------
-  function chime() {
-    try {
-      const ctx = S.audio; if (!ctx) return; const t0 = ctx.currentTime;
-      [659.25, 830.61, 987.77].forEach((f, i) => {
-        const o = ctx.createOscillator(), g = ctx.createGain(); o.type = "sine"; o.frequency.value = f;
-        g.gain.setValueAtTime(0.0001, t0 + i * 0.18); g.gain.exponentialRampToValueAtTime(0.25, t0 + i * 0.18 + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * 0.18 + 0.9);
-        o.connect(g); g.connect(ctx.destination); o.start(t0 + i * 0.18); o.stop(t0 + i * 0.18 + 1);
-      });
-    } catch (e) {}
-  }
-  let flashT = null; const baseTitle = document.title;
-  function flash(on) { clearInterval(flashT); document.title = baseTitle; if (!on) return; let k = 0; flashT = setInterval(() => { document.title = k++ % 2 ? baseTitle : "رسالة جديدة جاهزة"; }, 1000); }
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) flash(false); });
-
-  // ---------- flow ----------
-  function show(id) { ["startPanel", "waitPanel", "msgPanel", "donePanel"].forEach((p) => { $(p).hidden = p !== id; }); }
-
-  function nextMessage(fromTimer) {
-    clearInterval(S.timer); lsSet("desk_wait_until", null);
-    if (sentToday() >= S.cfg.daily_max) { $("doneTitle").textContent = "أنجزت حصة اليوم"; $("doneText").textContent = `أرسلت ${sentToday()} رسالة اليوم. أحسنت. توقف هنا، فالالتزام بالحصة يحمي حسابك، وغداً نكمل.`; show("donePanel"); return; }
-    const r = pending()[0];
-    if (!r) { $("doneTitle").textContent = "الطابور فارغ"; $("doneText").textContent = "أرسلت كل الرسائل الجاهزة. اطلب من Claude دفعة جديدة: تقديم ايميل"; show("donePanel"); return; }
-    S.current = r;
+  function nextMessage() {
+    const r = pending()[0]; S.current = r || null;
+    if (!r) { show(S.rows.length ? "donePanel" : ""); return; }
     $("mName").textContent = r.name; $("mCountry").textContent = COUNTRY[r.country] || r.country; $("mType").textContent = r.type || "";
-    $("mPos").textContent = `رسالة ${sentToday() + 1} من ${S.cfg.daily_max} اليوم`;
+    $("mPos").textContent = `بقي ${pending().length} للمراجعة`;
     $("mTo").value = r.to; $("mSubject").value = r.subject;
-    const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr";
-    $("mSubject").dir = r.lang === "AR" ? "rtl" : "ltr";
-    $("mAtt").textContent = r.send_name;
-    $("openLink").hidden = true; $("sentBtn").disabled = true; $("prepBtn").disabled = false; note("");
+    const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr"; $("mSubject").dir = ta.dir;
+    $("mAtt").textContent = r.send_name; note(""); $("approveBtn").disabled = false;
     show("msgPanel");
-    const card = $("msgPanel"); card.classList.toggle("ring", !!fromTimer);
-    if (fromTimer) { chime(); if (document.hidden) flash(true); setTimeout(() => card.classList.remove("ring"), 6000); }
   }
 
-  function startWait(ms) {
-    S.waitTotal = ms; S.waitUntil = Date.now() + ms; lsSet("desk_wait_until", String(S.waitUntil)); lsSet("desk_wait_total", String(ms));
-    show("waitPanel"); tick(); clearInterval(S.timer); S.timer = setInterval(tick, 1000);
-  }
-  function tick() {
-    const left = Math.max(0, S.waitUntil - Date.now()), s = Math.ceil(left / 1000);
-    $("clock").textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
-    $("waitBar").style.width = (100 * (1 - left / Math.max(1, S.waitTotal))) + "%";
-    if (left <= 0) nextMessage(true);
-  }
-
-  async function blobFor(url) {
-    if (S.blobs[url]) return S.blobs[url];
-    const res = await fetch(url); if (!res.ok) throw new Error("cv " + res.status);
-    return (S.blobs[url] = await res.blob());
-  }
-  const b64 = (blob) => new Promise((ok, no) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result).split(",")[1]); fr.onerror = no; fr.readAsDataURL(blob); });
-
-  async function prepare() {
+  async function approve() {
     const r = S.current; if (!r) return;
-    const to = $("mTo").value.trim(), subject = $("mSubject").value.trim(), body = $("mBody").value;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) { note("عنوان الإيميل غير صحيح. صحّحه ثم حاول مجدداً.", "n-bad"); return; }
-    const edited = to !== r.to || subject !== r.subject || body !== r.body;
-    if (!edited && r.view_url) { openReady(r.view_url, "المسودة الأصلية جاهزة في Gmail ومعها السيرة. افتحها واضغط إرسال، ثم ارجع هنا."); return; }
-    if (!S.mcp) { note("لا أستطيع الوصول إلى Gmail من هذه الصفحة الآن. افتح Gmail وعدّل المسودة هناك، أو اسمح للصفحة باستخدام Gmail من قائمة الأذونات.", "n-bad"); if (r.view_url) openReady(r.view_url); return; }
-    $("prepBtn").disabled = true; note("أجهّز المسودة في Gmail مع السيرة…", "n-warn");
-    try {
-      const msg = buildEmail(r, subject, body), blob = await blobFor(r.cv_url);
-      const content = S.fileArgs ? { $file: { data: blob, name: r.send_name, type: "application/pdf" } } : await b64(blob);
-      const res = await S.mcp.callTool("Gmail", "create_draft", { to: [to], subject: msg.subject, htmlBody: msg.html, body: msg.text,
-        attachments: [{ content, filename: r.send_name, mimeType: "application/pdf" }] });
-      const d = res.payload || {}, id = d.id || (d.draft && d.draft.id), url = d.viewUrl || (d.draft && d.draft.viewUrl);
-      if (!id) throw { code: "tool_error", message: "لم يرجع Gmail رقم المسودة" };
-      const old = r.draft_id;
-      await S.db.doc("queue/" + r.id).update({ to, subject, body, draft_id: id, view_url: url || "", edited: true, prev_draft_id: old || "" });
-      Object.assign(r, { to, subject, body, draft_id: id, view_url: url || "", edited: true });
-      if (old && old !== id) { try { await S.mcp.callTool("Gmail", "delete_draft", { draftId: old }); } catch (e) { /* old draft stays; harmless */ } }
-      openReady(url, "جهّزت المسودة المعدّلة في Gmail ومعها السيرة. افتحها واضغط إرسال، ثم ارجع هنا.");
-    } catch (e) {
-      $("prepBtn").disabled = false;
-      const c = e && e.code;
-      const msg = c === "needs_reauth" ? "انتهت صلاحية ربط Gmail. أعد ربطه من إعدادات claude.ai ← Connectors ثم حاول مجدداً."
-        : c === "server_not_connected" ? "Gmail غير مربوط بحسابك في claude.ai. أضفه من الإعدادات ← Connectors."
-        : c === "not_in_manifest" ? "لم تسمح للصفحة باستخدام Gmail. افتح قائمة الأذونات في الصفحة واسمح به."
-        : c === "server_unavailable" || c === "upstream_error" ? "Gmail لم يرد الآن. قد تكون المسودة أُنشئت رغم ذلك: تحقق من المسودات في Gmail قبل المحاولة مرة أخرى."
-        : "تعذّر تجهيز المسودة: " + ((e && e.message) || "خطأ غير معروف");
-      note(msg, "n-bad");
-    }
-  }
-  function openReady(url, text) {
-    const a = $("openLink"); a.href = /^https:\/\//.test(url || "") ? url : "https://mail.google.com/mail/#drafts"; a.hidden = false;
-    $("sentBtn").disabled = false; if (text) note(text, "n-ok");
+    const to = $("mTo").value.trim(), subject = $("mSubject").value.trim(), body = $("mBody").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) { note("عنوان الإيميل غير صحيح. صحّحه أولاً.", "n-bad"); return; }
+    if (!subject || body.length < 40) { note("الموضوع أو النص فارغ أو قصير جداً.", "n-bad"); return; }
+    $("approveBtn").disabled = true;
+    const edited = to !== r.to || subject !== r.subject || body !== r.body.trim();
+    const ok = await setStatus(r, { to, subject, body, edited: edited || !!r.edited, status: "approved", approved_at: new Date().toISOString().slice(0, 19) });
+    if (ok) { S.current = null; nextMessage(); }
+    else $("approveBtn").disabled = false;
   }
 
-  async function markSent() {
-    const r = S.current; if (!r) return; $("sentBtn").disabled = true;
-    const at = new Date().toISOString().slice(0, 19), local = todayKey() + at.slice(10);
-    try { await S.db.doc("queue/" + r.id).update({ status: "sent", sent_at: local }); r.status = "sent"; r.sent_at = local; }
-    catch (e) { $("sentBtn").disabled = false; note("لم أستطع حفظ الحالة. حاول مرة أخرى.", "n-bad"); return; }
-    renderStats(); S.current = null;
-    if (sentToday() >= S.cfg.daily_max || !pending().length) { nextMessage(false); return; }
-    const gmin = S.cfg.gap_min * 60000, gmax = S.cfg.gap_max * 60000;
-    startWait(Math.round(gmin + Math.random() * (gmax - gmin)));
-  }
-  async function skip() {
-    const r = S.current; if (!r) return;
-    const later = Date.now();
-    try { await S.db.doc("queue/" + r.id).update({ later }); r.later = later; } catch (e) {}
-    renderStats(); nextMessage(false);
-  }
-
-  $("startBtn").addEventListener("click", () => {
-    try { S.audio = S.audio || new (window.AudioContext || window.webkitAudioContext)(); S.audio.resume(); } catch (e) {}
-    S.started = true; const w = +lsGet("desk_wait_until") || 0;
-    if (w > Date.now()) { S.waitTotal = +lsGet("desk_wait_total") || (w - Date.now()); S.waitUntil = w; show("waitPanel"); tick(); S.timer = setInterval(tick, 1000); }
-    else nextMessage(false);
+  $("approveBtn").addEventListener("click", approve);
+  $("skipBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { later: Date.now() }); nextMessage(); });
+  $("dropBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { status: "skipped" }); nextMessage(); });
+  $("pauseBtn").addEventListener("click", async () => {
+    try { await S.db.doc("config/settings").update({ paused: !S.cfg.paused }); } catch (e) { banner("لم أستطع تغيير حالة الإرسال.", "n-bad"); }
   });
-  $("nowBtn").addEventListener("click", () => nextMessage(false));
-  $("prepBtn").addEventListener("click", prepare);
-  $("sentBtn").addEventListener("click", markSent);
-  $("skipBtn").addEventListener("click", skip);
 
   // ---------- boot ----------
-  windowNote(); renderStats();
+  renderStats();
   (async () => {
     const db = await claude.use("db");
-    if (!db) { banner("لا أستطيع قراءة الطابور في هذا العرض. افتح الصفحة من claude.ai وأنت مسجّل الدخول.", "n-bad"); $("startBtn").disabled = true; return; }
+    if (!db) { banner("لا أستطيع قراءة الطابور في هذا العرض. افتح الصفحة من claude.ai وأنت مسجّل الدخول.", "n-bad"); return; }
     S.db = db;
-    db.doc("config/settings").onSnapshot((s) => { if (s.exists) { Object.assign(S.cfg, s.data()); windowNote(); renderStats(); } });
+    db.doc("config/settings").onSnapshot((s) => { if (s.exists) { Object.assign(S.cfg, s.data()); renderStats(); } });
     db.collection("queue").onSnapshot((snap) => {
       S.rows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
-      if (S.current) { const fresh = S.rows.find((x) => x.id === S.current.id); if (fresh) S.current = Object.assign(fresh, { }); }
-      renderStats();
+      if (S.current) { const fresh = S.rows.find((x) => x.id === S.current.id); S.current = fresh && fresh.status === "ready" ? fresh : null; }
+      renderStats(); if (!S.current) nextMessage();
     }, () => banner("تعذّر تحميل الطابور. أعد تحميل الصفحة.", "n-bad"));
-    claude.use("mcp").then(async (mcp) => {
-      if (!mcp) return; S.mcp = mcp;
-      try { const l = await mcp.listTools(); S.fileArgs = !!l.fileArgs; } catch (e) {}
-    });
   })();
 })();
 </script>

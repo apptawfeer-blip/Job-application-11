@@ -483,6 +483,54 @@ def sync_desk(a):
     save_ledger(L); print("synced desk:", n)
 
 
+def _email_from_text(lang, body, sig_html, sig_text):
+    """same rules as the desk page: blank line = paragraph, a block of '- ' lines = bullet list"""
+    import html as H
+    rtl = lang == "AR"; parts = []; blocks = [b.strip() for b in re.split(r"\n\s*\n", body.replace("\r", "")) if b.strip()]
+    for b in blocks:
+        lines = [l.strip() for l in b.split("\n") if l.strip()]
+        if all(l.startswith("- ") for l in lines):
+            pad = "padding:0 22px 0 0;" if rtl else "padding:0 0 0 22px;"
+            parts.append(f'<ul style="margin:0 0 14px 0;{pad}">' + "".join(f'<li style="margin:0 0 8px 0;">{H.escape(l[2:])}</li>' for l in lines) + "</ul>")
+        else:
+            parts.append(f'<p style="margin:0 0 14px 0;">{H.escape(" ".join(lines))}</p>')
+    font = "Tahoma, Arial, sans-serif" if rtl else "Arial, Helvetica, sans-serif"
+    html = (f'<div {"dir=\"rtl\" " if rtl else ""}style="font-family:{font};font-size:15px;line-height:1.7;color:#222;'
+            f'text-align:{"right" if rtl else "left"};max-width:640px;">' + "".join(parts) + sig_html + "</div>")
+    return html, "\n\n".join(blocks) + "\n\n" + sig_text
+
+
+def send_plan(a):
+    """read a desk dump (ArtifactData list out_dir of 'queue' + 'config'), decide what to send NOW, write ready-to-send payloads"""
+    import drafts_tool, hashlib
+    docs = []
+    for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
+        d = json.load(open(f, encoding="utf-8")); d = d.get("data", d); d["_id"] = os.path.basename(f)[:-5]; docs.append(d)
+    cfgf = os.path.join(a.dir, "config", "settings.json")
+    cfg = json.load(open(cfgf, encoding="utf-8")) if os.path.exists(cfgf) else {}
+    cfg = cfg.get("data", cfg)
+    now = datetime.datetime.now(TZ); t = now.date().isoformat()
+    daily_max = int(cfg.get("daily_max", POLICY["email"]["absolute_max_per_day"]))
+    sent_today = sum(1 for d in docs if d.get("status") == "sent" and str(d.get("sent_at", ""))[:10] == t)
+    approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (str(d.get("approved_at", "")), d.get("n", 0)))
+    remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
+    k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(2, len(approved), remaining, max(1, -(-remaining // runs_left)))
+    A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]; rev = {v: k_ for k_, v in A.items()}
+    out = []
+    for d in approved[:k]:
+        html_, text = _email_from_text(d["lang"], d["body"], d["sig_html"], d["sig_text"])
+        cvf = os.path.join(ROOT, "cv", rev[d["cv_url"]]); sha = hashlib.sha256(open(cvf, "rb").read()).hexdigest()
+        out.append({"doc_id": d["_id"], "to": d["to"], "subject": d["subject"], "htmlBody": html_, "body": text,
+                    "attachment": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "old_draft_id": d.get("draft_id", ""),
+                    "name": d["name"], "country": d["country"]})
+    plan = {"now": now.strftime("%Y-%m-%d %H:%M"), "paused": bool(cfg.get("paused")), "daily_max": daily_max, "sent_today": sent_today,
+            "approved_waiting": len(approved), "send_now": len(out), "gap_minutes": [cfg.get("gap_min", 2), cfg.get("gap_max", 5)], "items": out}
+    os.makedirs(os.path.join(DESK, "outbox"), exist_ok=True)
+    json.dump(plan, open(os.path.join(DESK, "outbox", "plan.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(json.dumps({k_: v for k_, v in plan.items() if k_ != "items"}, ensure_ascii=False))
+    for it in out: print("SEND", it["doc_id"], it["to"], it["filename"])
+
+
 # ---------------- migrate ----------------
 def migrate_batch01(_):
     rows = json.load(open(os.path.join(ROOT, "output", "drafts", "batch_01.json"), encoding="utf-8")); L = load_ledger()
@@ -508,12 +556,13 @@ def main():
         x = sp.add_parser(n); x.add_argument("--file", required=True)
     x = sp.add_parser("desk-export"); x.add_argument("--batch"); x.add_argument("--run"); x.add_argument("--start", type=int, default=1)
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
     for n in ("sync-wa", "stats", "migrate-batch01"):
         sp.add_parser(n)
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan}[a.cmd](a)
 
 
 if __name__ == "__main__":

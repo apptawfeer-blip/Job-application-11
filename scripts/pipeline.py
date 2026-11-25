@@ -524,7 +524,7 @@ def _email_from_text(lang, body, sig_html, sig_text):
             pad = "padding:0 22px 0 0;" if rtl else "padding:0 0 0 22px;"
             parts.append(f'<ul style="margin:0 0 14px 0;{pad}">' + "".join(f'<li style="margin:0 0 8px 0;">{H.escape(l[2:])}</li>' for l in lines) + "</ul>")
         else:
-            parts.append(f'<p style="margin:0 0 14px 0;">{H.escape(" ".join(lines))}</p>')
+            parts.append('<p style="margin:0 0 14px 0;">' + "<br>".join(H.escape(l) for l in lines) + "</p>")  # keep the user's line breaks
     font = "Tahoma, Arial, sans-serif" if rtl else "Arial, Helvetica, sans-serif"
     html = (f'<div {"dir=\"rtl\" " if rtl else ""}style="font-family:{font};font-size:15px;line-height:1.7;color:#222;'
             f'text-align:{"right" if rtl else "left"};max-width:640px;">' + "".join(parts) + sig_html + "</div>")

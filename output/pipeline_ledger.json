@@ -173,7 +173,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 872,
   "name": "Bunayat Centre for Special Education (YMWA)",
@@ -185,13 +185,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-25"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 873,
   "name": "The Middle East Academy for Special Education",
@@ -203,7 +204,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-25"
  },
  {
   "date": "2026-11-25",

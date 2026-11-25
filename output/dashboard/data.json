@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 22:07",
+ "generated": "2026-11-25 23:44",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,20 +14,20 @@
  },
  "today": {
   "email_drafted": 60,
-  "email_sent": 9,
+  "email_sent": 11,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 9,
+  "email_sent": 11,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 51,
+  "drafted": 49,
   "queued": 0,
-  "sent": 8,
+  "sent": 9,
   "replied": 0,
-  "bounced": 1
+  "bounced": 2
  },
  "remaining": {
   "Jordan": {
@@ -74,17 +74,19 @@
   {
    "date": "2026-11-25",
    "email_prepared": 60,
-   "email_sent": 9,
+   "email_sent": 11,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 51,
+  "drafts_waiting_send": 49,
   "whatsapp_ready": 0,
   "replies": []
  },
- "alerts": [],
+ "alerts": [
+  "نسبة الارتداد 18% أعلى من 5% – أوقف الإرسال ونظّف القوائم"
+ ],
  "open_issues": [
   {
    "row": 3,
@@ -180,6 +182,18 @@
    "row": 23,
    "kind": "خطأ",
    "op": "ارتداد إيميل: مركز سكاد للتوحد (info@scadd-center.com)",
+   "need": "لا شيء – استُبعد الإيميل؛ جرّب الواتساب لهذه الجهة إن وُجد"
+  },
+  {
+   "row": 24,
+   "kind": "خطأ",
+   "op": "بحث قطر: مصادر محجوبة (qatarliving.com، edu.gov.qa، iloveqatar.net، goodschoolsguide، tabeebak.qa، disability-hub)",
+   "need": "اختياري: لو فتحت صفحة دليل QatarLiving لمدارس الاحتياجات الخاصة أو قائمة المدارس الخاصة من وزارة التعليم وحفظتها (Ctrl+S) أو أرسلت الرابط، أضيف جهاتها"
+  },
+  {
+   "row": 25,
+   "kind": "خطأ",
+   "op": "ارتداد إيميل: Handicap International (hi.jobs@hi.org)",
    "need": "لا شيء – استُبعد الإيميل؛ جرّب الواتساب لهذه الجهة إن وُجد"
   }
  ]

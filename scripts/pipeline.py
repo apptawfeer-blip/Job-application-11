@@ -455,7 +455,7 @@ def _desk_rows(items, emails, prefix, start_n, about=None, status="ready"):
         out.append({"doc_id": f"{prefix}-{it['id']:02d}", "data": {
             "n": start_n + k, "run": prefix, "country": it["country"], "row": it["row"], "name": it["name"], "type": it.get("type") or "",
             "to": (it.get("to") or str(it.get("email", "")).split(",")[0]).strip(), "subject": it["subject"], "lang": it["lang"], "cv": it["cv"],
-            "body": drafts_tool.editable_text(e), "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
+            "body": drafts_tool.editable_text(e), "body_orig": drafts_tool.editable_text(e), "subject_orig": it["subject"], "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
             "cv_url": A[cvf], "send_name": drafts_tool.SEND_NAME[it["lang"]],
             "draft_id": it.get("draft_id", ""), "view_url": it.get("draft_url") or it.get("view_url") or "",
             "status": status, "sent_at": "", "edited": False, **_about_fields(about or {}, it),
@@ -602,6 +602,41 @@ def desk_saved(a):
     wb.save(out); print(f"saved_for_later: +{added} new, {ws.max_row - 1} rows total -> {out}")
 
 
+def desk_edits(a):
+    """learn from the user: list every message whose text the user changed on the desk (body vs body_orig).
+    Appends new diffs to docs/style_edits_log.md (once per doc+version) so the writing rules in SKILL.md can be updated."""
+    import difflib
+    orig = {}
+    rwp = os.path.join(ROOT, "output", "drafts", "batch_01_ar_rewrite.json")
+    if os.path.exists(rwp):  # batch_01 predates body_orig
+        sys.path.insert(0, os.path.join(ROOT, "output", "drafts")); import drafts_tool
+        rw = {x["id"]: x for x in json.load(open(rwp, encoding="utf-8"))}
+        for e in __import__("batch_01_emails").EMAILS:
+            orig[f"b01-{e['id']:02d}"] = (rw[e["id"]]["subject"], rw[e["id"]]["body"]) if e["id"] in rw else (e["subject"], drafts_tool.editable_text(e))
+    logp = os.path.join(ROOT, "docs", "style_edits_log.md"); seen = open(logp, encoding="utf-8").read() if os.path.exists(logp) else ""
+    out = []
+    for f in sorted(glob.glob(os.path.join(a.dir, "queue", "*.json"))):
+        raw = json.load(open(f, encoding="utf-8")); d = raw.get("data", raw); did = os.path.basename(f)[:-5]
+        osub, obody = (d.get("subject_orig"), d.get("body_orig")) if d.get("body_orig") else orig.get(did, (None, None))
+        if obody is None: continue
+        if d["body"].strip() == obody.strip() and (osub is None or d["subject"] == osub): continue
+        tag = f"<!-- {did} -->"
+        if tag in seen: continue
+        lines = [tag, f"### {d['name']} ({d.get('country','')}, {d.get('type','')})"]
+        if osub and d["subject"] != osub: lines += [f"- الموضوع قبل: {osub}", f"- الموضوع بعد: {d['subject']}"]
+        for l in difflib.unified_diff(obody.strip().split("\n"), d["body"].strip().split("\n"), lineterm="", n=0):
+            if l.startswith(("---", "+++", "@@")): continue
+            if l.strip() in ("-", "+"): continue
+            lines.append(("- حُذف: " if l.startswith("-") else "- أصبح: ") + l[1:])
+        out.append("\n".join(lines))
+    if out:
+        os.makedirs(os.path.dirname(logp), exist_ok=True)
+        with open(logp, "a", encoding="utf-8") as fh:
+            if not seen: fh.write("# سجل تعديلات المستخدم على الرسائل\nكل تعديل يجريه المستخدم في مكتب الإرسال يُسجَّل هنا، ومنه تُستخرج قواعد \"أسلوب عامر\" في SKILL.md.\n\n")
+            fh.write("\n\n".join(out) + "\n\n")
+    print("new edits:", len(out)); [print(x) for x in out]
+
+
 # ---------------- migrate ----------------
 def migrate_batch01(_):
     rows = json.load(open(os.path.join(ROOT, "output", "drafts", "batch_01.json"), encoding="utf-8")); L = load_ledger()
@@ -630,12 +665,13 @@ def main():
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
     x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
     x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("desk-edits"); x.add_argument("--dir", required=True)
     for n in ("sync-wa", "stats", "migrate-batch01"):
         sp.add_parser(n)
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "desk-edits": desk_edits}[a.cmd](a)
 
 
 if __name__ == "__main__":

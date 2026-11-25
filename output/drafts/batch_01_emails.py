@@ -170,7 +170,7 @@ dict(id=21, lang="EN", cv="Full", subject="Special education specialist with ass
             "Improved teaching enough to reduce resource room referrals by 10% over four years."],
      after=["I hold an MA in Special Education (Excellent) and worked in Qatar in 2025. I would be glad to support your team in Dubai. My CV is attached."]),
 
-dict(id=22, lang="EN", cv="Full", subject="Special education specialist relocating to the UAE | Reach Out",
+dict(id=22, lang="EN", cv="Full", subject="Special education specialist interested in Reach Out Dubai",
      paras=["Dear Reach Out team,",
             "Reach Out's services for children with special needs are why I am writing. I have more than five years of experience in inclusion and resource rooms in Jordan, and I would like to join a support center in Dubai."],
      items=["Achieved full inclusion of students with disabilities in a public school for the first time.",

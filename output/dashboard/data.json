@@ -1,10 +1,10 @@
 {
- "generated": "2026-11-25 21:00",
+ "generated": "2026-11-25 22:03",
  "quota": {
   "email": {
    "allowed": 30,
    "week": 1,
-   "used": 0
+   "used": 10
   },
   "whatsapp": {
    "allowed": 10,
@@ -13,57 +13,57 @@
   }
  },
  "today": {
-  "email_drafted": 50,
-  "email_sent": 7,
+  "email_drafted": 60,
+  "email_sent": 9,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 7,
+  "email_sent": 9,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 43,
+  "drafted": 51,
   "queued": 0,
-  "sent": 6,
+  "sent": 8,
   "replied": 0,
   "bounced": 1
  },
  "remaining": {
   "Jordan": {
-   "remaining": 3506,
-   "email_ready": 920,
-   "whatsapp_ready": 400
+   "remaining": 3504,
+   "email_ready": 918,
+   "whatsapp_ready": 399
   },
   "Qatar": {
-   "remaining": 625,
-   "email_ready": 194,
-   "whatsapp_ready": 129
+   "remaining": 623,
+   "email_ready": 196,
+   "whatsapp_ready": 128
   },
   "Saudi": {
-   "remaining": 4484,
-   "email_ready": 437,
+   "remaining": 4481,
+   "email_ready": 434,
    "whatsapp_ready": 533
   },
   "UAE": {
-   "remaining": 3481,
-   "email_ready": 1591,
-   "whatsapp_ready": 983
+   "remaining": 3480,
+   "email_ready": 1590,
+   "whatsapp_ready": 982
   },
   "Kuwait": {
-   "remaining": 1641,
-   "email_ready": 144,
+   "remaining": 1640,
+   "email_ready": 143,
    "whatsapp_ready": 90
   },
   "Oman": {
-   "remaining": 605,
-   "email_ready": 142,
-   "whatsapp_ready": 76
+   "remaining": 604,
+   "email_ready": 141,
+   "whatsapp_ready": 75
   },
   "Bahrain": {
-   "remaining": 875,
-   "email_ready": 141,
-   "whatsapp_ready": 74
+   "remaining": 873,
+   "email_ready": 139,
+   "whatsapp_ready": 73
   }
  },
  "weeks_left": {
@@ -73,14 +73,14 @@
  "daily": [
   {
    "date": "2026-11-25",
-   "email_prepared": 50,
-   "email_sent": 7,
+   "email_prepared": 60,
+   "email_sent": 9,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 43,
+  "drafts_waiting_send": 51,
   "whatsapp_ready": 0,
   "replies": []
  },

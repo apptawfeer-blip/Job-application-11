@@ -117,7 +117,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 62,
   "name": "East Atlas for Autism",
@@ -129,13 +129,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-25"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 68,
   "name": "Tawasul Center for Autism",
@@ -147,7 +148,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-25"
  },
  {
   "date": "2026-11-25",

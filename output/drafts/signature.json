@@ -1,5 +1,5 @@
 {
- "linkedin": "",
+ "linkedin": "https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/",
  "phone": "+962780189766",
  "phone_display": "+962 78 018 9766",
  "whatsapp": "962780189766",
@@ -18,7 +18,8 @@
    "li": "LinkedIn",
    "orcid": "ORCID"
   },
-  "wa_text": "Chat on WhatsApp"
+  "wa_text": "Chat on WhatsApp",
+  "li_text": "View my LinkedIn profile"
  },
  "ar": {
   "name": "عامر عبد الجليل السعايدة",
@@ -33,6 +34,7 @@
    "li": "LinkedIn",
    "orcid": "ORCID"
   },
-  "wa_text": "راسلني على واتساب"
+  "wa_text": "راسلني على واتساب",
+  "li_text": "ملفي على LinkedIn"
  }
 }

@@ -41,7 +41,7 @@ def render(e, sig):
              (L["lbl"]["wa"], f'<a href="https://wa.me/{S["whatsapp"]}" {link}>{L["wa_text"]}</a>', "https://wa.me/" + S["whatsapp"]),
              (L["lbl"]["email"], f'<a href="mailto:{S["email"]}" {link}>{S["email"]}</a>', S["email"])]
     if S.get("linkedin"):
-        rows_.append((L["lbl"]["li"], f'<a href="{S["linkedin"]}" {link}>{S["linkedin"].replace("https://","").replace("www.","")}</a>', S["linkedin"]))
+        rows_.append((L["lbl"]["li"], f'<a href="{S["linkedin"]}" {link}>{L.get("li_text","LinkedIn")}</a>', S["linkedin"]))
     rows_.append((L["lbl"]["orcid"], f'<a href="{S["orcid"]}" {link}>{S["orcid"].replace("https://","")}</a>', S["orcid"]))
     cells = "".join(f'<tr><td style="color:#888;font-size:12px;padding:1px {"0 1px 10px" if rtl else "10px 1px 0"};white-space:nowrap;">{lb}</td>'
                     f'<td style="font-size:13px;padding:1px 0;" dir="ltr">{v}</td></tr>' for lb, v, _ in rows_)

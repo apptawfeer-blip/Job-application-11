@@ -33,11 +33,27 @@ def render(e, sig):
         parts.append(f'<ul style="margin:0 0 14px 0;{pad}">{lis}</ul>')
     parts += [p(t) for t in e.get("after", [])]
     close = "مع خالص التقدير،" if rtl else "Kind regards,"
-    sig_html = (f'<p style="margin:18px 0 4px 0;">{close}</p>'
-                f'<div style="border-top:1px solid #d9d9d9;padding-top:10px;margin-top:6px;">'
-                f'<div style="font-weight:bold;color:#1f3a5f;font-size:15px;">{html.escape(sig[0])}</div>'
-                f'<div style="color:#555;font-size:13px;margin-top:2px;">{html.escape(sig[1])}</div>'
-                f'<div style="color:#555;font-size:13px;margin-top:2px;" dir="ltr">{html.escape(sig[2].strip(chr(0x200e)))}</div></div>')
+    S = json.load(open(os.path.join(DR, "signature.json"), encoding="utf-8"))
+    L = S["ar" if rtl else "en"]; gulf = e.get("country") not in (None, "Jordan")
+    avail = L["avail_gulf"] if gulf else L["avail_local"]
+    link = 'style="color:#1f5fa8;text-decoration:none;"'
+    rows_ = [(L["lbl"]["phone"], f'<a href="tel:{S["phone"]}" {link}>{S["phone_display"]}</a>', S["phone_display"]),
+             (L["lbl"]["wa"], f'<a href="https://wa.me/{S["whatsapp"]}" {link}>{L["wa_text"]}</a>', "https://wa.me/" + S["whatsapp"]),
+             (L["lbl"]["email"], f'<a href="mailto:{S["email"]}" {link}>{S["email"]}</a>', S["email"])]
+    if S.get("linkedin"):
+        rows_.append((L["lbl"]["li"], f'<a href="{S["linkedin"]}" {link}>{S["linkedin"].replace("https://","").replace("www.","")}</a>', S["linkedin"]))
+    rows_.append((L["lbl"]["orcid"], f'<a href="{S["orcid"]}" {link}>{S["orcid"].replace("https://","")}</a>', S["orcid"]))
+    cells = "".join(f'<tr><td style="color:#888;font-size:12px;padding:1px {"0 1px 10px" if rtl else "10px 1px 0"};white-space:nowrap;">{lb}</td>'
+                    f'<td style="font-size:13px;padding:1px 0;" dir="ltr">{v}</td></tr>' for lb, v, _ in rows_)
+    bar = "border-right:3px solid #1f3a5f;padding-right:12px;" if rtl else "border-left:3px solid #1f3a5f;padding-left:12px;"
+    sig_html = (f'<p style="margin:18px 0 10px 0;">{close}</p>'
+                f'<div style="{bar}margin-top:4px;">'
+                f'<div style="font-weight:bold;color:#1f3a5f;font-size:16px;">{html.escape(L["name"])}</div>'
+                f'<div style="color:#444;font-size:13px;margin-top:2px;">{html.escape(L["title"])}</div>'
+                f'<div style="color:#666;font-size:12px;margin-top:2px;">{html.escape(L["creds"])}</div>'
+                f'<table cellpadding="0" cellspacing="0" style="margin-top:8px;border-collapse:collapse;">{cells}</table>'
+                f'<div style="color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;">{html.escape(avail)}</div></div>')
+    sig = [L["name"], L["title"], L["creds"]] + [f"{lb}: {t}" for lb, _, t in rows_] + [avail]
     body = (f'<div {d}style="font-family:{font};font-size:15px;line-height:1.7;color:#222;text-align:{align};max-width:640px;">'
             + "".join(parts) + sig_html + "</div>")
     text = "\n\n".join(e["paras"])
@@ -55,7 +71,7 @@ def build(a):
     rows = []
     for i, e in enumerate(mod.EMAILS):
         x = sel[e["id"]]; sig = mod.AR_SIG if e["lang"] == "AR" else mod.EN_SIG
-        h, t = render(e, sig)
+        e = dict(e, country=x["country"]); h, t = render(e, sig)
         cvf = os.path.join(ROOT, "cv", CV[(e["lang"], e["cv"])])
         open(os.path.join(out_dir, f"{e['id']:02d}.html"), "w", encoding="utf-8").write(h)
         open(os.path.join(out_dir, f"{e['id']:02d}.txt"), "w", encoding="utf-8").write(f"To: {x['email']}\nSubject: {e['subject']}\nAttachment: {os.path.basename(cvf)}\n\n{t}")

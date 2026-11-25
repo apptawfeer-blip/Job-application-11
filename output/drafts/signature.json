@@ -1,0 +1,38 @@
+{
+ "linkedin": "",
+ "phone": "+962780189766",
+ "phone_display": "+962 78 018 9766",
+ "whatsapp": "962780189766",
+ "email": "alsaydhamr77@gmail.com",
+ "orcid": "https://orcid.org/0009-0009-7349-4201",
+ "en": {
+  "name": "Amer Abdeljalil AlSaaideh",
+  "title": "Special Education Specialist | Inclusive Education Coordinator",
+  "creds": "MA in Special Education (Excellent) | 5+ years in Jordan and Qatar",
+  "avail_gulf": "Based in Amman, Jordan | Available immediately | Open to relocation",
+  "avail_local": "Based in Amman, Jordan | Available immediately",
+  "lbl": {
+   "phone": "Phone",
+   "wa": "WhatsApp",
+   "email": "Email",
+   "li": "LinkedIn",
+   "orcid": "ORCID"
+  },
+  "wa_text": "Chat on WhatsApp"
+ },
+ "ar": {
+  "name": "عامر عبد الجليل السعايدة",
+  "title": "أخصائي تربية خاصة | منسق تعليم دامج",
+  "creds": "ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر",
+  "avail_gulf": "مقيم في عمّان، الأردن | متاح للعمل فوراً | مستعد للانتقال",
+  "avail_local": "مقيم في عمّان، الأردن | متاح للعمل فوراً",
+  "lbl": {
+   "phone": "الهاتف",
+   "wa": "واتساب",
+   "email": "الإيميل",
+   "li": "LinkedIn",
+   "orcid": "ORCID"
+  },
+  "wa_text": "راسلني على واتساب"
+ }
+}

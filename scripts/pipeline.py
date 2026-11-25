@@ -37,6 +37,16 @@ TYPE_ORDER = {"مركز تربية خاصة": 0, "جمعية": 1, "منظمة": 
 PLACEHOLDER = re.compile(r"^(info|test|example|admin)?@|^[a-z]{1,4}@(gmail|hotmail|yahoo)\.", re.I)
 
 
+INTL = re.compile(r"international|british|american|\bIB\b|cambridge|canadian|french|german|indian|pakistani|filipino|"
+                  r"montessori international|embassy|unicef|unesco|unhcr|unrwa|\bUN\b|united nations|save the children|"
+                  r"handicap international|humanity|world vision|qatar foundation|\bQF\b|دولي|بريطاني|أمريكي|امريكي|البكالوريا الدولية", re.I)
+
+
+def lang_for(name, typ, website="", source=""):
+    """user's rule: Arabic for everyone except international bodies (international schools, international organizations)"""
+    return "EN" if INTL.search(" ".join(str(x or "") for x in (name, typ, website))) else "AR"
+
+
 def today():
     return datetime.datetime.now(TZ).date()
 
@@ -138,7 +148,7 @@ def select(a):
                      0 if (a.channel == "email" or wast.startswith("مؤكد")) else 1)
             pool.append((score, r, {"country": c, "row": r, "name": name, "type": typ, "email": email if a.channel == "email" else "",
                                      "whatsapp": contact if a.channel == "whatsapp" else "", "phone": phone, "city": row[7],
-                                     "website": row[8], "source": row[10], "lang": row[11], "cv": row[12], "relevance": rel}))
+                                     "website": row[8], "source": row[10], "lang": lang_for(name, typ, row[8]), "cv": row[12], "relevance": rel}))
         pool.sort(key=lambda x: (x[0], x[1])); pools[c] = [p[2] for p in pool]
     picked, i = [], 0
     while len(picked) < a.count and any(pools.values()):

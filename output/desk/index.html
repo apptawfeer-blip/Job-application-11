@@ -164,7 +164,9 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   </section>
 
   <section class="panel">
-    <h2>كل الرسائل</h2>
+    <h2>الرسائل</h2>
+    <p class="muted">كل رسائل الطابور أولاً، ثم آخر 20 رسالة أُرسلت.</p>
+    <p class="muted" id="hiddenNote" hidden></p>
     <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th>الموعد</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="6" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
   </section>
 </div>
@@ -204,7 +206,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       : "الطابور فارغ. أضف رسائل بعد مراجعتها وسأرسلها تلقائياً.";
     S.paused = paused; const sched = schedule();
     const tb = $("qBody"); tb.replaceChildren();
-    const rows = S.rows.filter((x) => x.status !== "reserve").sort((a, b) => a.n - b.n);
+    // keep the board light: every message still in progress, plus only the 20 most recently sent (older ones stay in the logs on GitHub)
+    const sentAll = S.rows.filter((x) => x.status === "sent").sort((a, b) => String(b.sent_at || "").localeCompare(String(a.sent_at || "")));
+    const recentSent = new Set(sentAll.slice(0, 20).map((x) => x.id));
+    const rows = S.rows.filter((x) => x.status !== "reserve" && (x.status !== "sent" || recentSent.has(x.id))).sort((a, b) => (a.status === "sent") - (b.status === "sent") || a.n - b.n);
+    const hiddenSent = Math.max(0, sentAll.length - 20), hn = $("hiddenNote");
+    if (hn) { hn.hidden = !hiddenSent; hn.textContent = `مخفية ${hiddenSent} رسالة مرسلة أقدم (تظهر آخر 20 فقط). كلها محفوظة في سجل الإرسال applications_log.xlsx على GitHub.`; }
     if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
     rows.forEach((r) => {
       const tr = tb.insertRow(); tr.className = "row" + (S.current && S.current.id === r.id ? " on" : ""); tr.tabIndex = 0;

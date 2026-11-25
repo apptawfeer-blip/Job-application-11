@@ -137,7 +137,15 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 
 ---
 
-## 7) Git
+## 7) سجل الأخطاء والعمليات المتعثرة (إلزامي)
+
+- **أي عملية فشلت بخطأ، أو لم تبدأ/لم تكتمل لعدم وجود موافقة** ← تُسجَّل فوراً:
+  `python3 scripts/issues_tool.py add --op "..." --reason "..." --need "المطلوب من المستخدم" --kind خطأ|موافقة`
+- اعرض المفتوح على المستخدم (`python3 scripts/issues_tool.py list`) في نهاية كل مرحلة، وأعد طلب الموافقة على ما يحتاجها؛ المستخدم سيوافق.
+- بعد الحل: `python3 scripts/issues_tool.py resolve --row N --notes "..."`.
+- الملف: `output/issues_log.xlsx`.
+
+## 8) Git
 
 - الفرع: `claude/job-application-profile-nj3oqj`.
 - commit + push بعد كل تحديث للسجل أو ملفات الجهات أو السيرة (الجلسة مؤقتة، وما لا يُرفع يضيع).

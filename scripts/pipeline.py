@@ -558,32 +558,48 @@ def send_plan(a):
 
 
 def desk_saved(a):
-    """output/saved_for_later.xlsx from a desk dump: every message the user saved for later (status 'saved')"""
-    from openpyxl import Workbook
+    """output/saved_for_later.xlsx (kept on GitHub, the user edits it freely).
+    Append-only: rows already in the file are never rewritten or removed, extra columns/notes the user adds are kept.
+    New messages the user saved on the desk (status 'saved') are appended at the bottom, matched by email + name."""
+    from openpyxl import Workbook, load_workbook
     from openpyxl.styles import Font, PatternFill, Alignment
+    cols = [("n", "#", 5), ("name", "الجهة", 34), ("country", "الدولة", 10), ("city", "المدينة", 12), ("type", "النوع", 16),
+            ("to", "الإيميل", 32), ("website", "الموقع", 30), ("about_url", "رابط المصدر", 30), ("about", "نبذة", 60),
+            ("about_facts", "نقاط", 50), ("warn", "تنبيه", 30), ("lang", "اللغة", 7), ("send_name", "السيرة", 30),
+            ("subject", "الموضوع", 45), ("body", "نص الرسالة", 70), ("saved_at", "تاريخ الحفظ", 18), ("notes", "ملاحظاتي", 40)]
+    out = os.path.join(ROOT, "output", "saved_for_later.xlsx")
+    if os.path.exists(out):
+        wb = load_workbook(out); ws = wb.worksheets[0]
+    else:
+        wb = Workbook(); ws = wb.active; ws.title = "محفوظة للرجوع"; ws.sheet_view.rightToLeft = True
+        ws.append([c[1] for c in cols])
+        for i, (_, _, w) in enumerate(cols, 1):
+            c = ws.cell(1, i); ws.column_dimensions[c.column_letter].width = w
+            c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="2A9D8F")
+        ws.freeze_panes = "B2"
+    head = {str(ws.cell(1, j).value or "").strip(): j for j in range(1, ws.max_column + 1)}
+    je, jn = head.get("الإيميل"), head.get("الجهة")
+    have = {(str(ws.cell(r, je).value or "").strip().lower() if je else "", str(ws.cell(r, jn).value or "").strip() if jn else "")
+            for r in range(2, ws.max_row + 1)}
     docs = []
     for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
         d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
         if d.get("status") == "saved": docs.append(d)
-    cols = [("n", "#", 5), ("name", "الجهة", 34), ("country", "الدولة", 10), ("city", "المدينة", 12), ("type", "النوع", 16),
-            ("to", "الإيميل", 32), ("website", "الموقع", 30), ("about_url", "رابط المصدر", 30), ("about", "نبذة", 60),
-            ("about_facts", "نقاط", 50), ("warn", "تنبيه", 30), ("lang", "اللغة", 7), ("send_name", "السيرة", 30),
-            ("subject", "الموضوع", 45), ("body", "نص الرسالة", 70), ("saved_at", "تاريخ الحفظ", 18)]
-    wb = Workbook(); ws = wb.active; ws.title = "محفوظة للرجوع"; ws.sheet_view.rightToLeft = True
-    ws.append([c[1] for c in cols])
-    for i, (_, _, w) in enumerate(cols, 1):
-        c = ws.cell(1, i); ws.column_dimensions[c.column_letter].width = w
-        c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="2A9D8F")
-    for d in sorted(docs, key=lambda d: d.get("n", 0)):
-        ws.append([" | ".join(d.get(k) or []) if k == "about_facts" else (AR_C.get(d.get(k), d.get(k)) if k == "country" else d.get(k, ""))
-                   for k, _, _ in cols])
-    for row in ws.iter_rows(min_row=2):
-        for c in row: c.alignment = Alignment(wrap_text=True, vertical="top")
-    ws.freeze_panes = "B2"; ws.auto_filter.ref = ws.dimensions
-    out = os.path.join(ROOT, "output", "saved_for_later.xlsx"); wb.save(out); print("saved_for_later:", len(docs), "->", out)
-    for d in docs:
+    added = 0
+    for d in sorted(docs, key=lambda d: (str(d.get("saved_at", "")), d.get("n", 0))):
+        k = (str(d.get("to", "")).strip().lower(), str(d.get("name", "")).strip())
+        if k in have: continue
+        r = ws.max_row + 1
+        for key, label, _ in cols:
+            j = head.get(label)
+            if not j: continue  # the user removed that column: respect it
+            v = " | ".join(d.get(key) or []) if key == "about_facts" else (AR_C.get(d.get(key), d.get(key)) if key == "country" else d.get(key, ""))
+            c = ws.cell(r, j, v if v is not None else ""); c.alignment = Alignment(wrap_text=True, vertical="top")
+        have.add(k); added += 1
         try: set_col14(d["country"], d["row"], "محفوظة للرجوع (مكتب الإرسال)")
         except Exception: pass
+    ws.auto_filter.ref = ws.dimensions
+    wb.save(out); print(f"saved_for_later: +{added} new, {ws.max_row - 1} rows total -> {out}")
 
 
 # ---------------- migrate ----------------

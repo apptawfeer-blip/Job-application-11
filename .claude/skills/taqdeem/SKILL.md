@@ -1,6 +1,6 @@
 ---
 name: taqdeem
-description: روتين "تقديم" اليومي لعامر السعايدة – تقديم السيرة على جهات الأردن والخليج. استخدمها عندما يكتب المستخدم "تقديم ايميل [عدد]" أو "تقديم واتس [عدد]" أو "تقديم بحث [دولة]" أو "تقديم حالة" أو "تقديم سيرة" أو "تقديم" وحدها. الإيميل = مسودات Gmail فقط (ممنوع الإرسال نهائياً)، الواتساب = طابور رسائل لإضافة Chrome.
+description: روتين "تقديم" اليومي لعامر السعايدة – تقديم السيرة على جهات الأردن والخليج. استخدمها عندما يكتب المستخدم "تقديم ايميل [عدد]" أو "تقديم واتس [عدد]" أو "تقديم بحث [دولة]" أو "تقديم حالة" أو "تقديم سيرة" أو "تقديم" وحدها. الإيميل = طابور في "مكتب الإرسال" (صفحة ويب) يعدّل فيه المستخدم وينشئ المسودة، ثم يرسل من Gmail بنفسه (ممنوع على Claude الإرسال نهائياً)، الواتساب = طابور رسائل لإضافة Chrome.
 ---
 
 # مهارة "تقديم"
@@ -8,7 +8,8 @@ description: روتين "تقديم" اليومي لعامر السعايدة �
 هذه المهارة تجمع كل ما بُني في هذا المستودع منذ البداية: قوائم الجهات، السير الأربع، السجلات، المسودات، الواتساب، اللوحة. اقرأ `CLAUDE.md` أولاً، فقواعده كلها سارية هنا.
 
 ## قواعد لا تُكسر
-1. **ممنوع إرسال أي إيميل نهائياً.** المسموح فقط `mcp__Gmail__create_draft`. أدوات send/reply/forward محظورة في `.claude/settings.json`. المستخدم يقرأ المسودة ويرسلها بنفسه.
+1. **ممنوع على Claude إرسال أي إيميل نهائياً.** أدوات send/reply/forward محظورة في `.claude/settings.json`.
+   **المسودة تُنشأ وتُعدَّل في "مكتب الإرسال"** https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53 : Claude يضع الرسائل في طابور المكتب فقط؛ المستخدم يفتح المكتب، كل 2–5 دقائق يصدر تنبيه وتظهر رسالة، يعدّلها هناك، يضغط "افتح في Gmail" فتُنشأ المسودة (مع السيرة) من المكتب نفسه، و**في Gmail يضغط إرسال فقط**، ثم "أرسلتها" في المكتب.
 2. **الواتساب لا يُرسل من هنا.** الناتج ملف طابور فقط (`docs/whatsapp_queue_format.md`) والمستخدم يضغط إرسال من إضافته.
 3. **لا تكرار:** الاختيار يتم عبر `pipeline.py select` فقط (يستبعد السجل والدفتر والعمود 14)، ثم `log_tool.py check` لكل جهة.
 4. **لا دكتوراه للمدارس والجامعات:** نسخة السيرة `NoPhD` (ملف `_S`) واسم المرفق الظاهر دائماً `Amer_AlSaaideh_CV_Arabic.pdf` / `Amer_AlSaaideh_CV_English.pdf`.
@@ -39,7 +40,8 @@ description: روتين "تقديم" اليومي لعامر السعايدة �
 ```
 git pull --ff-only origin claude/job-application-profile-nj3oqj
 ```
-- إيميل: ابحث في Gmail `in:sent newer_than:14d` ← احفظ `[{to,date,subject}]` في `output/runs/_sync/sent.json` ← `pipeline.py sync-sent --file ...`
+- المكتب: `ArtifactData list collection=queue out_dir=output/runs/_sync/desk` ← `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل ما ضغط عليه المستخدم "أرسلتها").
+- إيميل (تحقق إضافي): ابحث في Gmail `in:sent newer_than:14d` ← احفظ `[{to,date,subject}]` في `output/runs/_sync/sent.json` ← `pipeline.py sync-sent --file ...`
 - ارتدادات: `from:mailer-daemon newer_than:14d` ← استخرج الإيميلات المرتدة ← `sync-bounces --file ...`
 - ردود: رسائل واردة من إيميلات موجودة في `output/pipeline_ledger.json` ← `sync-replies --file ...`
 - واتساب: `pipeline.py sync-wa`
@@ -72,15 +74,14 @@ python3 scripts/pipeline.py select --channel email|whatsapp --count N
 ثم **حمّل مهارة `humanizer:humanizer` وطبّقها على كل نص**: احذف "ليس فقط... بل"، الثلاثيات المصطنعة، المبالغة، الافتتاحيات المسرحية، الخواتيم المكررة، الشرطات الطويلة.
 
 ### Helper-4: الإنشاء
-**إيميل:**
+**إيميل (مكتب الإرسال):** لا تُنشأ مسودات Gmail من Claude.
 ```
-python3 scripts/pipeline.py build --run <run>
+python3 scripts/pipeline.py desk-export --run <run> --start <آخر n في الطابور + 1>
 ```
-ثم لكل عنصر في `drafts.json`: `mcp__Gmail__create_draft` بالحقول: `to`، `subject`، `body` = `html` (HTML)، المرفق = الملف `cv_file` بمرجع `sha256:<cv_sha>:<cv_file>` واسم الملف الظاهر `send_name`. بعدها:
-```
-python3 scripts/pipeline.py record --run <run> --id N --draft-id <id>
-```
-**ممنوع send_message.** إن فشل إنشاء مسودة ← issues_tool.
+ثم اكتب الملفات إلى طابور المكتب: `ArtifactData batch` على `https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53` بإدخالات `{op:"set", collection:"queue", doc_id, file_path}` من `output/desk/export/_index.json` (حتى 50 في الدفعة). لمعرفة آخر `n`: `ArtifactData list collection=queue`.
+- الحصة اليومية والفواصل في وثيقة `config/settings` بالمكتب (`daily_max`, `gap_min`, `gap_max`, `window`) وتُحدَّث بـ `ArtifactData update` إن تغيّرت `config/sending_policy.json`.
+- السير مرفوعة كأصول في المكتب (`output/desk/assets.json`). بعد إعادة بناء السير (`build_cv.py`) ارفعها من جديد (`Artifact publish asset:true file_paths`) وحدّث الروابط في `assets.json` ثم أعد التصدير.
+- طريقة Gmail القديمة (`pipeline.py build` + `create_draft` + `record`) تبقى احتياطاً فقط إن طلبها المستخدم.
 
 **واتساب:**
 ```
@@ -98,7 +99,7 @@ python3 scripts/pipeline.py wa-queue --run <run>
 - [ ] اللغة مناسبة لنوع الجهة.
 - [ ] لا كلمات سبام، لا شرطات طويلة، لا علامات كتابة آلية (humanizer).
 - [ ] الطول: إيميل 4–6 أسطر، واتساب 2–4.
-- [ ] (إيميل) المسودة موجودة فعلاً في Gmail (`list_drafts`/`get_draft`) والمرفق موجود.
+- [ ] (إيميل) كل الرسائل موجودة في طابور المكتب (`ArtifactData list queue`) بالحالة `ready`، ومعها `cv_url` صحيح للنسخة (`_S` للمدارس والجامعات) و`send_name` نظيف.
 يكتب `review.md` بنتيجة لكل عنصر: **PASS** أو **FAIL + السبب**. أي FAIL ← يعاد للكاتب ثم مراجعة جديدة، أو يُحذف العنصر (وإن كانت مسودة: `delete_draft`) ويُسجَّل.
 
 ### الإغلاق
@@ -113,7 +114,7 @@ git add -A && git commit -m "تقديم <channel> <N> – <run>" && git push -u 
 ### الملخص للمستخدم (قصير)
 1. ما أُنجز: N مسودة/رسالة، التوزيع على الدول، نتيجة المراجع.
 2. **ما يحتاج تدخلك:**
-   - مسودات في Gmail تنتظر إرسالك، مع جدول الإرسال: اليوم المقترح وفاصل 2–5 دقائق، ضمن نافذة 08:30–14:00.
+   - رسائل في مكتب الإرسال تنتظرك (رابط المكتب)، والمكتب يتولى الفاصل 2–5 دقائق وحصة اليوم ضمن نافذة 08:30–14:00.
    - رسائل واتساب جاهزة في الطابور، بفاصل 3–6 دقائق.
    - ردود وصلت (أولوية!) وارتدادات.
    - العناصر المفتوحة في `python3 scripts/issues_tool.py list`.

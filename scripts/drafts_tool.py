@@ -22,18 +22,9 @@ def sha(path):
     return hashlib.sha256(open(path, "rb").read()).hexdigest()
 
 
-def render(e, sig):
+def sig_block(e):
+    """closing line + signature: (html, plain-text lines). Shared by Gmail drafts and the sending desk."""
     rtl = e["lang"] == "AR"
-    d = 'dir="rtl" ' if rtl else ""
-    align = "right" if rtl else "left"
-    font = "Tahoma, Arial, sans-serif" if rtl else "Arial, Helvetica, sans-serif"
-    p = lambda t: f'<p style="margin:0 0 14px 0;">{html.escape(t)}</p>'
-    parts = [p(t) for t in e["paras"]]
-    if e.get("items"):
-        lis = "".join(f'<li style="margin:0 0 8px 0;">{html.escape(t)}</li>' for t in e["items"])
-        pad = "padding:0 22px 0 0;" if rtl else "padding:0 0 0 22px;"
-        parts.append(f'<ul style="margin:0 0 14px 0;{pad}">{lis}</ul>')
-    parts += [p(t) for t in e.get("after", [])]
     close = "مع خالص التقدير،" if rtl else "Kind regards,"
     S = json.load(open(os.path.join(DR, "signature.json"), encoding="utf-8"))
     L = S["ar" if rtl else "en"]; gulf = e.get("country") not in (None, "Jordan")
@@ -55,13 +46,34 @@ def render(e, sig):
                 f'<div style="color:#666;font-size:12px;margin-top:2px;">{html.escape(L["creds"])}</div>'
                 f'<table cellpadding="0" cellspacing="0" style="margin-top:8px;border-collapse:collapse;">{cells}</table>'
                 f'<div style="color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;">{html.escape(avail)}</div></div>')
-    sig = [L["name"], L["title"], L["creds"]] + [f"{lb}: {t}" for lb, _, t in rows_] + [avail]
+    lines = [close, L["name"], L["title"], L["creds"]] + [f"{lb}: {t}" for lb, _, t in rows_] + [avail]
+    return sig_html, lines
+
+
+def editable_text(e):
+    """the part the user edits on the sending desk: paragraphs separated by blank lines, list items as '- ' lines"""
+    t = "\n\n".join(e["paras"])
+    if e.get("items"): t += "\n\n" + "\n".join("- " + x for x in e["items"])
+    if e.get("after"): t += "\n\n" + "\n\n".join(e["after"])
+    return t
+
+
+def render(e, sig=None):
+    rtl = e["lang"] == "AR"
+    d = 'dir="rtl" ' if rtl else ""
+    align = "right" if rtl else "left"
+    font = "Tahoma, Arial, sans-serif" if rtl else "Arial, Helvetica, sans-serif"
+    p = lambda t: f'<p style="margin:0 0 14px 0;">{html.escape(t)}</p>'
+    parts = [p(t) for t in e["paras"]]
+    if e.get("items"):
+        lis = "".join(f'<li style="margin:0 0 8px 0;">{html.escape(t)}</li>' for t in e["items"])
+        pad = "padding:0 22px 0 0;" if rtl else "padding:0 0 0 22px;"
+        parts.append(f'<ul style="margin:0 0 14px 0;{pad}">{lis}</ul>')
+    parts += [p(t) for t in e.get("after", [])]
+    sig_html, lines = sig_block(e)
     body = (f'<div {d}style="font-family:{font};font-size:15px;line-height:1.7;color:#222;text-align:{align};max-width:640px;">'
             + "".join(parts) + sig_html + "</div>")
-    text = "\n\n".join(e["paras"])
-    if e.get("items"): text += "\n\n" + "\n".join("- " + t for t in e["items"])
-    if e.get("after"): text += "\n\n" + "\n\n".join(e["after"])
-    text += f"\n\n{close}\n" + "\n".join(sig)
+    text = editable_text(e) + "\n\n" + lines[0] + "\n" + "\n".join(lines[1:])
     return body, text
 
 

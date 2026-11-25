@@ -1,0 +1,6 @@
+{"url": "https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53",
+ "cv": {"Amer_AlSaaideh_CV_Arabic.pdf": "/_blob/75909e0fe27f3df67ef6edd1ce5cb9c4",
+        "Amer_AlSaaideh_CV_Arabic_S.pdf": "/_blob/8aff0de1a3234163d4fdeeea21ff41a3",
+        "Amer_AlSaaideh_CV_English.pdf": "/_blob/2193068dfb7bc3561937ca7ec86e6071",
+        "Amer_AlSaaideh_CV_English_S.pdf": "/_blob/ff3ab6ceece610f3eb4bd53a104b76e0"},
+ "_note": "CV assets uploaded to the sending desk. After rebuilding the CVs (build_cv.py) re-upload them and update these urls."}

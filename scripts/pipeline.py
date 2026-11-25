@@ -17,7 +17,7 @@
   stats                                                    output/dashboard/data.json + output/dashboard.xlsx
   migrate-batch01                                          إدخال مسودات batch_01 في السجل الدائم
 """
-import argparse, csv, datetime, glob, json, os, random, re, sys
+import argparse, sys, csv, datetime, glob, json, os, random, re, sys
 from zoneinfo import ZoneInfo
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -215,7 +215,13 @@ def mark(a):
     run = os.path.basename(a.run); L = load_ledger(); d = today().isoformat()
     ch = "email" if run.endswith("_email") else "whatsapp"
     if ch == "email":
-        items = [r for r in json.load(open(os.path.join(a.run, "drafts.json"), encoding="utf-8")) if r.get("draft_id")]
+        dp = os.path.join(a.run, "drafts.json")
+        if os.path.exists(dp):  # legacy: drafts created by Claude in Gmail
+            items = [r for r in json.load(open(dp, encoding="utf-8")) if r.get("draft_id")]
+        else:  # sending desk: queued on the desk, the draft is created from the desk when the user opens it
+            sel = {t["id"]: t for t in json.load(open(os.path.join(a.run, "selection.json"), encoding="utf-8"))["targets"]}
+            items = [dict(sel[e["id"]], to=str(sel[e["id"]]["email"]).split(",")[0].strip(), subject=e["subject"], lang=e["lang"], cv=e["cv"])
+                     for e in json.load(open(os.path.join(a.run, "texts.json"), encoding="utf-8"))]
     else:
         items = json.load(open(os.path.join(a.run, "queue.json"), encoding="utf-8"))
     by_country = {}
@@ -228,7 +234,7 @@ def mark(a):
     for c, rs in by_country.items():
         p = targets_tool.path(c); wb = load_workbook(p); ws = wb["الجهات"]
         for r in rs:
-            ws.cell(r["row"], 14).value = (f"مسودة إيميل – {run}" if ch == "email" else f"واتساب جاهز – {run}")
+            ws.cell(r["row"], 14).value = (f"مكتب الإرسال – {run}" if ch == "email" else f"واتساب جاهز – {run}")
         wb.save(p)
     save_ledger(L); print("marked", len(items))
 
@@ -416,6 +422,67 @@ def write_xlsx(d):
     wb.save(os.path.join(ROOT, "output", "dashboard.xlsx"))
 
 
+# ---------------- sending desk ----------------
+DESK = os.path.join(ROOT, "output", "desk")
+
+
+def _desk_rows(items, emails, prefix, start_n):
+    """items: dicts with country,row,name,type,email/to,lang,cv,subject,draft_id,view_url; emails: id -> {paras,items,after,...}"""
+    import drafts_tool
+    A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]
+    out = []
+    for k, it in enumerate(items):
+        e = dict(emails[it["id"]], country=it["country"], lang=it["lang"])
+        sig_html, lines = drafts_tool.sig_block(e)
+        cvf = drafts_tool.CV[(it["lang"], it["cv"])]
+        out.append({"doc_id": f"{prefix}-{it['id']:02d}", "data": {
+            "n": start_n + k, "run": prefix, "country": it["country"], "row": it["row"], "name": it["name"], "type": it.get("type") or "",
+            "to": (it.get("to") or str(it.get("email", "")).split(",")[0]).strip(), "subject": it["subject"], "lang": it["lang"], "cv": it["cv"],
+            "body": drafts_tool.editable_text(e), "sig_html": sig_html, "sig_text": lines[0] + "\n" + "\n".join(lines[1:]),
+            "cv_url": A[cvf], "send_name": drafts_tool.SEND_NAME[it["lang"]],
+            "draft_id": it.get("draft_id", ""), "view_url": it.get("draft_url") or it.get("view_url") or "",
+            "status": "ready", "sent_at": "", "edited": False}})
+    return out
+
+
+def desk_export(a):
+    """write one JSON file per queue doc for ArtifactData batch (output/desk/export/<doc_id>.json) + an index"""
+    exp = os.path.join(DESK, "export"); os.makedirs(exp, exist_ok=True)
+    for f in glob.glob(os.path.join(exp, "*.json")): os.remove(f)
+    if a.batch:
+        sys.path.insert(0, os.path.join(ROOT, "output", "drafts"))
+        mod = __import__(f"batch_{a.batch}_emails"); emails = {e["id"]: e for e in mod.EMAILS}
+        items = json.load(open(os.path.join(ROOT, "output", "drafts", f"batch_{a.batch}.json"), encoding="utf-8"))
+        rows = _desk_rows(items, emails, f"b{a.batch}", a.start)
+    else:
+        sel = {t["id"]: t for t in json.load(open(os.path.join(a.run, "selection.json"), encoding="utf-8"))["targets"]}
+        texts = json.load(open(os.path.join(a.run, "texts.json"), encoding="utf-8"))
+        items = [dict(sel[e["id"]], id=e["id"], lang=e["lang"], cv=e["cv"], subject=e["subject"]) for e in texts]
+        rows = _desk_rows(items, {e["id"]: e for e in texts}, os.path.basename(a.run).replace("_", "-"), a.start)
+    idx = []
+    for r in rows:
+        f = os.path.join(exp, r["doc_id"] + ".json")
+        json.dump(r["data"], open(f, "w", encoding="utf-8"), ensure_ascii=False); idx.append({"doc_id": r["doc_id"], "file_path": f})
+    json.dump(idx, open(os.path.join(exp, "_index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("exported", len(rows), "->", exp)
+
+
+def sync_desk(a):
+    """a.dir: folder from ArtifactData list(out_dir) of collection 'queue' (…/queue/<doc>.json). Marks sent rows."""
+    L = load_ledger(); n = 0
+    for f in glob.glob(os.path.join(a.dir, "**", "*.json"), recursive=True):
+        d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
+        if not isinstance(d, dict) or "country" not in d: continue
+        for e in L:
+            if e["channel"] == "email" and e["country"] == d["country"] and e["row"] == d["row"]:
+                if d.get("draft_id"): e["draft_id"] = d["draft_id"]
+                if d.get("status") == "sent" and e["status"] == "drafted":
+                    e["status"] = "sent"; e["sent_date"] = (d.get("sent_at") or today().isoformat())[:10]
+                    if d.get("subject"): e["subject"] = d["subject"]
+                    _log_send(e, "Email", e["sent_date"]); set_col14(e["country"], e["row"], "أُرسل إيميل"); n += 1
+    save_ledger(L); print("synced desk:", n)
+
+
 # ---------------- migrate ----------------
 def migrate_batch01(_):
     rows = json.load(open(os.path.join(ROOT, "output", "drafts", "batch_01.json"), encoding="utf-8")); L = load_ledger()
@@ -439,12 +506,14 @@ def main():
     x = sp.add_parser("record"); x.add_argument("--run", required=True); x.add_argument("--id", type=int, required=True); x.add_argument("--draft-id", required=True)
     for n in ("sync-sent", "sync-bounces", "sync-replies"):
         x = sp.add_parser(n); x.add_argument("--file", required=True)
+    x = sp.add_parser("desk-export"); x.add_argument("--batch"); x.add_argument("--run"); x.add_argument("--start", type=int, default=1)
+    x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
     for n in ("sync-wa", "stats", "migrate-batch01"):
         sp.add_parser(n)
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk}[a.cmd](a)
 
 
 if __name__ == "__main__":

@@ -68,7 +68,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .list td,.list th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
 .list th{color:var(--muted);font-weight:600;font-size:.8rem}
 .st{font-size:.78rem;border-radius:99px;padding:1px 9px;white-space:nowrap}
-.st-ready{background:var(--soft-sea)} .st-approved{background:var(--soft-sun)} .st-sent{background:var(--soft-leaf)} .st-skipped,.st-failed{background:var(--soft-coral)}
+.st-ready{background:var(--soft-sea)} .st-approved{background:var(--soft-sun)} .st-sent{background:var(--soft-leaf)} .st-skipped,.st-failed{background:var(--soft-coral)} .st-saved{background:var(--soft-leaf);border:1px dashed var(--leaf)}
 .about{background:var(--soft-sea);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
 .about-h{font-weight:700;font-size:.92rem}
 .about ul{margin:0;padding:0 18px 0 0;font-size:.9rem;color:var(--muted)}
@@ -135,6 +135,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <button class="btn b-main" id="approveBtn" type="button">أضف لطابور الإرسال</button>
       <button class="btn b-ghost" id="skipBtn" type="button">أجّلها</button>
       <button class="btn b-ghost" id="dropBtn" type="button">استبعدها</button>
+      <button class="btn b-ghost" id="saveBtn" type="button">احفظها في ملف الإكسل</button>
     </div>
   </section>
 
@@ -143,12 +144,19 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     <p class="muted">لا توجد رسائل بانتظار مراجعتك. ما أضفته للطابور سيُرسل تلقائياً. لدفعة جديدة اطلب من Claude: تقديم ايميل</p>
   </section>
 
+  <section class="panel" id="savedPanel">
+    <div class="meta"><h2>المحفوظة للرجوع</h2><span class="st st-saved" id="savedCount">0</span></div>
+    <p class="muted">الجهات التي ضغطت لها "احفظها في ملف الإكسل". لا تُرسل، وتبقى بكل معلوماتها (الإيميل، الموقع، النبذة، نص الرسالة). كما أحفظها أنا أيضاً في الملف output/saved_for_later.xlsx في المشروع.</p>
+    <div class="actions"><button class="btn b-sun" id="xlsBtn" type="button">نزّل ملف الإكسل</button><button class="btn b-ghost" id="xlsAllBtn" type="button">نزّل كل الرسائل في إكسل</button></div>
+  </section>
+
   <section class="panel">
     <h2>كل الرسائل</h2>
     <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="4" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
   </section>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -166,11 +174,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   const sentToday = () => S.rows.filter((r) => r.status === "sent" && String(r.sent_at || "").slice(0, 10) === todayKey()).length;
   const pending = () => S.rows.filter((r) => r.status === "ready").sort((a, b) => (a.later || 0) - (b.later || 0) || a.n - b.n);
   const approved = () => S.rows.filter((r) => r.status === "approved");
-  const LABEL = { ready: "بانتظار مراجعتك", approved: "في طابور الإرسال", sent: "أُرسلت", skipped: "مستبعدة", failed: "تعذّر إرسالها" };
+  const LABEL = { ready: "بانتظار مراجعتك", approved: "في طابور الإرسال", sent: "أُرسلت", skipped: "مستبعدة", failed: "تعذّر إرسالها", saved: "محفوظة للرجوع" };
 
   function renderStats() {
     $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
     $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
+    $("savedCount").textContent = S.rows.filter((r) => r.status === "saved").length;
     const paused = !!S.cfg.paused, st = $("autoState");
     st.textContent = paused ? "متوقف مؤقتاً" : "يعمل"; st.className = "st " + (paused ? "st-skipped" : "st-sent");
     $("pauseBtn").textContent = paused ? "استئناف الإرسال" : "إيقاف مؤقت";
@@ -190,7 +199,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       if (r.status === "sent" && r.sent_at) s.title = r.sent_at;
       tr.insertCell().append(s);
       const c = tr.insertCell();
-      if (r.status === "approved" || r.status === "skipped" || r.status === "failed") {
+      if (r.status === "approved" || r.status === "skipped" || r.status === "failed" || r.status === "saved") {
         const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "أعدها للمراجعة";
         b.addEventListener("click", () => setStatus(r, { status: "ready", approved_at: "" }));
         c.append(b);
@@ -210,7 +219,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     if (!r) { show(S.rows.length ? "donePanel" : ""); return; }
     const locked = r.status === "sent";
     ["mTo", "mSubject", "mBody"].forEach((id) => { $(id).readOnly = locked; });
-    $("approveBtn").hidden = locked; $("skipBtn").hidden = locked || r.status !== "ready"; $("dropBtn").hidden = locked || r.status === "skipped";
+    $("approveBtn").hidden = locked; $("skipBtn").hidden = locked || r.status !== "ready"; $("dropBtn").hidden = locked || r.status === "skipped"; $("saveBtn").hidden = locked || r.status === "saved";
     $("approveBtn").textContent = r.status === "approved" ? "احفظ التعديل (تبقى في الطابور)" : "أضف لطابور الإرسال";
     $("mName").textContent = r.name; $("mCountry").textContent = COUNTRY[r.country] || r.country; $("mType").textContent = r.type || "";
     $("mPos").textContent = r.status === "ready" ? `بقي ${pending().length} للمراجعة` : (LABEL[r.status] || r.status) + (r.sent_at ? " · " + r.sent_at.replace("T", " ") : "");
@@ -253,6 +262,26 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   $("approveBtn").addEventListener("click", approve);
   $("skipBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { later: Date.now() }); nextMessage(); });
   $("dropBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { status: "skipped" }); nextMessage(); });
+  $("saveBtn").addEventListener("click", async () => {
+    const r = S.current; if (!r) return; S.current = null;
+    await setStatus(r, { status: "saved", saved_at: new Date().toISOString().slice(0, 19), to: $("mTo").value.trim(), subject: $("mSubject").value.trim(), body: $("mBody").value });
+    banner(`حُفظت ${r.name} في قائمة "المحفوظة للرجوع".`, "n-ok"); setTimeout(() => banner(""), 4000); nextMessage();
+  });
+  const COLS = [["n", "#"], ["name", "الجهة"], ["country", "الدولة"], ["city", "المدينة"], ["type", "النوع"], ["to", "الإيميل"], ["website", "الموقع"], ["about_url", "رابط المصدر"], ["about", "نبذة"], ["facts", "نقاط"], ["warn", "تنبيه"], ["status", "الحالة"], ["lang", "اللغة"], ["send_name", "السيرة"], ["subject", "الموضوع"], ["body", "نص الرسالة"], ["saved_at", "تاريخ الحفظ"], ["sent_at", "تاريخ الإرسال"]];
+  async function downloadXlsx(rows, filename) {
+    if (!window.XLSX) { banner("تعذّر تحميل أداة الإكسل. أعد تحميل الصفحة.", "n-bad"); return; }
+    if (!rows.length) { banner("لا توجد رسائل لحفظها بعد.", "n-warn"); return; }
+    const aoa = [COLS.map((c) => c[1])].concat(rows.slice().sort((a, b) => a.n - b.n).map((r) => COLS.map(([k]) => k === "facts" ? (r.about_facts || []).join(" | ") : k === "country" ? (COUNTRY[r.country] || r.country) : k === "status" ? (LABEL[r.status] || r.status) : (r[k] ?? ""))));
+    const ws = XLSX.utils.aoa_to_sheet(aoa); ws["!cols"] = COLS.map(([k]) => ({ wch: k === "body" || k === "about" ? 60 : k === "n" ? 5 : 22 }));
+    const wb = XLSX.utils.book_new(); wb.Workbook = { Views: [{ RTL: true }] }; XLSX.utils.book_append_sheet(wb, ws, "الجهات");
+    const data = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const dl = await claude.use("downloads");
+    if (!dl) { banner("التنزيل غير متاح هنا. الملف محفوظ في المشروع: output/saved_for_later.xlsx", "n-warn"); return; }
+    try { await dl.save({ filename, data: new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }) }); }
+    catch (e) { if (e && e.code !== "cancelled") banner("تعذّر تنزيل الملف.", "n-bad"); }
+  }
+  $("xlsBtn").addEventListener("click", () => downloadXlsx(S.rows.filter((r) => r.status === "saved"), "saved_for_later.xlsx"));
+  $("xlsAllBtn").addEventListener("click", () => downloadXlsx(S.rows, "all_messages.xlsx"));
   $("pauseBtn").addEventListener("click", async () => {
     try { await S.db.doc("config/settings").update({ paused: !S.cfg.paused }); } catch (e) { banner("لم أستطع تغيير حالة الإرسال.", "n-bad"); }
   });

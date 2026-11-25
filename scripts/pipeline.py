@@ -557,6 +557,35 @@ def send_plan(a):
     for it in out: print("SEND", it["doc_id"], it["to"], it["filename"])
 
 
+def desk_saved(a):
+    """output/saved_for_later.xlsx from a desk dump: every message the user saved for later (status 'saved')"""
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill, Alignment
+    docs = []
+    for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
+        d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
+        if d.get("status") == "saved": docs.append(d)
+    cols = [("n", "#", 5), ("name", "الجهة", 34), ("country", "الدولة", 10), ("city", "المدينة", 12), ("type", "النوع", 16),
+            ("to", "الإيميل", 32), ("website", "الموقع", 30), ("about_url", "رابط المصدر", 30), ("about", "نبذة", 60),
+            ("about_facts", "نقاط", 50), ("warn", "تنبيه", 30), ("lang", "اللغة", 7), ("send_name", "السيرة", 30),
+            ("subject", "الموضوع", 45), ("body", "نص الرسالة", 70), ("saved_at", "تاريخ الحفظ", 18)]
+    wb = Workbook(); ws = wb.active; ws.title = "محفوظة للرجوع"; ws.sheet_view.rightToLeft = True
+    ws.append([c[1] for c in cols])
+    for i, (_, _, w) in enumerate(cols, 1):
+        c = ws.cell(1, i); ws.column_dimensions[c.column_letter].width = w
+        c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="2A9D8F")
+    for d in sorted(docs, key=lambda d: d.get("n", 0)):
+        ws.append([" | ".join(d.get(k) or []) if k == "about_facts" else (AR_C.get(d.get(k), d.get(k)) if k == "country" else d.get(k, ""))
+                   for k, _, _ in cols])
+    for row in ws.iter_rows(min_row=2):
+        for c in row: c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.freeze_panes = "B2"; ws.auto_filter.ref = ws.dimensions
+    out = os.path.join(ROOT, "output", "saved_for_later.xlsx"); wb.save(out); print("saved_for_later:", len(docs), "->", out)
+    for d in docs:
+        try: set_col14(d["country"], d["row"], "محفوظة للرجوع (مكتب الإرسال)")
+        except Exception: pass
+
+
 # ---------------- migrate ----------------
 def migrate_batch01(_):
     rows = json.load(open(os.path.join(ROOT, "output", "drafts", "batch_01.json"), encoding="utf-8")); L = load_ledger()
@@ -583,12 +612,13 @@ def main():
     x = sp.add_parser("desk-export"); x.add_argument("--batch"); x.add_argument("--run"); x.add_argument("--start", type=int, default=1)
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
     x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)
     for n in ("sync-wa", "stats", "migrate-batch01"):
         sp.add_parser(n)
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved}[a.cmd](a)
 
 
 if __name__ == "__main__":

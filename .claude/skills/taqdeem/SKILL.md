@@ -102,7 +102,7 @@ python3 scripts/pipeline.py wa-queue --run <run>
 3. لكل عنصر: `mcp__Gmail__send_message` بـ `to=[to]`, `subject`, `htmlBody`, `body`, `attachments=[{content: attachment, filename, mimeType: "application/pdf"}]` (المرفق مرجع `sha256:` لملف السيرة الصحيح، و`filename` هو الاسم النظيف). ثم `ArtifactData update queue/<doc_id>` بـ `{status: "sent", sent_at: "YYYY-MM-DDTHH:MM:SS" (الأردن), gmail_id}`، ثم `delete_draft` لـ `old_draft_id` إن وُجد. بين رسالتين 2–5 دقائق (`sleep` في الخلفية).
 4. فشل الإرسال ← `{status: "failed", error}` + `issues_tool.py add`، بلا إعادة تلقائية.
 5. الارتدادات: `search_threads from:mailer-daemon newer_than:2d` ← الإيميل المرتد في الطابور يصبح `failed/bounce` + `pipeline.py sync-bounces`. أكثر من 5% من آخر 50 ← `config/settings {paused: true}` + `issues_tool`.
-6. أعد قراءة الطابور ثم `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل في applications_log وملفات الدول) ثم `pipeline.py stats` ثم commit/push. سطر واحد للمستخدم: كم أُرسل وكم بقي اليوم وأي خطأ.
+6. أعد قراءة الطابور ثم `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل في applications_log وملفات الدول) ثم `pipeline.py desk-saved --dir output/runs/_sync/desk` (يحدّث `output/saved_for_later.xlsx` بما حفظه المستخدم للرجوع) ثم `pipeline.py stats` ثم commit/push. سطر واحد للمستخدم: كم أُرسل وكم بقي اليوم وأي خطأ.
 
 ### Reviewer: المراجع المستقل
 مساعد جديد **لم يشارك** في المراحل السابقة. يقرأ `selection.json`, `research.json`, `texts.json`, `drafts.json`/`queue.json` و`scripts/cv_content.py` و`output/applications_log.xlsx`، ويتحقق من:
@@ -145,7 +145,7 @@ git add -A && git commit -m "تقديم <channel> <N> – <run>" && git push -u 
 - كل صف له رابط مصدر علني. المصادر المتعذرة ← ورقة "تعذر الوصول" + issues_tool، وأبلغ المستخدم ليساعد.
 
 ## تقديم حالة
-Helper-0 فقط + `stats` + نشر اللوحة + الملخص. لا إنشاء مسودات.
+Helper-0 فقط + `pipeline.py desk-saved` + `stats` + نشر اللوحة + الملخص. لا إنشاء مسودات.
 
 ## تقديم سيرة
 عدّل `scripts/cv_content.py` (العربية مرجع والإنجليزية ترجمة مطابقة) ← `python3 scripts/build_cv.py` ← حوّل صفحات PDF لصور وتحقق من الشكل ← أرسل الملفات للمستخدم (SendUserFile) ← انتظر موافقته قبل استخدامها في مسودات جديدة. المسودات القديمة تبقى بالسيرة القديمة ما لم يطلب إعادة إنشائها.

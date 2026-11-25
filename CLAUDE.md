@@ -27,7 +27,7 @@
 
 - **الاسم:** عامر عبد الجليل السعايدة – Amer Abdeljalil AlSaaideh
 - **التخصص:** التربية الخاصة
-- **الإيميل المعتمد:** alsaydhamr77@gmail.com
+- **الإيميل المعتمد:** amer.abdeljalil77@gmail.com
 - **الهاتف/واتساب:** ‎+962 78 018 9766
 - **ORCID:** orcid.org/0009-0009-7349-4201
 - **المؤهلات:** بكالوريوس تربية خاصة (البلقاء التطبيقية، جيد جداً) – ماجستير تربية خاصة (مؤتة، امتياز) – دكتوراه تربية خاصة قيد الدراسة (جامعة العلوم الإسلامية العالمية) ← **لا تُذكر للمدارس والجامعات**.
@@ -83,7 +83,7 @@
 
 مع الاحترام،
 عامر عبد الجليل السعايدة
-‎+962 78 018 9766 | alsaydhamr77@gmail.com
+‎+962 78 018 9766 | amer.abdeljalil77@gmail.com
 ```
 
 ### قالب إيميل – إنجليزي
@@ -96,7 +96,7 @@ Please find my CV attached. I would welcome the opportunity to discuss how I can
 
 Kind regards,
 Amer Abdeljalil AlSaaideh
-+962 78 018 9766 | alsaydhamr77@gmail.com
++962 78 018 9766 | amer.abdeljalil77@gmail.com
 ```
 
 ### قالب واتساب – عربي
@@ -143,7 +143,7 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 ## 6ب) دفعات الإيميل (Drafts)
 
 - المستخدم يقرأ المسودة في Gmail ويضغط إرسال بنفسه؛ إنشاء المسودة بموافقته العامة، والإرسال بيده.
-- حساب Gmail المربوط: amer.abdeljalil77@gmail.com (التوقيع والسيرة يحملان alsaydhamr77@gmail.com – اختيار المستخدم).
+- حساب Gmail المربوط: amer.abdeljalil77@gmail.com وهو نفسه الإيميل في التوقيع والسير الأربع.
 - كل رسالة مكتوبة لجهة محددة: معلومة حقيقية من موقعها + 2–3 إنجازات بأفعال الصورة (Achieved/Led/Improved/Managed/Delivered = حققت/قدت/حسّنت/أدرت/قدّمت) مرتبطة بإنجازات السيرة فقط. اتبع مهارة humanizer، بلا شرطات طويلة ولا كلمات سبام.
 - الملفات: `output/drafts/batch_NN_selection.json` (الجهات) ← `batch_NN_emails.py` (النصوص) ← `python3 scripts/drafts_tool.py build|excel|record --batch NN` ← `batch_NN.json/xlsx`.
 - علّم الجهات في ملفات الدول (العمود 14 "مسودة إيميل – batch_NN") حتى لا تُختار مرة أخرى.

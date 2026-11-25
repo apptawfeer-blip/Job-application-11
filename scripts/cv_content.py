@@ -5,7 +5,7 @@
 """
 
 CONTACT = {
-    "email": "alsaydhamr77@gmail.com",
+    "email": "amer.abdeljalil77@gmail.com",
     "phone_intl": "+962 78 018 9766",
     "orcid": "orcid.org/0009-0009-7349-4201",
 }

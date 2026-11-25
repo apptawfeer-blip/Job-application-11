@@ -3,8 +3,8 @@
 الحقول: id (يطابق batch_01_selection.json)، lang، cv (Full/NoPhD)، subject، paras (فقرات)، items (إنجازات اختيارية)، after (فقرات بعد القائمة)
 """
 
-AR_SIG = ["عامر عبد الجليل السعايدة", "أخصائي تربية خاصة ومنسق تعليم دامج", "‎+962 78 018 9766 | alsaydhamr77@gmail.com"]
-EN_SIG = ["Amer AlSaaideh", "Special Education Specialist | Inclusive Education Coordinator", "+962 78 018 9766 | alsaydhamr77@gmail.com"]
+AR_SIG = ["عامر عبد الجليل السعايدة", "أخصائي تربية خاصة ومنسق تعليم دامج", "‎+962 78 018 9766 | amer.abdeljalil77@gmail.com"]
+EN_SIG = ["Amer AlSaaideh", "Special Education Specialist | Inclusive Education Coordinator", "+962 78 018 9766 | amer.abdeljalil77@gmail.com"]
 
 EMAILS = [
 # ---------------- Jordan ----------------

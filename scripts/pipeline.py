@@ -429,7 +429,8 @@ DESK = os.path.join(ROOT, "output", "desk")
 def _about_fields(ab, it):
     a = ab.get(it["id"], {})
     return {"about": a.get("about", ""), "about_facts": a.get("facts", []), "about_url": a.get("url", ""),
-            "city": it.get("city") or "", "website": it.get("website") or ""}
+            "city": it.get("city") or "", "website": it.get("website") or "", "warn": a.get("warn", ""),
+            "about_limited": bool(a.get("limited"))}
 
 
 def _desk_rows(items, emails, prefix, start_n, about=None):

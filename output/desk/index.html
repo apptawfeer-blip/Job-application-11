@@ -110,6 +110,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <ul id="mFacts"></ul>
       <a id="mLink" href="#" target="_blank" rel="noopener" hidden>موقع الجهة</a>
     </div>
+    <div class="note n-bad" id="mWarn" hidden></div>
     <div><label for="mTo">إلى</label><input type="text" id="mTo" dir="ltr"></div>
     <div><label for="mSubject">الموضوع</label><input type="text" id="mSubject"></div>
     <div><label for="mBody">نص الرسالة (الفقرات يفصلها سطر فارغ، والسطر الذي يبدأ بـ "- " يصبح نقطة. التوقيع يُضاف تلقائياً)</label><textarea id="mBody"></textarea></div>
@@ -200,6 +201,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
     const ln = $("mLink"), u = r.about_url || r.website || ""; ln.hidden = !/^https?:\/\//.test(u); if (!ln.hidden) ln.href = u;
     $("mAbout").hidden = !(r.about || fl.children.length);
+    const wn = $("mWarn"); wn.textContent = r.warn ? "تنبيه: " + r.warn + " قد تفضّل استبعادها." : ""; wn.hidden = !r.warn;
     show("msgPanel");
   }
 

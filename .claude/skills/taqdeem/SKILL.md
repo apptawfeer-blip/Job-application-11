@@ -59,7 +59,8 @@ python3 scripts/pipeline.py select --channel email|whatsapp --count N
 لكل جهة: افتح موقعها (`website`) أو رابط المصدر (`source`) واستخرج:
 - **معلومة حقيقية واحدة** للتخصيص في الرسالة (برنامج، فئة يخدمونها، منهج، فرع، رسالة الجهة).
 - **نبذة بالعربية** (2–3 جمل) يراها المستخدم في مكتب الإرسال قبل الموافقة: ما الجهة، من تخدم (أعمار/إعاقات/مراحل)، أهم خدماتها، وأي معلومة لافتة (سنة التأسيس، فروع، اعتماد) فقط إن ذكرها مصدر. + 2–4 نقاط قصيرة.
-احفظ في `research.json`: `[{id, fact, about, facts: [...], url, limited}]`. إن تعذّر: جملة صادقة مما هو معروف (النوع + المدينة) و`limited: true`، ولا تخمّن. `desk-export` يضع النبذة تلقائياً في المكتب (`about`, `about_facts`, `about_url`). أدوات مساعدة: `scripts/research/enrich.py`, `scripts/research/pw_fetch.js` (حوّل http إلى https).
+- **فحص سريع:** هل موقع الجهة ونطاق إيميلها يعملان؟ هل الجهة فعلاً ضمن المجال؟ أي شك يُكتب في `warn` فيظهر للمستخدم كتنبيه في المكتب.
+احفظ في `research.json`: `[{id, fact, about, facts: [...], url, limited, warn}]`. إن تعذّر: جملة صادقة مما هو معروف (النوع + المدينة) و`limited: true`، ولا تخمّن. `desk-export` يضع النبذة تلقائياً في المكتب (`about`, `about_facts`, `about_url`). أدوات مساعدة: `scripts/research/enrich.py`, `scripts/research/pw_fetch.js` (حوّل http إلى https).
 
 ### Helper-3: الكتابة (+ humanizer)
 اكتب `texts.json` في مجلد التشغيل.

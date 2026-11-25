@@ -1,0 +1,25 @@
+{
+ "_sources": [
+  "Gmail personal account limit ~500 recipients/day is a ceiling, not a target (Google: Gmail sending limits; Email sender guidelines FAQ support.google.com/mail/answer/14229414, enforcement gradual since Nov 2025)",
+  "WhatsApp publishes no daily limit for personal accounts; it is testing a monthly cap on messages to people who don't reply (TechCrunch 2025-10-17). Unofficial guidance: 20-30 new contacts/day max, start lower."
+ ],
+ "email": {
+  "start_date": "2026-11-26",
+  "daily_by_week": {"1": 10, "2": 15, "3": 20, "4": 25},
+  "absolute_max_per_day": 30,
+  "gap_minutes": [2, 5],
+  "send_window_local": ["08:30", "14:00"],
+  "stop_if_bounce_rate_over": 0.05,
+  "bounce_window": 50
+ },
+ "whatsapp": {
+  "start_date": "2026-11-26",
+  "daily_by_week": {"1": 10, "2": 15, "3": 20},
+  "absolute_max_per_day": 25,
+  "gap_minutes": [3, 6],
+  "send_window_local": ["09:00", "15:00"],
+  "min_reply_rate_after_50": 0.05
+ },
+ "timezone": "Asia/Amman",
+ "workdays": ["Sun", "Mon", "Tue", "Wed", "Thu"]
+}

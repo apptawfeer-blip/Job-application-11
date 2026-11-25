@@ -61,6 +61,10 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 .n-ok{background:var(--soft-leaf)} .n-warn{background:var(--soft-sun)} .n-bad{background:var(--soft-coral)}
 .steps{margin:0;padding:0 18px 0 0;display:flex;flex-direction:column;gap:4px}
 .list{width:100%;border-collapse:collapse;font-size:.88rem}
+.list tr.row{cursor:pointer}
+.list tr.row:hover td{background:var(--soft-sea)}
+.list tr.row.on td{background:var(--soft-sun)}
+.list tr.row:focus-visible{outline:2px solid var(--sea)}
 .list td,.list th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
 .list th{color:var(--muted);font-weight:600;font-size:.8rem}
 .st{font-size:.78rem;border-radius:99px;padding:1px 9px;white-space:nowrap}
@@ -178,7 +182,9 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     const rows = S.rows.slice().sort((a, b) => a.n - b.n);
     if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
     rows.forEach((r) => {
-      const tr = tb.insertRow();
+      const tr = tb.insertRow(); tr.className = "row" + (S.current && S.current.id === r.id ? " on" : ""); tr.tabIndex = 0;
+      tr.addEventListener("click", (ev) => { if (ev.target.closest("button")) return; nextMessage(r); renderStats(); });
+      tr.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { nextMessage(r); renderStats(); } });
       tr.insertCell().textContent = r.n; tr.insertCell().textContent = r.name; tr.insertCell().textContent = COUNTRY[r.country] || r.country;
       const s = document.createElement("span"); s.className = "st st-" + r.status; s.textContent = LABEL[r.status] || r.status;
       if (r.status === "sent" && r.sent_at) s.title = r.sent_at;
@@ -199,14 +205,19 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 
   function show(id) { ["msgPanel", "donePanel"].forEach((p) => { $(p).hidden = p !== id; }); }
 
-  function nextMessage() {
-    const r = pending()[0]; S.current = r || null;
+  function nextMessage(target) {
+    const r = target || pending()[0]; S.current = r || null; S.pinned = !!target;
     if (!r) { show(S.rows.length ? "donePanel" : ""); return; }
+    const locked = r.status === "sent";
+    ["mTo", "mSubject", "mBody"].forEach((id) => { $(id).readOnly = locked; });
+    $("approveBtn").hidden = locked; $("skipBtn").hidden = locked || r.status !== "ready"; $("dropBtn").hidden = locked || r.status === "skipped";
+    $("approveBtn").textContent = r.status === "approved" ? "احفظ التعديل (تبقى في الطابور)" : "أضف لطابور الإرسال";
     $("mName").textContent = r.name; $("mCountry").textContent = COUNTRY[r.country] || r.country; $("mType").textContent = r.type || "";
-    $("mPos").textContent = `بقي ${pending().length} للمراجعة`;
+    $("mPos").textContent = r.status === "ready" ? `بقي ${pending().length} للمراجعة` : (LABEL[r.status] || r.status) + (r.sent_at ? " · " + r.sent_at.replace("T", " ") : "");
     $("mTo").value = r.to; $("mSubject").value = r.subject;
     const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr"; $("mSubject").dir = ta.dir;
-    $("mAtt").textContent = r.send_name; note(""); $("approveBtn").disabled = false;
+    $("mAtt").textContent = r.send_name; note(locked ? "هذه الرسالة أُرسلت، للعرض فقط." : r.status === "failed" ? "تعذّر إرسالها: " + (r.error || "خطأ غير معروف") : "", locked ? "n-ok" : "n-bad"); $("approveBtn").disabled = false;
+    if (target) $("msgPanel").scrollIntoView({ behavior: "smooth", block: "start" });
     $("mCity").textContent = r.city ? "· " + r.city : "";
     $("mAboutText").textContent = r.about || "لا تتوفر نبذة عن هذه الجهة بعد.";
     const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
@@ -234,7 +245,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     if (!subject || body.length < 40) { note("الموضوع أو النص فارغ أو قصير جداً.", "n-bad"); return; }
     $("approveBtn").disabled = true;
     const edited = to !== r.to || subject !== r.subject || body !== r.body.trim();
-    const ok = await setStatus(r, { to, subject, body, edited: edited || !!r.edited, status: "approved", approved_at: new Date().toISOString().slice(0, 19) });
+    const ok = await setStatus(r, { to, subject, body, edited: edited || !!r.edited, status: "approved", approved_at: r.status === "approved" && r.approved_at ? r.approved_at : new Date().toISOString().slice(0, 19) });
     if (ok) { S.current = null; nextMessage(); }
     else $("approveBtn").disabled = false;
   }
@@ -255,7 +266,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     db.doc("config/settings").onSnapshot((s) => { if (s.exists) { Object.assign(S.cfg, s.data()); renderStats(); } });
     db.collection("queue").onSnapshot((snap) => {
       S.rows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
-      if (S.current) { const fresh = S.rows.find((x) => x.id === S.current.id); S.current = fresh && fresh.status === "ready" ? fresh : null; }
+      if (S.current) { const fresh = S.rows.find((x) => x.id === S.current.id); S.current = fresh && (S.pinned || fresh.status === "ready") ? fresh : null; }
       renderStats(); if (!S.current) nextMessage();
     }, () => banner("تعذّر تحميل الطابور. أعد تحميل الصفحة.", "n-bad"));
   })();

@@ -246,7 +246,12 @@ def stats(_):
         ws = wb["الجهات"]; total = ws.max_row - 1
         we = sum(1 for r in range(2, ws.max_row + 1) if ws.cell(r, 6).value)
         wp = sum(1 for r in range(2, ws.max_row + 1) if ws.cell(r, 4).value or ws.cell(r, 5).value)
-        print(f"{os.path.basename(p)}: {total} جهة | بإيميل {we} | برقم {wp} | تعذر الوصول {wb['تعذر الوصول'].max_row - 1}")
+        st = [str(ws.cell(r, WA_COL).value or "") for r in range(2, ws.max_row + 1)]
+        wac = sum(1 for x in st if x.startswith("مؤكد")); wam = sum(1 for x in st if x.startswith("جوال"))
+        soc = sum(1 for r in range(2, ws.max_row + 1) if ws.cell(r, SOC_COL).value)
+        hi = sum(1 for r in range(2, ws.max_row + 1) if ws.cell(r, 16).value == "عالية")
+        print(f"{os.path.basename(p)}: {total} جهة (صلة عالية {hi}) | بإيميل {we} | برقم {wp} | واتساب مؤكد {wac} | "
+              f"جوال (غالباً واتساب) {wam} | صفحات تواصل {soc} | تعذر الوصول {wb['تعذر الوصول'].max_row - 1}")
 
 
 def main():

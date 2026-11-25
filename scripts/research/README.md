@@ -17,3 +17,13 @@
 لإثراء الصفوف الناقصة: `targets_tool.py export-missing --country X --file miss.json` ← `enrich.py miss.json enr.json` ← `import`.
 
 مصادر استُخدمت أيضاً (يدوياً عبر البحث): QNL (قطر)، منصة حياة/تواصل (السعودية)، abadc.com.sa (دليل الاحتياجات الخاصة – عدة دول)، specialneedsuae.com، مواقع وأدلة متفرقة (موثقة في عمود "مصدر المعلومة").
+
+## الواتساب
+| الأداة/الأمر | ماذا يفعل |
+|---|---|
+| `targets_tool.py whatsapp --country X` | يحوّل كل رقم إلى صيغة دولية، يصنّف الجوال كـ "غالباً واتساب" ويملأ عمود الواتساب وعمود "حالة الواتساب" |
+| `targets_tool.py export-web --country X --file f.json [--only-no-mobile]` | يصدّر الصفوف التي لها موقع |
+| `wa_scan.py <Country> in.json out.json` | يزور الموقع وصفحات اتصل بنا: روابط wa.me/api.whatsapp (مؤكد)، أرقام الجوال، روابط فيسبوك/إنستغرام/لينكدإن/X/تيك توك |
+| `targets_tool.py apply-scan --country X --file out.json` | يطبق النتائج على الملف (لا يستبدل المؤكد) |
+
+قيود: فيسبوك وإنستغرام يتطلبان تسجيل دخول (لا تُقرأ آلياً)، والبحث بالاسم في محركات البحث عائده ضعيف جداً – التفاصيل في `output/issues_log.xlsx`.

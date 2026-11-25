@@ -309,7 +309,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 65,
   "name": "People of determination center for special education",
@@ -321,7 +321,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-25"
  },
  {
   "date": "2026-11-25",

@@ -140,6 +140,16 @@ I'd like to apply for a <role> position with you. My CV is attached. Thank you.
 
 ---
 
+## 6ب) دفعات الإيميل (Drafts)
+
+- المستخدم يقرأ المسودة في Gmail ويضغط إرسال بنفسه؛ إنشاء المسودة بموافقته العامة، والإرسال بيده.
+- حساب Gmail المربوط: amer.abdeljalil77@gmail.com (التوقيع والسيرة يحملان alsaydhamr77@gmail.com – اختيار المستخدم).
+- كل رسالة مكتوبة لجهة محددة: معلومة حقيقية من موقعها + 2–3 إنجازات بأفعال الصورة (Achieved/Led/Improved/Managed/Delivered = حققت/قدت/حسّنت/أدرت/قدّمت) مرتبطة بإنجازات السيرة فقط. اتبع مهارة humanizer، بلا شرطات طويلة ولا كلمات سبام.
+- الملفات: `output/drafts/batch_NN_selection.json` (الجهات) ← `batch_NN_emails.py` (النصوص) ← `python3 scripts/drafts_tool.py build|excel|record --batch NN` ← `batch_NN.json/xlsx`.
+- علّم الجهات في ملفات الدول (العمود 14 "مسودة إيميل – batch_NN") حتى لا تُختار مرة أخرى.
+- **جدول الإرسال الموصى به:** 10 يومياً لأول 3 أيام، ثم 15، ثم 20–25 كحد أقصى، بفاصل 2–5 دقائق بين الرسائل. المجموعات A..E في batch_01.xlsx = يوم لكل مجموعة.
+- بعد الإرسال: ابحث `in:sent` في Gmail وسجّل كل رسالة مرسلة بـ `log_tool.py add --method Email` ثم `targets_tool.py stats` ثم commit/push. راقب الارتدادات (bounce) واحذف الإيميلات المرتدة.
+
 ## 7) سجل الأخطاء والعمليات المتعثرة (إلزامي)
 
 - **أي عملية فشلت بخطأ، أو لم تبدأ/لم تكتمل لعدم وجود موافقة** ← تُسجَّل فوراً:

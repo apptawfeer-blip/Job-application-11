@@ -129,7 +129,10 @@ def sync_contacted(wb):
         hits = log_tool.find(lw, ws.cell(r, 6).value, str(ws.cell(r, 4).value or ws.cell(r, 5).value or ""),
                              ws.cell(r, 2).value)
         hits = [h for h in hits if h[1] != ["اسم مشابه"]]
-        ws.cell(r, 14).value = ("نعم – " + str(lw.cell(hits[0][0], log_tool.C["طريقة الإرسال"]).value)) if hits else ""
+        if hits:
+            ws.cell(r, 14).value = "نعم – " + str(lw.cell(hits[0][0], log_tool.C["طريقة الإرسال"]).value)
+        elif not str(ws.cell(r, 14).value or "").startswith("مسودة"):
+            ws.cell(r, 14).value = ""
 
 
 CC = {"Jordan": "962", "Saudi": "966", "UAE": "971", "Qatar": "974", "Kuwait": "965", "Oman": "968", "Bahrain": "973"}

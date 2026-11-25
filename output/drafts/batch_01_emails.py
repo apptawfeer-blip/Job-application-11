@@ -381,7 +381,7 @@ dict(id=49, lang="AR", cv="Full", subject="أخصائي تربية خاصة | ط
 
 dict(id=50, lang="EN", cv="Full", subject="Special education specialist interested in Muscat Autism Center",
      paras=["Dear Muscat Autism Center team,",
-            "Muscat Autism Center is one of the few centers in Oman focused only on autism, and that focus is why I am writing. I have more than five years of experience with children with autism.",
+            "Your center's focus on autism is why I am writing. I have more than five years of experience with children with autism, and I would like to continue that work in Muscat.",
             "In Jordan I managed a resource room and an IEP for every student, and trained autism teachers and shadow teachers. In 2025 I worked in Qatar within a multidisciplinary team."],
      after=["I hold an MA in Special Education (Excellent). My CV is attached."]),
 ]

@@ -734,7 +734,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 4002,
   "name": "شموع الأمل للتربية الخاصة و التأهيل",
@@ -746,13 +746,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 4265,
   "name": "مركز أمل للرعاية النهارية",
@@ -764,7 +765,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

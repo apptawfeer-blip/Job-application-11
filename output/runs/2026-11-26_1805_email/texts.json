@@ -1,20 +1,21 @@
 [
  {
   "id": 1,
-  "lang": "AR",
+  "lang": "EN",
   "cv": "Full",
-  "subject": "السيرة الذاتية | أخصائي تربية خاصة | عامر السعايدة",
+  "subject": "CV | Special Education Specialist | Amer AlSaaideh",
   "paras": [
-   "قسم الموارد البشرية في مركز أوميغا المحترمين،",
-   "تحية طيبة،",
-   "أنا عامر عبد الجليل، أخصائي تربية خاصة. راسلت مركزكم اليوم، وطلب مني الاستقبال إرسال سيرتي الذاتية إليكم مباشرة. أحمل ماجستير التربية الخاصة بتقدير امتياز، ولي أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وعملت في قطر أخصائياً للتربية الخاصة."
+   "Dear Omega Center HR Team,",
+   "I am Amer Abdeljalil, a special education specialist. I contacted your center today, and your reception team asked me to send my CV to you directly. I hold an MA in Special Education (Excellent) and have more than five years of experience in Jordanian Ministry of Education schools. I have also worked in Qatar as a special education specialist."
   ],
   "items": [
-   "أدرت الاختبارات الرسمية وغير الرسمية، مع خطة تربوية فردية (IEP) لكل طالب.",
-   "قدت تدريب المعلمين على التعامل مع الطلبة ذوي اضطراب طيف التوحد والإعاقة العقلية."
+   "Managed formal and informal assessments, with an individualized education plan (IEP) for every student.",
+   "Led teacher training on working with students with autism spectrum disorder and intellectual disability."
   ],
   "after": [
-   "أتقدم للعمل لديكم أخصائياً أو معلماً للتربية الخاصة. سيرتي الذاتية مرفقة، ويسعدني ترتيب مقابلة في الوقت الذي يناسبكم."
-  ]
+   "I am applying for a special education specialist or teacher position. My CV is attached in English and Arabic, and I would welcome an interview at a time that suits you."
+  ],
+  "subject_ar": "السيرة الذاتية | أخصائي تربية خاصة | عامر السعايدة",
+  "body_ar": "فريق الموارد البشرية في مركز أوميغا المحترمين،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة. راسلت مركزكم اليوم، وطلب مني فريق الاستقبال إرسال سيرتي الذاتية إليكم مباشرة. أحمل ماجستير التربية الخاصة بتقدير امتياز، ولي أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية. وعملت أيضاً في قطر أخصائياً للتربية الخاصة.\n\n- أدرت الاختبارات الرسمية وغير الرسمية، مع خطة تربوية فردية (IEP) لكل طالب.\n- قدت تدريب المعلمين على التعامل مع الطلبة ذوي اضطراب طيف التوحد والإعاقة العقلية.\n\nأتقدم لوظيفة أخصائي أو معلم تربية خاصة. سيرتي الذاتية مرفقة بالإنجليزية والعربية، ويسعدني ترتيب مقابلة في الوقت الذي يناسبكم."
  }
 ]

@@ -680,12 +680,35 @@ def careers(a):
             if key == "url" and v: cc.hyperlink = v; cc.font = Font(color="1F5FA8", underline="single")
         have.add(k); added += 1
     wb.save(out)
+    A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]
+    SCH = re.compile(r"school|academy|college|university|lyc[eé]e|kindergarten|nursery|مدرسة|أكاديمية|اكاديمية|جامعة|كلية|روضة", re.I)
+    for x in rows:
+        lang = lang_for(x["name"], x["type"], x["website"])
+        nophd = x["type"] in ("مدرسة", "جامعة") or bool(SCH.search(x["name"])) or "qf.org.qa" in x["url"] + x["website"]
+        school = x["type"] == "مدرسة" or bool(SCH.search(x["name"]))
+        fn = f"Amer_AlSaaideh_CV_{'English' if lang == 'EN' else 'Arabic'}{'_S' if nophd else ''}.pdf"
+        x["lang"], x["cv_url"], x["send_name"] = lang, A[fn], fn.replace("_S.pdf", ".pdf")
+        if lang == "EN":
+            role = "a Learning Support / Special Education Teacher or Inclusion Coordinator" if school else "a Special Education Specialist"
+            x["note"] = (f"I am Amer Abdeljalil, a special education specialist with an MA in Special Education (Excellent) and over five years "
+                         f"in Jordanian Ministry of Education schools. I have also worked in Qatar as a special education specialist.\n"
+                         f"I managed resource rooms and built an IEP for every student, led teacher training in inclusive education, and achieved "
+                         f"full inclusion of students with disabilities for the first time in a public school.\n"
+                         f"I am applying for {role} position. My CV is attached.")
+        else:
+            role = "معلم تربية خاصة أو معلم غرفة مصادر أو منسق تعليم دامج" if school else "أخصائي تربية خاصة أو مشرف برامج"
+            x["note"] = ("أنا عامر عبد الجليل، أخصائي تربية خاصة أحمل ماجستير التربية الخاصة بتقدير امتياز، ولي أكثر من خمس سنوات في مدارس "
+                         "وزارة التربية والتعليم الأردنية، وعملت في قطر أخصائياً للتربية الخاصة.\n"
+                         "أدرت غرف المصادر وبنيت خطة تربوية فردية (IEP) لكل طالب، وقدت تدريب المعلمين على التعليم الدامج، وحققت الدمج الكلي "
+                         "للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية.\n"
+                         f"أتقدم للعمل لديكم {role}. سيرتي الذاتية مرفقة.")
     d = os.path.join(DESK, "careers"); os.makedirs(d, exist_ok=True)
     for f in glob.glob(os.path.join(d, "*.json")): os.remove(f)
     idx = []
     for i, x in enumerate(rows, 1):
         doc = f"{x['country'].lower()}-{x['row']}"
-        json.dump({k: x[k] for k in ("country", "row", "name", "type", "city", "url", "website", "email", "email_status")} | {"rank": i},
+        json.dump({k: x[k] for k in ("country", "row", "name", "type", "city", "url", "website", "email", "email_status",
+                                     "lang", "cv_url", "send_name", "note")} | {"rank": i},
                   open(os.path.join(d, doc + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         idx.append({"doc_id": doc, "file_path": os.path.join(d, doc + ".json")})
     json.dump(idx, open(os.path.join(d, "_index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)

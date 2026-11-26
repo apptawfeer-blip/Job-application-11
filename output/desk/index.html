@@ -110,6 +110,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <div class="chip"><b class="num" id="sLeft">0</b><span>بانتظار مراجعتك</span></div>
       <div class="chip"><b class="num" id="sReserve">0</b><span>بدائل جاهزة</span></div>
       <a class="chip chip-rep" id="sRepChip" href="#repliesPanel"><b class="num" id="sReplies">0</b><span id="sRepLbl">ردود الجهات</span></a>
+      <a class="chip chip-rep" id="sCarChip" href="#careersPanel"><b class="num" id="sCareers">0</b><span id="sCarLbl">صفحات توظيف</span></a>
     </div>
   </section>
 
@@ -176,6 +177,9 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   <section class="panel" id="careersPanel">
     <div class="meta"><h2>صفحات التوظيف</h2><span class="st st-sent" id="carCount">0</span><span class="st st-approved" id="carDone" hidden></span></div>
     <p class="muted">جهات لها صفحة توظيف على موقعها، مرتبة حسب احتمال التوظيف (قطر أولاً). افتح الرابط وقدّم عبر الموقع، ثم اضغط "قدّمت عبر الموقع" حتى أسجّلها. الملف نفسه في output/careers_pages.xlsx في المشروع.</p>
+    <div class="actions"><button class="btn b-sun" id="carNext" type="button">ابدأ التقديم على الجهة التالية</button></div>
+    <div class="note n-ok" id="carMsg" hidden></div>
+    <p class="muted">زر "ابدأ التقديم" يفتح صفحة التوظيف في تبويب جديد، وينزّل السيرة المناسبة (بدون الدكتوراه للمدارس)، وينسخ نص طلب جاهز تلصقه في خانة الرسالة أو "Cover letter". الصفحة لا تستطيع تعبئة نماذج المواقع بنفسها؛ لتعبئة تلقائية اطلب من Claude بعد ربط Chrome على جهازك.</p>
     <div class="replies" id="carList"><p class="muted">جارٍ التحميل...</p></div>
   </section>
 
@@ -371,6 +375,19 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     await promoteReserve(r); nextMessage();
   });
   const COLS = [["n", "#"], ["name", "الجهة"], ["country", "الدولة"], ["city", "المدينة"], ["type", "النوع"], ["to", "الإيميل"], ["website", "الموقع"], ["about_url", "رابط المصدر"], ["about", "نبذة"], ["facts", "نقاط"], ["warn", "تنبيه"], ["status", "الحالة"], ["lang", "اللغة"], ["send_name", "السيرة"], ["subject", "الموضوع"], ["body", "نص الرسالة"], ["saved_at", "تاريخ الحفظ"], ["sent_at", "تاريخ الإرسال"]];
+  async function startApply(c) {
+    if (!c) { const cm = $("carMsg"); cm.hidden = false; cm.textContent = "قدّمت على كل صفحات التوظيف الموجودة."; return; }
+    if (/^https?:\/\//.test(c.url || "")) window.open(c.url, "_blank", "noopener");
+    let copied = false;
+    try { if (c.note && navigator.clipboard) { await navigator.clipboard.writeText(c.note); copied = true; } } catch (e) {}
+    let saved = false;
+    try {
+      const dl = await claude.use("downloads");
+      if (dl && c.cv_url) { const res = await fetch(c.cv_url); const blob = await res.blob(); await dl.save({ filename: c.send_name || "Amer_AlSaaideh_CV.pdf", data: blob }); saved = true; }
+    } catch (e) { if (e && e.code === "cancelled") saved = false; }
+    const cm = $("carMsg"); cm.hidden = false; cm.scrollIntoView({ block: "nearest" }); cm.textContent = (`فتحت صفحة التوظيف لـ ${c.name}.` + (saved ? " نزّلت السيرة " + c.send_name + "." : " لم أستطع تنزيل السيرة هنا، استخدم الملف من جهازك.") + (copied ? " ونسخت نص الطلب: الصقه في خانة الرسالة." : "") + " بعد ما تخلص اضغط \"قدّمت عبر الموقع\".");
+  }
+  $("carNext").addEventListener("click", () => startApply((S.careers || []).find((c) => !c.applied)));
   async function downloadXlsx(rows, filename) {
     if (!window.XLSX) { banner("تعذّر تحميل أداة الإكسل. أعد تحميل الصفحة.", "n-bad"); return; }
     if (!rows.length) { banner("لا توجد رسائل لحفظها بعد.", "n-warn"); return; }
@@ -420,8 +437,9 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     }, () => {});
     db.collection("careers").onSnapshot((snap) => {
       const cs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0));
-      const list = $("carList"); $("carCount").textContent = cs.length;
-      const done = cs.filter((c) => c.applied).length; const cd = $("carDone"); cd.hidden = !done; cd.textContent = done + " قدّمت";
+      const list = $("carList"); $("carCount").textContent = cs.length; S.careers = cs;
+      const done = cs.filter((c) => c.applied).length;
+      $("sCareers").textContent = cs.length - done; $("sCarLbl").textContent = done ? `صفحات توظيف (${done} قدّمت)` : "صفحات توظيف"; const cd = $("carDone"); cd.hidden = !done; cd.textContent = done + " قدّمت";
       if (!cs.length) { list.innerHTML = '<p class="muted">لا توجد صفحات توظيف بعد.</p>'; return; }
       list.replaceChildren();
       cs.forEach((c) => {
@@ -433,6 +451,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
         const act = document.createElement("div"); act.className = "actions";
         if (/^https?:\/\//.test(c.url || "")) { const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التوظيف وقدّم"; act.append(a); }
         if (/^https?:\/\//.test(c.website || "")) { const a = document.createElement("a"); a.href = c.website; a.target = "_blank"; a.rel = "noopener"; a.textContent = "موقع الجهة"; act.append(a); }
+        if (!c.applied) { const go = document.createElement("button"); go.type = "button"; go.className = "btn b-sun"; go.textContent = "ابدأ التقديم"; go.addEventListener("click", () => startApply(c)); act.prepend(go); }
         const b = document.createElement("button"); b.type = "button"; b.className = "mini";
         b.textContent = c.applied ? "قدّمت ✓ " + String(c.applied_at || "").slice(0, 10) + " (تراجع)" : "قدّمت عبر الموقع";
         b.addEventListener("click", () => db.doc("careers/" + c.id).update(c.applied ? { applied: false, applied_at: "" } : { applied: true, applied_at: new Date().toISOString().slice(0, 16) }).catch(() => {}));

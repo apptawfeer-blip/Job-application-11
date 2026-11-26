@@ -563,7 +563,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 125,
   "name": "Awsaj Academy",
@@ -575,7 +575,8 @@
   "cv": "NoPhD",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

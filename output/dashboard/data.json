@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 16:03",
+ "generated": "2026-11-26 17:03",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,18 +14,18 @@
  },
  "today": {
   "email_drafted": 27,
-  "email_sent": 20,
+  "email_sent": 22,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 31,
+  "email_sent": 33,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 56,
+  "drafted": 54,
   "queued": 0,
-  "sent": 25,
+  "sent": 27,
   "replied": 0,
   "bounced": 6
  },
@@ -41,8 +41,8 @@
    "whatsapp_ready": 280
   },
   "Saudi": {
-   "remaining": 4476,
-   "email_ready": 429,
+   "remaining": 4475,
+   "email_ready": 428,
    "whatsapp_ready": 531
   },
   "UAE": {
@@ -81,18 +81,18 @@
   {
    "date": "2026-11-26",
    "email_prepared": 27,
-   "email_sent": 20,
+   "email_sent": 22,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 56,
+  "drafts_waiting_send": 54,
   "whatsapp_ready": 0,
   "replies": []
  },
  "alerts": [
-  "نسبة الارتداد 19% أعلى من 5% – أوقف الإرسال ونظّف القوائم"
+  "نسبة الارتداد 18% أعلى من 5% – أوقف الإرسال ونظّف القوائم"
  ],
  "open_issues": [
   {

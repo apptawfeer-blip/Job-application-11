@@ -140,6 +140,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <p id="mAboutText"></p>
       <ul id="mFacts"></ul>
       <a id="mLink" href="#" target="_blank" rel="noopener" hidden>موقع الجهة</a>
+      <a id="mCareers" href="#" target="_blank" rel="noopener" hidden>صفحة التوظيف عندهم: قدّم عبر موقعهم أيضاً</a>
     </div>
     <div class="note n-bad" id="mWarn" hidden></div>
     <div><label for="mTo">إلى</label><input type="text" id="mTo" dir="ltr"></div>
@@ -170,6 +171,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     <div class="meta"><h2>ردود الجهات</h2><span class="st st-sent" id="repCount">0</span><span class="st st-approved" id="repNew" hidden></span></div>
     <p class="muted" id="repInfo">أفحص بريدك كل ساعة بحثاً عن ردود من الجهات التي راسلتها، وأضعها هنا مع نص الرد ورابط المحادثة في Gmail.</p>
     <div class="replies" id="repList"><p class="muted">لا توجد ردود بعد. الردود تحتاج عادة من أيام إلى أسابيع، وستظهر هنا فور وصولها.</p></div>
+  </section>
+
+  <section class="panel" id="careersPanel">
+    <div class="meta"><h2>صفحات التوظيف</h2><span class="st st-sent" id="carCount">0</span><span class="st st-approved" id="carDone" hidden></span></div>
+    <p class="muted">جهات لها صفحة توظيف على موقعها، مرتبة حسب احتمال التوظيف (قطر أولاً). افتح الرابط وقدّم عبر الموقع، ثم اضغط "قدّمت عبر الموقع" حتى أسجّلها. الملف نفسه في output/careers_pages.xlsx في المشروع.</p>
+    <div class="replies" id="carList"><p class="muted">جارٍ التحميل...</p></div>
   </section>
 
   <section class="panel" id="savedPanel">
@@ -317,6 +324,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("mAboutText").textContent = r.about || "لا تتوفر نبذة عن هذه الجهة بعد.";
     const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
     const ln = $("mLink"), u = r.about_url || r.website || ""; ln.hidden = !/^https?:\/\//.test(u); if (!ln.hidden) ln.href = u;
+    const cl = $("mCareers"), cu = r.careers_url || ""; cl.hidden = !/^https?:\/\//.test(cu); if (!cl.hidden) cl.href = cu;
     $("mAbout").hidden = !(r.about || fl.children.length);
     const tr = $("mTr"), tb = $("mTrBody"); tb.replaceChildren();
     if (r.lang === "EN" && r.body_ar) {
@@ -408,6 +416,27 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
         if (/^https:\/\//.test(r.gmail_url || "")) { const a = document.createElement("a"); a.href = r.gmail_url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح المحادثة في Gmail وردّ عليها"; act.append(a); }
         if (!r.read) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قرأته"; b.addEventListener("click", () => db.doc("replies/" + r.id).update({ read: true }).catch(() => {})); act.append(b); }
         box.append(h, sub, tx, act); list.append(box);
+      });
+    }, () => {});
+    db.collection("careers").onSnapshot((snap) => {
+      const cs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0));
+      const list = $("carList"); $("carCount").textContent = cs.length;
+      const done = cs.filter((c) => c.applied).length; const cd = $("carDone"); cd.hidden = !done; cd.textContent = done + " قدّمت";
+      if (!cs.length) { list.innerHTML = '<p class="muted">لا توجد صفحات توظيف بعد.</p>'; return; }
+      list.replaceChildren();
+      cs.forEach((c) => {
+        const box = document.createElement("div"); box.className = "reply" + (c.applied ? "" : " new");
+        const h = document.createElement("div"); h.className = "rh";
+        const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}${c.city ? " · " + c.city : ""}`;
+        const st = document.createElement("span"); st.className = "muted"; st.textContent = (c.type || "") + (c.email_status ? " · إيميل: " + c.email_status : " · لم نراسلها بالإيميل بعد");
+        h.append(t, st);
+        const act = document.createElement("div"); act.className = "actions";
+        if (/^https?:\/\//.test(c.url || "")) { const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التوظيف وقدّم"; act.append(a); }
+        if (/^https?:\/\//.test(c.website || "")) { const a = document.createElement("a"); a.href = c.website; a.target = "_blank"; a.rel = "noopener"; a.textContent = "موقع الجهة"; act.append(a); }
+        const b = document.createElement("button"); b.type = "button"; b.className = "mini";
+        b.textContent = c.applied ? "قدّمت ✓ " + String(c.applied_at || "").slice(0, 10) + " (تراجع)" : "قدّمت عبر الموقع";
+        b.addEventListener("click", () => db.doc("careers/" + c.id).update(c.applied ? { applied: false, applied_at: "" } : { applied: true, applied_at: new Date().toISOString().slice(0, 16) }).catch(() => {}));
+        act.append(b); box.append(h, act); list.append(box);
       });
     }, () => {});
     db.collection("queue").onSnapshot((snap) => {

@@ -180,7 +180,7 @@ def select(a):
                                0 if (a.channel == "email" or wast.startswith("مؤكد")) else 1)
             pool.append((score, r, {"country": c, "row": r, "name": name, "type": typ, "email": email if a.channel == "email" else "",
                                      "whatsapp": contact if a.channel == "whatsapp" else "", "phone": phone, "city": row[7],
-                                     "website": row[8], "source": row[10], "lang": lang_for(name, typ, row[8]), "cv": row[12], "relevance": rel}))
+                                     "website": row[8], "careers": row[9] or "", "source": row[10], "lang": lang_for(name, typ, row[8]), "cv": row[12], "relevance": rel}))
         pool.sort(key=lambda x: (x[0], x[1])); pools[c] = [p[2] for p in pool]
     # weighted spread across countries (smooth weighted round-robin); user priority: Qatar ~50%
     W = POLICY.get("country_weights", {})
@@ -480,6 +480,7 @@ def _about_fields(ab, it):
     a = ab.get(it["id"], {})
     return {"about": a.get("about", ""), "about_facts": a.get("facts", []), "about_url": a.get("url", ""),
             "city": it.get("city") or "", "website": it.get("website") or "", "warn": a.get("warn", ""),
+            "careers_url": a.get("careers_url") or it.get("careers") or "",
             "about_limited": bool(a.get("limited"))}
 
 
@@ -595,6 +596,100 @@ def send_plan(a):
     json.dump(plan, open(os.path.join(DESK, "outbox", "plan.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(json.dumps({k_: v for k_, v in plan.items() if k_ != "items"}, ensure_ascii=False))
     for it in out: print("SEND", it["doc_id"], it["to"], it["filename"])
+
+
+CAREERS_RE = re.compile(r"career|vacanc|/jobs?\b|job-board|recruit|work-with-us|workwithus|join-us|joinus|employment|workday|"
+                        r"rejoindre|hiring|توظيف|وظائف", re.I)
+
+
+def careers(a):
+    """Careers pages (user request 26/11: apply later through the web).
+    Sources: Targets col 10 'صفحة التوظيف' + careers links found by research (research*.json in runs).
+    Research links are written back to col 10. Output (append-only, user edits freely, matched by country+name):
+    output/careers_pages.xlsx  +  output/desk/careers/*.json (desk collection 'careers', with _index.json)."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill, Alignment
+    url_re = re.compile(r"https?://[^\s\"'،)<>]+")
+    found = {}  # (country,row) -> url
+    for f in glob.glob(os.path.join(RUNS, "*", "research*.json")):
+        run = os.path.dirname(f)
+        try:
+            R = json.load(open(f, encoding="utf-8")); sel = {t["id"]: t for t in json.load(open(os.path.join(run, "selection.json"), encoding="utf-8"))["targets"]}
+        except Exception: continue
+        for x in R if isinstance(R, list) else []:
+            t = sel.get(x.get("id")) if isinstance(x, dict) else None
+            if not t: continue
+            us = [u.rstrip(".,;") for u in url_re.findall(json.dumps(x, ensure_ascii=False)) if CAREERS_RE.search(u)]
+            if x.get("careers_url"): us.insert(0, x["careers_url"])
+            if us: found[(t["country"], t["row"])] = us[0]
+    rows = []
+    for c in COUNTRIES:
+        p = targets_tool.path(c); wb = load_workbook(p); ws = wb["الجهات"]; changed = False
+        for r in range(2, ws.max_row + 1):
+            name = ws.cell(r, 2).value
+            if not name: continue
+            u = str(ws.cell(r, 10).value or "").strip()
+            if not u and (c, r) in found: u = found[(c, r)]; ws.cell(r, 10).value = u; changed = True
+            if not re.match(r"^https?://", u): continue
+            st = str(ws.cell(r, 14).value or "")
+            if st.startswith("مكرر") or st.startswith("مستبعد"): continue
+            rows.append({"country": c, "row": r, "name": str(name), "type": str(ws.cell(r, 3).value or ""), "city": str(ws.cell(r, 8).value or ""),
+                         "url": u, "website": str(ws.cell(r, 9).value or ""), "email": str(ws.cell(r, 6).value or "").split(",")[0].strip(),
+                         "email_status": st, "score": list(hire_score(name, ws.cell(r, 3).value, ws.cell(r, 16).value, ws.cell(r, 6).value, ws.cell(r, 9).value, u))})
+        if changed: wb.save(p)
+    rows.sort(key=lambda x: (COUNTRIES.index(x["country"]) if x["country"] != "Qatar" else -1, x["score"], x["name"]))
+    cols = [("name", "الجهة", 36), ("country", "الدولة", 10), ("type", "النوع", 16), ("city", "المدينة", 12), ("url", "رابط صفحة التوظيف", 50),
+            ("website", "الموقع", 34), ("email", "الإيميل", 32), ("email_status", "حالة التواصل بالإيميل", 30),
+            ("applied", "قدّمت عبر الموقع؟", 16), ("applied_at", "تاريخ التقديم", 14), ("notes", "ملاحظاتي", 40)]
+    out = os.path.join(ROOT, "output", "careers_pages.xlsx")
+    if os.path.exists(out):
+        wb = load_workbook(out); ws = wb.worksheets[0]
+    else:
+        wb = Workbook(); ws = wb.active; ws.title = "صفحات التوظيف"; ws.sheet_view.rightToLeft = True
+        ws.append([c[1] for c in cols])
+        for i, (_, _, w) in enumerate(cols, 1):
+            cc = ws.cell(1, i); ws.column_dimensions[cc.column_letter].width = w
+            cc.font = Font(bold=True, color="FFFFFF"); cc.fill = PatternFill("solid", fgColor="2A9D8F")
+        ws.freeze_panes = "B2"
+    head = {str(ws.cell(1, j).value or "").strip(): j for j in range(1, ws.max_column + 1)}
+    jn, jc = head.get("الجهة"), head.get("الدولة")
+    # desk state (button "قدّمت عبر الموقع") -> Excel, only into empty cells (the user's own edits win)
+    st = {}
+    if getattr(a, "dir", None):
+        for f in glob.glob(os.path.join(a.dir, "careers", "*.json")):
+            dd = json.load(open(f, encoding="utf-8")); dd = dd.get("data", dd)
+            if dd.get("applied"): st[(AR_C.get(dd.get("country"), dd.get("country")), dd.get("name"))] = dd.get("applied_at", "")
+    ja, jt = head.get("قدّمت عبر الموقع؟"), head.get("تاريخ التقديم")
+    if st and jn and jc and ja:
+        for r in range(2, ws.max_row + 1):
+            k = (str(ws.cell(r, jc).value or ""), str(ws.cell(r, jn).value or ""))
+            if k in st and not ws.cell(r, ja).value:
+                ws.cell(r, ja).value = "نعم"
+                if jt and not ws.cell(r, jt).value: ws.cell(r, jt).value = str(st[k])[:10]
+    have = {(str(ws.cell(r, jc).value or ""), str(ws.cell(r, jn).value or "")) for r in range(2, ws.max_row + 1)} if jn and jc else set()
+    added = 0
+    for x in rows:
+        k = (AR_C.get(x["country"], x["country"]), x["name"])
+        if k in have: continue
+        r = ws.max_row + 1
+        for key, label, _ in cols:
+            j = head.get(label)
+            if not j: continue
+            v = AR_C.get(x["country"], x["country"]) if key == "country" else x.get(key, "")
+            cc = ws.cell(r, j, v); cc.alignment = Alignment(wrap_text=True, vertical="top")
+            if key == "url" and v: cc.hyperlink = v; cc.font = Font(color="1F5FA8", underline="single")
+        have.add(k); added += 1
+    wb.save(out)
+    d = os.path.join(DESK, "careers"); os.makedirs(d, exist_ok=True)
+    for f in glob.glob(os.path.join(d, "*.json")): os.remove(f)
+    idx = []
+    for i, x in enumerate(rows, 1):
+        doc = f"{x['country'].lower()}-{x['row']}"
+        json.dump({k: x[k] for k in ("country", "row", "name", "type", "city", "url", "website", "email", "email_status")} | {"rank": i},
+                  open(os.path.join(d, doc + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        idx.append({"doc_id": doc, "file_path": os.path.join(d, doc + ".json")})
+    json.dump(idx, open(os.path.join(d, "_index.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"careers: {len(rows)} pages ({len(found)} from research), +{added} new rows -> {out}")
 
 
 def desk_saved(a):
@@ -767,6 +862,7 @@ def main():
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
     x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
     x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("careers"); x.add_argument("--dir", help="desk copy (ArtifactData list careers out_dir) to read the applied flags")
     x = sp.add_parser("desk-edits"); x.add_argument("--dir", required=True)
     x = sp.add_parser("reply-query"); x.add_argument("--dir", required=True); x.add_argument("--days", type=int, default=14)
     x = sp.add_parser("replies-export"); x.add_argument("--dir", required=True); x.add_argument("--file", required=True)
@@ -775,7 +871,7 @@ def main():
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "desk-edits": desk_edits, "reply-query": reply_query, "replies-export": replies_export}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "careers": careers, "desk-edits": desk_edits, "reply-query": reply_query, "replies-export": replies_export}[a.cmd](a)
 
 
 if __name__ == "__main__":

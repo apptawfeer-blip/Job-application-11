@@ -107,6 +107,8 @@ python3 scripts/pipeline.py select --channel email|whatsapp --count N
 ```
 python3 scripts/pipeline.py desk-export --run <run> --start <آخر n في الطابور + 1>
 ```
+> **تنبيه:** `desk-export` يمسح مجلد `output/desk/export` قبل الكتابة. إن كان هناك أكثر من تشغيل: صدّر كل تشغيل وانسخ ملفاته لمجلد مؤقت قبل التالي، ثم `git checkout -- output/desk/export` لاسترجاع الملفات القديمة وانسخ الجديدة فوقها. **قبل الرفع:** طبّق إصلاحات المراجع (`review_fixes.json`) على ملفات التصدير، واحذف المكرر، ثم `ArtifactData batch`.
+
 ثم اكتب الملفات إلى طابور المكتب: `ArtifactData batch` على `https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53` بإدخالات `{op:"set", collection:"queue", doc_id, file_path}` من `output/desk/export/_index.json` (حتى 50 في الدفعة). لمعرفة آخر `n`: `ArtifactData list collection=queue`.
 - الحصة اليومية والفواصل في وثيقة `config/settings` بالمكتب (`daily_max`, `gap_min`, `gap_max`, `window`) وتُحدَّث بـ `ArtifactData update` إن تغيّرت `config/sending_policy.json`.
 - السير مرفوعة كأصول في المكتب (`output/desk/assets.json`). بعد إعادة بناء السير (`build_cv.py`) ارفعها من جديد (`Artifact publish asset:true file_paths`) وحدّث الروابط في `assets.json` ثم أعد التصدير.
@@ -120,7 +122,7 @@ python3 scripts/pipeline.py wa-queue --run <run>
 ### الإرسال التلقائي (المهمة المجدولة كل ساعة)
 1. `git pull`. احذف `output/runs/_sync/desk`، ثم `ArtifactData list collection=queue query.limit=1000` و`get config/settings` على المكتب، كلاهما بـ `out_dir=output/runs/_sync/desk`.
 2. `python3 scripts/pipeline.py send-plan --dir output/runs/_sync/desk` ← `output/desk/outbox/plan.json`. يحسب: المرسل اليوم (بتوقيت الأردن)، المتبقي من `daily_max`، والساعات الباقية، فيختار 1–2 رسالة بحسب الأقدم موافقةً. إن كان `send_now: 0` أو `paused` ← انتهِ.
-3. لكل عنصر: `mcp__Gmail__send_message` بـ `to=[to]`, `subject`, `htmlBody`, `body`, `attachments=[{content: attachment, filename, mimeType: "application/pdf"}]` (المرفق مرجع `sha256:` لملف السيرة الصحيح، و`filename` هو الاسم النظيف). ثم `ArtifactData update queue/<doc_id>` بـ `{status: "sent", sent_at: "YYYY-MM-DDTHH:MM:SS" (الأردن), gmail_id}`، ثم `delete_draft` لـ `old_draft_id` إن وُجد. بين رسالتين 2–5 دقائق (`sleep` في الخلفية).
+3. لكل عنصر: `mcp__Gmail__send_message` بـ `to=[to]`, `subject`, `htmlBody`, `body`, `attachments=[{content: attachment, filename, mimeType: "application/pdf"}]` (المرفق مرجع `sha256:` لملف السيرة الصحيح، و`filename` هو الاسم النظيف). ثم `ArtifactData update queue/<doc_id>` بـ `{status: "sent", sent_at: "YYYY-MM-DDTHH:MM:SS" (الأردن), gmail_id}`، ثم `delete_draft` لـ `old_draft_id` إن وُجد (إن بقي طلب الحذف بلا موافقة فسجّله في `issues_tool` وتابع؛ الحذف ليس شرطاً للإرسال، ولا تعلّق الجولة عليه). قبل كل إرسال تأكد أنه لم يُرسل (`in:sent to:<to>`)، خاصة بعد إعادة تشغيل العامل. بين رسالتين 2–5 دقائق (`sleep` في الخلفية).
 4. فشل الإرسال ← `{status: "failed", error}` + `issues_tool.py add`، بلا إعادة تلقائية.
 5. الارتدادات: `search_threads from:mailer-daemon newer_than:2d` ← الإيميل المرتد في الطابور يصبح `failed/bounce` + `pipeline.py sync-bounces`. **لا إيقاف تلقائي بسبب الارتدادات أبداً** (بطلب المستخدم): استبعد المرتد وأبلغ المستخدم وتابع الإرسال؛ وقلّل الارتداد بفحص النطاق (MX) والإيميل الرسمي قبل الكتابة.
 6. أعد قراءة الطابور ثم `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل في applications_log وملفات الدول) ثم `pipeline.py desk-saved --dir output/runs/_sync/desk` (يحدّث `output/saved_for_later.xlsx` بما حفظه المستخدم للرجوع) ثم `pipeline.py stats` ثم commit/push. سطر واحد للمستخدم: كم أُرسل وكم بقي اليوم وأي خطأ.

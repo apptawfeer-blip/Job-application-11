@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 11:03",
+ "generated": "2026-11-26 12:03",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,61 +14,61 @@
  },
  "today": {
   "email_drafted": 27,
-  "email_sent": 10,
+  "email_sent": 12,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 21,
+  "email_sent": 23,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 66,
+  "drafted": 64,
   "queued": 0,
-  "sent": 15,
+  "sent": 17,
   "replied": 0,
   "bounced": 6
  },
  "remaining": {
   "Jordan": {
-   "remaining": 3504,
-   "email_ready": 918,
-   "whatsapp_ready": 399
+   "remaining": 3499,
+   "email_ready": 913,
+   "whatsapp_ready": 397
   },
   "Qatar": {
-   "remaining": 894,
-   "email_ready": 437,
-   "whatsapp_ready": 283
+   "remaining": 885,
+   "email_ready": 428,
+   "whatsapp_ready": 282
   },
   "Saudi": {
-   "remaining": 4480,
-   "email_ready": 433,
-   "whatsapp_ready": 532
+   "remaining": 4476,
+   "email_ready": 429,
+   "whatsapp_ready": 531
   },
   "UAE": {
-   "remaining": 3479,
-   "email_ready": 1589,
-   "whatsapp_ready": 982
+   "remaining": 3475,
+   "email_ready": 1585,
+   "whatsapp_ready": 981
   },
   "Kuwait": {
-   "remaining": 1637,
-   "email_ready": 140,
-   "whatsapp_ready": 88
+   "remaining": 1632,
+   "email_ready": 135,
+   "whatsapp_ready": 86
   },
   "Oman": {
-   "remaining": 602,
-   "email_ready": 139,
-   "whatsapp_ready": 75
+   "remaining": 598,
+   "email_ready": 135,
+   "whatsapp_ready": 73
   },
   "Bahrain": {
-   "remaining": 872,
-   "email_ready": 138,
-   "whatsapp_ready": 73
+   "remaining": 871,
+   "email_ready": 137,
+   "whatsapp_ready": 72
   }
  },
  "weeks_left": {
-  "email": 25.6,
-  "whatsapp": 25.1
+  "email": 25.1,
+  "whatsapp": 25.0
  },
  "daily": [
   {
@@ -81,18 +81,18 @@
   {
    "date": "2026-11-26",
    "email_prepared": 27,
-   "email_sent": 10,
+   "email_sent": 12,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 66,
+  "drafts_waiting_send": 64,
   "whatsapp_ready": 0,
   "replies": []
  },
  "alerts": [
-  "نسبة الارتداد 29% أعلى من 5% – أوقف الإرسال ونظّف القوائم"
+  "نسبة الارتداد 26% أعلى من 5% – أوقف الإرسال ونظّف القوائم"
  ],
  "open_issues": [
   {

@@ -658,7 +658,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 578,
   "name": "مركز أونتاريو لذوي الاحتياجات الخاصة",
@@ -670,13 +670,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 304,
   "name": "فريق التأهيل الدولي",
@@ -688,7 +689,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

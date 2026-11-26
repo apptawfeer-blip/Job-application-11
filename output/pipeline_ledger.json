@@ -696,7 +696,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 312,
   "name": "Autism Center of Excellence (ACE)",
@@ -708,13 +708,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 317,
   "name": "Abdulatif Al Fozan Autism Center (AFAC)",
@@ -726,7 +727,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

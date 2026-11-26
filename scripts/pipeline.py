@@ -248,7 +248,7 @@ def wa_queue(a):
         items.append({"id": e["id"], "name": t["name"], "country": t["country"], "row": t["row"], "phone": phone,
                       "wa_link": f"https://wa.me/{phone}", "text": e["text"], "lang": e["lang"], "cv": e["cv"], "type": t.get("type", ""),
                       "cv_path": os.path.relpath(cvf, ROOT).replace("\\", "/"), "cv_send_name": drafts_tool.SEND_NAME[e["lang"]],
-                      "suggested_time": t0.strftime("%H:%M"), "status": "ready", "sent_at": ""})
+                      "suggested_time": t0.strftime("%H:%M"), "status": "pending_approval", "approved_at": "", "sent_at": ""})  # user must approve each message before the extension sends it
         t0 += datetime.timedelta(minutes=random.randint(gmin, gmax))
     d = today().isoformat(); base = os.path.join(WA_DIR, f"queue_{d}_{os.path.basename(a.run)}")
     json.dump({"date": d, "run": os.path.basename(a.run), "items": items}, open(base + ".json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)

@@ -177,7 +177,8 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
   <section class="panel" id="careersPanel">
     <div class="meta"><h2>صفحات التوظيف</h2><span class="st st-sent" id="carCount">0</span><span class="st st-approved" id="carDone" hidden></span></div>
     <p class="muted">جهات لها صفحة توظيف على موقعها، مرتبة حسب احتمال التوظيف (قطر أولاً). افتح الرابط وقدّم عبر الموقع، ثم اضغط "قدّمت عبر الموقع" حتى أسجّلها. الملف نفسه في output/careers_pages.xlsx في المشروع.</p>
-    <div class="actions"><button class="btn b-sun" id="carNext" type="button">ابدأ التقديم على الجهة التالية</button></div>
+    <div class="actions"><button class="btn b-leaf" id="carAuto" type="button">قدّم عني (Claude + Chrome)</button><button class="btn b-sun" id="carNext" type="button">ابدأ التقديم على الجهة التالية</button></div>
+    <p class="muted" id="carAutoInfo">زر "قدّم عني" يطلب من Claude أن يفتح صفحات التوظيف في Chrome على جهازك ويعبّئ النماذج ويرفع سيرتك. يعمل عندما تكون جلسة Claude مفتوحة على جهازك مع إضافة Claude in Chrome، واكتب لها: "تقديم ويب".</p>
     <div class="note n-ok" id="carMsg" hidden></div>
     <p class="muted">زر "ابدأ التقديم" يفتح صفحة التوظيف في تبويب جديد، وينزّل السيرة المناسبة (بدون الدكتوراه للمدارس)، وينسخ نص طلب جاهز تلصقه في خانة الرسالة أو "Cover letter". الصفحة لا تستطيع تعبئة نماذج المواقع بنفسها؛ لتعبئة تلقائية اطلب من Claude بعد ربط Chrome على جهازك.</p>
     <div class="replies" id="carList"><p class="muted">جارٍ التحميل...</p></div>
@@ -388,6 +389,16 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     const cm = $("carMsg"); cm.hidden = false; cm.scrollIntoView({ block: "nearest" }); cm.textContent = (`فتحت صفحة التوظيف لـ ${c.name}.` + (saved ? " نزّلت السيرة " + c.send_name + "." : " لم أستطع تنزيل السيرة هنا، استخدم الملف من جهازك.") + (copied ? " ونسخت نص الطلب: الصقه في خانة الرسالة." : "") + " بعد ما تخلص اضغط \"قدّمت عبر الموقع\".");
   }
   $("carNext").addEventListener("click", () => startApply((S.careers || []).find((c) => !c.applied)));
+  $("carAuto").addEventListener("click", async () => {
+    const left = (S.careers || []).filter((c) => !c.applied);
+    const cm = $("carMsg"); cm.hidden = false;
+    if (!left.length) { cm.textContent = "قدّمت على كل صفحات التوظيف الموجودة."; return; }
+    try {
+      await S.db.doc("config/web_apply").set({ requested: true, requested_at: new Date().toISOString().slice(0, 16), status: "waiting", count: left.length });
+      cm.textContent = `طلبت من Claude التقديم عنك على ${left.length} صفحة توظيف، بالترتيب. افتح جلسة Claude على جهازك (مع إضافة Claude in Chrome) واكتب: تقديم ويب. ستتغير حالة كل جهة هنا إلى "قدّمت" بعد التقديم.`;
+    } catch (e) { cm.textContent = "لم أستطع حفظ الطلب. أعد تحميل الصفحة."; }
+  });
+  S.db && 0;
   async function downloadXlsx(rows, filename) {
     if (!window.XLSX) { banner("تعذّر تحميل أداة الإكسل. أعد تحميل الصفحة.", "n-bad"); return; }
     if (!rows.length) { banner("لا توجد رسائل لحفظها بعد.", "n-warn"); return; }
@@ -434,6 +445,11 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
         if (!r.read) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قرأته"; b.addEventListener("click", () => db.doc("replies/" + r.id).update({ read: true }).catch(() => {})); act.append(b); }
         box.append(h, sub, tx, act); list.append(box);
       });
+    }, () => {});
+    db.doc("config/web_apply").onSnapshot((d) => {
+      if (!d.exists) return; const w = d.data(); const i = $("carAutoInfo");
+      const st = { waiting: "بانتظار جلسة Claude على جهازك", running: "Claude يقدّم الآن", done: "انتهى التقديم" }[w.status] || w.status;
+      i.textContent = `طلب "قدّم عني": ${st}` + (w.current ? ` · الآن: ${w.current}` : "") + (w.done_count != null ? ` · قدّم على ${w.done_count}` : "") + (w.note ? ` · ${w.note}` : "");
     }, () => {});
     db.collection("careers").onSnapshot((snap) => {
       const cs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0));

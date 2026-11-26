@@ -122,7 +122,7 @@ python3 scripts/pipeline.py wa-queue --run <run>
 2. `python3 scripts/pipeline.py send-plan --dir output/runs/_sync/desk` ← `output/desk/outbox/plan.json`. يحسب: المرسل اليوم (بتوقيت الأردن)، المتبقي من `daily_max`، والساعات الباقية، فيختار 1–2 رسالة بحسب الأقدم موافقةً. إن كان `send_now: 0` أو `paused` ← انتهِ.
 3. لكل عنصر: `mcp__Gmail__send_message` بـ `to=[to]`, `subject`, `htmlBody`, `body`, `attachments=[{content: attachment, filename, mimeType: "application/pdf"}]` (المرفق مرجع `sha256:` لملف السيرة الصحيح، و`filename` هو الاسم النظيف). ثم `ArtifactData update queue/<doc_id>` بـ `{status: "sent", sent_at: "YYYY-MM-DDTHH:MM:SS" (الأردن), gmail_id}`، ثم `delete_draft` لـ `old_draft_id` إن وُجد. بين رسالتين 2–5 دقائق (`sleep` في الخلفية).
 4. فشل الإرسال ← `{status: "failed", error}` + `issues_tool.py add`، بلا إعادة تلقائية.
-5. الارتدادات: `search_threads from:mailer-daemon newer_than:2d` ← الإيميل المرتد في الطابور يصبح `failed/bounce` + `pipeline.py sync-bounces`. أكثر من 5% من آخر 50 ← `config/settings {paused: true}` + `issues_tool`.
+5. الارتدادات: `search_threads from:mailer-daemon newer_than:2d` ← الإيميل المرتد في الطابور يصبح `failed/bounce` + `pipeline.py sync-bounces`. **لا إيقاف تلقائي بسبب الارتدادات أبداً** (بطلب المستخدم): استبعد المرتد وأبلغ المستخدم وتابع الإرسال؛ وقلّل الارتداد بفحص النطاق (MX) والإيميل الرسمي قبل الكتابة.
 6. أعد قراءة الطابور ثم `pipeline.py sync-desk --dir output/runs/_sync/desk` (يسجّل في applications_log وملفات الدول) ثم `pipeline.py desk-saved --dir output/runs/_sync/desk` (يحدّث `output/saved_for_later.xlsx` بما حفظه المستخدم للرجوع) ثم `pipeline.py stats` ثم commit/push. سطر واحد للمستخدم: كم أُرسل وكم بقي اليوم وأي خطأ.
 
 ### متابعة الردود (كل ساعة، ضمن جولة الإرسال)
@@ -196,4 +196,4 @@ Helper-0 فقط + `pipeline.py desk-saved` + `stats` + نشر اللوحة + ا�
 |---|---|---|---|---|---|---|---|
 | إيميل | 30 | 30 | 30 | 30 | 30 | 1–2 كل ساعة | 24 ساعة |
 | واتساب | 10 | 15 | 20 | 20 | 25 | 3–6 د | 09:00–15:00 |
-أيام العمل: الأحد–الخميس. إيقاف الإيميل إذا الارتدادات > 5% من آخر 50. تخفيف الواتساب إذا الردود < 5% بعد 50 رسالة (السقف الشهري للرسائل غير المُجاب عليها).
+أيام العمل: الأحد–الخميس. لا إيقاف تلقائي للإيميل بسبب الارتدادات (بطلب المستخدم)؛ الإيقاف فقط من زر المكتب. تخفيف الواتساب إذا الردود < 5% بعد 50 رسالة (السقف الشهري للرسائل غير المُجاب عليها).

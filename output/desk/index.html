@@ -119,6 +119,12 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 
   <div id="banner" class="note n-warn" hidden></div>
 
+  <section class="panel" id="jobsPanel" hidden>
+    <div class="meta"><h2>فرص عمل معلنة</h2><span class="st st-approved">أولوية</span><span class="st st-sent" id="jobsCount">0</span></div>
+    <p class="muted">وظائف معلنة تناسبك وجدتها (من الإعلانات وتنبيهات LinkedIn وصفحات التوظيف). افتح الرابط وقدّم، وانسخ نص الطلب الجاهز للصقه في خانة الرسالة أو Cover letter، ثم اضغط "قدّمت عبر الموقع".</p>
+    <div class="replies" id="jobsList"></div>
+  </section>
+
   <section class="panel" id="autoPanel">
     <div class="meta"><h2>الإرسال التلقائي</h2><span class="st" id="autoState">يعمل</span></div>
     <p class="muted" id="autoText">أرسل كل ساعة رسالة أو رسالتين من طابور الإرسال، حتى الحد اليومي، مع السيرة المناسبة لكل جهة.</p>
@@ -401,6 +407,45 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     } catch (e) { if (e && e.code === "cancelled") saved = false; }
     const cm = $("carMsg"); cm.hidden = false; cm.scrollIntoView({ block: "nearest" }); cm.textContent = (`فتحت صفحة التوظيف لـ ${c.name}.` + (saved ? " نزّلت السيرة " + c.send_name + "." : " لم أستطع تنزيل السيرة هنا، استخدم الملف من جهازك.") + (copied ? " ونسخت نص الطلب: الصقه في خانة الرسالة." : "") + " بعد ما تخلص اضغط \"قدّمت عبر الموقع\".");
   }
+  // advertised vacancies (priority): own panel at the top with the job link, the ready cover text and a copy button
+  function renderJobs(jobs, db) {
+    const panel = $("jobsPanel"), list = $("jobsList");
+    panel.hidden = !jobs.length; $("jobsCount").textContent = jobs.filter((c) => !c.applied).length + " لم تقدّم بعد";
+    list.replaceChildren();
+    jobs.slice().sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0)).forEach((c) => {
+      const box = document.createElement("div"); box.className = "reply" + (c.applied ? "" : " new");
+      const h = document.createElement("div"); h.className = "rh";
+      const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}${c.city ? " · " + c.city : ""}`;
+      const b = document.createElement("span"); b.className = "st " + (c.applied ? "st-sent" : "st-approved"); b.textContent = c.applied ? "✓ قدّمت" : "أولوية";
+      h.append(t, b); box.append(h);
+      if (c.web_note) { const wn = document.createElement("div"); wn.textContent = c.web_note; box.append(wn); }
+      if (/^https?:\/\//.test(c.url || "")) {
+        const row = document.createElement("div");
+        const lb0 = document.createElement("div"); lb0.className = "muted"; lb0.textContent = /linkedin\.com/.test(c.url) ? "رابط الوظيفة على LinkedIn:" : "رابط الوظيفة:";
+        const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.dir = "ltr";
+        a.textContent = c.url; a.style.wordBreak = "break-all"; a.style.display = "block"; a.style.textAlign = "left";
+        row.append(lb0, a); box.append(row);
+      }
+      if (c.note) {
+        const lb = document.createElement("div"); lb.className = "muted"; lb.textContent = "نص الطلب الجاهز (" + (c.send_name || "") + "):";
+        const tx = document.createElement("div"); tx.className = "rt"; tx.dir = c.lang === "AR" ? "rtl" : "ltr"; tx.style.textAlign = c.lang === "AR" ? "right" : "left"; tx.textContent = c.note; tx.style.maxHeight = "none";
+        box.append(lb, tx);
+      }
+      const act = document.createElement("div"); act.className = "actions";
+      if (!c.applied) {
+        const go = document.createElement("button"); go.type = "button"; go.className = "btn b-sun"; go.textContent = "ابدأ التقديم (يفتح الرابط وينزّل السيرة)"; go.addEventListener("click", () => startApply(c)); act.append(go);
+      }
+      if (c.note) {
+        const cp = document.createElement("button"); cp.type = "button"; cp.className = "mini"; cp.textContent = "انسخ النص";
+        cp.addEventListener("click", async () => { try { await navigator.clipboard.writeText(c.note); cp.textContent = "تم النسخ ✓"; } catch (e) { cp.textContent = "انسخه يدوياً من الأعلى"; } });
+        act.append(cp);
+      }
+      const done = document.createElement("button"); done.type = "button"; done.className = "mini";
+      done.textContent = c.applied ? "تراجع (ضغطتها بالخطأ)" : "قدّمت عبر الموقع";
+      done.addEventListener("click", () => db.doc("careers/" + c.id).update(c.applied ? { applied: false, applied_at: "" } : { applied: true, applied_at: new Date().toISOString().slice(0, 16), applied_by: "user" }).catch(() => {}));
+      act.append(done); box.append(act); list.append(box);
+    });
+  }
   function renderNeeds(needs, db) {
     $("needCount").textContent = needs.length; $("sNeed").textContent = needs.length; $("sNeedChip").classList.toggle("has", needs.length > 0);
     const list = $("needList");
@@ -494,10 +539,15 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       const cs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0));
       // "needs you": pages Claude could not finish (passport, personal data, account, CAPTCHA) get their own section
       S.careers_all = cs;
+      renderJobs(cs.filter((c) => c.priority), db);
       const needs = cs.filter((c) => c.needs && !c.applied); renderNeeds(needs, db);
       const list = $("carList"); S.careers = cs.filter((c) => !(c.needs && !c.applied)); $("carCount").textContent = S.careers.length;
       const done = cs.filter((c) => c.applied).length;
-      $("sCareers").textContent = cs.length - done; $("sCarLbl").textContent = done ? `صفحات توظيف (${done} قدّمت)` : "صفحات توظيف"; const cd = $("carDone"); cd.hidden = !done; cd.textContent = done + " قدّمت";
+      // counter: applied first, then what is waiting on an email approval and what needs the user
+      const byEmail = cs.filter((c) => !c.applied && (c.email_only || c.queue_doc)).length;
+      const needYou = cs.filter((c) => !c.applied && c.needs && !(c.email_only || c.queue_doc)).length;
+      $("sCareers").textContent = done; $("sCarLbl").textContent = `قدّمت من ${cs.length} صفحة توظيف · ${byEmail} بالإيميل تنتظر موافقتك · ${needYou} تحتاجك`;
+      const cd = $("carDone"); cd.hidden = !done; cd.textContent = `${done} قدّمت · ${byEmail} بالإيميل · ${needYou} تحتاجك`;
       if (!S.careers.length) { list.innerHTML = '<p class="muted">لا توجد صفحات توظيف أخرى.</p>'; return; }
       list.replaceChildren();
       S.careers.forEach((c) => {
@@ -506,6 +556,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
         const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}${c.city ? " · " + c.city : ""}`;
         const st = document.createElement("span"); st.className = "muted"; st.textContent = (c.type || "") + (c.email_status ? " · إيميل: " + c.email_status : " · لم نراسلها بالإيميل بعد");
         h.append(t, st);
+        if (c.priority) { const pb = document.createElement("span"); pb.className = "st st-approved"; pb.textContent = "أولوية – وظيفة معلنة"; h.insertBefore(pb, st); }
         if (c.web_note) { const wn = document.createElement("div"); wn.className = "muted"; wn.textContent = c.web_note; box.append(h, wn); }
         const act = document.createElement("div"); act.className = "actions";
         // applied pages lose every apply control so nobody applies twice; only a small undo stays for a mistaken click

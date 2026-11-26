@@ -542,8 +542,15 @@ def sync_desk(a):
     for f in glob.glob(os.path.join(a.dir, "**", "*.json"), recursive=True):
         d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
         if not isinstance(d, dict) or "country" not in d: continue
+        to = str(d.get("to") or "").strip().lower()
+        # a follow-up to a reply (e.g. HR address) shares country/row with the first message: match by recipient too, and
+        # add a ledger entry for a sent doc whose recipient is not in the ledger yet, so every send is logged
+        if d.get("status") == "sent" and to and not any(e["channel"] == "email" and str(e.get("email", "")).strip().lower() == to for e in L):
+            L.append({"date": (d.get("sent_at") or today().isoformat())[:10], "run": d.get("run", ""), "channel": "email", "status": "drafted",
+                      "country": d["country"], "row": d.get("row"), "name": d.get("name", ""), "email": d.get("to", ""), "phone": "",
+                      "subject": d.get("subject", ""), "draft_id": "", "lang": d.get("lang"), "cv": d.get("cv"), "type": d.get("type", ""), "send_day": 0})
         for e in L:
-            if e["channel"] == "email" and e["country"] == d["country"] and e["row"] == d["row"]:
+            if e["channel"] == "email" and e["country"] == d["country"] and e["row"] == d["row"] and (not to or str(e.get("email", "")).strip().lower() in ("", to)):
                 if d.get("draft_id"): e["draft_id"] = d["draft_id"]
                 if d.get("status") == "sent" and e["status"] == "drafted":
                     e["status"] = "sent"; e["sent_date"] = (d.get("sent_at") or today().isoformat())[:10]
@@ -581,6 +588,9 @@ def send_plan(a):
     now = datetime.datetime.now(TZ); t = now.date().isoformat()
     daily_max = int(cfg.get("daily_max", POLICY["email"]["absolute_max_per_day"]))
     sent_today = sum(1 for d in docs if d.get("status") == "sent" and str(d.get("sent_at", ""))[:10] == t)
+    # the daily cap covers every email sent today, including ones sent outside the desk (other sessions, careers emails): use the ledger too
+    led = sum(1 for e in load_ledger() if e.get("channel") == "email" and e.get("status") in ("sent", "bounced", "replied") and str(e.get("sent_date", ""))[:10] == t)
+    sent_today = max(sent_today, led)
     approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (0 if d.get("priority") else 1, str(d.get("approved_at", "")), d.get("n", 0)))
     remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
     k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(2, len(approved), remaining, max(1, -(-remaining // runs_left)))

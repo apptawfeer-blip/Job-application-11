@@ -942,7 +942,7 @@
   "date": "2026-11-25",
   "run": "2026-11-25_2102_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 56,
   "name": "Alrahma Centre for Special education",
@@ -953,7 +953,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
@@ -1568,5 +1569,23 @@
   "cv": "NoPhD",
   "type": "مدرسة",
   "send_day": 1
+ },
+ {
+  "date": "2026-11-26",
+  "run": "2026-11-26-1805-email",
+  "channel": "email",
+  "status": "sent",
+  "sent_date": "2026-11-26",
+  "country": "Qatar",
+  "row": 577,
+  "name": "مركز أوميجا لتعليم ذوي الاحتياجات الخاصة - Omega (HR)",
+  "email": "HR@omegaqatar.org",
+  "phone": "",
+  "subject": "CV | Special Education Specialist | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "Full",
+  "type": "مركز تربية خاصة",
+  "send_day": 0
  }
 ]

@@ -490,7 +490,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "bounced",
   "country": "UAE",
   "row": 955,
   "name": "Doris Duan Young Autism Center",
@@ -502,7 +502,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

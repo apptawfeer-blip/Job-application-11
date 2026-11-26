@@ -1,27 +1,15 @@
 {
- "now": "2026-11-26 02:59",
+ "now": "2026-11-26 08:58",
  "paused": false,
  "daily_max": 30,
  "sent_today": 3,
- "approved_waiting": 36,
+ "approved_waiting": 35,
  "send_now": 2,
  "gap_minutes": [
   2,
   5
  ],
  "items": [
-  {
-   "doc_id": "b01-15",
-   "to": "ammanautism@gmail.com",
-   "subject": "طلب عمل أخصائي تربية خاصة | مركز عمّان للتوحد",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">فريق مركز عمّان للتوحد المحترم،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">خبرتي تشمل القياس والتشخيص، وبناء الخطط الفردية، وتعديل السلوك، والعمل مع الأسر. وقد قدمت ورشاً لأولياء الأمور حصلت على تقييم ممتاز، ودرّبت معلمين على التعامل مع أطفال التوحد داخل الصف.</p><p style=\"margin:0 0 14px 0;\">أرفقت سيرتي الذاتية، ويسعدني ترتيب زيارة أو مقابلة في الوقت الذي يناسبكم.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"tel:+962780189766\" style=\"color:#1f5fa8;text-decoration:none;\">+962 78 018 9766</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://wa.me/962780189766\" style=\"color:#1f5fa8;text-decoration:none;\">راسلني على واتساب</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"mailto:amer.abdeljalil77@gmail.com\" style=\"color:#1f5fa8;text-decoration:none;\">amer.abdeljalil77@gmail.com</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">ORCID</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://orcid.org/0009-0009-7349-4201\" style=\"color:#1f5fa8;text-decoration:none;\">orcid.org/0009-0009-7349-4201</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً</div></div></div>",
-   "body": "فريق مركز عمّان للتوحد المحترم،\n\nتحية طيبة،\n\nخبرتي تشمل القياس والتشخيص، وبناء الخطط الفردية، وتعديل السلوك، والعمل مع الأسر. وقد قدمت ورشاً لأولياء الأمور حصلت على تقييم ممتاز، ودرّبت معلمين على التعامل مع أطفال التوحد داخل الصف.\n\nأرفقت سيرتي الذاتية، ويسعدني ترتيب زيارة أو مقابلة في الوقت الذي يناسبكم.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف: +962 78 018 9766\nواتساب: https://wa.me/962780189766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nORCID: https://orcid.org/0009-0009-7349-4201\nمتاح للعمل فوراً",
-   "attachment": "sha256:89da5d1a9d4e3fdbb704ee9615003b32427b16469d2709b11b45cd7d84842209:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
-   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-   "old_draft_id": "r-7097681114220139611",
-   "name": "Amman Centre for Autism",
-   "country": "Jordan"
-  },
   {
    "doc_id": "b01-16",
    "to": "consultingca_jo@hotmail.com",
@@ -32,6 +20,18 @@
    "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
    "old_draft_id": "r-3391451972497029205",
    "name": "Consulting Center for Autism",
+   "country": "Jordan"
+  },
+  {
+   "doc_id": "b01-17",
+   "to": "jor.s.autism@gmail.com",
+   "subject": "أخصائي ومدرب أسر في التربية الخاصة | الجمعية الأردنية للتوحد",
+   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">الجمعية الأردنية للتوحد المحترمة،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">دور الجمعية مع الأسر مهم بقدر دورها مع الأطفال، ولي تجربة في هذا الجانب: قدمت ورشة تفاعلية لأولياء الأمور عن تشتت الانتباه والنشاط الزائد حصلت على تقييم ممتاز، وبرامج في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم.</p><p style=\"margin:0 0 14px 0;\">أعمل أخصائياً للتربية الخاصة منذ أكثر من خمس سنوات، وأدرت غرفة المصادر والخطط الفردية في مدارس وزارة التربية.</p><p style=\"margin:0 0 14px 0;\">يسعدني أن أساهم في برامجكم أخصائياً أو مدرباً للأسر والمعلمين. سيرتي الذاتية مرفقة.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"tel:+962780189766\" style=\"color:#1f5fa8;text-decoration:none;\">+962 78 018 9766</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://wa.me/962780189766\" style=\"color:#1f5fa8;text-decoration:none;\">راسلني على واتساب</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"mailto:amer.abdeljalil77@gmail.com\" style=\"color:#1f5fa8;text-decoration:none;\">amer.abdeljalil77@gmail.com</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">ORCID</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://orcid.org/0009-0009-7349-4201\" style=\"color:#1f5fa8;text-decoration:none;\">orcid.org/0009-0009-7349-4201</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً</div></div></div>",
+   "body": "الجمعية الأردنية للتوحد المحترمة،\n\nتحية طيبة،\n\nدور الجمعية مع الأسر مهم بقدر دورها مع الأطفال، ولي تجربة في هذا الجانب: قدمت ورشة تفاعلية لأولياء الأمور عن تشتت الانتباه والنشاط الزائد حصلت على تقييم ممتاز، وبرامج في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم.\n\nأعمل أخصائياً للتربية الخاصة منذ أكثر من خمس سنوات، وأدرت غرفة المصادر والخطط الفردية في مدارس وزارة التربية.\n\nيسعدني أن أساهم في برامجكم أخصائياً أو مدرباً للأسر والمعلمين. سيرتي الذاتية مرفقة.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف: +962 78 018 9766\nواتساب: https://wa.me/962780189766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nORCID: https://orcid.org/0009-0009-7349-4201\nمتاح للعمل فوراً",
+   "attachment": "sha256:89da5d1a9d4e3fdbb704ee9615003b32427b16469d2709b11b45cd7d84842209:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
+   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
+   "old_draft_id": "r3193405079595574392",
+   "name": "Jordanian Society for Autism",
    "country": "Jordan"
   }
  ]

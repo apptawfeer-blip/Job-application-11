@@ -52,7 +52,7 @@ AR = {
         ("التعليم", [
             {"h": "دكتوراه في التربية الخاصة (قيد الدراسة)",
              "sub": "جامعة العلوم الإسلامية العالمية – عمّان، الأردن | 2025 – حتى الآن", "phd": True},
-            {"h": "ماجستير في التربية الخاصة – التقدير: امتياز",
+            {"h": "ماجستير في التربية الخاصة – التقدير: امتياز (85%)",
              "sub": "جامعة مؤتة – الأردن | 2018 – 2021",
              "bullets": ["عنوان الرسالة: «تقييم غرف المصادر للطلبة ذوي صعوبات التعلم من وجهة نظر المشرفين التربويين والمعلمين العاديين في الأردن»."]},
             {"h": "بكالوريوس في التربية الخاصة – التقدير: جيد جداً",
@@ -71,9 +71,9 @@ AR = {
         ]),
         ("البرامج والورش التدريبية المقدمة (مدرب)", [
             {"bullets": [
-                "تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، وإعداد معلمي اضطراب طيف التوحد، وإعداد معلمي الظل، والخطط والبرامج التربوية – المبتكرون للاستشارات والتدريب.",
-                "بروتوكولات التعامل مع ذوي الهمم، وآليات التعامل مع ذوي الهمم في العمل الميداني – جامعة عمّان الأهلية.",
-                "ورشة فنيات تعديل السلوك – جامعة البتراء.",
+                "تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، وإعداد معلمي اضطراب طيف التوحد، وإعداد معلمي الظل، والخطط والبرامج التربوية – المبتكرون للإرشاد وإعادة التأهيل (06/2023 – 12/2023).",
+                "دورات تدريبية قدمتها في جامعة عمّان الأهلية: مهارات وفنيات تعديل السلوك (12 ساعة، 07/2025)، وبروتوكولات التعامل مع ذوي الهمم (12 ساعة، 11/2024)، وكيفية التعامل مع ذوي الهمم في العمل الميداني (10 ساعات، 06/2024).",
+                "ورشة فنيات تعديل السلوك – جامعة البتراء (الفصل الأول 2024/2025).",
                 "ورشة تشتت الانتباه والنشاط الزائد (ADHD) لأولياء الأمور بأساليب تفاعلية – قاعة الرويال، عمّان (تقييم: ممتاز).",
                 "محاضرة آلية السمع لطلبة البكالوريوس حول تشريح الأذن والوقاية من مشاكل السمع – جامعة عمّان الأهلية (تقييم: ممتاز).",
                 "تطبيق برنامج MOBAK الحركي لأول مرة في الأردن على الطلبة ذوي الإعاقة العقلية البسيطة – مركز الأمل، جامعة مؤتة.",
@@ -151,7 +151,7 @@ EN = {
         ("Education", [
             {"h": "PhD in Special Education (in progress)",
              "sub": "The World Islamic Sciences and Education University (WISE) – Amman, Jordan | 2025 – Present", "phd": True},
-            {"h": "Master of Arts in Special Education – Grade: Excellent",
+            {"h": "Master of Arts in Special Education – Grade: Excellent (85%)",
              "sub": "Mutah University – Jordan | 2018 – 2021",
              "bullets": ["Thesis: “Evaluation of Resource Rooms for Students with Learning Disabilities from the Perspective of Educational Supervisors and General Teachers in Jordan.”"]},
             {"h": "Bachelor of Arts in Special Education – Grade: Very Good",
@@ -170,9 +170,9 @@ EN = {
         ]),
         ("Training Programs and Workshops Delivered (Trainer)", [
             {"bullets": [
-                "Behavior modification for children with disabilities and learning difficulties; Autism Spectrum Disorder teacher preparation; shadow teacher preparation; educational plans and programs – Al-Mubtakiroun for Consulting and Training.",
-                "Protocols for dealing with People of Determination; mechanisms for dealing with People of Determination in fieldwork – Al-Ahliyya Amman University.",
-                "Behavior Modification Techniques workshop – University of Petra.",
+                "Behavior modification for children with disabilities and learning difficulties; Autism Spectrum Disorder teacher preparation; shadow teacher preparation; educational plans and programs – Al-Mubtakiroun for Counseling and Rehabilitation (06/2023 – 12/2023).",
+                "Training courses delivered at Al-Ahliyya Amman University: Behavior Modification Skills and Techniques (12 hours, 07/2025); Protocols for Dealing with People of Determination (12 hours, 11/2024); Dealing with People of Determination in Fieldwork (10 hours, 06/2024).",
+                "Behavior Modification Techniques workshop – University of Petra (first semester 2024/2025).",
                 "ADHD workshop for parents using interactive methods – Royal Hall, Amman (rated Excellent).",
                 "Lecture for undergraduate students on the hearing mechanism, ear anatomy and preventing hearing problems – Al-Ahliyya Amman University (rated Excellent).",
                 "Implemented the MOBAK motor skills program for the first time in Jordan with students with mild intellectual disability – Al-Amal Center, Mutah University.",

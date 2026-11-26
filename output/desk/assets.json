@@ -1,6 +1,16 @@
-{"url": "https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53",
- "cv": {"Amer_AlSaaideh_CV_Arabic.pdf": "/_blob/75909e0fe27f3df67ef6edd1ce5cb9c4",
-        "Amer_AlSaaideh_CV_Arabic_S.pdf": "/_blob/8aff0de1a3234163d4fdeeea21ff41a3",
-        "Amer_AlSaaideh_CV_English.pdf": "/_blob/2193068dfb7bc3561937ca7ec86e6071",
-        "Amer_AlSaaideh_CV_English_S.pdf": "/_blob/ff3ab6ceece610f3eb4bd53a104b76e0"},
- "_note": "CV assets uploaded to the sending desk. After rebuilding the CVs (build_cv.py) re-upload them and update these urls."}
+{
+ "url": "https://claude.ai/artifact/BoV5qMq37yJHyVii75FZ53",
+ "cv": {
+  "Amer_AlSaaideh_CV_Arabic.pdf": "/_blob/12240c9ce2a628e1d0abb223896eb968",
+  "Amer_AlSaaideh_CV_Arabic_S.pdf": "/_blob/f0792c8801f8e5b3784a5446a1421f9b",
+  "Amer_AlSaaideh_CV_English.pdf": "/_blob/37a3c1726cf46f22506166a0d9ff9712",
+  "Amer_AlSaaideh_CV_English_S.pdf": "/_blob/b0783bd3efacba2f16e3141aa542680a"
+ },
+ "_note": "CV assets on the sending desk. After build_cv.py re-upload, put new urls in cv and keep old urls in cv_aliases (old queue docs still point at them; send-plan maps both to the local file, which is always the latest build).",
+ "cv_aliases": {
+  "/_blob/75909e0fe27f3df67ef6edd1ce5cb9c4": "Amer_AlSaaideh_CV_Arabic.pdf",
+  "/_blob/8aff0de1a3234163d4fdeeea21ff41a3": "Amer_AlSaaideh_CV_Arabic_S.pdf",
+  "/_blob/2193068dfb7bc3561937ca7ec86e6071": "Amer_AlSaaideh_CV_English.pdf",
+  "/_blob/ff3ab6ceece610f3eb4bd53a104b76e0": "Amer_AlSaaideh_CV_English_S.pdf"
+ }
+}

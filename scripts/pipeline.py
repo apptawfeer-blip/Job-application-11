@@ -594,7 +594,7 @@ def send_plan(a):
     approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (0 if d.get("priority") else 1, str(d.get("approved_at", "")), d.get("n", 0)))
     remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
     k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(2, len(approved), remaining, max(1, -(-remaining // runs_left)))
-    A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]; rev = {v: k_ for k_, v in A.items()}
+    AJ = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8")); A = AJ["cv"]; rev = {v: k_ for k_, v in A.items()}; rev.update(AJ.get("cv_aliases", {}))
     out = []
     for d in approved[:k]:
         html_, text = _email_from_text(d["lang"], d["body"], d["sig_html"], d["sig_text"])

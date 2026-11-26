@@ -104,6 +104,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
       <p class="muted">راجع كل رسالة وعدّلها، ثم أضفها لطابور الإرسال. أنا أرسلها تلقائياً ليلاً ونهاراً ضمن الحد الآمن.</p>
     </div>
     <div class="stats">
+      <div class="chip" title="كل الرسائل التي وصلت للجهات بلا ارتداد منذ البداية"><b class="num" id="sOk">0</b><span id="sOkLbl">وصلت بنجاح</span></div>
       <div class="chip"><b class="num" id="sToday">0</b><span>أرسلت اليوم</span></div>
       <div class="chip"><b class="num" id="sMax">30</b><span>حصة اليوم</span></div>
       <div class="chip"><b class="num" id="sApproved">0</b><span>في طابور الإرسال</span></div>
@@ -220,6 +221,8 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
 
   function renderStats() {
     $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
+    { const ok = S.rows.filter((r) => r.status === "sent").length, bad = S.rows.filter((r) => r.status === "failed").length;
+      $("sOk").textContent = ok; $("sOkLbl").textContent = bad ? `وصلت بنجاح (${bad} ارتدّت)` : "وصلت بنجاح"; }
     $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
     $("savedCount").textContent = S.rows.filter((r) => r.status === "saved").length;
     $("sReserve").textContent = S.rows.filter((r) => r.status === "reserve").length;

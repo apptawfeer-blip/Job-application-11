@@ -115,22 +115,6 @@
    "id": 9
   },
   {
-   "country": "Qatar",
-   "row": 146,
-   "name": "HOPE Qatar Centre",
-   "type": "مركز تربية خاصة",
-   "email": "info@hope-qatar.org",
-   "whatsapp": "",
-   "phone": "+974 5538 5687",
-   "city": "الدوحة",
-   "website": null,
-   "source": "https://www.iloveqatar.net/guide/general/special-needs-education-schools-centers-qatar",
-   "lang": "AR",
-   "cv": "Full",
-   "relevance": "عالية",
-   "id": 10
-  },
-  {
    "country": "Bahrain",
    "row": 839,
    "name": "مركز RIA & Rac",
@@ -145,22 +129,6 @@
    "cv": "NoPhD",
    "relevance": "عالية",
    "id": 11
-  },
-  {
-   "country": "Qatar",
-   "row": 569,
-   "name": "اكاديمية العوسج",
-   "type": "مركز تربية خاصة",
-   "email": "awsajacademy@qf.org.qa",
-   "whatsapp": "",
-   "phone": "+97444542111",
-   "city": "الدوحة",
-   "website": "https://www.awsaj.qa/",
-   "source": "https://www.abadc.com.sa/directory/%d8%a7%d9%83%d8%a7%d8%af%d9%8a%d9%85%d9%8a%d8%a9-%d8%a7%d9%84%d8%b9%d9%88%d8%b3%d8%ac/",
-   "lang": "EN",
-   "cv": "NoPhD",
-   "relevance": "عالية",
-   "id": 12
   },
   {
    "country": "Qatar",

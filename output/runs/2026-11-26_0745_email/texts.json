@@ -126,24 +126,6 @@
   ]
  },
  {
-  "id": 10,
-  "lang": "AR",
-  "cv": "Full",
-  "subject": "طلب توظيف | أخصائي تربية خاصة عمل في قطر | عامر السعايدة",
-  "paras": [
-   "السادة مركز هوب قطر المحترمين،",
-   "تحية طيبة،",
-   "أنا عامر عبد الجليل، أخصائي تربية خاصة، عملت عاماً في قطر أخصائياً للتربية الخاصة، وقبلها أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وأحمل ماجستير التربية الخاصة بتقدير امتياز. تأسس مركزكم عام 2005 ويقدّم التعليم والعلاج للأطفال والشباب ذوي الإعاقة."
-  ],
-  "items": [
-   "قدّمت في قطر خدمات تعليمية وعلاجية للطلبة ذوي الاحتياجات الخاصة، مع برنامج فردي لكل طالب ضمن فريق متعدد التخصصات.",
-   "حققت الدمج الكلي للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية."
-  ],
-  "after": [
-   "أتقدم للعمل لديكم أخصائياً للتربية الخاصة أو مشرفاً للبرامج. سيرتي الذاتية مرفقة، وأنا جاهز للمقابلة في أي وقت."
-  ]
- },
- {
   "id": 11,
   "lang": "AR",
   "cv": "NoPhD",
@@ -160,25 +142,6 @@
   "after": [
    "أتقدم للعمل لديكم معلماً للتربية الخاصة أو معلم ظل. سيرتي الذاتية مرفقة."
   ]
- },
- {
-  "id": 12,
-  "lang": "EN",
-  "cv": "NoPhD",
-  "subject": "Application | Special Education Teacher | Amer AlSaaideh",
-  "paras": [
-   "Dear Awsaj Academy Hiring Team,",
-   "I am Amer Abdeljalil, a special education specialist with over five years in Jordanian Ministry of Education schools and a year of special education work in Qatar. I hold an MA in Special Education (Excellent). Awsaj Academy is a Qatar Foundation school for students with learning challenges, with primary and secondary stages."
-  ],
-  "items": [
-   "Led training for general and inclusive education teachers on working with students with disabilities, and hold a Cambridge Training of Trainers (TOT) certificate.",
-   "Achieved a 10% drop in resource room enrolment between 2018 and 2022 through alternative teaching methods."
-  ],
-  "after": [
-   "I am applying for a Special Education Teacher or Learning Support role. My CV is attached."
-  ],
-  "subject_ar": "طلب توظيف | معلم تربية خاصة | عامر السعايدة",
-  "body_ar": "فريق التوظيف في أكاديمية العوسج المحترمين،\nأنا عامر عبد الجليل، أخصائي تربية خاصة بخبرة تزيد على خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وعام من العمل في التربية الخاصة في قطر. أحمل ماجستير التربية الخاصة بتقدير امتياز. أكاديمية العوسج مدرسة من مدارس مؤسسة قطر للطلاب ذوي تحديات التعلم، بمرحلتين ابتدائية وثانوية.\n- قدت تدريب المعلمين العاديين ومعلمي التعليم الدامج على العمل مع الطلبة ذوي الإعاقة، وأحمل شهادة مدرب مدربين (TOT) من كامبردج.\n- حققت انخفاضاً بنسبة 10% في التحاق الطلبة بغرفة المصادر بين 2018 و2022 عبر طرق تدريس بديلة.\nأتقدم لوظيفة معلم تربية خاصة أو دعم التعلم. سيرتي الذاتية مرفقة."
  },
  {
   "id": 13,

@@ -1,10 +1,10 @@
 {
- "generated": "2026-11-26 03:00",
+ "generated": "2026-11-26 08:14",
  "quota": {
   "email": {
    "allowed": 30,
    "week": 1,
-   "used": 0
+   "used": 27
   },
   "whatsapp": {
    "allowed": 10,
@@ -13,7 +13,7 @@
   }
  },
  "today": {
-  "email_drafted": 0,
+  "email_drafted": 27,
   "email_sent": 4,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
@@ -23,7 +23,7 @@
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 45,
+  "drafted": 72,
   "queued": 0,
   "sent": 12,
   "replied": 0,
@@ -31,44 +31,44 @@
  },
  "remaining": {
   "Jordan": {
-   "remaining": 3504,
-   "email_ready": 918,
-   "whatsapp_ready": 399
+   "remaining": 3499,
+   "email_ready": 913,
+   "whatsapp_ready": 397
   },
   "Qatar": {
-   "remaining": 911,
-   "email_ready": 454,
-   "whatsapp_ready": 291
+   "remaining": 885,
+   "email_ready": 428,
+   "whatsapp_ready": 282
   },
   "Saudi": {
-   "remaining": 4482,
-   "email_ready": 435,
-   "whatsapp_ready": 533
+   "remaining": 4476,
+   "email_ready": 429,
+   "whatsapp_ready": 531
   },
   "UAE": {
-   "remaining": 3480,
-   "email_ready": 1590,
-   "whatsapp_ready": 982
+   "remaining": 3475,
+   "email_ready": 1585,
+   "whatsapp_ready": 981
   },
   "Kuwait": {
-   "remaining": 1640,
-   "email_ready": 143,
-   "whatsapp_ready": 90
+   "remaining": 1632,
+   "email_ready": 135,
+   "whatsapp_ready": 86
   },
   "Oman": {
-   "remaining": 604,
-   "email_ready": 141,
-   "whatsapp_ready": 75
+   "remaining": 598,
+   "email_ready": 135,
+   "whatsapp_ready": 73
   },
   "Bahrain": {
-   "remaining": 874,
-   "email_ready": 140,
-   "whatsapp_ready": 74
+   "remaining": 871,
+   "email_ready": 137,
+   "whatsapp_ready": 72
   }
  },
  "weeks_left": {
-  "email": 25.7,
-  "whatsapp": 25.1
+  "email": 25.1,
+  "whatsapp": 25.0
  },
  "daily": [
   {
@@ -80,14 +80,14 @@
   },
   {
    "date": "2026-11-26",
-   "email_prepared": 0,
+   "email_prepared": 27,
    "email_sent": 4,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 45,
+  "drafts_waiting_send": 72,
   "whatsapp_ready": 0,
   "replies": []
  },

@@ -579,7 +579,7 @@ def send_plan(a):
     now = datetime.datetime.now(TZ); t = now.date().isoformat()
     daily_max = int(cfg.get("daily_max", POLICY["email"]["absolute_max_per_day"]))
     sent_today = sum(1 for d in docs if d.get("status") == "sent" and str(d.get("sent_at", ""))[:10] == t)
-    approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (str(d.get("approved_at", "")), d.get("n", 0)))
+    approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (0 if d.get("priority") else 1, str(d.get("approved_at", "")), d.get("n", 0)))
     remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
     k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(2, len(approved), remaining, max(1, -(-remaining // runs_left)))
     A = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8"))["cv"]; rev = {v: k_ for k_, v in A.items()}

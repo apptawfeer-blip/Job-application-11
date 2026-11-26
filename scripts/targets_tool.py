@@ -131,7 +131,8 @@ def sync_contacted(wb):
         hits = [h for h in hits if h[1] != ["اسم مشابه"]]
         if hits:
             ws.cell(r, 14).value = "نعم – " + str(lw.cell(hits[0][0], log_tool.C["طريقة الإرسال"]).value)
-        elif not str(ws.cell(r, 14).value or "").startswith("مسودة"):
+        elif str(ws.cell(r, 14).value or "").startswith("نعم –"):
+            # only clear a stale "sent" mark; keep every other status (مسودة/مكتب الإرسال/قيد التجهيز/مستبعد/مكرر/ارتد/أُرسل)
             ws.cell(r, 14).value = ""
 
 

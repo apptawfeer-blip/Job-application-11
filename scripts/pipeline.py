@@ -123,6 +123,37 @@ def contacted_keys(L):
     return {key(e["country"], e["row"]) for e in L}
 
 
+# ---- hiring-likelihood ranking (user request 26/11: country first, then likelihood of hiring) ----
+JUNK = re.compile(r"trading|contracting|sanitary|curtain|blinds|consulate|embassy|museum|hotel|restaurant|computer|driving|"
+                  r"real estate|cars?\b|shipping|businessmen|technology park|public works|"
+                  r"تجار|مقاولات|قنصلية|سفارة|متحف|فندق|مطعم|عقار", re.I)
+WEBMAIL = re.compile(r"@(gmail|yahoo|hotmail|outlook|live|msn|aol|icloud)\.", re.I)
+SPECIAL = re.compile(r"autis|special (?:needs|education|ed\b)|needs\b|learning (?:difficult|disab|support|challeng|development)|"
+                     r"rehab|therap|speech|hearing|deaf|blind|down syndrome|disab|inclusi|determination|"
+                     r"توحد|ذوي الاحتياجات|تربية خاصة|التربية الخاصة|تأهيل|إعاقة|اعاقة|نطق|سمع|صم|مكفوف|صعوبات|دمج|الهمم", re.I)
+def _domain(u):
+    m = re.search(r"(?:https?://)?(?:www\.)?([^/\s]+)", str(u or "")); return (m.group(1).lower() if m else "")
+def hire_score(name, typ, rel, email, website, careers, wa_rank=0):
+    """Lower = more likely to hire. Order: org kind, relevance, careers page, email quality, website, whatsapp."""
+    rel_r = 0 if rel == "عالية" else 1 if rel == "متوسطة" else 2
+    nm = str(name or "")
+    if typ in ("مركز تربية خاصة",) or SPECIAL.search(nm): kind = 0          # specialised centres/schools hire specialists
+    elif typ == "مدرسة" and INTL.search(nm): kind = 1                        # international schools: learning-support teams
+    elif typ == "مدرسة": kind = 2                                             # local schools: resource rooms
+    elif typ in ("جمعية", "منظمة"): kind = 3                                  # generic associations (no disability focus)
+    elif typ == "جامعة": kind = 5                                             # usually need PhD
+    elif typ == "جهة حكومية": kind = 6                                        # citizens first
+    else: kind = 4
+    car = 0 if str(careers or "").strip() else 1
+    em = str(email or "").lower()
+    if not em: eq = 1
+    elif WEBMAIL.search(em): eq = 2                                           # highest bounce rate so far
+    elif _domain(website) and em.split("@")[-1].endswith(_domain(website).split(":")[0].replace("www.", "")): eq = 0
+    else: eq = 1
+    web = 0 if str(website or "").strip() else 1
+    return (kind, rel_r, car, eq, web, wa_rank)
+
+
 def select(a):
     L = load_ledger(); taken = contacted_keys(L)
     lw = load_workbook(log_tool.LOG)["Applications"] if os.path.exists(log_tool.LOG) else None
@@ -144,8 +175,9 @@ def select(a):
                 contact = str(wa).split(",")[0].strip()
             if lw is not None and log_tool.find(lw, contact if "@" in contact else None, None if "@" in contact else contact, None):
                 continue
-            score = (0 if rel == "عالية" else 1 if rel == "متوسطة" else 2, TYPE_ORDER.get(typ, 5),
-                     0 if (a.channel == "email" or wast.startswith("مؤكد")) else 1)
+            if JUNK.search(str(name)): continue
+            score = hire_score(name, typ, rel, contact if a.channel == "email" else "", row[8], row[9],
+                               0 if (a.channel == "email" or wast.startswith("مؤكد")) else 1)
             pool.append((score, r, {"country": c, "row": r, "name": name, "type": typ, "email": email if a.channel == "email" else "",
                                      "whatsapp": contact if a.channel == "whatsapp" else "", "phone": phone, "city": row[7],
                                      "website": row[8], "source": row[10], "lang": lang_for(name, typ, row[8]), "cv": row[12], "relevance": rel}))
@@ -159,6 +191,9 @@ def select(a):
         for c in live: cur[c] += w[c]
         c = max(live, key=lambda x: cur[x]); cur[c] -= tot
         picked.append(pools[c].pop(0))
+    # user priority 26/11: country first (Qatar first), then hiring likelihood within each country
+    order = {c: i for i, c in enumerate(sorted(countries, key=lambda c: -w[c]))}
+    picked.sort(key=lambda p: order[p["country"]])
     stamp = datetime.datetime.now(TZ).strftime("%Y-%m-%d_%H%M")
     run = os.path.join(RUNS, f"{stamp}_{a.channel}"); os.makedirs(run, exist_ok=True)
     for n, p in enumerate(picked, 1): p["id"] = n

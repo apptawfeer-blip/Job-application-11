@@ -639,7 +639,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "sent",
+  "status": "replied",
   "country": "Qatar",
   "row": 577,
   "name": "مركز أوميجا لتعليم ذوي الاحتياجات الخاصة- Omega",
@@ -652,7 +652,9 @@
   "type": "مركز تربية خاصة",
   "send_day": 2,
   "migrated": true,
-  "sent_date": "2026-11-26"
+  "sent_date": "2026-11-26",
+  "reply_date": "2026-11-26",
+  "reply_subject": "Re: معلم تربية خاصة | طلب عمل في مركز أوميغا"
  },
  {
   "date": "2026-11-25",
@@ -846,7 +848,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Kuwait",
   "row": 91,
   "name": "Kuwait Centre for Autism (Reach School)",
@@ -858,13 +860,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Bahrain",
   "row": 54,
   "name": "Bahrain Institute for Special Education (BISE)",
@@ -876,7 +879,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 2,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

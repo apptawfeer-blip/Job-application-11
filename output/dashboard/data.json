@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26 17:51",
+ "generated": "2026-11-26 18:03",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,19 +14,19 @@
  },
  "today": {
   "email_drafted": 27,
-  "email_sent": 24,
+  "email_sent": 26,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 35,
+  "email_sent": 37,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 52,
+  "drafted": 50,
   "queued": 0,
-  "sent": 29,
-  "replied": 0,
+  "sent": 30,
+  "replied": 1,
   "bounced": 6
  },
  "remaining": {
@@ -81,15 +81,37 @@
   {
    "date": "2026-11-26",
    "email_prepared": 27,
-   "email_sent": 24,
+   "email_sent": 26,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 52,
+  "drafts_waiting_send": 50,
   "whatsapp_ready": 0,
-  "replies": []
+  "replies": [
+   {
+    "date": "2026-11-25",
+    "run": "batch_01",
+    "channel": "email",
+    "status": "replied",
+    "country": "Qatar",
+    "row": 577,
+    "name": "مركز أوميجا لتعليم ذوي الاحتياجات الخاصة- Omega",
+    "email": "info@omegaqatar.org",
+    "phone": "",
+    "subject": "معلم تربية خاصة | طلب عمل في مركز أوميغا",
+    "draft_id": "r-8280119291359182211",
+    "lang": "AR",
+    "cv": "Full",
+    "type": "مركز تربية خاصة",
+    "send_day": 2,
+    "migrated": true,
+    "sent_date": "2026-11-26",
+    "reply_date": "2026-11-26",
+    "reply_subject": "Re: معلم تربية خاصة | طلب عمل في مركز أوميغا"
+   }
+  ]
  },
  "alerts": [
   "نسبة الارتداد 17% أعلى من 5% – أوقف الإرسال ونظّف القوائم"

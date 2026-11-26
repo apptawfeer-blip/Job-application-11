@@ -481,7 +481,9 @@ def _about_fields(ab, it):
     return {"about": a.get("about", ""), "about_facts": a.get("facts", []), "about_url": a.get("url", ""),
             "city": it.get("city") or "", "website": it.get("website") or "", "warn": a.get("warn", ""),
             "careers_url": a.get("careers_url") or it.get("careers") or "",
-            "about_limited": bool(a.get("limited"))}
+            "about_limited": bool(a.get("limited")),
+            # job opportunity (announced vacancy that fits, or an org reply asking for something) -> top of review and send order
+            "priority": bool(a.get("vacancy") or a.get("priority") or it.get("vacancy")), "vacancy": a.get("vacancy") or it.get("vacancy") or ""}
 
 
 def _desk_rows(items, emails, prefix, start_n, about=None, status="ready"):

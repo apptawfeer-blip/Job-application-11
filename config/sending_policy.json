@@ -8,7 +8,7 @@
   "daily_by_week": {
    "1": 30
   },
-  "absolute_max_per_day": 30,
+  "absolute_max_per_day": 75,
   "gap_minutes": [
    2,
    5
@@ -20,7 +20,30 @@
   "stop_if_bounce_rate_over": 0.05,
   "bounce_window": 50,
   "_note": "2026-11-25: المستخدم طلب الحد الأقصى (30/يوم) من البداية بدل التدرج 10←25، مع العلم بخطر تقييد الحساب",
-  "mode": "auto: hourly trigger sends desk-approved messages, 1-2 per run"
+  "mode": "auto: hourly trigger sends desk-approved messages, 1-2 per run",
+  "ramp": {
+   "stages": [
+    30,
+    40,
+    50,
+    60,
+    75
+   ],
+   "hold_days": [
+    5,
+    5,
+    7,
+    7
+   ],
+   "up_if_bounce_under": 0.03,
+   "step_down_if_bounce_over": 0.05,
+   "bounce_window": 100,
+   "min_reply_rate_from_stage": {
+    "2": 0.01
+   },
+   "ceiling": 75,
+   "_note": "بطلب المستخدم 26/11: زيادة تدريجية آمنة 30←40←50←60←75. الترقية فقط إذا الارتداد <3% في آخر 100 ولا تحذير من Gmail؛ ارتداد >5% أو خطأ حد/نشاط مشبوه من Gmail ← نزول درجة (لا إيقاف). الحالة في output/email_ramp.json"
+  }
  },
  "whatsapp": {
   "start_date": "2026-11-26",

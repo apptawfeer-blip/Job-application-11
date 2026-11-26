@@ -66,6 +66,8 @@ def key(country, row):
 # ---------------- quota ----------------
 def allowed_today(channel, d=None):
     p = POLICY[channel]; d = d or today()
+    if channel == "email" and p.get("ramp"):
+        start = datetime.date.fromisoformat(p["start_date"]); return ramp_state(update=False)["cap"], max(1, (d - start).days // 7 + 1)
     start = datetime.date.fromisoformat(p["start_date"])
     if d < start:
         week = 1
@@ -108,7 +110,7 @@ def blocked(channel):
         if len(last) >= 10:
             rate = sum(1 for e in last if e["status"] == "bounced") / len(last)
             if rate > p["stop_if_bounce_rate_over"]:
-                alerts.append(f"نسبة الارتداد {rate:.0%} أعلى من {p['stop_if_bounce_rate_over']:.0%} – أوقف الإرسال ونظّف القوائم")
+                alerts.append(f"نسبة الارتداد {rate:.0%} أعلى من {p['stop_if_bounce_rate_over']:.0%} – الحد اليومي لا يرتفع (وينزل درجة إن كان أعلى من 30)؛ شغّل verify-emails ونظّف القوائم. لا إيقاف")
     else:
         p = POLICY["whatsapp"]; sent = [e for e in L if e["channel"] == "whatsapp" and e["status"] in ("sent", "replied")]
         if len(sent) >= 50:
@@ -439,6 +441,7 @@ def write_flat(d):
                 "alerts": len(d["alerts"]), "open_issues": len(d["open_issues"]),
                 "today_email_sent": d["today"]["email_sent"], "today_wa_sent": d["today"]["whatsapp_sent"],
                 "contacted_total": sum(tt.values()),
+                **{"ramp_" + k_: v_ for k_, v_ in ramp_state(update=False).items() if k_ != "changed_now"},
                 "all_total": sum(tt.values()) + sum(v["remaining"] for v in d["remaining"].values()),
                 "streak": streak(d["daily"])}]
     countries = [{"country": AR_C.get(c, c), **v} for c, v in d["remaining"].items()]
@@ -576,6 +579,105 @@ def _email_from_text(lang, body, sig_html, sig_text):
     return html, "\n\n".join(blocks) + "\n\n" + sig_text
 
 
+
+def ramp_state(update=True, gmail_error=False):
+    """gradual, metric-gated daily email cap (config email.ramp). State in output/email_ramp.json: {stage, since, changed, history}.
+    Up one stage after hold_days sending days at the stage with bounce < up_if_bounce_under (and reply rate gate from stage 2);
+    down one stage (never below 0, never a pause) if bounce > step_down_if_bounce_over or Gmail reported a limit/suspicious error."""
+    R = POLICY["email"].get("ramp") or {"stages": [POLICY["email"]["absolute_max_per_day"]], "hold_days": []}
+    f = os.path.join(ROOT, "output", "email_ramp.json"); t = today().isoformat()
+    st = json.load(open(f, encoding="utf-8")) if os.path.exists(f) else {"stage": 0, "since": t, "changed": "", "history": []}
+    L = [e for e in load_ledger() if e.get("channel") == "email" and e.get("status") in ("sent", "bounced", "replied") and e.get("sent_date")]
+    L.sort(key=lambda e: e["sent_date"]); win = L[-int(R.get("bounce_window", 100)):]
+    bounce = (sum(1 for e in win if e["status"] == "bounced") / len(win)) if win else 0.0
+    replies = (sum(1 for e in win if e["status"] == "replied") / len(win)) if win else 0.0
+    days = len({e["sent_date"][:10] for e in L if e["sent_date"][:10] >= st["since"]})
+    stg = st["stage"]; why = ""
+    if update and st.get("changed") != t:
+        if (bounce > R.get("step_down_if_bounce_over", 0.05) or gmail_error) and stg > 0:
+            stg -= 1; why = f"down: bounce {bounce:.0%}" + (" + Gmail error" if gmail_error else "")
+        elif stg < len(R["stages"]) - 1 and days >= R["hold_days"][stg] and bounce < R.get("up_if_bounce_under", 0.03) and not gmail_error:
+            need = float((R.get("min_reply_rate_from_stage") or {}).get(str(stg + 1), 0))
+            if replies >= need: stg += 1; why = f"up: {days} days, bounce {bounce:.0%}, replies {replies:.0%}"
+        if why:
+            st.update(stage=stg, since=t, changed=t); st.setdefault("history", []).append({"date": t, "stage": stg, "cap": R["stages"][stg], "why": why})
+            json.dump(st, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        elif not os.path.exists(f):
+            json.dump(st, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    cap = min(R["stages"][stg], int(R.get("ceiling", 75)))
+    nxt = R["stages"][stg + 1] if stg < len(R["stages"]) - 1 else None
+    return {"stage": stg + 1, "cap": cap, "bounce_rate": round(bounce, 3), "reply_rate": round(replies, 3), "days_at_stage": days,
+            "next_cap": nxt, "days_needed": (R["hold_days"][stg] if nxt else None), "changed_now": why}
+
+
+FREEMAIL = re.compile(r"@(gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|aol|icloud)\.", re.I)
+
+
+def _mx_ok(domain, cache={}):
+    """MX (or A fallback) via DNS-over-HTTPS; True / False / None (lookup failed)"""
+    if domain in cache: return cache[domain]
+    import urllib.request
+    res = None
+    try:
+        for typ in ("MX", "A"):
+            j = json.load(urllib.request.urlopen(f"https://dns.google/resolve?name={domain}&type={typ}", timeout=10))
+            if j.get("Status") == 3: res = False; break          # NXDOMAIN: domain does not exist
+            if any(a.get("type") in (15, 1) for a in j.get("Answer", [])): res = True; break
+            res = False
+    except Exception:
+        res = None
+    cache[domain] = res; return res
+
+
+def _on_site(email, website):
+    """True if the address appears on the org's own site (home + common contact pages)"""
+    import urllib.request
+    if not website or not str(website).startswith("http"): return False
+    base = website.rstrip("/"); e = email.lower()
+    for path in ("", "/contact", "/contact-us", "/ar/contact", "/en/contact"):
+        try:
+            req = urllib.request.Request(base + path, headers={"User-Agent": "Mozilla/5.0"})
+            html_ = urllib.request.urlopen(req, timeout=10).read(600000).decode("utf-8", "ignore").lower()
+            if e in html_ or e.replace("@", "&#64;") in html_: return True
+        except Exception:
+            continue
+    return False
+
+
+def verify_emails(a):
+    """flag risky recipients before sending (bounces hurt Gmail reputation most).
+    --dir: desk dump (queue/*.json) -> checks docs with --status (default approved); or --run: a run folder's selection.json.
+    risky = domain without mail server / non-existent, or a free-mail address (gmail/yahoo/...) not found on the org's website.
+    Writes <dir>/verify.json: [{doc_id, to, verdict: ok|risky, reason}]"""
+    items = []
+    if a.dir:
+        for f in glob.glob(os.path.join(a.dir, "queue", "*.json")):
+            d = json.load(open(f, encoding="utf-8")); d = d.get("data", d)
+            if d.get("status") == "approved" and d.get("verify") == "risky": continue   # user re-approved after the warning: respect it
+            if d.get("status") in a.status.split(","): items.append((os.path.basename(f)[:-5], d.get("to", ""), d.get("website") or d.get("about_url") or "", d.get("name", "")))
+        out_path = os.path.join(a.dir, "verify.json")
+    else:
+        sel = json.load(open(os.path.join(a.run, "selection.json"), encoding="utf-8"))
+        for t in sel["targets"]: items.append((t["id"], str(t.get("email", "")).split(",")[0].strip(), t.get("website") or "", t.get("name", "")))
+        out_path = os.path.join(a.run, "verify.json")
+    bounced = {str(e.get("email", "")).lower() for e in load_ledger() if e.get("status") == "bounced"}
+    res = []
+    for did, to, web, name in items:
+        to_l = to.lower().strip(); dom = to_l.split("@")[-1] if "@" in to_l else ""
+        if not dom: v, why = "risky", "عنوان إيميل غير صالح"
+        elif to_l in bounced: v, why = "risky", "هذا الإيميل ارتد سابقاً"
+        else:
+            mx = _mx_ok(dom)
+            if mx is False: v, why = "risky", f"النطاق {dom} لا يستقبل بريداً (لا يوجد خادم بريد)"
+            elif FREEMAIL.search(to_l) and not _on_site(to_l, web):
+                v, why = "risky", "قد لا يكون هذا الإيميل موجوداً: إيميل مجاني (gmail/yahoo/hotmail) وجدناه في دليل فقط وليس في موقع الجهة"
+            else: v, why = "ok", ("" if mx else "تعذر فحص النطاق الآن")
+        res.append({"doc_id": did, "to": to, "name": name, "verdict": v, "reason": why})
+    json.dump(res, open(out_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"verify: {len(res)} checked, {sum(r['verdict'] == 'risky' for r in res)} risky -> {out_path}")
+    for r in res:
+        if r["verdict"] == "risky": print("RISKY", r["doc_id"], r["to"], "|", r["reason"])
+
 def send_plan(a):
     """read a desk dump (ArtifactData list out_dir of 'queue' + 'config'), decide what to send NOW, write ready-to-send payloads"""
     import drafts_tool, hashlib
@@ -586,18 +688,21 @@ def send_plan(a):
     cfg = json.load(open(cfgf, encoding="utf-8")) if os.path.exists(cfgf) else {}
     cfg = cfg.get("data", cfg)
     now = datetime.datetime.now(TZ); t = now.date().isoformat()
-    daily_max = int(cfg.get("daily_max", POLICY["email"]["absolute_max_per_day"]))
+    RS = ramp_state(update=True, gmail_error=bool(getattr(a, "gmail_error", False))); daily_max = RS["cap"]
     sent_today = sum(1 for d in docs if d.get("status") == "sent" and str(d.get("sent_at", ""))[:10] == t)
     # the daily cap covers every email sent today, including ones sent outside the desk (other sessions, careers emails): use the ledger too
     led = sum(1 for e in load_ledger() if e.get("channel") == "email" and e.get("status") in ("sent", "bounced", "replied") and str(e.get("sent_date", ""))[:10] == t)
     sent_today = max(sent_today, led)
     approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (0 if d.get("priority") else 1, str(d.get("approved_at", "")), d.get("n", 0)))
     remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
-    k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(2, len(approved), remaining, max(1, -(-remaining // runs_left)))
+    per_run = 2 if daily_max <= 48 else 3   # 50+/day needs up to 3 per hourly round (still 2-5 min apart)
+    k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(per_run, len(approved), remaining, max(1, -(-remaining // runs_left)))
     AJ = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8")); A = AJ["cv"]; rev = {v: k_ for k_, v in A.items()}; rev.update(AJ.get("cv_aliases", {}))
     out = []
     for d in approved[:k]:
-        html_, text = _email_from_text(d["lang"], d["body"], d["sig_html"], d["sig_text"])
+        # always the current signature (one link; phone/WhatsApp plain text), even for messages approved before the change
+        sh, sl = drafts_tool.sig_block({"lang": d["lang"], "country": d.get("country")})
+        html_, text = _email_from_text(d["lang"], d["body"], sh, sl[0] + "\n" + "\n".join(sl[1:]))
         cvf = os.path.join(ROOT, "cv", rev[d["cv_url"]]); sha = hashlib.sha256(open(cvf, "rb").read()).hexdigest()
         atts = [{"content": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "mimeType": "application/pdf"}]
         # optional extra CVs (e.g. English as well, when the organization replied in English)
@@ -607,7 +712,7 @@ def send_plan(a):
                     "attachment": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "attachments": atts, "old_draft_id": d.get("draft_id", ""),
                     "name": d["name"], "country": d["country"]})
     plan = {"now": now.strftime("%Y-%m-%d %H:%M"), "paused": bool(cfg.get("paused")), "daily_max": daily_max, "sent_today": sent_today,
-            "approved_waiting": len(approved), "send_now": len(out), "gap_minutes": [cfg.get("gap_min", 2), cfg.get("gap_max", 5)], "items": out}
+            "approved_waiting": len(approved), "send_now": len(out), "ramp": RS, "gap_minutes": [cfg.get("gap_min", 2), cfg.get("gap_max", 5)], "items": out}
     os.makedirs(os.path.join(DESK, "outbox"), exist_ok=True)
     json.dump(plan, open(os.path.join(DESK, "outbox", "plan.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(json.dumps({k_: v for k_, v in plan.items() if k_ != "items"}, ensure_ascii=False))
@@ -899,7 +1004,9 @@ def main():
     x = sp.add_parser("desk-export"); x.add_argument("--batch"); x.add_argument("--run"); x.add_argument("--start", type=int, default=1)
     x.add_argument("--status", default="ready", choices=["ready", "reserve"], help="reserve = hidden replacements promoted when the user postpones/excludes")
     x = sp.add_parser("sync-desk"); x.add_argument("--dir", required=True)
-    x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True)
+    x = sp.add_parser("send-plan"); x.add_argument("--dir", required=True); x.add_argument("--gmail-error", action="store_true", help="Gmail returned a sending-limit / suspicious-activity error: step the ramp down one stage")
+    x = sp.add_parser("verify-emails"); x.add_argument("--dir"); x.add_argument("--run"); x.add_argument("--status", default="approved")
+    x = sp.add_parser("ramp"); x.add_argument("--no-update", action="store_true")
     x = sp.add_parser("desk-saved"); x.add_argument("--dir", required=True)
     x = sp.add_parser("careers"); x.add_argument("--dir", help="desk copy (ArtifactData list careers out_dir) to read the applied flags")
     x = sp.add_parser("desk-edits"); x.add_argument("--dir", required=True)
@@ -910,7 +1017,7 @@ def main():
     a = ap.parse_args()
     {"quota": quota, "select": select, "build": build, "record": record, "wa-queue": wa_queue, "mark": mark,
      "sync-sent": sync_sent, "sync-wa": sync_wa, "sync-bounces": sync_bounces, "sync-replies": sync_replies,
-     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "desk-saved": desk_saved, "careers": careers, "desk-edits": desk_edits, "reply-query": reply_query, "replies-export": replies_export}[a.cmd](a)
+     "stats": stats, "migrate-batch01": migrate_batch01, "desk-export": desk_export, "sync-desk": sync_desk, "send-plan": send_plan, "verify-emails": verify_emails, "ramp": lambda a: print(json.dumps(ramp_state(update=not a.no_update), ensure_ascii=False)), "desk-saved": desk_saved, "careers": careers, "desk-edits": desk_edits, "reply-query": reply_query, "replies-export": replies_export}[a.cmd](a)
 
 
 if __name__ == "__main__":

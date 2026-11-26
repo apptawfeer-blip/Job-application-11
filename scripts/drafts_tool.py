@@ -30,12 +30,11 @@ def sig_block(e):
     L = S["ar" if rtl else "en"]; gulf = e.get("country") not in (None, "Jordan")
     avail = L["avail_gulf"] if gulf else L["avail_local"]
     link = 'style="color:#1f5fa8;text-decoration:none;"'
-    rows_ = [(L["lbl"]["phone"], f'<a href="tel:{S["phone"]}" {link}>{S["phone_display"]}</a>', S["phone_display"]),
-             (L["lbl"]["wa"], f'<a href="https://wa.me/{S["whatsapp"]}" {link}>{L["wa_text"]}</a>', "https://wa.me/" + S["whatsapp"]),
-             (L["lbl"]["email"], f'<a href="mailto:{S["email"]}" {link}>{S["email"]}</a>', S["email"])]
+    # deliverability (user's choice 26/11): one link only (LinkedIn); phone/WhatsApp number and email as plain text; ORCID stays in the CV
+    rows_ = [(L["lbl"]["phone"] + " / " + L["lbl"]["wa"], f'<span>{S["phone_display"]}</span>', S["phone_display"]),
+             (L["lbl"]["email"], f'<span>{S["email"]}</span>', S["email"])]
     if S.get("linkedin"):
         rows_.append((L["lbl"]["li"], f'<a href="{S["linkedin"]}" {link}>{L.get("li_text","LinkedIn")}</a>', S["linkedin"]))
-    rows_.append((L["lbl"]["orcid"], f'<a href="{S["orcid"]}" {link}>{S["orcid"].replace("https://","")}</a>', S["orcid"]))
     cells = "".join(f'<tr><td style="color:#888;font-size:12px;padding:1px {"0 1px 10px" if rtl else "10px 1px 0"};white-space:nowrap;">{lb}</td>'
                     f'<td style="font-size:13px;padding:1px 0;" dir="ltr">{v}</td></tr>' for lb, v, _ in rows_)
     bar = "border-right:3px solid #1f3a5f;padding-right:12px;" if rtl else "border-left:3px solid #1f3a5f;padding-left:12px;"

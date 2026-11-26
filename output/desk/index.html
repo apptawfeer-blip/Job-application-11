@@ -334,7 +334,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     $("mPos").textContent = r.status === "ready" ? `بقي ${pending().length} للمراجعة` : (LABEL[r.status] || r.status) + (r.sent_at ? " · " + r.sent_at.replace("T", " ") : "");
     $("mTo").value = r.to; $("mSubject").value = r.subject;
     const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr"; $("mSubject").dir = ta.dir;
-    $("mAtt").textContent = r.send_name; note(locked ? "هذه الرسالة أُرسلت، للعرض فقط." : r.status === "failed" ? "تعذّر إرسالها: " + (r.error || "خطأ غير معروف") : "", locked ? "n-ok" : "n-bad"); $("approveBtn").disabled = false;
+    $("mAtt").textContent = [r.send_name].concat(r.extra_send_names || []).join("  +  "); note(locked ? "هذه الرسالة أُرسلت، للعرض فقط." : r.status === "failed" ? "تعذّر إرسالها: " + (r.error || "خطأ غير معروف") : "", locked ? "n-ok" : "n-bad"); $("approveBtn").disabled = false;
     if (target) $("msgPanel").scrollIntoView({ behavior: "smooth", block: "start" });
     $("mCity").textContent = r.city ? "· " + r.city : "";
     $("mAboutText").textContent = r.about || "لا تتوفر نبذة عن هذه الجهة بعد.";

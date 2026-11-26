@@ -587,15 +587,19 @@ def send_plan(a):
     for d in approved[:k]:
         html_, text = _email_from_text(d["lang"], d["body"], d["sig_html"], d["sig_text"])
         cvf = os.path.join(ROOT, "cv", rev[d["cv_url"]]); sha = hashlib.sha256(open(cvf, "rb").read()).hexdigest()
+        atts = [{"content": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "mimeType": "application/pdf"}]
+        # optional extra CVs (e.g. English as well, when the organization replied in English)
+        for u, nm in zip(d.get("extra_cv_urls") or [], d.get("extra_send_names") or []):
+            ef = os.path.join(ROOT, "cv", rev[u]); atts.append({"content": f"sha256:{hashlib.sha256(open(ef, 'rb').read()).hexdigest()}:{ef}", "filename": nm, "mimeType": "application/pdf"})
         out.append({"doc_id": d["_id"], "to": d["to"], "subject": d["subject"], "htmlBody": html_, "body": text,
-                    "attachment": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "old_draft_id": d.get("draft_id", ""),
+                    "attachment": f"sha256:{sha}:{cvf}", "filename": d["send_name"], "attachments": atts, "old_draft_id": d.get("draft_id", ""),
                     "name": d["name"], "country": d["country"]})
     plan = {"now": now.strftime("%Y-%m-%d %H:%M"), "paused": bool(cfg.get("paused")), "daily_max": daily_max, "sent_today": sent_today,
             "approved_waiting": len(approved), "send_now": len(out), "gap_minutes": [cfg.get("gap_min", 2), cfg.get("gap_max", 5)], "items": out}
     os.makedirs(os.path.join(DESK, "outbox"), exist_ok=True)
     json.dump(plan, open(os.path.join(DESK, "outbox", "plan.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(json.dumps({k_: v for k_, v in plan.items() if k_ != "items"}, ensure_ascii=False))
-    for it in out: print("SEND", it["doc_id"], it["to"], it["filename"])
+    for it in out: print("SEND", it["doc_id"], it["to"], " + ".join(a["filename"] for a in it["attachments"]))
 
 
 CAREERS_RE = re.compile(r"career|vacanc|/jobs?\b|job-board|recruit|work-with-us|workwithus|join-us|joinus|employment|workday|"

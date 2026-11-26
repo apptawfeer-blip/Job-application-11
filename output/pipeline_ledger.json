@@ -230,7 +230,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "sent",
+  "status": "bounced",
   "country": "Jordan",
   "row": 918,
   "name": "مركز التميز لصعوبات التعلم",
@@ -249,7 +249,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 54,
   "name": "Academy Excellence Comprehensive Autism",
@@ -261,13 +261,14 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 57,
   "name": "Amman Centre for Autism",
@@ -279,7 +280,8 @@
   "cv": "Full",
   "type": "مركز تربية خاصة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-26"
  },
  {
   "date": "2026-11-25",

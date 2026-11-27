@@ -2393,5 +2393,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-27"
+ },
+ {
+  "date": "2026-11-27",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 761,
+  "name": "The First Assalam School",
+  "email": "inquiries@firstassalam.sch.qa",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, FAS | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-27"
  }
 ]

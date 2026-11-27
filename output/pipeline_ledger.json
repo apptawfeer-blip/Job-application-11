@@ -2519,5 +2519,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 659,
+  "name": "Eadad International Academy - Ain khaled Branch",
+  "email": "info@eadad.org",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, Eadad | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

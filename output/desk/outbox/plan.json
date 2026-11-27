@@ -1,16 +1,16 @@
 {
- "now": "2026-11-27 06:58",
+ "now": "2026-11-27 08:00",
  "paused": false,
  "daily_max": 30,
- "sent_today": 0,
- "approved_waiting": 51,
+ "sent_today": 2,
+ "approved_waiting": 49,
  "send_now": 2,
  "ramp": {
   "stage": 1,
   "cap": 30,
-  "bounce_rate": 0.146,
-  "reply_rate": 0.024,
-  "days_at_stage": 0,
+  "bounce_rate": 0.14,
+  "reply_rate": 0.023,
+  "days_at_stage": 1,
   "next_cap": 40,
   "days_needed": 5,
   "changed_now": ""
@@ -21,30 +21,11 @@
  ],
  "items": [
   {
-   "doc_id": "b01-09",
-   "to": "dean_fes@ammanu.edu.jo",
-   "subject": "طلب عمل مدرّب ومحاضر في التربية الخاصة | كلية العلوم التربوية",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">حضرة عميد كلية العلوم التربوية المحترم، جامعة عمّان الأهلية،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">سبق لي أن قدمت في جامعتكم برنامج بروتوكولات التعامل مع ذوي الهمم، ومحاضرة لطلبة البكالوريوس عن آلية السمع والوقاية من مشكلاته حصلت على تقييم ممتاز. أكتب اليوم راغباً في عمل أطول مع الكلية.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدّمت مساقات التربية الخاصة في برنامج الدبلوم العالي لإعداد المعلمين في جامعة اليرموك، وأشرفت على التدريب الميداني.</li><li style=\"margin:0 0 8px 0;\">قدت تدريب المعلمين على التعليم الدامج في مدارس وزارة التربية، ولي بحثان منشوران في مجلات مصنفة في Scopus.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل محاضراً أو مدرباً في مجال التربية الخاصة والتعليم الدامج. سيرتي الذاتية مرفقة، وشكراً لوقتكم.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً</div></div></div>",
-   "body": "حضرة عميد كلية العلوم التربوية المحترم، جامعة عمّان الأهلية،\n\nتحية طيبة،\n\nسبق لي أن قدمت في جامعتكم برنامج بروتوكولات التعامل مع ذوي الهمم، ومحاضرة لطلبة البكالوريوس عن آلية السمع والوقاية من مشكلاته حصلت على تقييم ممتاز. أكتب اليوم راغباً في عمل أطول مع الكلية.\n\n- قدّمت مساقات التربية الخاصة في برنامج الدبلوم العالي لإعداد المعلمين في جامعة اليرموك، وأشرفت على التدريب الميداني.\n- قدت تدريب المعلمين على التعليم الدامج في مدارس وزارة التربية، ولي بحثان منشوران في مجلات مصنفة في Scopus.\n\nأتقدم للعمل محاضراً أو مدرباً في مجال التربية الخاصة والتعليم الدامج. سيرتي الذاتية مرفقة، وشكراً لوقتكم.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً",
-   "attachment": "sha256:88bc719dd44a72da025ca6aa668faa2033d07f4cb3f8d6e8bdf09a839fb93077:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic_S.pdf",
-   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-   "attachments": [
-    {
-     "content": "sha256:88bc719dd44a72da025ca6aa668faa2033d07f4cb3f8d6e8bdf09a839fb93077:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic_S.pdf",
-     "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-     "mimeType": "application/pdf"
-    }
-   ],
-   "old_draft_id": "r2234572645044932509",
-   "name": "Al-Ahliyya Amman University – Faculty of Educational Sciences",
-   "country": "Jordan"
-  },
-  {
-   "doc_id": "2026-11-26-0745-email-01",
-   "to": "info@mada.org.qa",
-   "subject": "طلب توظيف | منسق تعليم دامج ومدرب | عامر السعايدة",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة مركز مدى للتكنولوجيا المساعدة المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة، وقبلها أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية. يقدّم مركزكم برامج في التعليم الدامج والتقنيات المساعدة والنفاذ الرقمي.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدت تدريب المعلمين العاديين ومعلمي التعليم الدامج على التعامل مع الطلبة ذوي الإعاقة، وأحمل شهادة مدرب مدربين (TOT) من كامبردج.</li><li style=\"margin:0 0 8px 0;\">قدّمت مساقات التربية الخاصة في الدبلوم العالي لإعداد المعلمين بجامعة اليرموك، ولي بحث قيد النشر عن الجاهزية الرقمية لدى معلمي التربية الخاصة قبل الخدمة.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم منسقاً للتعليم الدامج أو مدرباً. سيرتي الذاتية مرفقة، وأنا مستعد للمقابلة في أي وقت.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
-   "body": "السادة مركز مدى للتكنولوجيا المساعدة المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة، وقبلها أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية. يقدّم مركزكم برامج في التعليم الدامج والتقنيات المساعدة والنفاذ الرقمي.\n\n- قدت تدريب المعلمين العاديين ومعلمي التعليم الدامج على التعامل مع الطلبة ذوي الإعاقة، وأحمل شهادة مدرب مدربين (TOT) من كامبردج.\n- قدّمت مساقات التربية الخاصة في الدبلوم العالي لإعداد المعلمين بجامعة اليرموك، ولي بحث قيد النشر عن الجاهزية الرقمية لدى معلمي التربية الخاصة قبل الخدمة.\n\nأتقدم للعمل لديكم منسقاً للتعليم الدامج أو مدرباً. سيرتي الذاتية مرفقة، وأنا مستعد للمقابلة في أي وقت.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
+   "doc_id": "2026-11-26-0745-email-03",
+   "to": "hr@qish.info",
+   "subject": "طلب توظيف | أخصائي تربية خاصة | عامر السعايدة",
+   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة معهد قطر للنطق والسمع المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة وطالب دكتوراه في التربية الخاصة، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة، وقبلها أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية. يقدّم معهدكم برامج للتدخل المبكر والاستعداد المدرسي ومتلازمة داون وزراعة القوقعة، إلى جانب جلسات التربية الخاصة.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدّمت محاضرة عن آلية السمع وتشريح الأذن والوقاية من مشاكل السمع لطلبة البكالوريوس في جامعة عمّان الأهلية، وكان تقييمها ممتازاً.</li><li style=\"margin:0 0 8px 0;\">أدرت غرفة المصادر، وبنيت خطة تربوية فردية (IEP) لكل طالب بعد اختبارات رسمية وغير رسمية.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم أخصائياً للتربية الخاصة. سيرتي الذاتية مرفقة، ويسعدني ترتيب مقابلة في الوقت الذي يناسبكم.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
+   "body": "السادة معهد قطر للنطق والسمع المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة وطالب دكتوراه في التربية الخاصة، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة، وقبلها أكثر من خمس سنوات في مدارس وزارة التربية والتعليم الأردنية. يقدّم معهدكم برامج للتدخل المبكر والاستعداد المدرسي ومتلازمة داون وزراعة القوقعة، إلى جانب جلسات التربية الخاصة.\n\n- قدّمت محاضرة عن آلية السمع وتشريح الأذن والوقاية من مشاكل السمع لطلبة البكالوريوس في جامعة عمّان الأهلية، وكان تقييمها ممتازاً.\n- أدرت غرفة المصادر، وبنيت خطة تربوية فردية (IEP) لكل طالب بعد اختبارات رسمية وغير رسمية.\n\nأتقدم للعمل لديكم أخصائياً للتربية الخاصة. سيرتي الذاتية مرفقة، ويسعدني ترتيب مقابلة في الوقت الذي يناسبكم.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
    "attachment": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
    "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
    "attachments": [
@@ -55,8 +36,27 @@
     }
    ],
    "old_draft_id": "",
-   "name": "MADA-Qatar Assistive Technology Center",
+   "name": "Qatar Institute for Speech and Hearing",
    "country": "Qatar"
+  },
+  {
+   "doc_id": "2026-11-26-0745-email-04",
+   "to": "contact@ilctherapy.com",
+   "subject": "طلب توظيف | أخصائي تربية خاصة وتعديل سلوك | عامر السعايدة",
+   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة Independent Learning Center في الرياض المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة بخبرة تزيد على خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وأحمل ماجستير التربية الخاصة بتقدير امتياز. فرعكم في الرياض يقع في حي الملز، ويقدّم العلاج السلوكي والنطق والعلاج الوظيفي وبرنامج الاستعداد المدرسي.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، وورشة في فنيات تعديل السلوك بجامعة البتراء.</li><li style=\"margin:0 0 8px 0;\">حققت خفض نسبة التحاق الطلبة بغرفة المصادر 10% بين 2018 و2022 بطرق تدريس بديلة.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم أخصائياً للتربية الخاصة أو في برامج تعديل السلوك. مرفق سيرتي الذاتية.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
+   "body": "السادة Independent Learning Center في الرياض المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة بخبرة تزيد على خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وأحمل ماجستير التربية الخاصة بتقدير امتياز. فرعكم في الرياض يقع في حي الملز، ويقدّم العلاج السلوكي والنطق والعلاج الوظيفي وبرنامج الاستعداد المدرسي.\n\n- قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، وورشة في فنيات تعديل السلوك بجامعة البتراء.\n- حققت خفض نسبة التحاق الطلبة بغرفة المصادر 10% بين 2018 و2022 بطرق تدريس بديلة.\n\nأتقدم للعمل لديكم أخصائياً للتربية الخاصة أو في برامج تعديل السلوك. مرفق سيرتي الذاتية.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
+   "attachment": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
+   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
+   "attachments": [
+    {
+     "content": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
+     "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
+     "mimeType": "application/pdf"
+    }
+   ],
+   "old_draft_id": "",
+   "name": "Independent Learning Center – Riyadh",
+   "country": "Saudi"
   }
  ]
 }

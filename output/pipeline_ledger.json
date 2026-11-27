@@ -2501,5 +2501,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-27"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 654,
+  "name": "The Springfield Primary School (TSPS)",
+  "email": "admin@tspsqatar.com",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, TSPS | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

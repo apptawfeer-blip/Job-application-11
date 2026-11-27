@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27 11:03",
+ "generated": "2026-11-27 11:39",
  "quota": {
   "email": {
    "allowed": 30,
@@ -9,13 +9,13 @@
   "whatsapp": {
    "allowed": 10,
    "week": 1,
-   "used": 0
+   "used": 10
   }
  },
  "today": {
   "email_drafted": 35,
   "email_sent": 10,
-  "whatsapp_queued": 0,
+  "whatsapp_queued": 10,
   "whatsapp_sent": 0
  },
  "week": {
@@ -24,7 +24,7 @@
  },
  "totals": {
   "drafted": 72,
-  "queued": 0,
+  "queued": 10,
   "sent": 44,
   "replied": 1,
   "bounced": 6
@@ -36,9 +36,9 @@
    "whatsapp_ready": 396
   },
   "Qatar": {
-   "remaining": 860,
-   "email_ready": 402,
-   "whatsapp_ready": 288
+   "remaining": 848,
+   "email_ready": 397,
+   "whatsapp_ready": 276
   },
   "Saudi": {
    "remaining": 4468,
@@ -61,14 +61,14 @@
    "whatsapp_ready": 72
   },
   "Bahrain": {
-   "remaining": 866,
-   "email_ready": 132,
-   "whatsapp_ready": 72
+   "remaining": 863,
+   "email_ready": 130,
+   "whatsapp_ready": 70
   }
  },
  "weeks_left": {
   "email": 24.9,
-  "whatsapp": 25.0
+  "whatsapp": 24.9
  },
  "daily": [
   {
@@ -89,13 +89,13 @@
    "date": "2026-11-27",
    "email_prepared": 35,
    "email_sent": 10,
-   "whatsapp_prepared": 0,
+   "whatsapp_prepared": 10,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
   "drafts_waiting_send": 72,
-  "whatsapp_ready": 0,
+  "whatsapp_ready": 10,
   "replies": [
    {
     "date": "2026-11-25",

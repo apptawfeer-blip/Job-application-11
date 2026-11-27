@@ -1,0 +1,14 @@
+الاسم: تذكير التقديم الصباحي
+التوقيت: CRON_TZ=Asia/Amman 0 10 * * *   (جلسة جديدة كل مرة، إشعار push)
+
+أنت تشغّل "تقديم حالة" الصباحي لمستودع apptawfeer-blip/Job-application-11 على الفرع claude/job-application-profile-nj3oqj (إن لم يكن المستودع موجوداً في الجلسة أضفه واستنسخه على هذا الفرع).
+
+اقرأ CLAUDE.md و .claude/skills/taqdeem/SKILL.md ونفّذ قسم "تقديم حالة" فقط:
+1. git pull للفرع.
+2. Gmail (قراءة فقط، إن كانت أدوات Gmail متاحة؛ وإلا سجّل ذلك في issues_tool وأكمل): ابحث in:sent newer_than:14d واحفظ [{to,date,subject}] في output/runs/_sync/sent.json ثم python3 scripts/pipeline.py sync-sent --file output/runs/_sync/sent.json. ابحث from:mailer-daemon newer_than:14d واستخرج الإيميلات المرتدة إلى output/runs/_sync/bounces.json ثم sync-bounces. ابحث عن رسائل واردة من إيميلات الجهات الموجودة في output/pipeline_ledger.json واحفظها في output/runs/_sync/replies.json ([{from,date,subject}]) ثم sync-replies.
+3. python3 scripts/pipeline.py sync-wa ثم python3 scripts/pipeline.py stats ثم python3 scripts/targets_tool.py stats.
+4. حدّث لوحة المتابعة https://claude.ai/artifact/K72UnkftTqSLYjh8jq43ZP: ارفع output/dashboard/{summary,countries,daily,alerts}.json كأصول (Artifact publish asset:true مع url اللوحة)، ثم حدّث datasets/<id> في قاعدة بياناتها (ArtifactData update مع if_version) بحقل source.url الجديد و updated {at, by:"تذكير صباحي"}.
+5. git add -A && git commit && git push -u origin claude/job-application-profile-nj3oqj.
+6. اكتب ملخصاً قصيراً بالعربية: ما أُرسل أمس، الردود الجديدة (أولوية)، الارتدادات، حصة اليوم المتاحة لكل قناة، المسودات ورسائل الواتساب التي تنتظر الإرسال، والتنبيهات والأخطاء المفتوحة (python3 scripts/issues_tool.py list) مع ما يحتاج قرار المستخدم.
+
+ممنوع منعاً باتاً: إرسال أو الرد على أو تحويل أي إيميل، وإنشاء مسودات جديدة، وتعديل محتوى الرسائل. هذه مهمة متابعة فقط؛ الإنشاء يتم بأمر المستخدم "تقديم ايميل" أو "تقديم واتس". أي خطوة فشلت تُسجَّل بـ scripts/issues_tool.py add.

@@ -155,7 +155,8 @@ def to_intl(raw, country):
 
 
 def numbers(cell, country):
-    return [to_intl(x, country) for x in re.split(r"[,/;|–]| - ", str(cell or "")) if re.search(r"\d{6}", x)]
+    # count digits, not a run of 6: "+974 7055 0099" (spaced groups) is a valid mobile number
+    return [to_intl(x, country) for x in re.split(r"[,/;|–]| - ", str(cell or "")) if len(re.sub(r"\D", "", x)) >= 7]
 
 
 def is_mobile(n, country):
@@ -172,6 +173,7 @@ def whatsapp(a):
     stats = {"مؤكد": 0, "جوال": 0, "لا": 0}
     for r in range(2, ws.max_row + 1):
         status = ws.cell(r, WA_COL).value or ""
+        if status.startswith("لا يوجد"): status = ""  # stale: a number may have been added since
         wa = ws.cell(r, 5).value
         if wa and not status.startswith("جوال"):
             nums = numbers(wa, a.country)

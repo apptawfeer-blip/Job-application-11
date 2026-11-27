@@ -1,15 +1,15 @@
 {
- "now": "2026-11-27 10:59",
+ "now": "2026-11-27 12:04",
  "paused": false,
  "daily_max": 30,
- "sent_today": 8,
- "approved_waiting": 43,
- "send_now": 2,
+ "sent_today": 12,
+ "approved_waiting": 0,
+ "send_now": 0,
  "ramp": {
   "stage": 1,
   "cap": 30,
-  "bounce_rate": 0.122,
-  "reply_rate": 0.02,
+  "bounce_rate": 0.113,
+  "reply_rate": 0.019,
   "days_at_stage": 1,
   "next_cap": 40,
   "days_needed": 5,
@@ -19,44 +19,5 @@
   2,
   5
  ],
- "items": [
-  {
-   "doc_id": "2026-11-26-0745-email-11",
-   "to": "info@ria-institute.com",
-   "subject": "طلب توظيف | معلم تربية خاصة للطلاب ذوي التوحد | عامر السعايدة",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة مركز RIA &amp; Rac المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، معلم تربية خاصة بخبرة تزيد على خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وأحمل ماجستير التربية الخاصة بتقدير امتياز. تأسس مركزكم عام 1999 لخدمة الطلاب ذوي التوحد، ويعتمد في جلساته طريقتي ABA وTEACCH.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة، وفي إعداد معلمي اضطراب طيف التوحد ومعلمي الظل.</li><li style=\"margin:0 0 8px 0;\">أدرت بناء الخطة التربوية الفردية (IEP) والخطة التعليمية لكل طالب بعد اختبارات رسمية وغير رسمية.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم معلماً للتربية الخاصة أو معلم ظل. سيرتي الذاتية مرفقة.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
-   "body": "السادة مركز RIA & Rac المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، معلم تربية خاصة بخبرة تزيد على خمس سنوات في مدارس وزارة التربية والتعليم الأردنية، وأحمل ماجستير التربية الخاصة بتقدير امتياز. تأسس مركزكم عام 1999 لخدمة الطلاب ذوي التوحد، ويعتمد في جلساته طريقتي ABA وTEACCH.\n\n- قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة، وفي إعداد معلمي اضطراب طيف التوحد ومعلمي الظل.\n- أدرت بناء الخطة التربوية الفردية (IEP) والخطة التعليمية لكل طالب بعد اختبارات رسمية وغير رسمية.\n\nأتقدم للعمل لديكم معلماً للتربية الخاصة أو معلم ظل. سيرتي الذاتية مرفقة.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
-   "attachment": "sha256:88bc719dd44a72da025ca6aa668faa2033d07f4cb3f8d6e8bdf09a839fb93077:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic_S.pdf",
-   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-   "attachments": [
-    {
-     "content": "sha256:88bc719dd44a72da025ca6aa668faa2033d07f4cb3f8d6e8bdf09a839fb93077:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic_S.pdf",
-     "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-     "mimeType": "application/pdf"
-    }
-   ],
-   "old_draft_id": "",
-   "name": "مركز RIA & Rac",
-   "country": "Bahrain"
-  },
-  {
-   "doc_id": "2026-11-26-0745-email-15",
-   "to": "mcsn@mindinstituteqatar.com",
-   "subject": "طلب توظيف | أخصائي تربية خاصة ومنسق دمج | عامر السعايدة",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة مركز مايند لذوي الإعاقة المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وأدرس الدكتوراه في التربية الخاصة. مركزكم مرخّص من وزارة التربية في قطر، ودُمج أكثر من 40 من طلابه في مدارس عادية.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">حققت الدمج الكلي للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية.</li><li style=\"margin:0 0 8px 0;\">قدت تدريب المعلمين العاديين ومعلمي التعليم الدامج على استراتيجيات تدريس تناسب البيئة الدامجة.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم أخصائياً للتربية الخاصة أو مشرفاً للبرامج. سيرتي الذاتية مرفقة.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
-   "body": "السادة مركز مايند لذوي الإعاقة المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وأدرس الدكتوراه في التربية الخاصة. مركزكم مرخّص من وزارة التربية في قطر، ودُمج أكثر من 40 من طلابه في مدارس عادية.\n\n- حققت الدمج الكلي للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية.\n- قدت تدريب المعلمين العاديين ومعلمي التعليم الدامج على استراتيجيات تدريس تناسب البيئة الدامجة.\n\nأتقدم للعمل لديكم أخصائياً للتربية الخاصة أو مشرفاً للبرامج. سيرتي الذاتية مرفقة.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
-   "attachment": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
-   "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-   "attachments": [
-    {
-     "content": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
-     "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
-     "mimeType": "application/pdf"
-    }
-   ],
-   "old_draft_id": "",
-   "name": "Mind Center for Individuals with Disabilities (MCID) – مركز مايند لذوي الإعاقة",
-   "country": "Qatar"
-  }
- ]
+ "items": []
 }

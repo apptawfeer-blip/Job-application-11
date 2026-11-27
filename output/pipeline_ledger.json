@@ -1309,7 +1309,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Kuwait",
   "row": 34,
   "name": "Conductive Education School-Kuwait for Special Needs",
@@ -1320,7 +1320,8 @@
   "lang": "EN",
   "cv": "NoPhD",
   "type": "مدرسة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",
@@ -1343,7 +1344,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Oman",
   "row": 88,
   "name": "Oman National Autism Center (MOSD)",
@@ -1354,7 +1355,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "جهة حكومية",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

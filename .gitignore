@@ -2,4 +2,4 @@ __pycache__/
 *.pyc
 ~$*
 .~lock*
-taqdeem_agent_package.zip
+*.zip

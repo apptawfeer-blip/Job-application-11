@@ -308,7 +308,7 @@ input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
     let i = 0, guard = 0;
     while (i < q.length && guard++ < 24 * 60) {
       const a = amman(run), max = +S.cfg.daily_max || 30, rem = Math.max(0, max - (sentBy[a.day] || 0)), runsLeft = Math.max(1, 24 - a.h);
-      const k = rem ? Math.min(2, q.length - i, rem, Math.max(1, Math.ceil(rem / runsLeft))) : 0;
+      const k = rem ? Math.min(max > 48 ? 3 : 2, q.length - i, rem, Math.floor(rem / runsLeft + 0.5 - 1e-9)) : 0;
       for (let j = 0; j < k; j++) { const at = run + j * 3.5 * 60000, b = amman(at); out[q[i].id] = `${dayLabel(b)} ${j ? "حوالي " : ""}${b.hm}`; S.endAt = at; i++; }
       sentBy[a.day] = (sentBy[a.day] || 0) + k; run += 3600000;
     }

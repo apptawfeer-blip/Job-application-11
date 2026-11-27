@@ -696,7 +696,10 @@ def send_plan(a):
     approved = sorted([d for d in docs if d.get("status") == "approved"], key=lambda d: (0 if d.get("priority") else 1, str(d.get("approved_at", "")), d.get("n", 0)))
     remaining = max(0, daily_max - sent_today); runs_left = max(1, 24 - now.hour)
     per_run = 2 if daily_max <= 48 else 3   # 50+/day needs up to 3 per hourly round (still 2-5 min apart)
-    k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(per_run, len(approved), remaining, max(1, -(-remaining // runs_left)))
+    # spread the day's quota evenly until the last round (user 27/11): send round(remaining / rounds left), halves rounded down,
+    # so rounds alternate 1 and 2 (or skip when ahead) and the last message goes out near 23:58 instead of early evening
+    pace = int(remaining / runs_left + 0.5 - 1e-9)
+    k = 0 if cfg.get("paused") or not approved or remaining == 0 else min(per_run, len(approved), remaining, pace)
     AJ = json.load(open(os.path.join(DESK, "assets.json"), encoding="utf-8")); A = AJ["cv"]; rev = {v: k_ for k_, v in A.items()}; rev.update(AJ.get("cv_aliases", {}))
     out = []
     for d in approved[:k]:

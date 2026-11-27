@@ -1362,7 +1362,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 638,
   "name": "Warif Academy – أكاديمية وارف",
@@ -1373,13 +1373,14 @@
   "lang": "EN",
   "cv": "NoPhD",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Bahrain",
   "row": 2,
   "name": "British School of Bahrain",
@@ -1390,7 +1391,8 @@
   "lang": "EN",
   "cv": "NoPhD",
   "type": "مدرسة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

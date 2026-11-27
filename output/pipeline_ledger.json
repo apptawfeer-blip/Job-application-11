@@ -1238,7 +1238,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Bahrain",
   "row": 839,
   "name": "مركز RIA & Rac",
@@ -1249,7 +1249,8 @@
   "lang": "AR",
   "cv": "NoPhD",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",
@@ -1272,7 +1273,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 634,
   "name": "Mind Center for Individuals with Disabilities (MCID) – مركز مايند لذوي الإعاقة",
@@ -1283,7 +1284,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

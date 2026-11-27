@@ -1,31 +1,31 @@
 {
- "generated": "2026-11-27 23:00",
+ "generated": "2026-11-28 00:02",
  "quota": {
   "email": {
    "allowed": 30,
    "week": 1,
-   "used": 40
+   "used": 1
   },
   "whatsapp": {
    "allowed": 10,
    "week": 1,
-   "used": 10
+   "used": 0
   }
  },
  "today": {
-  "email_drafted": 40,
-  "email_sent": 28,
-  "whatsapp_queued": 10,
+  "email_drafted": 1,
+  "email_sent": 1,
+  "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 69,
+  "email_sent": 71,
   "whatsapp_sent": 0
  },
  "totals": {
   "drafted": 59,
   "queued": 10,
-  "sent": 62,
+  "sent": 64,
   "replied": 1,
   "bounced": 6
  },
@@ -36,9 +36,9 @@
    "whatsapp_ready": 396
   },
   "Qatar": {
-   "remaining": 842,
-   "email_ready": 393,
-   "whatsapp_ready": 276
+   "remaining": 840,
+   "email_ready": 391,
+   "whatsapp_ready": 274
   },
   "Saudi": {
    "remaining": 4467,
@@ -67,8 +67,8 @@
   }
  },
  "weeks_left": {
-  "email": 24.9,
-  "whatsapp": 24.9
+  "email": 24.7,
+  "whatsapp": 24.7
  },
  "daily": [
   {
@@ -87,9 +87,16 @@
   },
   {
    "date": "2026-11-27",
-   "email_prepared": 40,
-   "email_sent": 28,
+   "email_prepared": 41,
+   "email_sent": 29,
    "whatsapp_prepared": 10,
+   "whatsapp_sent": 0
+  },
+  {
+   "date": "2026-11-28",
+   "email_prepared": 1,
+   "email_sent": 1,
+   "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
@@ -120,9 +127,7 @@
    }
   ]
  },
- "alerts": [
-  "نسبة الارتداد 6% أعلى من 5% – الحد اليومي لا يرتفع (وينزل درجة إن كان أعلى من 30)؛ شغّل verify-emails ونظّف القوائم. لا إيقاف"
- ],
+ "alerts": [],
  "open_issues": [
   {
    "row": 3,

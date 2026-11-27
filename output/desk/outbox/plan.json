@@ -1,14 +1,14 @@
 {
- "now": "2026-11-27 13:59",
+ "now": "2026-11-27 14:59",
  "paused": false,
  "daily_max": 30,
- "sent_today": 14,
- "approved_waiting": 37,
+ "sent_today": 15,
+ "approved_waiting": 36,
  "send_now": 1,
  "ramp": {
   "stage": 1,
   "cap": 30,
-  "bounce_rate": 0.109,
+  "bounce_rate": 0.107,
   "reply_rate": 0.018,
   "days_at_stage": 1,
   "next_cap": 40,
@@ -21,11 +21,11 @@
  ],
  "items": [
   {
-   "doc_id": "2026-11-26-0745-email-27",
-   "to": "bbq@bestbuddies.org.qa",
-   "subject": "طلب توظيف | منسق تعليم دامج لبست باديز قطر | عامر السعايدة",
-   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة بست باديز قطر المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة. تأسست بست باديز قطر عام 2008 تحت مظلة مركز الشفلح، وتخدم ذوي الإعاقة الذهنية البسيطة والمتوسطة والنمائية.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">حققت الدمج الكلي للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية.</li><li style=\"margin:0 0 8px 0;\">قدّمت برنامج MOBAK الحركي لأول مرة في الأردن للطلبة ذوي الإعاقة العقلية البسيطة في مركز الأمل بجامعة مؤتة.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم منسقاً للتعليم الدامج أو مدرباً. سيرتي الذاتية مرفقة.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
-   "body": "السادة بست باديز قطر المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة ومنسق تعليم دامج، أحمل ماجستير التربية الخاصة بتقدير امتياز، وعملت في قطر أخصائياً للتربية الخاصة. تأسست بست باديز قطر عام 2008 تحت مظلة مركز الشفلح، وتخدم ذوي الإعاقة الذهنية البسيطة والمتوسطة والنمائية.\n\n- حققت الدمج الكلي للطلبة ذوي الإعاقة لأول مرة في مدرسة حكومية.\n- قدّمت برنامج MOBAK الحركي لأول مرة في الأردن للطلبة ذوي الإعاقة العقلية البسيطة في مركز الأمل بجامعة مؤتة.\n\nأتقدم للعمل لديكم منسقاً للتعليم الدامج أو مدرباً. سيرتي الذاتية مرفقة.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
+   "doc_id": "2026-11-26-0745-email-28",
+   "to": "es1416@hotmail.com",
+   "subject": "طلب توظيف | أخصائي تربية خاصة في مكة المكرمة | عامر السعايدة",
+   "htmlBody": "<div dir=\"rtl\" style=\"font-family:Tahoma, Arial, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:right;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">السادة مركز الإنجاز والإبداع الأهلية المحترمين،</p><p style=\"margin:0 0 14px 0;\">تحية طيبة،</p><p style=\"margin:0 0 14px 0;\">أنا عامر عبد الجليل، أخصائي تربية خاصة بخبرة تزيد على خمس سنوات مع الطلبة ذوي صعوبات التعلم واضطراب طيف التوحد والإعاقات المختلفة، وأحمل ماجستير التربية الخاصة بتقدير امتياز.</p><ul style=\"margin:0 0 14px 0;padding:0 22px 0 0;\"><li style=\"margin:0 0 8px 0;\">قدّمت ورشة عن تشتت الانتباه والنشاط الزائد (ADHD) لأولياء الأمور بأساليب تفاعلية، وكان تقييمها ممتازاً.</li><li style=\"margin:0 0 8px 0;\">أدرت غرفة المصادر، وبنيت خطة تربوية فردية (IEP) لكل طالب بعد اختبارات رسمية وغير رسمية.</li></ul><p style=\"margin:0 0 14px 0;\">أتقدم للعمل لديكم أخصائياً للتربية الخاصة. سيرتي الذاتية مرفقة.</p><p style=\"margin:18px 0 10px 0;\">مع خالص التقدير،</p><div style=\"border-right:3px solid #1f3a5f;padding-right:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">عامر عبد الجليل السعايدة</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">أخصائي تربية خاصة | منسق تعليم دامج</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">ماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الهاتف / واتساب</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">الإيميل</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 0 1px 10px;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">ملفي على LinkedIn</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">متاح للعمل فوراً | مستعد للانتقال</div></div></div>",
+   "body": "السادة مركز الإنجاز والإبداع الأهلية المحترمين،\n\nتحية طيبة،\n\nأنا عامر عبد الجليل، أخصائي تربية خاصة بخبرة تزيد على خمس سنوات مع الطلبة ذوي صعوبات التعلم واضطراب طيف التوحد والإعاقات المختلفة، وأحمل ماجستير التربية الخاصة بتقدير امتياز.\n\n- قدّمت ورشة عن تشتت الانتباه والنشاط الزائد (ADHD) لأولياء الأمور بأساليب تفاعلية، وكان تقييمها ممتازاً.\n- أدرت غرفة المصادر، وبنيت خطة تربوية فردية (IEP) لكل طالب بعد اختبارات رسمية وغير رسمية.\n\nأتقدم للعمل لديكم أخصائياً للتربية الخاصة. سيرتي الذاتية مرفقة.\n\nمع خالص التقدير،\nعامر عبد الجليل السعايدة\nأخصائي تربية خاصة | منسق تعليم دامج\nماجستير تربية خاصة (امتياز) | خبرة +5 سنوات في الأردن وقطر\nالهاتف / واتساب: +962 78 018 9766\nالإيميل: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nمتاح للعمل فوراً | مستعد للانتقال",
    "attachment": "sha256:eb4531f47ddeb0f4328d01423b90b021b66626c63126b6e98326854f0dc5b3fc:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_Arabic.pdf",
    "filename": "Amer_AlSaaideh_CV_Arabic.pdf",
    "attachments": [
@@ -36,8 +36,8 @@
     }
    ],
    "old_draft_id": "",
-   "name": "Best Buddies Qatar – بست باديز قطر",
-   "country": "Qatar"
+   "name": "مركز الإنجاز والابداع الاهلية",
+   "country": "Saudi"
   }
  ]
 }

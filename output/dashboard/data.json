@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27 13:59",
+ "generated": "2026-11-27 15:00",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,18 +14,18 @@
  },
  "today": {
   "email_drafted": 35,
-  "email_sent": 15,
+  "email_sent": 16,
   "whatsapp_queued": 10,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 56,
+  "email_sent": 57,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 67,
+  "drafted": 66,
   "queued": 10,
-  "sent": 49,
+  "sent": 50,
   "replied": 1,
   "bounced": 6
  },
@@ -88,13 +88,13 @@
   {
    "date": "2026-11-27",
    "email_prepared": 35,
-   "email_sent": 15,
+   "email_sent": 16,
    "whatsapp_prepared": 10,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 67,
+  "drafts_waiting_send": 66,
   "whatsapp_ready": 10,
   "replies": [
    {

@@ -1434,7 +1434,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Saudi",
   "row": 4286,
   "name": "مركز الإنجاز والابداع الاهلية",
@@ -1445,7 +1445,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

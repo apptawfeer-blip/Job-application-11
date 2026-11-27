@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-27 09:03",
+ "generated": "2026-11-27 10:03",
  "quota": {
   "email": {
    "allowed": 30,
@@ -14,18 +14,18 @@
  },
  "today": {
   "email_drafted": 35,
-  "email_sent": 6,
+  "email_sent": 8,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 47,
+  "email_sent": 49,
   "whatsapp_sent": 0
  },
  "totals": {
-  "drafted": 76,
+  "drafted": 74,
   "queued": 0,
-  "sent": 40,
+  "sent": 42,
   "replied": 1,
   "bounced": 6
  },
@@ -88,13 +88,13 @@
   {
    "date": "2026-11-27",
    "email_prepared": 35,
-   "email_sent": 6,
+   "email_sent": 8,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
  ],
  "pending": {
-  "drafts_waiting_send": 76,
+  "drafts_waiting_send": 74,
   "whatsapp_ready": 0,
   "replies": [
    {
@@ -121,7 +121,7 @@
   ]
  },
  "alerts": [
-  "نسبة الارتداد 13% أعلى من 5% – الحد اليومي لا يرتفع (وينزل درجة إن كان أعلى من 30)؛ شغّل verify-emails ونظّف القوائم. لا إيقاف"
+  "نسبة الارتداد 12% أعلى من 5% – الحد اليومي لا يرتفع (وينزل درجة إن كان أعلى من 30)؛ شغّل verify-emails ونظّف القوائم. لا إيقاف"
  ],
  "open_issues": [
   {

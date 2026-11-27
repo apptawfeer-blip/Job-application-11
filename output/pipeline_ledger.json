@@ -1202,7 +1202,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 141,
   "name": "Al-Hidaya Special Needs School – Messila (Boys)",
@@ -1213,13 +1213,14 @@
   "lang": "AR",
   "cv": "NoPhD",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Oman",
   "row": 89,
   "name": "Oman Autism Society",
@@ -1230,7 +1231,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "جمعية",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

@@ -2411,5 +2411,41 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-27"
+ },
+ {
+  "date": "2026-11-27",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 776,
+  "name": "Beverly Hills International School",
+  "email": "recruitment@bhis-school.qa",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, BHIS | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-27"
+ },
+ {
+  "date": "2026-11-27",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 661,
+  "name": "AL Faisal International Academy",
+  "email": "HR@alfaisalinternational.com",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, AFIA | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-27"
  }
 ]

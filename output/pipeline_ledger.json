@@ -1287,7 +1287,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 636,
   "name": "Himam Center for Persons with Disabilities – مركز همم للأشخاص ذوي الإعاقة",
@@ -1298,7 +1298,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",
@@ -2169,5 +2170,23 @@
   "cv": "NoPhD",
   "type": "مدرسة",
   "send_day": 1
+ },
+ {
+  "date": "2026-11-27",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 651,
+  "name": "Olive International School",
+  "email": "info@oliveschooldoha.com",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, Olive | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-27"
  }
 ]

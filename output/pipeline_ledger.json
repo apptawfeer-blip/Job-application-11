@@ -155,7 +155,7 @@
   "date": "2026-11-25",
   "run": "batch_01",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Jordan",
   "row": 859,
   "name": "Al-Ahliyya Amman University – Faculty of Educational Sciences",
@@ -167,7 +167,8 @@
   "cv": "NoPhD",
   "type": "جامعة",
   "send_day": 1,
-  "migrated": true
+  "migrated": true,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-25",
@@ -1113,7 +1114,7 @@
   "date": "2026-11-26",
   "run": "2026-11-26_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "Qatar",
   "row": 131,
   "name": "MADA-Qatar Assistive Technology Center",
@@ -1124,7 +1125,8 @@
   "lang": "AR",
   "cv": "Full",
   "type": "مركز تربية خاصة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-27"
  },
  {
   "date": "2026-11-26",

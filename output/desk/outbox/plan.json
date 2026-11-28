@@ -1,14 +1,14 @@
 {
- "now": "2026-11-28 10:59",
+ "now": "2026-11-28 11:59",
  "paused": false,
  "daily_max": 30,
- "sent_today": 11,
- "approved_waiting": 53,
+ "sent_today": 12,
+ "approved_waiting": 52,
  "send_now": 1,
  "ramp": {
   "stage": 1,
   "cap": 30,
-  "bounce_rate": 0.074,
+  "bounce_rate": 0.073,
   "reply_rate": 0.012,
   "days_at_stage": 2,
   "next_cap": 40,
@@ -21,11 +21,11 @@
  ],
  "items": [
   {
-   "doc_id": "2026-11-26-1130-email-05",
-   "to": "recruitment@dohaacademy.net",
-   "subject": "Application | Special Education Teacher, Doha Academy | Amer AlSaaideh",
-   "htmlBody": "<div style=\"font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:left;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">Dear Doha Academy Hiring Team,</p><p style=\"margin:0 0 14px 0;\">I am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Doha Academy is a group of KG to Grade 12 schools accredited by QNSA and NEASC.</p><ul style=\"margin:0 0 14px 0;padding:0 0 0 22px;\"><li style=\"margin:0 0 8px 0;\">Achieved full inclusion of students with disabilities for the first time in a public school.</li><li style=\"margin:0 0 8px 0;\">Achieved a 10% drop in resource room enrollment (2018 to 2022) through alternative teaching methods.</li></ul><p style=\"margin:0 0 14px 0;\">I am applying for a Learning Support / Special Education Teacher, Resource Room Teacher or Inclusion Coordinator role. Please find my CV attached.</p><p style=\"margin:18px 0 10px 0;\">Kind regards,</p><div style=\"border-left:3px solid #1f3a5f;padding-left:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">Amer Abdeljalil AlSaaideh</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">Special Education Specialist | Inclusive Education Coordinator</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">MA in Special Education (Excellent) | 5+ years in Jordan and Qatar</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Phone / WhatsApp</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Email</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">View my LinkedIn profile</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">Available immediately | Open to relocation</div></div></div>",
-   "body": "Dear Doha Academy Hiring Team,\n\nI am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Doha Academy is a group of KG to Grade 12 schools accredited by QNSA and NEASC.\n\n- Achieved full inclusion of students with disabilities for the first time in a public school.\n- Achieved a 10% drop in resource room enrollment (2018 to 2022) through alternative teaching methods.\n\nI am applying for a Learning Support / Special Education Teacher, Resource Room Teacher or Inclusion Coordinator role. Please find my CV attached.\n\nKind regards,\nAmer Abdeljalil AlSaaideh\nSpecial Education Specialist | Inclusive Education Coordinator\nMA in Special Education (Excellent) | 5+ years in Jordan and Qatar\nPhone / WhatsApp: +962 78 018 9766\nEmail: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nAvailable immediately | Open to relocation",
+   "doc_id": "2026-11-26-1130-email-06",
+   "to": "recruitment@queensqatar.school",
+   "subject": "Application | Learning Support Teacher, Queen's Qatar | Amer AlSaaideh",
+   "htmlBody": "<div style=\"font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:left;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">Dear Queen&#x27;s Qatar Hiring Team,</p><p style=\"margin:0 0 14px 0;\">I am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Queen&#x27;s Qatar is a British school that teaches the English National Curriculum.</p><ul style=\"margin:0 0 14px 0;padding:0 0 0 22px;\"><li style=\"margin:0 0 8px 0;\">Achieved full inclusion of students with disabilities for the first time in a public school.</li><li style=\"margin:0 0 8px 0;\">Managed an individual education plan (IEP) for each student, built on formal and informal assessments.</li></ul><p style=\"margin:0 0 14px 0;\">I am applying for a Learning Support / Special Education Teacher, Resource Room Teacher or Inclusion Coordinator role. Please find my CV attached.</p><p style=\"margin:18px 0 10px 0;\">Kind regards,</p><div style=\"border-left:3px solid #1f3a5f;padding-left:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">Amer Abdeljalil AlSaaideh</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">Special Education Specialist | Inclusive Education Coordinator</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">MA in Special Education (Excellent) | 5+ years in Jordan and Qatar</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Phone / WhatsApp</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Email</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">View my LinkedIn profile</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">Available immediately | Open to relocation</div></div></div>",
+   "body": "Dear Queen's Qatar Hiring Team,\n\nI am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Queen's Qatar is a British school that teaches the English National Curriculum.\n\n- Achieved full inclusion of students with disabilities for the first time in a public school.\n- Managed an individual education plan (IEP) for each student, built on formal and informal assessments.\n\nI am applying for a Learning Support / Special Education Teacher, Resource Room Teacher or Inclusion Coordinator role. Please find my CV attached.\n\nKind regards,\nAmer Abdeljalil AlSaaideh\nSpecial Education Specialist | Inclusive Education Coordinator\nMA in Special Education (Excellent) | 5+ years in Jordan and Qatar\nPhone / WhatsApp: +962 78 018 9766\nEmail: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nAvailable immediately | Open to relocation",
    "attachment": "sha256:9a5e4b33c05834762acd9ae874561868e547f59f8219c89c8edc98d914c57c9c:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_English_S.pdf",
    "filename": "Amer_AlSaaideh_CV_English.pdf",
    "attachments": [
@@ -36,7 +36,7 @@
     }
    ],
    "old_draft_id": "",
-   "name": "Doha Academy",
+   "name": "Queen's Qatar",
    "country": "Qatar"
   }
  ]

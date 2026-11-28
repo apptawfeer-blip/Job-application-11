@@ -2971,5 +2971,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1130-email",
+  "channel": "email",
+  "status": "bounced",
+  "country": "Qatar",
+  "row": 27,
+  "name": "Queen's Qatar",
+  "email": "recruitment@queensqatar.school",
+  "phone": "",
+  "subject": "Application | Learning Support Teacher, Queen's Qatar | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-28 11:00",
+ "generated": "2026-11-28 12:00",
  "quota": {
   "email": {
    "allowed": 30,
@@ -13,13 +13,13 @@
   }
  },
  "today": {
-  "email_drafted": 28,
-  "email_sent": 12,
+  "email_drafted": 29,
+  "email_sent": 13,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 82,
+  "email_sent": 83,
   "whatsapp_sent": 0
  },
  "totals": {
@@ -27,7 +27,7 @@
   "queued": 10,
   "sent": 75,
   "replied": 1,
-  "bounced": 6
+  "bounced": 7
  },
  "remaining": {
   "Jordan": {
@@ -36,8 +36,8 @@
    "whatsapp_ready": 396
   },
   "Qatar": {
-   "remaining": 816,
-   "email_ready": 368,
+   "remaining": 815,
+   "email_ready": 367,
    "whatsapp_ready": 266
   },
   "Saudi": {
@@ -94,8 +94,8 @@
   },
   {
    "date": "2026-11-28",
-   "email_prepared": 28,
-   "email_sent": 12,
+   "email_prepared": 29,
+   "email_sent": 13,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }
@@ -278,6 +278,12 @@
    "kind": "خطأ",
    "op": "تقديم بحث قطر 27/11",
    "need": "إن أمكن: فتح QatarLiving/Tabeebak يدوياً أو السماح بنطاقاتها، وإرسال حسابات إنستغرام/فيسبوك لمنصة أهالي التوحد والجمعية القطرية للتوحد ومركز لافندر (ورقة تعذر الوصول)"
+  },
+  {
+   "row": 35,
+   "kind": "خطأ",
+   "op": "ارتداد إيميل: Queen's Qatar (recruitment@queensqatar.school)",
+   "need": "لا شيء – استُبعد الإيميل؛ جرّب الواتساب لهذه الجهة إن وُجد"
   }
  ]
 }

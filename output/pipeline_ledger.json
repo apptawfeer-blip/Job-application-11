@@ -3007,5 +3007,41 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1130-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 71,
+  "name": "Noor Al Khaleej International School",
+  "email": "jobs@nooralkhaleej.com",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, NAKIS | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1130-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 74,
+  "name": "Richmond International School",
+  "email": "ask@richmonddoha.com",
+  "phone": "",
+  "subject": "Application | Learning Support Teacher, Richmond | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

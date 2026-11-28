@@ -2916,5 +2916,23 @@
   "cv": "NoPhD",
   "type": "مدرسة",
   "send_day": 1
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1130-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 13,
+  "name": "Blyth Academy",
+  "email": "hr@blythacademyqatar.com",
+  "phone": "",
+  "subject": "Application | Learning Support Teacher, Blyth | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

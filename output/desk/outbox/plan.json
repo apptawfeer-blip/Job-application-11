@@ -1,14 +1,14 @@
 {
- "now": "2026-11-28 06:59",
+ "now": "2026-11-28 07:58",
  "paused": false,
  "daily_max": 30,
- "sent_today": 7,
- "approved_waiting": 15,
+ "sent_today": 8,
+ "approved_waiting": 14,
  "send_now": 1,
  "ramp": {
   "stage": 1,
   "cap": 30,
-  "bounce_rate": 0.078,
+  "bounce_rate": 0.077,
   "reply_rate": 0.013,
   "days_at_stage": 2,
   "next_cap": 40,
@@ -21,11 +21,11 @@
  ],
  "items": [
   {
-   "doc_id": "2026-11-26-1130-email-02",
-   "to": "recruitment@iqraenglishschool.com",
-   "subject": "Application | Resource Coordinator, Iqra | Amer AlSaaideh",
-   "htmlBody": "<div style=\"font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:left;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">Dear Iqra English School Hiring Team,</p><p style=\"margin:0 0 14px 0;\">I am Amer Abdeljalil, a special education specialist with an MA in Special Education (Excellent) and over five years as a resource room teacher and inclusive education coordinator in Jordanian Ministry of Education schools. I have also worked in Qatar as a special education specialist. Your careers page lists a Resource Coordinator position.</p><ul style=\"margin:0 0 14px 0;padding:0 0 0 22px;\"><li style=\"margin:0 0 8px 0;\">Achieved a 10% drop in resource room enrollment (2018 to 2022) through alternative teaching methods.</li><li style=\"margin:0 0 8px 0;\">Managed an individual education plan (IEP) for each student, built on formal and informal assessments.</li></ul><p style=\"margin:0 0 14px 0;\">I am applying for the Resource Coordinator position. Please find my CV attached.</p><p style=\"margin:18px 0 10px 0;\">Kind regards,</p><div style=\"border-left:3px solid #1f3a5f;padding-left:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">Amer Abdeljalil AlSaaideh</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">Special Education Specialist | Inclusive Education Coordinator</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">MA in Special Education (Excellent) | 5+ years in Jordan and Qatar</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Phone / WhatsApp</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Email</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">View my LinkedIn profile</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">Available immediately | Open to relocation</div></div></div>",
-   "body": "Dear Iqra English School Hiring Team,\n\nI am Amer Abdeljalil, a special education specialist with an MA in Special Education (Excellent) and over five years as a resource room teacher and inclusive education coordinator in Jordanian Ministry of Education schools. I have also worked in Qatar as a special education specialist. Your careers page lists a Resource Coordinator position.\n\n- Achieved a 10% drop in resource room enrollment (2018 to 2022) through alternative teaching methods.\n- Managed an individual education plan (IEP) for each student, built on formal and informal assessments.\n\nI am applying for the Resource Coordinator position. Please find my CV attached.\n\nKind regards,\nAmer Abdeljalil AlSaaideh\nSpecial Education Specialist | Inclusive Education Coordinator\nMA in Special Education (Excellent) | 5+ years in Jordan and Qatar\nPhone / WhatsApp: +962 78 018 9766\nEmail: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nAvailable immediately | Open to relocation",
+   "doc_id": "2026-11-26-1130-email-03",
+   "to": "hr@blythacademyqatar.com",
+   "subject": "Application | Learning Support Teacher, Blyth | Amer AlSaaideh",
+   "htmlBody": "<div style=\"font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.7;color:#222;text-align:left;max-width:640px;\"><p style=\"margin:0 0 14px 0;\">Dear Blyth Academy Qatar Hiring Team,</p><p style=\"margin:0 0 14px 0;\">I am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Your careers page lists a High School Learning Support Teacher role for Grades 7 to 12.</p><ul style=\"margin:0 0 14px 0;padding:0 0 0 22px;\"><li style=\"margin:0 0 8px 0;\">Managed an individual education plan (IEP) for each student, built on formal and informal assessments.</li><li style=\"margin:0 0 8px 0;\">Led training for general and inclusion teachers on working with students with disabilities, and hold a Cambridge Training of Trainers (TOT) certificate.</li></ul><p style=\"margin:0 0 14px 0;\">I am applying for the Learning Support Teacher position. Please find my CV attached.</p><p style=\"margin:18px 0 10px 0;\">Kind regards,</p><div style=\"border-left:3px solid #1f3a5f;padding-left:12px;margin-top:4px;\"><div style=\"font-weight:bold;color:#1f3a5f;font-size:16px;\">Amer Abdeljalil AlSaaideh</div><div style=\"color:#444;font-size:13px;margin-top:2px;\">Special Education Specialist | Inclusive Education Coordinator</div><div style=\"color:#666;font-size:12px;margin-top:2px;\">MA in Special Education (Excellent) | 5+ years in Jordan and Qatar</div><table cellpadding=\"0\" cellspacing=\"0\" style=\"margin-top:8px;border-collapse:collapse;\"><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Phone / WhatsApp</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>+962 78 018 9766</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">Email</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><span>amer.abdeljalil77@gmail.com</span></td></tr><tr><td style=\"color:#888;font-size:12px;padding:1px 10px 1px 0;white-space:nowrap;\">LinkedIn</td><td style=\"font-size:13px;padding:1px 0;\" dir=\"ltr\"><a href=\"https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\" style=\"color:#1f5fa8;text-decoration:none;\">View my LinkedIn profile</a></td></tr></table><div style=\"color:#1f7a3f;font-size:12px;font-weight:bold;margin-top:8px;\">Available immediately | Open to relocation</div></div></div>",
+   "body": "Dear Blyth Academy Qatar Hiring Team,\n\nI am Amer Abdeljalil, a special education teacher and inclusive education coordinator with over five years in Jordanian Ministry of Education schools. I hold an MA in Special Education (Excellent) and I have worked in Qatar as a special education specialist. Your careers page lists a High School Learning Support Teacher role for Grades 7 to 12.\n\n- Managed an individual education plan (IEP) for each student, built on formal and informal assessments.\n- Led training for general and inclusion teachers on working with students with disabilities, and hold a Cambridge Training of Trainers (TOT) certificate.\n\nI am applying for the Learning Support Teacher position. Please find my CV attached.\n\nKind regards,\nAmer Abdeljalil AlSaaideh\nSpecial Education Specialist | Inclusive Education Coordinator\nMA in Special Education (Excellent) | 5+ years in Jordan and Qatar\nPhone / WhatsApp: +962 78 018 9766\nEmail: amer.abdeljalil77@gmail.com\nLinkedIn: https://www.linkedin.com/in/%D8%B9%D8%A7%D9%85%D8%B1-%D8%B9%D8%A8%D8%AF-%D8%A7%D9%84%D8%AC%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%B3%D8%B9%D8%A7%D9%8A%D8%AF%D9%87-4b1235445/\nAvailable immediately | Open to relocation",
    "attachment": "sha256:9a5e4b33c05834762acd9ae874561868e547f59f8219c89c8edc98d914c57c9c:/home/user/Job-application-11/cv/Amer_AlSaaideh_CV_English_S.pdf",
    "filename": "Amer_AlSaaideh_CV_English.pdf",
    "attachments": [
@@ -36,7 +36,7 @@
     }
    ],
    "old_draft_id": "",
-   "name": "Iqra English School for Boys",
+   "name": "Blyth Academy",
    "country": "Qatar"
   }
  ]

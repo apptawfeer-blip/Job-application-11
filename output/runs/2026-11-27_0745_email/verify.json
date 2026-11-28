@@ -1,0 +1,240 @@
+[
+ {
+  "doc_id": 1,
+  "to": "hr@dcsneeds.com",
+  "name": "Dubai Center for Special Needs",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 2,
+  "to": "reception@oryxschool.qa",
+  "name": "Oryx International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 3,
+  "to": "registrar@betacambridge.com",
+  "name": "Beta Cambridge School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 4,
+  "to": "iscdoha@iscdoha.sabis.net",
+  "name": "The International School of Choueifat",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 5,
+  "to": "usirecruitment@unitedschool.qa",
+  "name": "United School International",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 6,
+  "to": "recruitment@akis.sch.qa",
+  "name": "Al Khor International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 7,
+  "to": "recruitment@qis.org",
+  "name": "Qatar International School - Doha",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 8,
+  "to": "mail@islqatar.org",
+  "name": "International School of London - Qatar",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 9,
+  "to": "reception@asd.edu.qa",
+  "name": "American School of Doha",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 10,
+  "to": "hr@idealschoolqatar.com",
+  "name": "Ideal Indian School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 11,
+  "to": "jobs@sisqatar.info",
+  "name": "Shantiniketan Indian School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 12,
+  "to": "mail@hasqatar.com",
+  "name": "Hartford American School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 13,
+  "to": "admissions@sek.qa",
+  "name": "SEK International School Qatar",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 14,
+  "to": "inquiries@vis.sch.qa",
+  "name": "Vision International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 15,
+  "to": "registrar@acsqatar.net",
+  "name": "Alpha Cambridge School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 16,
+  "to": "feedback@tcsqatar.com",
+  "name": "Cambridge School Doha - Qatar",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 17,
+  "to": "jisschools@jis.edu.jo",
+  "name": "Jordanian International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 18,
+  "to": "school@acsamman.edu.jo",
+  "name": "American Community School, Amman",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 19,
+  "to": "cambridge@cambridge.edu.jo",
+  "name": "Cambridge High School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 20,
+  "to": "admissions.riyadh@owis.org",
+  "name": "One World International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 21,
+  "to": "hrm@dome.edu.sa",
+  "name": "Dome International Schools",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 22,
+  "to": "join_us@aisr.org",
+  "name": "American International School-Riyadh",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 23,
+  "to": "hr@behaviourenrichment.com",
+  "name": "إثراء السلوك – البرشاء",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 24,
+  "to": "career@alibtisama.com",
+  "name": "مركز الابتسامة- AL IBTISAMA CENTER",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 25,
+  "to": "careers@ask.edu.kw",
+  "name": "The American School of Kuwait",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 26,
+  "to": "kas@kas.edu.kw",
+  "name": "Kuwait American School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 27,
+  "to": "hr@alshomoukh.com",
+  "name": "Al Shomoukh International Private School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 28,
+  "to": "careers@isnizwa.org",
+  "name": "Indian School Nizwa",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 29,
+  "to": "jobs@asb.bh",
+  "name": "American School of Bahrain",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 30,
+  "to": "recruitment@alhekma.com",
+  "name": "Al Hekma International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 31,
+  "to": "admission@sis-qatar.com",
+  "name": "Step One International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 32,
+  "to": "philippineintl@education.qa",
+  "name": "Philippine International  School-Qatar",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 33,
+  "to": "frc@futurecn.ae",
+  "name": "Future Centre for Special Needs",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 34,
+  "to": "contact@iqraa.edu.kw",
+  "name": "Iqra'a American School",
+  "verdict": "ok",
+  "reason": ""
+ }
+]

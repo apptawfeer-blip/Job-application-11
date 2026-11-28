@@ -1,0 +1,163 @@
+[
+ {
+  "doc_id": 1,
+  "to": "AMIS-Althameed@almanarqatar.com",
+  "name": "Al Manar International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 2,
+  "to": "AMIS-Dafna@almanarqatar.com",
+  "name": "Almanar International School - Aldafna branch",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 3,
+  "to": "infomesis@mesqatar.org",
+  "name": "M.E.S INDIAN SCHOOL - Abu hamour branch",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 4,
+  "to": "info.lusail@gaiqatar.com",
+  "name": "Global Academy International - Muaither",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 5,
+  "to": "admissions@cardiffschooldoha.qa",
+  "name": "Cardiff International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 6,
+  "to": "registrar.nba@newtonschools.sch.qa",
+  "name": "Newton British Academy - Barwa City",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 7,
+  "to": "Addressinfo@brilliantindianschool.com",
+  "name": "Brilliant Indian International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 8,
+  "to": "registration@newtonschools.sch.qa",
+  "name": "Newton International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 9,
+  "to": "admissions.naisak@nais.qa",
+  "name": "Nord Anglia International School Al Khor",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 10,
+  "to": "enquiry@galileois.com",
+  "name": "Galileo International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 11,
+  "to": "alqadahdoha@gmail.com",
+  "name": "The Leaders International School",
+  "verdict": "risky",
+  "reason": "قد لا يكون هذا الإيميل موجوداً: إيميل مجاني (gmail/yahoo/hotmail) وجدناه في دليل فقط وليس في موقع الجهة"
+ },
+ {
+  "doc_id": 12,
+  "to": "secretaire@efa.edu.jo",
+  "name": "French School of Amman",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 13,
+  "to": "admissions@mas.edu.jo",
+  "name": "Modern American School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 14,
+  "to": "SPECIAL_EDU@MOE.GOV.SA",
+  "name": "General Secretariat for Special Education",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 15,
+  "to": "pffmac@hotmail.com",
+  "name": "Mother of Faisal Autism Center (MFAC)",
+  "verdict": "risky",
+  "reason": "قد لا يكون هذا الإيميل موجوداً: إيميل مجاني (gmail/yahoo/hotmail) وجدناه في دليل فقط وليس في موقع الجهة"
+ },
+ {
+  "doc_id": 16,
+  "to": "reception@british-ild.com",
+  "name": "British Institute for Learning Development Abu Dhabi",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 17,
+  "to": "edsa@edsa.ae",
+  "name": "Emirates Down Syndrome Association- Abu Dhabi",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 18,
+  "to": "pr@ccis-kuwait.com",
+  "name": "Creative Children International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 19,
+  "to": "chairman@bhavanskuwait.com",
+  "name": "Indian Education School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 20,
+  "to": "secretariat@lfm.om",
+  "name": "The International French School of Muscat (LFIM)",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 21,
+  "to": "iscmuscat@iscmuscat.sabis.net",
+  "name": "The International School of Choueifat - Muscat",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 22,
+  "to": "admissions@rvis.edu.bh",
+  "name": "Riffa Views International School",
+  "verdict": "ok",
+  "reason": ""
+ },
+ {
+  "doc_id": 23,
+  "to": "admin.riffa@talentschools.com",
+  "name": "Talent International and the Infant School",
+  "verdict": "ok",
+  "reason": ""
+ }
+]

@@ -1,0 +1,40 @@
+{
+ "channel": "email",
+ "created": "2026-11-26_1750",
+ "targets": [
+  {
+   "country": "Qatar",
+   "row": 35,
+   "name": "Noble International School",
+   "type": "مدرسة",
+   "email": "fds@nobleqatar.com",
+   "whatsapp": "",
+   "phone": "",
+   "city": "الدوحة",
+   "website": "https://www.nobleqatar.com/",
+   "careers": "https://www.nobleqatar.com/careers",
+   "source": "",
+   "lang": "EN",
+   "cv": "NoPhD",
+   "relevance": "متوسطة",
+   "id": 1
+  },
+  {
+   "country": "Qatar",
+   "row": 73,
+   "name": "Qatar Academy Msheireb",
+   "type": "مدرسة",
+   "email": "qamsheireb@qf.org.qa",
+   "whatsapp": "",
+   "phone": "",
+   "city": "الدوحة",
+   "website": "https://qam.qa/",
+   "careers": "https://qam.qa/join-us/",
+   "source": "",
+   "lang": "EN",
+   "cv": "NoPhD",
+   "relevance": "متوسطة",
+   "id": 2
+  }
+ ]
+}

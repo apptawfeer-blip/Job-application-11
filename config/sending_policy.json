@@ -1,0 +1,84 @@
+{
+ "_sources": [
+  "Gmail personal account limit ~500 recipients/day is a ceiling, not a target (Google: Gmail sending limits; Email sender guidelines FAQ support.google.com/mail/answer/14229414, enforcement gradual since Nov 2025)",
+  "WhatsApp publishes no daily limit for personal accounts; it is testing a monthly cap on messages to people who don't reply (TechCrunch 2025-10-17). Unofficial guidance: 20-30 new contacts/day max, start lower."
+ ],
+ "email": {
+  "start_date": "2026-11-26",
+  "daily_by_week": {
+   "1": 30
+  },
+  "absolute_max_per_day": 75,
+  "gap_minutes": [
+   2,
+   5
+  ],
+  "send_window_local": [
+   "00:00",
+   "23:59"
+  ],
+  "stop_if_bounce_rate_over": 0.05,
+  "bounce_window": 50,
+  "_note": "2026-11-25: المستخدم طلب الحد الأقصى (30/يوم) من البداية بدل التدرج 10←25، مع العلم بخطر تقييد الحساب",
+  "mode": "auto: hourly trigger sends desk-approved messages, 1-2 per run",
+  "ramp": {
+   "stages": [
+    30,
+    40,
+    50,
+    60,
+    75
+   ],
+   "hold_days": [
+    5,
+    5,
+    7,
+    7
+   ],
+   "up_if_bounce_under": 0.03,
+   "step_down_if_bounce_over": 0.05,
+   "bounce_window": 100,
+   "min_reply_rate_from_stage": {
+    "2": 0.01
+   },
+   "ceiling": 75,
+   "_note": "بطلب المستخدم 26/11: زيادة تدريجية آمنة 30←40←50←60←75. الترقية فقط إذا الارتداد <3% في آخر 100 ولا تحذير من Gmail؛ ارتداد >5% أو خطأ حد/نشاط مشبوه من Gmail ← نزول درجة (لا إيقاف). الحالة في output/email_ramp.json"
+  }
+ },
+ "whatsapp": {
+  "start_date": "2026-11-26",
+  "daily_by_week": {
+   "1": 10,
+   "2": 15,
+   "3": 20
+  },
+  "absolute_max_per_day": 25,
+  "gap_minutes": [
+   3,
+   6
+  ],
+  "send_window_local": [
+   "09:00",
+   "15:00"
+  ],
+  "min_reply_rate_after_50": 0.05
+ },
+ "timezone": "Asia/Amman",
+ "workdays": [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu"
+ ],
+ "country_weights": {
+  "Qatar": 6,
+  "Jordan": 1,
+  "Saudi": 1,
+  "UAE": 1,
+  "Kuwait": 1,
+  "Oman": 1,
+  "Bahrain": 1
+ },
+ "_country_weights_note": "بطلب المستخدم: التركيز على قطر قدر الإمكان (~50% من كل دفعة)، والباقي موزع على الدول الأخرى. إذا نفدت جهات قطر تكمل الدول الأخرى."
+}

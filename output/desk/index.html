@@ -1,0 +1,591 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>مكتب الإرسال</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Sending desk: one calm card at a time, a soft countdown between sends. Sunrise palette shared with the dashboard. */
+:root{
+  --bg:#F6F8F7;--panel:#FFFFFF;--fg:#1E2B2A;--muted:#5E6E6C;--line:#DCE5E3;
+  --sea:#2A9D8F;--sea-deep:#1D6F68;--sun:#E9A23B;--leaf:#3E9E6E;--coral:#D9634A;
+  --soft-sea:#E3F2F0;--soft-sun:#FCF1DF;--soft-leaf:#E4F3EA;--soft-coral:#FBE7E2;
+  --font:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111816;--panel:#18211F;--fg:#E7EFED;--muted:#9DB0AD;--line:#2B3835;
+  --sea:#3FB5A6;--sea-deep:#2A8F83;--sun:#F0B45A;--leaf:#5CC08B;--coral:#EC8068;
+  --soft-sea:#16302C;--soft-sun:#33281A;--soft-leaf:#1A3024;--soft-coral:#3A221D;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111816;--panel:#18211F;--fg:#E7EFED;--muted:#9DB0AD;--line:#2B3835;
+  --sea:#3FB5A6;--sea-deep:#2A8F83;--sun:#F0B45A;--leaf:#5CC08B;--coral:#EC8068;
+  --soft-sea:#16302C;--soft-sun:#33281A;--soft-leaf:#1A3024;--soft-coral:#3A221D;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.65}
+.wrap{direction:rtl;max-width:860px;margin:0 auto;padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:16px}
+h1{font-size:1.6rem;margin:0;font-weight:700;text-wrap:balance}
+h2{font-size:1.1rem;margin:0}
+p{margin:0}
+.muted{color:var(--muted);font-size:.88rem}
+.num{font-variant-numeric:tabular-nums}
+.hero{border-radius:22px;padding:20px 22px;color:#fff;background:linear-gradient(235deg,#1D6F68 0%,#2A9D8F 55%,#E9A23B 100%);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.hero .muted{color:rgba(255,255,255,.88)}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:14px;padding:8px 14px;text-align:center;min-width:92px}
+.chip b{display:block;font-size:1.5rem;line-height:1.1}
+.chip span{font-size:.8rem;opacity:.92}
+.btn{font:inherit;border:0;border-radius:12px;padding:11px 18px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;justify-content:center}
+.btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.b-main{background:var(--sea);color:#fff}
+.b-main:hover{background:var(--sea-deep)}
+.b-sun{background:var(--sun);color:#2b1c00}
+.b-leaf{background:var(--leaf);color:#fff}
+.b-ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.b-white{background:#fff;color:var(--sea-deep)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.wait{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.clock{font-size:2.6rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--sea-deep);min-width:5ch}
+:root[data-theme="dark"] .clock{color:var(--sea)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .clock{color:var(--sea)}}
+.bar{height:8px;border-radius:99px;background:var(--soft-sea);overflow:hidden;flex:1;min-width:160px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(270deg,var(--sea),var(--leaf));border-radius:99px}
+.card{border:2px solid var(--line);transition:border-color .4s,box-shadow .4s}
+.card.ring{border-color:var(--sun);box-shadow:0 0 0 6px var(--soft-sun)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tag{font-size:.8rem;border-radius:99px;padding:2px 10px;background:var(--soft-sea);color:var(--fg)}
+.tag.sun{background:var(--soft-sun)}
+label{font-size:.82rem;color:var(--muted);display:block;margin-bottom:4px}
+input[type=text],textarea{width:100%;box-sizing:border-box;font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+textarea{min-height:260px;line-height:1.7;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:1px}
+.att{display:flex;align-items:center;gap:8px;background:var(--soft-leaf);border-radius:12px;padding:8px 12px;font-size:.9rem;direction:ltr;justify-content:flex-end}
+.att svg{width:18px;height:18px;flex:none}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.note{border-radius:12px;padding:10px 12px;font-size:.9rem}
+.n-ok{background:var(--soft-leaf)} .n-warn{background:var(--soft-sun)} .n-bad{background:var(--soft-coral)}
+.steps{margin:0;padding:0 18px 0 0;display:flex;flex-direction:column;gap:4px}
+.list{width:100%;border-collapse:collapse;font-size:.88rem}
+.list tr.row{cursor:pointer}
+.list tr.row:hover td{background:var(--soft-sea)}
+.list tr.row.on td{background:var(--soft-sun)}
+.list tr.row:focus-visible{outline:2px solid var(--sea)}
+.list td,.list th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+.list th{color:var(--muted);font-weight:600;font-size:.8rem}
+.st{font-size:.78rem;border-radius:99px;padding:1px 9px;white-space:nowrap}
+.st-ready{background:var(--soft-sea)} .st-approved{background:var(--soft-sun)} .st-sent{background:var(--soft-leaf)} .st-skipped,.st-failed{background:var(--soft-coral)} .st-saved{background:var(--soft-leaf);border:1px dashed var(--leaf)}
+.about{background:var(--soft-sea);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.about-h{font-weight:700;font-size:.92rem}
+.about ul{margin:0;padding:0 18px 0 0;font-size:.9rem;color:var(--muted)}
+.about a{color:var(--sea-deep);font-size:.88rem;font-weight:600}
+.tr{background:var(--soft-sun);border-radius:14px;padding:10px 14px}
+.tr summary{cursor:pointer;font-weight:700;font-size:.9rem}
+.tr-sub{font-weight:600;margin:8px 0 4px}
+#mTrBody p{margin:0 0 8px}
+#mTrBody ul{margin:0 0 8px;padding:0 18px 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.facts>div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.facts .fl{font-size:.78rem;color:var(--muted)}
+.facts b{font-size:1.05rem;font-variant-numeric:tabular-nums}
+.list td.when{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.chip-rep{color:#fff;text-decoration:none;cursor:pointer}
+.chip-rep.has{background:#fff;color:var(--sea-deep);border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+.replies{display:flex;flex-direction:column;gap:10px}
+.reply{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:var(--bg)}
+.reply.new{border-color:var(--sun);box-shadow:0 0 0 3px var(--soft-sun)}
+.reply .rh{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.reply .rt{white-space:pre-wrap;font-size:.92rem;line-height:1.7;max-height:12em;overflow:auto;direction:auto}
+.reply a{color:var(--sea-deep);font-weight:600;font-size:.88rem}
+.mini{font:inherit;font-size:.78rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:2px 8px;cursor:pointer}
+.tw{overflow-x:auto}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width 1s linear}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
+
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <h1>مكتب الإرسال</h1>
+      <p class="muted">راجع كل رسالة وعدّلها، ثم أضفها لطابور الإرسال. أنا أرسلها تلقائياً ليلاً ونهاراً ضمن الحد الآمن.</p>
+    </div>
+    <div class="stats">
+      <div class="chip" title="كل الرسائل التي وصلت للجهات بلا ارتداد منذ البداية"><b class="num" id="sOk">0</b><span id="sOkLbl">وصلت بنجاح</span></div>
+      <div class="chip"><b class="num" id="sToday">0</b><span>أرسلت اليوم</span></div>
+      <div class="chip"><b class="num" id="sMax">30</b><span>حصة اليوم</span></div>
+      <div class="chip"><b class="num" id="sApproved">0</b><span>في طابور الإرسال</span></div>
+      <div class="chip"><b class="num" id="sLeft">0</b><span>بانتظار مراجعتك</span></div>
+      <div class="chip"><b class="num" id="sReserve">0</b><span>بدائل جاهزة</span></div>
+      <a class="chip chip-rep" id="sRepChip" href="#repliesPanel"><b class="num" id="sReplies">0</b><span id="sRepLbl">ردود الجهات</span></a>
+      <a class="chip chip-rep" id="sNeedChip" href="#needPanel"><b class="num" id="sNeed">0</b><span>تحتاجك</span></a>
+      <a class="chip chip-rep" id="sCarChip" href="#careersPanel"><b class="num" id="sCareers">0</b><span id="sCarLbl">صفحات توظيف</span></a>
+    </div>
+  </section>
+
+  <div id="banner" class="note n-warn" hidden></div>
+
+  <section class="panel" id="jobsPanel" hidden>
+    <div class="meta"><h2>فرص عمل معلنة</h2><span class="st st-approved">أولوية</span><span class="st st-sent" id="jobsCount">0</span></div>
+    <p class="muted">وظائف معلنة تناسبك وجدتها (من الإعلانات وتنبيهات LinkedIn وصفحات التوظيف). افتح الرابط وقدّم، وانسخ نص الطلب الجاهز للصقه في خانة الرسالة أو Cover letter، ثم اضغط "قدّمت عبر الموقع".</p>
+    <div class="replies" id="jobsList"></div>
+  </section>
+
+  <section class="panel" id="autoPanel">
+    <div class="meta"><h2>الإرسال التلقائي</h2><span class="st" id="autoState">يعمل</span></div>
+    <p class="muted" id="autoText">أرسل كل ساعة رسالة أو رسالتين من طابور الإرسال، حتى الحد اليومي، مع السيرة المناسبة لكل جهة.</p>
+    <div class="facts">
+      <div><span class="fl">الجولة القادمة</span><b id="fNext">—</b><span class="muted" id="fNextIn"></span></div>
+      <div><span class="fl">آخر رسالة أُرسلت</span><b id="fLast">—</b><span class="muted" id="fLastName"></span></div>
+      <div><span class="fl">ينتهي الطابور تقريباً</span><b id="fEnd">—</b><span class="muted" id="fEndN"></span></div>
+      <div><span class="fl">تعذّر إرسالها / ارتدّت</span><b id="fFail">0</b><span class="muted">تظهر بالأحمر في القائمة</span></div>
+    </div>
+    <p class="muted">المواعيد بتوقيت الأردن. الجولات عند الدقيقة 58 من كل ساعة، وقد تتأخر دقائق قليلة. الرسالة الثانية في الجولة تخرج بعد 2–5 دقائق من الأولى.</p>
+    <div class="actions"><button class="btn b-ghost" id="pauseBtn" type="button">إيقاف مؤقت</button></div>
+  </section>
+
+  <section class="panel card" id="msgPanel" hidden>
+    <div class="meta">
+      <h2 id="mName"></h2>
+      <span class="tag" id="mCountry"></span>
+      <span class="tag sun" id="mType"></span>
+      <span class="tag" id="mPos"></span>
+    </div>
+    <div class="about" id="mAbout" hidden>
+      <div class="about-h">نبذة عن الجهة <span class="muted" id="mCity"></span></div>
+      <p id="mAboutText"></p>
+      <ul id="mFacts"></ul>
+      <a id="mLink" href="#" target="_blank" rel="noopener" hidden>موقع الجهة</a>
+      <a id="mCareers" href="#" target="_blank" rel="noopener" hidden>صفحة التوظيف عندهم: قدّم عبر موقعهم أيضاً</a>
+    </div>
+    <div class="note n-bad" id="mWarn" hidden></div>
+    <div><label for="mTo">إلى</label><input type="text" id="mTo" dir="ltr"></div>
+    <div><label for="mSubject">الموضوع</label><input type="text" id="mSubject"></div>
+    <div><label for="mBody">نص الرسالة (الفقرات يفصلها سطر فارغ، والسطر الذي يبدأ بـ "- " يصبح نقطة. التوقيع يُضاف تلقائياً)</label><textarea id="mBody"></textarea></div>
+    <details class="tr" id="mTr" hidden open>
+      <summary>الترجمة العربية (للفهم فقط، الرسالة تُرسل بالإنجليزية)</summary>
+      <p class="tr-sub" id="mTrSub"></p>
+      <div id="mTrBody"></div>
+      <p class="muted" id="mTrStale" hidden>عدّلت النص الإنجليزي، فهذه ترجمة النسخة الأصلية.</p>
+    </details>
+    <div class="att"><span id="mAtt"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L10 17.8a1.7 1.7 0 0 1-2.4-2.4L15.5 7.5"/></svg></div>
+    <div id="mNote" class="note" hidden></div>
+    <div class="actions">
+      <button class="btn b-main" id="approveBtn" type="button">أضف لطابور الإرسال</button>
+      <button class="btn b-ghost" id="skipBtn" type="button">أجّلها</button>
+      <button class="btn b-ghost" id="dropBtn" type="button">استبعدها</button>
+      <button class="btn b-ghost" id="saveBtn" type="button">احفظها في ملف الإكسل</button>
+    </div>
+  </section>
+
+  <section class="panel" id="donePanel" hidden>
+    <h2>راجعت كل الرسائل</h2>
+    <p class="muted">لا توجد رسائل بانتظار مراجعتك. ما أضفته للطابور سيُرسل تلقائياً. لدفعة جديدة اطلب من Claude: تقديم ايميل</p>
+  </section>
+
+  <section class="panel" id="repliesPanel">
+    <div class="meta"><h2>ردود الجهات</h2><span class="st st-sent" id="repCount">0</span><span class="st st-approved" id="repNew" hidden></span></div>
+    <p class="muted" id="repInfo">أفحص بريدك كل ساعة بحثاً عن ردود من الجهات التي راسلتها، وأضعها هنا مع نص الرد ورابط المحادثة في Gmail.</p>
+    <div class="replies" id="repList"><p class="muted">لا توجد ردود بعد. الردود تحتاج عادة من أيام إلى أسابيع، وستظهر هنا فور وصولها.</p></div>
+  </section>
+
+  <section class="panel" id="needPanel">
+    <div class="meta"><h2>تحتاجك أنت</h2><span class="st st-approved" id="needCount">0</span></div>
+    <p class="muted">صفحات توظيف لم أستطع إكمالها لأنها تطلب شيئاً لا أملكه أو لا أفعله نيابة عنك: صورة الجواز، بيانات شخصية غير موجودة في السيرة، إنشاء حساب، أو "لست روبوتاً". كل جهة معها ما ينقصها بالضبط. ارجع لها متى شئت، وبعد التقديم اضغط "قدّمت عبر الموقع".</p>
+    <div class="replies" id="needList"><p class="muted">جارٍ التحميل...</p></div>
+  </section>
+
+  <section class="panel" id="careersPanel">
+    <div class="meta"><h2>صفحات التوظيف</h2><span class="st st-sent" id="carCount">0</span><span class="st st-approved" id="carDone" hidden></span></div>
+    <p class="muted">جهات لها صفحة توظيف على موقعها، مرتبة حسب احتمال التوظيف (قطر أولاً). افتح الرابط وقدّم عبر الموقع، ثم اضغط "قدّمت عبر الموقع" حتى أسجّلها. الملف نفسه في output/careers_pages.xlsx في المشروع.</p>
+    <div class="actions"><button class="btn b-leaf" id="carAuto" type="button">قدّم عني (Claude + Chrome)</button><button class="btn b-sun" id="carNext" type="button">ابدأ التقديم على الجهة التالية</button></div>
+    <p class="muted" id="carAutoInfo">زر "قدّم عني" يطلب من Claude أن يفتح صفحات التوظيف في Chrome على جهازك ويعبّئ النماذج ويرفع سيرتك. يعمل عندما تكون جلسة Claude مفتوحة على جهازك مع إضافة Claude in Chrome، واكتب لها: "تقديم ويب".</p>
+    <div class="note n-ok" id="carMsg" hidden></div>
+    <p class="muted">زر "ابدأ التقديم" يفتح صفحة التوظيف في تبويب جديد، وينزّل السيرة المناسبة (بدون الدكتوراه للمدارس)، وينسخ نص طلب جاهز تلصقه في خانة الرسالة أو "Cover letter". الصفحة لا تستطيع تعبئة نماذج المواقع بنفسها؛ لتعبئة تلقائية اطلب من Claude بعد ربط Chrome على جهازك.</p>
+    <div class="replies" id="carList"><p class="muted">جارٍ التحميل...</p></div>
+  </section>
+
+  <section class="panel" id="savedPanel">
+    <div class="meta"><h2>المحفوظة للرجوع</h2><span class="st st-saved" id="savedCount">0</span></div>
+    <p class="muted">الجهات التي ضغطت لها "احفظها في ملف الإكسل". لا تُرسل، وتبقى بكل معلوماتها (الإيميل، الموقع، النبذة، نص الرسالة). كما أحفظها أنا أيضاً في الملف output/saved_for_later.xlsx في المشروع.</p>
+    <div class="actions"><button class="btn b-sun" id="xlsBtn" type="button">نزّل ملف الإكسل</button><button class="btn b-ghost" id="xlsAllBtn" type="button">نزّل كل الرسائل في إكسل</button></div>
+  </section>
+
+  <section class="panel">
+    <h2>الرسائل</h2>
+    <p class="muted">مرتبة حسب موعد الإرسال المتوقع: طابور الإرسال أولاً (الأقرب فالأبعد)، ثم ما ينتظر مراجعتك، ثم الباقي، ثم آخر 20 رسالة أُرسلت.</p>
+    <p class="muted" id="hiddenNote" hidden></p>
+    <div class="tw"><table class="list"><thead><tr><th>#</th><th>الجهة</th><th>الدولة</th><th>الحالة</th><th>الموعد</th><th></th></tr></thead><tbody id="qBody"><tr><td colspan="6" class="muted">جارٍ التحميل…</td></tr></tbody></table></div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const S = { db: null, mcp: null, rows: [], cfg: { daily_max: 30, gap_min: 2, gap_max: 5, window: ["08:30", "14:00"] },
+              current: null };
+  const COUNTRY = { Jordan: "الأردن", Qatar: "قطر", Saudi: "السعودية", UAE: "الإمارات", Kuwait: "الكويت", Oman: "عُمان", Bahrain: "البحرين" };
+  const todayKey = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+  const lsGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  const lsSet = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
+
+  function banner(text, kind) { const b = $("banner"); if (!text) { b.hidden = true; return; } b.textContent = text; b.className = "note " + (kind || "n-warn"); b.hidden = false; }
+  function note(text, kind) { const n = $("mNote"); if (!text) { n.hidden = true; return; } n.textContent = text; n.className = "note " + (kind || "n-ok"); n.hidden = false; }
+
+  // ---------- data ----------
+  const sentToday = () => S.rows.filter((r) => r.status === "sent" && String(r.sent_at || "").slice(0, 10) === todayKey()).length;
+  const pending = () => S.rows.filter((r) => r.status === "ready").sort((a, b) => (b.priority ? 1 : 0) - (a.priority ? 1 : 0) || (a.later || 0) - (b.later || 0) || a.n - b.n);
+  const approved = () => S.rows.filter((r) => r.status === "approved");
+  const LABEL = { ready: "بانتظار مراجعتك", approved: "في طابور الإرسال", sent: "أُرسلت", skipped: "مستبعدة", failed: "تعذّر إرسالها", saved: "محفوظة للرجوع" };
+
+  function renderStats() {
+    $("sToday").textContent = sentToday(); $("sMax").textContent = S.cfg.daily_max;
+    { const ok = S.rows.filter((r) => r.status === "sent").length, bad = S.rows.filter((r) => r.status === "failed").length;
+      $("sOk").textContent = ok; $("sOkLbl").textContent = bad ? `وصلت بنجاح (${bad} ارتدّت)` : "وصلت بنجاح"; }
+    $("sApproved").textContent = approved().length; $("sLeft").textContent = pending().length;
+    $("savedCount").textContent = S.rows.filter((r) => r.status === "saved").length;
+    $("sReserve").textContent = S.rows.filter((r) => r.status === "reserve").length;
+    queueMicrotask(renderFacts);
+    const paused = !!S.cfg.paused, st = $("autoState");
+    st.textContent = paused ? "متوقف مؤقتاً" : "يعمل"; st.className = "st " + (paused ? "st-skipped" : "st-sent");
+    $("pauseBtn").textContent = paused ? "استئناف الإرسال" : "إيقاف مؤقت";
+    const left = Math.max(0, S.cfg.daily_max - sentToday());
+    $("autoText").textContent = paused ? "الإرسال التلقائي متوقف. ما في الطابور ينتظر حتى تستأنف."
+      : approved().length ? `في الطابور ${approved().length} رسالة. أرسل كل ساعة رسالة أو رسالتين، وبقي اليوم ${left} من ${S.cfg.daily_max}.`
+      : "الطابور فارغ. أضف رسائل بعد مراجعتها وسأرسلها تلقائياً.";
+    S.paused = paused; const sched = schedule();
+    const tb = $("qBody"); tb.replaceChildren();
+    // keep the board light: every message still in progress, plus only the 20 most recently sent (older ones stay in the logs on GitHub)
+    const sentAll = S.rows.filter((x) => x.status === "sent").sort((a, b) => String(b.sent_at || "").localeCompare(String(a.sent_at || "")));
+    const recentSent = new Set(sentAll.slice(0, 20).map((x) => x.id));
+    const rows = S.rows.filter((x) => x.status !== "reserve" && (x.status !== "sent" || recentSent.has(x.id))).sort((a, b) => {
+      // order by expected send time: queued (approved) in send order, then waiting for review, then others, then sent (newest first)
+      const grp = (x) => x.status === "approved" ? 0 : x.status === "ready" ? 1 : x.status === "sent" ? 3 : 2;
+      const g = grp(a) - grp(b); if (g) return g;
+      if (grp(a) === 0) return (b.priority ? 1 : 0) - (a.priority ? 1 : 0) || String(a.approved_at || "").localeCompare(String(b.approved_at || "")) || a.n - b.n;
+      if (grp(a) === 1) return (a.later || 0) - (b.later || 0) || a.n - b.n;
+      if (grp(a) === 3) return String(b.sent_at || "").localeCompare(String(a.sent_at || ""));
+      return a.n - b.n;
+    });
+    const hiddenSent = Math.max(0, sentAll.length - 20), hn = $("hiddenNote");
+    if (hn) { hn.hidden = !hiddenSent; hn.textContent = `مخفية ${hiddenSent} رسالة مرسلة أقدم (تظهر آخر 20 فقط). كلها محفوظة في سجل الإرسال applications_log.xlsx على GitHub.`; }
+    if (!rows.length) { const td = tb.insertRow().insertCell(); td.colSpan = 5; td.className = "muted"; td.textContent = "لا توجد رسائل. اطلب من Claude: تقديم ايميل"; return; }
+    rows.forEach((r) => {
+      const tr = tb.insertRow(); tr.className = "row" + (S.current && S.current.id === r.id ? " on" : ""); tr.tabIndex = 0;
+      tr.addEventListener("click", (ev) => { if (ev.target.closest("button")) return; nextMessage(r); renderStats(); });
+      tr.addEventListener("keydown", (ev) => { if (ev.key === "Enter") { nextMessage(r); renderStats(); } });
+      tr.insertCell().textContent = r.n; tr.insertCell().textContent = r.name; tr.insertCell().textContent = COUNTRY[r.country] || r.country;
+      const s = document.createElement("span"); s.className = "st st-" + r.status; s.textContent = LABEL[r.status] || r.status;
+      if (r.status === "sent" && r.sent_at) s.title = r.sent_at;
+      tr.insertCell().append(s);
+      const when = tr.insertCell(); when.className = "when";
+      if (r.status === "sent" && r.sent_at) when.textContent = "أُرسلت " + fmtStamp(r.sent_at);
+      else if (r.status === "approved") when.textContent = S.paused ? "متوقف مؤقتاً" : (sched[r.id] ? "متوقع: " + sched[r.id] : "—");
+      else if (r.status === "saved" && r.saved_at) when.textContent = "حُفظت " + fmtStamp(r.saved_at);
+      else if (r.status === "ready") when.textContent = "بعد موافقتك";
+      const c = tr.insertCell();
+      if (r.status === "approved" || r.status === "skipped" || r.status === "failed" || r.status === "saved") {
+        const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "أعدها للمراجعة";
+        b.addEventListener("click", () => setStatus(r, { status: "ready", approved_at: "" }));
+        c.append(b);
+      }
+    });
+  }
+
+  async function setStatus(r, patch) {
+    try { await S.db.doc("queue/" + r.id).update(patch); Object.assign(r, patch); renderStats(); if (!S.current) nextMessage(); return true; }
+    catch (e) { banner("لم أستطع حفظ التغيير. تأكد أنك مسجّل الدخول وحاول مجدداً.", "n-bad"); return false; }
+  }
+
+  // ---------- timing (Asia/Amman), mirrors scripts/pipeline.py send-plan ----------
+  const AFMT = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Amman", hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short" });
+  const WD = { Sun: "الأحد", Mon: "الاثنين", Tue: "الثلاثاء", Wed: "الأربعاء", Thu: "الخميس", Fri: "الجمعة", Sat: "السبت" };
+  function amman(ms) { const p = {}; AFMT.formatToParts(new Date(ms)).forEach((x) => { p[x.type] = x.value; }); return { day: `${p.year}-${p.month}-${p.day}`, h: +p.hour % 24, mi: +p.minute, hm: `${p.hour}:${p.minute}`, wd: WD[p.weekday] || p.weekday, dm: `${+p.day}/${+p.month}` }; }
+  function dayLabel(a) { const t = amman(Date.now()), tm = amman(Date.now() + 864e5); return a.day === t.day ? "اليوم" : a.day === tm.day ? "غداً" : `${a.wd} ${a.dm}`; }
+  function fmtStamp(s) { const d = String(s).replace(" ", "T"); const t = amman(Date.now()); const day = d.slice(0, 10), hm = d.slice(11, 16); const lbl = day === t.day ? "اليوم" : day === amman(Date.now() - 864e5).day ? "أمس" : `${+day.slice(8, 10)}/${+day.slice(5, 7)}`; return `${lbl} ${hm}`; }
+  function schedule() {
+    const out = {}; S.endAt = null; S.nextRun = null; const now = Date.now(), a0 = amman(now);
+    let run = now + (((58 - a0.mi) + 60) % 60 || 60) * 60000; if (a0.mi < 58) run = now + (58 - a0.mi) * 60000;
+    S.nextRun = run;
+    const q = approved().slice().sort((x, y) => (y.priority ? 1 : 0) - (x.priority ? 1 : 0) || String(x.approved_at || "").localeCompare(String(y.approved_at || "")) || x.n - y.n);
+    if (S.cfg.paused || !q.length) return out;
+    const sentBy = {}; S.rows.forEach((r) => { if (r.status === "sent" && r.sent_at) { const d = String(r.sent_at).slice(0, 10); sentBy[d] = (sentBy[d] || 0) + 1; } });
+    let i = 0, guard = 0;
+    while (i < q.length && guard++ < 24 * 60) {
+      const a = amman(run), max = +S.cfg.daily_max || 30, rem = Math.max(0, max - (sentBy[a.day] || 0)), runsLeft = Math.max(1, 24 - a.h);
+      const k = rem ? Math.min(max > 48 ? 3 : 2, q.length - i, rem, Math.floor(rem / runsLeft + 0.5 - 1e-9)) : 0;
+      for (let j = 0; j < k; j++) { const at = run + j * 3.5 * 60000, b = amman(at); out[q[i].id] = `${dayLabel(b)} ${j ? "حوالي " : ""}${b.hm}`; S.endAt = at; i++; }
+      sentBy[a.day] = (sentBy[a.day] || 0) + k; run += 3600000;
+    }
+    return out;
+  }
+  function renderFacts() {
+    const paused = !!S.cfg.paused, nr = S.nextRun ? amman(S.nextRun) : null;
+    $("fNext").textContent = paused ? "متوقف" : nr ? `${dayLabel(nr)} ${nr.hm}` : "—";
+    const mins = S.nextRun ? Math.max(0, Math.round((S.nextRun - Date.now()) / 60000)) : 0;
+    $("fNextIn").textContent = paused ? "اضغط استئناف الإرسال" : approved().length ? `بعد ${mins} دقيقة` : "لا شيء في الطابور";
+    const sent = S.rows.filter((r) => r.status === "sent" && r.sent_at).sort((x, y) => String(y.sent_at).localeCompare(String(x.sent_at)));
+    $("fLast").textContent = sent[0] ? fmtStamp(sent[0].sent_at) : "لم يُرسل شيء بعد"; $("fLastName").textContent = sent[0] ? sent[0].name : "";
+    if (S.endAt && !paused) { const e = amman(S.endAt); $("fEnd").textContent = `${dayLabel(e)} ${e.hm}`; $("fEndN").textContent = `${approved().length} رسالة في الطابور`; }
+    else { $("fEnd").textContent = "—"; $("fEndN").textContent = ""; }
+    $("fFail").textContent = S.rows.filter((r) => r.status === "failed").length;
+  }
+  setInterval(() => { renderStats(); }, 60000);
+
+  function show(id) { ["msgPanel", "donePanel"].forEach((p) => { $(p).hidden = p !== id; }); }
+
+  function nextMessage(target, quiet) {
+    const r = target || pending()[0]; S.current = r || null; S.pinned = !!target;
+    if (!r) { show(S.rows.length ? "donePanel" : ""); return; }
+    const locked = r.status === "sent";
+    ["mTo", "mSubject", "mBody"].forEach((id) => { $(id).readOnly = locked; });
+    $("approveBtn").hidden = locked; $("skipBtn").hidden = locked || r.status !== "ready"; $("dropBtn").hidden = locked || r.status === "skipped"; $("saveBtn").hidden = locked || r.status === "saved";
+    $("approveBtn").textContent = r.status === "approved" ? "احفظ التعديل (تبقى في الطابور)" : "أضف لطابور الإرسال";
+    $("mName").textContent = r.name; $("mCountry").textContent = COUNTRY[r.country] || r.country; $("mType").textContent = r.type || "";
+    $("mPos").textContent = (r.priority ? "أولوية: رد على جهة · " : "") + (r.status === "ready" ? `بقي ${pending().length} للمراجعة` : "") + (r.status === "ready" ? "" : (LABEL[r.status] || r.status) + (r.sent_at ? " · " + r.sent_at.replace("T", " ") : ""));
+    $("mTo").value = r.to; $("mSubject").value = r.subject;
+    const ta = $("mBody"); ta.value = r.body; ta.dir = r.lang === "AR" ? "rtl" : "ltr"; $("mSubject").dir = ta.dir;
+    $("mAtt").textContent = [r.send_name].concat(r.extra_send_names || []).join("  +  "); note(locked ? "هذه الرسالة أُرسلت، للعرض فقط." : r.status === "failed" ? "تعذّر إرسالها: " + (r.error || "خطأ غير معروف") : "", locked ? "n-ok" : "n-bad"); $("approveBtn").disabled = false;
+    if (target && !quiet) $("msgPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    $("mCity").textContent = r.city ? "· " + r.city : "";
+    $("mAboutText").textContent = r.about || "لا تتوفر نبذة عن هذه الجهة بعد.";
+    const fl = $("mFacts"); fl.replaceChildren(); (Array.isArray(r.about_facts) ? r.about_facts : []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; fl.append(li); });
+    const ln = $("mLink"), u = r.about_url || r.website || ""; ln.hidden = !/^https?:\/\//.test(u); if (!ln.hidden) ln.href = u;
+    const cl = $("mCareers"), cu = r.careers_url || "";
+    const carDone = (S.careers_all || []).some((c) => c.applied && c.url && c.url === cu);
+    cl.hidden = !/^https?:\/\//.test(cu) || carDone; if (!cl.hidden) cl.href = cu;
+    $("mAbout").hidden = !(r.about || fl.children.length);
+    const tr = $("mTr"), tb = $("mTrBody"); tb.replaceChildren();
+    if (r.lang === "EN" && r.body_ar) {
+      $("mTrSub").textContent = r.subject_ar || "";
+      r.body_ar.split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean).forEach((b) => {
+        const lines = b.split("\n").map((l) => l.trim()).filter(Boolean);
+        if (lines.every((l) => l.startsWith("- "))) { const ul = document.createElement("ul"); lines.forEach((l) => { const li = document.createElement("li"); li.textContent = l.slice(2); ul.append(li); }); tb.append(ul); }
+        else { const p = document.createElement("p"); p.textContent = lines.join(" "); tb.append(p); }
+      });
+      tr.hidden = false;
+      const stale = () => { $("mTrStale").hidden = $("mBody").value === r.body; }; stale(); $("mBody").oninput = stale;
+    } else { tr.hidden = true; $("mBody").oninput = null; }
+    const wn = $("mWarn"); wn.textContent = r.warn ? "تنبيه: " + r.warn + " قد تفضّل استبعادها." : ""; wn.hidden = !r.warn;
+    show("msgPanel");
+  }
+
+  async function approve() {
+    const r = S.current; if (!r) return;
+    const to = $("mTo").value.trim(), subject = $("mSubject").value.trim(), body = $("mBody").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) { note("عنوان الإيميل غير صحيح. صحّحه أولاً.", "n-bad"); return; }
+    if (!subject || body.length < 40) { note("الموضوع أو النص فارغ أو قصير جداً.", "n-bad"); return; }
+    $("approveBtn").disabled = true;
+    const edited = to !== r.to || subject !== r.subject || body !== r.body.trim();
+    const ok = await setStatus(r, { to, subject, body, edited: edited || !!r.edited, status: "approved", approved_at: r.status === "approved" && r.approved_at ? r.approved_at : new Date().toISOString().slice(0, 19) });
+    if (ok) { S.current = null; nextMessage(); }
+    else $("approveBtn").disabled = false;
+  }
+
+  $("approveBtn").addEventListener("click", approve);
+  // replacement: when a message is postponed, excluded or saved for later, promote the next reserve message (another organization) to review at once
+  async function promoteReserve(forRow) {
+    const res = S.rows.filter((x) => x.status === "reserve").sort((a, b) => a.n - b.n)[0];
+    if (!res) { banner("لا توجد رسائل احتياطية الآن لتعويضها. سأجهّز بدائل جديدة في التجهيز الصباحي.", "n-warn"); return; }
+    try {
+      await S.db.doc("queue/" + res.id).update({ status: "ready", promoted_for: forRow.id, promoted_at: new Date().toISOString().slice(0, 19) });
+      res.status = "ready"; banner(`أضفت رسالة بديلة لجهة أخرى: ${res.name} (${COUNTRY[res.country] || res.country}).`, "n-ok"); setTimeout(() => banner(""), 5000);
+    } catch (e) { banner("تعذّر إضافة رسالة بديلة. أعد تحميل الصفحة.", "n-bad"); }
+  }
+  $("skipBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { later: Date.now() }); await promoteReserve(r); nextMessage(); });
+  $("dropBtn").addEventListener("click", async () => { const r = S.current; if (!r) return; S.current = null; await setStatus(r, { status: "skipped" }); await promoteReserve(r); nextMessage(); });
+  $("saveBtn").addEventListener("click", async () => {
+    const r = S.current; if (!r) return; S.current = null;
+    await setStatus(r, { status: "saved", saved_at: new Date().toISOString().slice(0, 19), to: $("mTo").value.trim(), subject: $("mSubject").value.trim(), body: $("mBody").value });
+    await promoteReserve(r); nextMessage();
+  });
+  const COLS = [["n", "#"], ["name", "الجهة"], ["country", "الدولة"], ["city", "المدينة"], ["type", "النوع"], ["to", "الإيميل"], ["website", "الموقع"], ["about_url", "رابط المصدر"], ["about", "نبذة"], ["facts", "نقاط"], ["warn", "تنبيه"], ["status", "الحالة"], ["lang", "اللغة"], ["send_name", "السيرة"], ["subject", "الموضوع"], ["body", "نص الرسالة"], ["saved_at", "تاريخ الحفظ"], ["sent_at", "تاريخ الإرسال"]];
+  async function startApply(c) {
+    if (!c) { const cm = $("carMsg"); cm.hidden = false; cm.textContent = "قدّمت على كل صفحات التوظيف الموجودة."; return; }
+    if (/^https?:\/\//.test(c.url || "")) window.open(c.url, "_blank", "noopener");
+    let copied = false;
+    try { if (c.note && navigator.clipboard) { await navigator.clipboard.writeText(c.note); copied = true; } } catch (e) {}
+    let saved = false;
+    try {
+      const dl = await claude.use("downloads");
+      if (dl && c.cv_url) { const res = await fetch(c.cv_url); const blob = await res.blob(); await dl.save({ filename: c.send_name || "Amer_AlSaaideh_CV.pdf", data: blob }); saved = true; }
+    } catch (e) { if (e && e.code === "cancelled") saved = false; }
+    const cm = $("carMsg"); cm.hidden = false; cm.scrollIntoView({ block: "nearest" }); cm.textContent = (`فتحت صفحة التوظيف لـ ${c.name}.` + (saved ? " نزّلت السيرة " + c.send_name + "." : " لم أستطع تنزيل السيرة هنا، استخدم الملف من جهازك.") + (copied ? " ونسخت نص الطلب: الصقه في خانة الرسالة." : "") + " بعد ما تخلص اضغط \"قدّمت عبر الموقع\".");
+  }
+  // advertised vacancies (priority): own panel at the top with the job link, the ready cover text and a copy button
+  function renderJobs(jobs, db) {
+    const panel = $("jobsPanel"), list = $("jobsList");
+    panel.hidden = !jobs.length; $("jobsCount").textContent = jobs.filter((c) => !c.applied).length + " لم تقدّم بعد";
+    list.replaceChildren();
+    jobs.slice().sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0)).forEach((c) => {
+      const box = document.createElement("div"); box.className = "reply" + (c.applied ? "" : " new");
+      const h = document.createElement("div"); h.className = "rh";
+      const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}${c.city ? " · " + c.city : ""}`;
+      const b = document.createElement("span"); b.className = "st " + (c.applied ? "st-sent" : "st-approved"); b.textContent = c.applied ? "✓ قدّمت" : "أولوية";
+      h.append(t, b); box.append(h);
+      if (c.web_note) { const wn = document.createElement("div"); wn.textContent = c.web_note; box.append(wn); }
+      if (/^https?:\/\//.test(c.url || "")) {
+        const row = document.createElement("div");
+        const lb0 = document.createElement("div"); lb0.className = "muted"; lb0.textContent = /linkedin\.com/.test(c.url) ? "رابط الوظيفة على LinkedIn:" : "رابط الوظيفة:";
+        const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.dir = "ltr";
+        a.textContent = c.url; a.style.wordBreak = "break-all"; a.style.display = "block"; a.style.textAlign = "left";
+        row.append(lb0, a); box.append(row);
+      }
+      if (c.note) {
+        const lb = document.createElement("div"); lb.className = "muted"; lb.textContent = "نص الطلب الجاهز (" + (c.send_name || "") + "):";
+        const tx = document.createElement("div"); tx.className = "rt"; tx.dir = c.lang === "AR" ? "rtl" : "ltr"; tx.style.textAlign = c.lang === "AR" ? "right" : "left"; tx.textContent = c.note; tx.style.maxHeight = "none";
+        box.append(lb, tx);
+      }
+      const act = document.createElement("div"); act.className = "actions";
+      if (!c.applied) {
+        const go = document.createElement("button"); go.type = "button"; go.className = "btn b-sun"; go.textContent = "ابدأ التقديم (يفتح الرابط وينزّل السيرة)"; go.addEventListener("click", () => startApply(c)); act.append(go);
+      }
+      if (c.note) {
+        const cp = document.createElement("button"); cp.type = "button"; cp.className = "mini"; cp.textContent = "انسخ النص";
+        cp.addEventListener("click", async () => { try { await navigator.clipboard.writeText(c.note); cp.textContent = "تم النسخ ✓"; } catch (e) { cp.textContent = "انسخه يدوياً من الأعلى"; } });
+        act.append(cp);
+      }
+      const done = document.createElement("button"); done.type = "button"; done.className = "mini";
+      done.textContent = c.applied ? "تراجع (ضغطتها بالخطأ)" : "قدّمت عبر الموقع";
+      done.addEventListener("click", () => db.doc("careers/" + c.id).update(c.applied ? { applied: false, applied_at: "" } : { applied: true, applied_at: new Date().toISOString().slice(0, 16), applied_by: "user" }).catch(() => {}));
+      act.append(done); box.append(act); list.append(box);
+    });
+  }
+  function renderNeeds(needs, db) {
+    $("needCount").textContent = needs.length; $("sNeed").textContent = needs.length; $("sNeedChip").classList.toggle("has", needs.length > 0);
+    const list = $("needList");
+    if (!needs.length) { list.innerHTML = '<p class="muted">لا شيء ينتظرك هنا الآن.</p>'; return; }
+    list.replaceChildren();
+    needs.forEach((c) => {
+      const box = document.createElement("div"); box.className = "reply new";
+      const h = document.createElement("div"); h.className = "rh";
+      const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}`;
+      const k = document.createElement("span"); k.className = "st st-approved"; k.textContent = c.needs_kind || "تحتاجك";
+      h.append(t, k);
+      const why = document.createElement("div"); why.textContent = c.needs;
+      box.append(h, why);
+      if (Array.isArray(c.needs_fields) && c.needs_fields.length) {
+        const ul = document.createElement("ul"); ul.className = "muted"; ul.style.margin = "0"; ul.style.paddingRight = "18px";
+        c.needs_fields.forEach((f) => { const li = document.createElement("li"); li.textContent = f; ul.append(li); }); box.append(ul);
+      }
+      if (c.needs_done) { const d = document.createElement("div"); d.className = "muted"; d.textContent = "جاهز من طرفي: " + c.needs_done; box.append(d); }
+      const act = document.createElement("div"); act.className = "actions";
+      const go = document.createElement("button"); go.type = "button"; go.className = "btn b-sun"; go.textContent = "ابدأ التقديم"; go.addEventListener("click", () => startApply(c)); act.append(go);
+      if (/^https?:\/\//.test(c.url || "")) { const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التوظيف"; act.append(a); }
+      const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قدّمت عبر الموقع";
+      b.addEventListener("click", () => db.doc("careers/" + c.id).update({ applied: true, applied_at: new Date().toISOString().slice(0, 16), applied_by: "user" }).catch(() => {}));
+      act.append(b); box.append(act); list.append(box);
+    });
+  }
+  $("carNext").addEventListener("click", () => startApply((S.careers || []).find((c) => !c.applied)));
+  $("carAuto").addEventListener("click", async () => {
+    const left = (S.careers || []).filter((c) => !c.applied);
+    const cm = $("carMsg"); cm.hidden = false;
+    if (!left.length) { cm.textContent = "قدّمت على كل صفحات التوظيف الموجودة."; return; }
+    try {
+      await S.db.doc("config/web_apply").set({ requested: true, requested_at: new Date().toISOString().slice(0, 16), status: "waiting", count: left.length });
+      cm.textContent = `طلبت من Claude التقديم عنك على ${left.length} صفحة توظيف، بالترتيب. افتح جلسة Claude على جهازك (مع إضافة Claude in Chrome) واكتب: تقديم ويب. ستتغير حالة كل جهة هنا إلى "قدّمت" بعد التقديم.`;
+    } catch (e) { cm.textContent = "لم أستطع حفظ الطلب. أعد تحميل الصفحة."; }
+  });
+  S.db && 0;
+  async function downloadXlsx(rows, filename) {
+    if (!window.XLSX) { banner("تعذّر تحميل أداة الإكسل. أعد تحميل الصفحة.", "n-bad"); return; }
+    if (!rows.length) { banner("لا توجد رسائل لحفظها بعد.", "n-warn"); return; }
+    const aoa = [COLS.map((c) => c[1])].concat(rows.slice().sort((a, b) => a.n - b.n).map((r) => COLS.map(([k]) => k === "facts" ? (r.about_facts || []).join(" | ") : k === "country" ? (COUNTRY[r.country] || r.country) : k === "status" ? (LABEL[r.status] || r.status) : (r[k] ?? ""))));
+    const ws = XLSX.utils.aoa_to_sheet(aoa); ws["!cols"] = COLS.map(([k]) => ({ wch: k === "body" || k === "about" ? 60 : k === "n" ? 5 : 22 }));
+    const wb = XLSX.utils.book_new(); wb.Workbook = { Views: [{ RTL: true }] }; XLSX.utils.book_append_sheet(wb, ws, "الجهات");
+    const data = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const dl = await claude.use("downloads");
+    if (!dl) { banner("التنزيل غير متاح هنا. الملف محفوظ في المشروع: output/saved_for_later.xlsx", "n-warn"); return; }
+    try { await dl.save({ filename, data: new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }) }); }
+    catch (e) { if (e && e.code !== "cancelled") banner("تعذّر تنزيل الملف.", "n-bad"); }
+  }
+  $("xlsBtn").addEventListener("click", () => downloadXlsx(S.rows.filter((r) => r.status === "saved"), "saved_for_later.xlsx"));
+  $("xlsAllBtn").addEventListener("click", () => downloadXlsx(S.rows, "all_messages.xlsx"));
+  $("pauseBtn").addEventListener("click", async () => {
+    try { await S.db.doc("config/settings").update({ paused: !S.cfg.paused }); } catch (e) { banner("لم أستطع تغيير حالة الإرسال.", "n-bad"); }
+  });
+
+  // ---------- boot ----------
+  renderStats();
+  (async () => {
+    const db = await claude.use("db");
+    if (!db) { banner("لا أستطيع قراءة الطابور في هذا العرض. افتح الصفحة من claude.ai وأنت مسجّل الدخول.", "n-bad"); return; }
+    S.db = db;
+    db.doc("config/settings").onSnapshot((s) => { if (s.exists) { Object.assign(S.cfg, s.data()); renderStats(); } });
+    db.collection("replies").onSnapshot((snap) => {
+      const reps = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+      const list = $("repList"); $("repCount").textContent = reps.length;
+      $("sReplies").textContent = reps.length; const unread = reps.filter((r) => !r.read).length;
+      $("sRepChip").classList.toggle("has", unread > 0); $("sRepLbl").textContent = unread ? `ردود (${unread} جديد)` : "ردود الجهات";
+      const fresh = reps.filter((r) => !r.read).length; const rn = $("repNew"); rn.hidden = !fresh; rn.textContent = fresh + " جديد";
+      if (!reps.length) return;
+      list.replaceChildren();
+      reps.forEach((r) => {
+        const box = document.createElement("div"); box.className = "reply" + (r.read ? "" : " new");
+        const h = document.createElement("div"); h.className = "rh";
+        const t = document.createElement("b"); t.textContent = `${r.name || r.from} · ${COUNTRY[r.country] || r.country || ""}`;
+        const dt = document.createElement("span"); dt.className = "muted"; dt.textContent = (r.date ? "وصل " + String(r.date).replace("T", " ").slice(0, 16) : "") + (r.sent_at ? " · أرسلنا " + String(r.sent_at).slice(0, 10) : "");
+        h.append(t, dt);
+        const sub = document.createElement("div"); sub.className = "muted"; sub.textContent = (r.from || "") + (r.subject ? " — " + r.subject : "");
+        const tx = document.createElement("div"); tx.className = "rt"; tx.textContent = r.text || "";
+        const act = document.createElement("div"); act.className = "actions";
+        if (/^https:\/\//.test(r.gmail_url || "")) { const a = document.createElement("a"); a.href = r.gmail_url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح المحادثة في Gmail وردّ عليها"; act.append(a); }
+        if (!r.read) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قرأته"; b.addEventListener("click", () => db.doc("replies/" + r.id).update({ read: true }).catch(() => {})); act.append(b); }
+        box.append(h, sub, tx, act); list.append(box);
+      });
+    }, () => {});
+    db.doc("config/web_apply").onSnapshot((d) => {
+      if (!d.exists) return; const w = d.data(); const i = $("carAutoInfo");
+      const st = { waiting: "بانتظار جلسة Claude على جهازك", running: "Claude يقدّم الآن", done: "انتهى التقديم" }[w.status] || w.status;
+      i.textContent = `طلب "قدّم عني": ${st}` + (w.current ? ` · الآن: ${w.current}` : "") + (w.done_count != null ? ` · قدّم على ${w.done_count}` : "") + (w.note ? ` · ${w.note}` : "");
+    }, () => {});
+    db.collection("careers").onSnapshot((snap) => {
+      const cs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => (a.applied ? 1 : 0) - (b.applied ? 1 : 0) || (a.rank || 0) - (b.rank || 0));
+      // "needs you": pages Claude could not finish (passport, personal data, account, CAPTCHA) get their own section
+      S.careers_all = cs;
+      renderJobs(cs.filter((c) => c.priority), db);
+      const needs = cs.filter((c) => c.needs && !c.applied); renderNeeds(needs, db);
+      const list = $("carList"); S.careers = cs.filter((c) => !(c.needs && !c.applied)); $("carCount").textContent = S.careers.length;
+      const done = cs.filter((c) => c.applied).length;
+      // counter: applied first, then what is waiting on an email approval and what needs the user
+      const byEmail = cs.filter((c) => !c.applied && (c.email_only || c.queue_doc)).length;
+      const needYou = cs.filter((c) => !c.applied && c.needs && !(c.email_only || c.queue_doc)).length;
+      $("sCareers").textContent = done; $("sCarLbl").textContent = `قدّمت من ${cs.length} صفحة توظيف · ${byEmail} بالإيميل تنتظر موافقتك · ${needYou} تحتاجك`;
+      const cd = $("carDone"); cd.hidden = !done; cd.textContent = `${done} قدّمت · ${byEmail} بالإيميل · ${needYou} تحتاجك`;
+      if (!S.careers.length) { list.innerHTML = '<p class="muted">لا توجد صفحات توظيف أخرى.</p>'; return; }
+      list.replaceChildren();
+      S.careers.forEach((c) => {
+        const box = document.createElement("div"); box.className = "reply" + (c.applied ? "" : " new");
+        const h = document.createElement("div"); h.className = "rh";
+        const t = document.createElement("b"); t.textContent = `${c.name} · ${COUNTRY[c.country] || c.country || ""}${c.city ? " · " + c.city : ""}`;
+        const st = document.createElement("span"); st.className = "muted"; st.textContent = (c.type || "") + (c.email_status ? " · إيميل: " + c.email_status : " · لم نراسلها بالإيميل بعد");
+        h.append(t, st);
+        if (c.priority) { const pb = document.createElement("span"); pb.className = "st st-approved"; pb.textContent = "أولوية – وظيفة معلنة"; h.insertBefore(pb, st); }
+        if (c.web_note) { const wn = document.createElement("div"); wn.className = "muted"; wn.textContent = c.web_note; box.append(h, wn); }
+        const act = document.createElement("div"); act.className = "actions";
+        // applied pages lose every apply control so nobody applies twice; only a small undo stays for a mistaken click
+        if (c.applied) {
+          box.className = "reply"; box.style.opacity = ".75";
+          const ok = document.createElement("span"); ok.className = "st st-sent";
+          ok.textContent = "✓ قدّمت " + String(c.applied_at || "").slice(0, 10).replace(/^(\d{4})-(\d\d)-(\d\d)$/, "$3/$2") + (c.applied_by === "claude" ? " (Claude)" : c.applied_by === "email" ? " (بالإيميل)" : "");
+          act.append(ok);
+          const u = document.createElement("button"); u.type = "button"; u.className = "mini"; u.textContent = "تراجع (ضغطتها بالخطأ)";
+          u.addEventListener("click", () => { if (confirm("إرجاع " + c.name + " إلى غير مقدَّم؟")) db.doc("careers/" + c.id).update({ applied: false, applied_at: "" }).catch(() => {}); });
+          act.append(u);
+        } else {
+          const go = document.createElement("button"); go.type = "button"; go.className = "btn b-sun"; go.textContent = "ابدأ التقديم"; go.addEventListener("click", () => startApply(c)); act.append(go);
+          if (/^https?:\/\//.test(c.url || "")) { const a = document.createElement("a"); a.href = c.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التوظيف وقدّم"; act.append(a); }
+          if (/^https?:\/\//.test(c.website || "")) { const a = document.createElement("a"); a.href = c.website; a.target = "_blank"; a.rel = "noopener"; a.textContent = "موقع الجهة"; act.append(a); }
+          const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "قدّمت عبر الموقع";
+          b.addEventListener("click", () => db.doc("careers/" + c.id).update({ applied: true, applied_at: new Date().toISOString().slice(0, 16), applied_by: "user" }).catch(() => {}));
+          act.append(b);
+        } if (!box.contains(h)) box.append(h); box.append(act); list.append(box);
+      });
+    }, () => {});
+    db.collection("queue").onSnapshot((snap) => {
+      S.rows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      // when the open message changes on the server (e.g. Claude rewrote it), show the new version unless the user is mid-edit
+      if (S.current) { const old = S.current, fresh = S.rows.find((x) => x.id === old.id); const clean = $("mBody").value === old.body && $("mSubject").value === old.subject && $("mTo").value === old.to; S.current = fresh && (S.pinned || fresh.status === "ready") ? fresh : null; if (S.current && clean) { const p = S.pinned; nextMessage(S.current, true); S.pinned = p; } }
+      renderStats(); if (!S.current) nextMessage();
+    }, () => banner("تعذّر تحميل الطابور. أعد تحميل الصفحة.", "n-bad"));
+  })();
+})();
+</script>
+
+</body></html>

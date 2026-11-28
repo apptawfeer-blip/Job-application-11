@@ -1,0 +1,667 @@
+[
+ {
+  "id": 1,
+  "fact": "مركز غير ربحي في دبي يخدم أصحاب الهمم من كل الأعمار، وفيه أقسام للمرحلة الابتدائية وتعليم الكبار والتأهيل المهني والأكاديميات الوظيفية والوسائط متعددة الحواس.",
+  "about": "مركز دبي للاحتياجات الخاصة (DCSN) مؤسسة غير ربحية في شارع الشيخ زايد قرب حديقة الصفا بدبي، تخدم أصحاب الهمم من مختلف الأعمار. تضم أقساماً للمرحلة الابتدائية وتعليم الكبار والتأهيل المهني والأكاديميات الوظيفية والقسم متعدد الحواس وبرنامج ASDAN، إلى جانب العلاج الطبيعي والوظيفي والنطق. صفحة التوظيف تعلن أنها تستقبل طلبات مستمرة لوظيفة Class Teacher (Special Needs) ووظيفة Assistant Teacher (Special Needs).",
+  "facts": [
+   "غير ربحي، ويخدم أصحاب الهمم من كل الأعمار",
+   "أقسام: ابتدائي، تعليم الكبار، تأهيل مهني، أكاديميات وظيفية، متعدد الحواس، ASDAN",
+   "علاج طبيعي ووظيفي ونطق",
+   "وظيفة معلنة باستمرار: Class Teacher (Special Needs)، والتقديم بإرسال السيرة إلى hr@dcsneeds.com مع ذكر الوظيفة في الموضوع"
+  ],
+  "url": "https://www.dcsneeds.com/careersdcsn/",
+  "limited": false,
+  "warn": "الإعلان بالإنجليزية فكتبت الرسالة بالإنجليزية. شروط الإعلان: شهادة جامعية مصدّقة، خبرة 2–4 سنوات، الأفضلية لمن لديه خبرة في الإمارات، التسجيل لدى هيئة تنمية المجتمع (CDA)، وشهادة حسن سيرة وسلوك قبل التعيين. الإيميل في الملف كان information@dcsneeds.com، واستبدلته بـ hr@dcsneeds.com لأن صفحة التوظيف الرسمية تطلبه. التقديم مستمر بلا موعد نهائي.",
+  "careers_url": "https://www.dcsneeds.com/careersdcsn/",
+  "better_email": "hr@dcsneeds.com",
+  "better_email_src": "https://www.dcsneeds.com/careersdcsn/",
+  "kind": "org",
+  "drop": false,
+  "drop_reason": "",
+  "vacancy": "Class Teacher (Special Needs) | https://www.dcsneeds.com/careersdcsn/ | تقديم مستمر بلا موعد نهائي"
+ },
+ {
+  "id": 2,
+  "fact": "مدرسة بريطانية المنهاج للطلاب من 4 إلى 18 سنة، وتتبع سياسة دامجة تقبل الطلاب ذوي الاحتياجات التعليمية الخاصة (SEND) وفق مدونة SEND البريطانية 2015.",
+  "about": "مدرسة أوريكس الدولية في الدوحة مدرسة بريطانية المنهاج للطلاب من 4 إلى 18 سنة، أُسست أصلاً لأبناء موظفي الخطوط الجوية القطرية، وهي من مدارس مجموعة Orbital Education. لها صفحة رسمية للاحتياجات التعليمية الخاصة تذكر سياسة دامجة تقبل الطلاب ذوي SEND بحسب إمكانات المدرسة.",
+  "facts": [
+   "منهاج إنجليزي وطني معزز، 4–18 سنة",
+   "سياسة دامجة لذوي SEND وفق مدونة 2015 البريطانية",
+   "ضمن مجموعة Orbital Education (مثل مدرسة United School International)",
+   "لها صفحة وظائف Vacancies"
+  ],
+  "url": "https://oryxschool.qa/admissions/special-education-needs",
+  "limited": false,
+  "warn": "reception@oryxschool.qa إيميل الاستقبال العام الظاهر في الموقع، ولم أجد إيميل توظيف منفصلاً؛ الوظائف تُعلن في صفحة Vacancies.",
+  "careers_url": "https://oryxschool.qa/vacancies",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 3,
+  "fact": "لدى المدرسة قسم لدعم التعلم (Learning Support Department) يعمل على التعلم الفردي لكل طالب.",
+  "about": "مدرسة بيتا كامبردج في المشاف بالوكرة مدرسة دولية تدرّس المنهاج الأمريكي مع برامج البكالوريا الدولية، وتعمل منذ 2019. لديها قسم معلن لدعم التعلم يركز على التعلم الفردي ونقاط القوة الخاصة بكل طالب.",
+  "facts": [
+   "منهاج أمريكي + IB",
+   "تعمل منذ 2019، المشاف – الوكرة",
+   "قسم Learning Support for Personalized Learning"
+  ],
+  "url": "https://www.betacambridge.com/learning-support-for-personalized-learning/",
+  "limited": false,
+  "warn": "registrar@betacambridge.com إيميل المسجّل (القبول) الظاهر في الموقع، ولا يوجد إيميل توظيف ولا صفحة وظائف ظاهرة.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 4,
+  "fact": "المدرسة عضو في شبكة SABIS، ودعم التعلم جزء أساسي من نظام SABIS التعليمي المطبّق فيها.",
+  "about": "المدرسة الدولية في الشويفات – الدوحة عضو في شبكة SABIS العالمية، وتدرّس من الروضة حتى الصف الثاني عشر. تذكر في صفحة خدمات دعم الطلاب أن دعم التعلم جزء أساسي من نظام SABIS، إلى جانب الرعاية الصحية والنفسية للطلاب.",
+  "facts": [
+   "شبكة SABIS",
+   "المراحل: KG1 حتى الصف 12",
+   "صفحة Student Support Services: دعم التعلم ضمن نظام SABIS",
+   "الوظائف عبر موقع SABIS Careers"
+  ],
+  "url": "https://iscdoha.sabis.net/academic-life/student-support-service",
+  "limited": false,
+  "warn": "iscdoha@iscdoha.sabis.net ظاهر في الموقع لكنه إيميل عام؛ التوظيف الرسمي عبر بوابة SABIS Careers.",
+  "careers_url": "https://iscdoha.sabis.net/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 5,
+  "fact": "مدرسة بريطانية المنهاج المعزز في اللؤلؤة، من مدارس مجموعة Orbital Education.",
+  "about": "مدرسة United School International في اللؤلؤة بالدوحة تدرّس منهاجاً بريطانياً معززاً حتى IGCSE والسادس الثانوي، وهي من مدارس Orbital Education. صفحة الوظائف تطلب إرسال السيرة ورسالة التقديم إلى usirecruitment@unitedschool.qa، وتسمح للمعلمين ومساعدي المعلمين بتقديم طلب يُحفظ لشواغر قادمة.",
+  "facts": [
+   "منهاج بريطاني معزز، IGCSE وSixth Form",
+   "مجموعة Orbital Education",
+   "إيميل التوظيف الرسمي usirecruitment@unitedschool.qa",
+   "وظائف التدريس تُعلن على TES"
+  ],
+  "url": "https://unitedschool.qa/vacancies",
+  "limited": false,
+  "warn": "الإيميل في الملف admissions@unitedschool.qa (قبول)، واستبدلته بإيميل التوظيف الرسمي من صفحة الوظائف.",
+  "careers_url": "https://unitedschool.qa/vacancies",
+  "better_email": "usirecruitment@unitedschool.qa",
+  "better_email_src": "https://unitedschool.qa/vacancies",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 6,
+  "fact": "تملكها شركة قطر للطاقة للغاز الطبيعي المسال، وتقع في مجتمع الخور، ويدرس فيها أكثر من 4,000 طالب في منهاجين بريطاني وهندي (CBSE).",
+  "about": "مدرسة الخور الدولية تملكها QatarEnergy LNG، وأُسست أساساً لأبناء موظفيها، وتقع في مجتمع الخور على بعد نحو 40 كم شمال الدوحة. فيها أكثر من 4,000 طالب في أربعة مبانٍ، وأكثر من 500 من الكادر الأكاديمي، وتقدم المنهاج البريطاني ومنهاج CBSE الهندي.",
+  "facts": [
+   "مالكها QatarEnergy LNG",
+   "أكثر من 4,000 طالب و500+ أكاديمي",
+   "منهاجان: بريطاني وCBSE",
+   "التقديم عبر بوابة الوظائف أو TES"
+  ],
+  "url": "https://www.akis.sch.qa/",
+  "limited": false,
+  "warn": "الإيميل في الملف admissions.office@akis.sch.qa (قبول)، واستبدلته بـ recruitment@akis.sch.qa الظاهر في الموقع. صفحة الوظائف تفضّل التقديم عبر بوابة AKIS أو TES، فقد يحسن التقديم هناك أيضاً.",
+  "careers_url": "https://www.akis.sch.qa/careers",
+  "better_email": "recruitment@akis.sch.qa",
+  "better_email_src": "https://www.akis.sch.qa/",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 7,
+  "fact": "أُسست عام 1977، وتصف نفسها بأقدم مدرسة دولية بريطانية في قطر، وفيها نحو 2,000 طالب من 3 إلى 18 سنة.",
+  "about": "مدرسة قطر الدولية (QIS) في الدوحة أُسست عام 1977، وتتبع المنهاج الوطني الإنجليزي لنحو 2,000 طالب من 3 إلى 18 سنة. حاصلة على اعتماد المدارس الوطني القطري بأعلى مستوى. صفحة الوظائف تعرض شواغر حالية (ICT، معلم صف ابتدائي، كيمياء، رياضيات، عربي وتربية إسلامية وتاريخ قطر) وليس بينها وظيفة تربية خاصة.",
+  "facts": [
+   "تأسست 1977",
+   "نحو 2,000 طالب، 3–18 سنة",
+   "المنهاج الوطني الإنجليزي",
+   "الشواغر الحالية بلا وظيفة تربية خاصة"
+  ],
+  "url": "https://webmaster.qis.org/careers/",
+  "limited": false,
+  "warn": "الموقع يحوّل إلى webmaster.qis.org. المدرسة تذكر أن معلميها غير العرب درّسوا أو تدربوا في النظام البريطاني، وتطلب غالباً QTS، فاحتمال القبول أقل.",
+  "careers_url": "https://webmaster.qis.org/careers/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 8,
+  "fact": "لدى المدرسة فريق خدمات دعم الطلاب يستخدم نظاماً متعدد المستويات لتحديد احتياجات الطلاب الاجتماعية والانفعالية والتعليمية.",
+  "about": "مدرسة لندن الدولية – قطر (ISL Qatar) في الدحيل الشمالي مدرسة IB. لديها فريق Student Support Services يحدد احتياجات الطلاب الاجتماعية والانفعالية والتعليمية بعملية متعددة المستويات، ويقدم أيضاً دعم اللغة الإنجليزية (EAL/ELS).",
+  "facts": [
+   "مدرسة IB في الدحيل الشمالي",
+   "فريق Student Support Services متعدد المستويات",
+   "صفحة Recruitment تحذّر من رسائل توظيف مزيفة"
+  ],
+  "url": "https://www.islqatar.org/school-life/support-services",
+  "limited": false,
+  "warn": "الإيميل في الملف admissions@islqatar.org (قبول)، واستبدلته بالإيميل العام mail@islqatar.org الظاهر في كل صفحات الموقع. لا يوجد إيميل توظيف منفصل.",
+  "careers_url": "https://www.islqatar.org/our-staff/recruitment",
+  "better_email": "mail@islqatar.org",
+  "better_email_src": "https://www.islqatar.org/school-life/support-services",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 9,
+  "fact": "أُسست عام 1988 بشراكة بين السفارة الأمريكية وأعضاء من المجتمع القطري، وفيها طلاب من أكثر من 80 جنسية.",
+  "about": "المدرسة الأمريكية في الدوحة (ASD) أُسست عام 1988 باسم American International School بشراكة بين السفارة الأمريكية والمجتمع القطري، وتدرّس من الروضة حتى الثانوية بمنهاج أمريكي لطلاب من أكثر من 80 جنسية. لها بوابة توظيف وتشارك في معارض التوظيف الدولية.",
+  "facts": [
+   "تأسست 1988",
+   "أكثر من 80 جنسية",
+   "التوظيف عبر بوابة Careers ومعارض ووكالات التوظيف الدولية"
+  ],
+  "url": "https://asd.sch.qa/about-us",
+  "limited": false,
+  "warn": "reception@asd.edu.qa ظاهر في الموقع لكنه إيميل الاستقبال؛ التوظيف الأساسي عبر بوابة Careers ومعارض التوظيف، والموقع انتقل إلى asd.sch.qa.",
+  "careers_url": "https://asd.sch.qa/careers",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 10,
+  "fact": "مدرسة هندية بمنهاج CBSE في أبو هامور، ومن أهدافها المعلنة ممارسات تدريس وتعلم دامجة.",
+  "about": "مدرسة Ideal Indian School في أبو هامور بالدوحة مدرسة هندية تتبع منهاج CBSE وتعمل بفترتين صباحية ومسائية. من أهدافها المعلنة في رسالتها إيجاد ممارسات تدريس وتعلم دامجة. صفحة الوظائف تطلب إرسال الطلبات إلى hr@idealschoolqatar.com.",
+  "facts": [
+   "منهاج CBSE",
+   "أبو هامور – الدوحة",
+   "إيميل التوظيف hr@idealschoolqatar.com في صفحة Careers"
+  ],
+  "url": "https://idealschoolqatar.com/careers/",
+  "limited": false,
+  "warn": "",
+  "careers_url": "https://idealschoolqatar.com/careers/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 11,
+  "fact": "مدرسة هندية من الروضة حتى الصف الثاني عشر بمنهاج CBSE، تعمل منذ 26 عاماً.",
+  "about": "مدرسة Shantiniketan Indian School في الدوحة مدرسة K-12 تتبع منهاج CBSE، وتذكر أنها تعمل منذ 26 عاماً. الإيميل jobs@sisqatar.info منشور في موقعها لطلبات العمل.",
+  "facts": [
+   "منهاج CBSE، K-12",
+   "26 عاماً",
+   "صفحة Career في الموقع"
+  ],
+  "url": "https://www.sisqatar.info/",
+  "limited": true,
+  "warn": "",
+  "careers_url": "https://www.sisqatar.info/career/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 12,
+  "fact": "مدرسة بمنهاج أمريكي من ما قبل الروضة حتى الثانوية، ولها نموذج تقديم للوظائف على موقعها.",
+  "about": "مدرسة هارتفورد الأمريكية في قطر تتبع المنهاج الأمريكي من ما قبل الروضة حتى المرحلة الثانوية مع مساقات AP. صفحة الوظائف تعرض شواغر لمعلمي الدراسات الاجتماعية والرياضيات والإنجليزية بشرط خبرة في المنهاج الأمريكي، وصفحة Careers فيها نموذج لرفع السيرة.",
+  "facts": [
+   "منهاج أمريكي، Pre-K حتى الثانوية",
+   "شواغر معلنة: دراسات اجتماعية، رياضيات، إنجليزي (لا تربية خاصة)",
+   "نموذج تقديم ورفع سيرة في صفحة Careers"
+  ],
+  "url": "https://hasqatar.com/vacancies-job/",
+  "limited": false,
+  "warn": "الشواغر المعلنة ليست في التربية الخاصة وتشترط خبرة في المنهاج الأمريكي. mail@hasqatar.com ظاهر في الموقع.",
+  "careers_url": "https://hasqatar.com/careers/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 13,
+  "fact": "مدرسة IB للطلاب من 3 إلى 18 سنة، معتمدة من NEASC، وتتبع مجموعة SEK التعليمية التي تأسست عام 1892.",
+  "about": "مدرسة SEK الدولية في قطر مدرسة خاصة تقدم برامج البكالوريا الدولية للطلاب من 3 إلى 18 سنة، وهي معتمدة من NEASC الأمريكية. تتبع مجموعة SEK الإسبانية التي تأسست عام 1892، ولديها قسم للإرشاد. صفحة Work with us تحيل إلى موقع وظائف المجموعة.",
+  "facts": [
+   "IB، 3–18 سنة",
+   "اعتماد NEASC",
+   "مجموعة SEK منذ 1892",
+   "قسم إرشاد (Counselling Department)"
+  ],
+  "url": "https://sek.qa/",
+  "limited": false,
+  "warn": "admissions@sek.qa إيميل قبول ظاهر في الموقع، ولا يوجد إيميل توظيف؛ الوظائف عبر موقع وظائف SEK.",
+  "careers_url": "https://sek.qa/work-with-us/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 14,
+  "fact": "افتتحت في سبتمبر 2014 بـ225 طالباً، واليوم فيها أكثر من 1,200 طالب من ما قبل الروضة حتى الصف الثاني عشر في الوكرة.",
+  "about": "مدرسة فيجن الدولية (VIS) في الوكرة تابعة لمجموعة المفتاح، وتدرّس المنهاج الأمريكي (Common Core). افتتحت عام 2014 بـ225 طالباً، وتخدم اليوم أكثر من 1,200 طالب، مع فصل بين البنين والبنات من الصف الأول. صفحة الوظائف تشترط خبرة حديثة في مدرسة أمريكية المنهاج وإجادة الإنجليزية.",
+  "facts": [
+   "مجموعة المفتاح – الوكرة",
+   "افتتحت 2014، 1,200+ طالب",
+   "منهاج أمريكي Common Core",
+   "شروط التوظيف: خبرة منهاج أمريكي، إنجليزية بمستوى الناطقين"
+  ],
+  "url": "https://vis.sch.qa/",
+  "limited": false,
+  "warn": "الإيميل في الملف admissions@vis.qa من النطاق القديم؛ الموقع انتقل إلى vis.sch.qa وإيميله المنشور inquiries@vis.sch.qa فاستخدمته. شروط التوظيف قد لا تنطبق كلها على عامر.",
+  "careers_url": "https://vis.sch.qa/careers-hr/",
+  "better_email": "inquiries@vis.sch.qa",
+  "better_email_src": "https://vis.sch.qa/careers-hr/",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 15,
+  "fact": "تتبع المنهاج الوطني الإنجليزي (IGCSE وAS وA-Level) من الروضة حتى الصف الثالث عشر، وهي من مدارس مجموعة طالب للتعليم.",
+  "about": "مدرسة ألفا كامبردج في الدوحة مدرسة دولية من مدارس مجموعة طالب للتعليم، تدرّس المنهاج الوطني الإنجليزي من الروضة حتى الصف الثالث عشر (IGCSE وAS وA-Level).",
+  "facts": [
+   "مجموعة طالب للتعليم",
+   "المنهاج الإنجليزي: IGCSE, AS, A-Level",
+   "KG حتى Grade 13"
+  ],
+  "url": "https://acsqatar.net/",
+  "limited": true,
+  "warn": "registrar@acsqatar.net إيميل المسجّل الظاهر في الموقع، ولا توجد صفحة وظائف.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 16,
+  "fact": "بدأت عام 2001، وتدرّس المنهاج البريطاني من الروضة حتى Year 13، وهي جزء من مجموعة طالب.",
+  "about": "مدرسة كامبردج الدوحة (TCS) بدأت عام 2001، وتدرّس المنهاج الوطني البريطاني من الروضة حتى Year 13 مع التركيز على الإنجليزية والرياضيات والعلوم، وهي جزء من مجموعة شركات طالب.",
+  "facts": [
+   "تأسست 2001",
+   "المنهاج البريطاني KG–Y13",
+   "مجموعة طالب"
+  ],
+  "url": "https://tcsqatar.com/",
+  "limited": true,
+  "warn": "feedback@tcsqatar.com هو الإيميل الوحيد الظاهر في الموقع وهو لملاحظات أولياء الأمور، وقد لا يصل لقسم التوظيف.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 17,
+  "fact": "تقدم المدرسة برنامجاً وطنياً وبرنامجاً دولياً وبرنامج BTEC، إلى جانب مرحلة الروضة.",
+  "about": "مدارس الأردن الدولية (JIS) في عمّان مدرسة خاصة تقدم برنامجاً وطنياً وبرنامجاً دولياً وبرنامج BTEC، إلى جانب الروضة وبرامج مثل الحساب الذهني والروبوت وSTEAM. صفحة Join Our Team تعرض شواغر لمعلم تربية رياضية ومعلم فن وتعليم مهني.",
+  "facts": [
+   "البرامج: وطني، دولي، BTEC",
+   "روضة + برامج إثرائية (STEAM، روبوت)",
+   "شواغر حالية: تربية رياضية، فن وتعليم مهني (لا تربية خاصة)"
+  ],
+  "url": "https://jis.edu.jo/",
+  "limited": true,
+  "warn": "الإيميل jisschools@jis.edu.jo من الدليل ولم يظهر في صفحات الموقع التي فحصتها (النطاق يستقبل البريد). المدرسة تقدم برنامجاً وطنياً أيضاً؛ اخترت الإنجليزية لأنها تُصنف دولية، فإن رأيت العربية أنسب عدّلها.",
+  "careers_url": "https://jis.edu.jo/join-our-team",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 18,
+  "fact": "مدرسة مستقلة مختلطة تقدم تعليماً أمريكياً من ما قبل الروضة حتى الصف الثاني عشر، ولديها قسم خدمات دعم الطلاب.",
+  "about": "المدرسة الأمريكية المجتمعية في عمّان (ACS Amman) مدرسة نهارية مستقلة مختلطة تقدم تعليماً أمريكياً من ما قبل الروضة حتى الصف الثاني عشر. لديها قسم Student Support Services يشمل الإرشاد ومركز التعلم (Learning Commons)، وصفحة شواغر فيها نموذج للتقديم كمعلم بديل.",
+  "facts": [
+   "منهاج أمريكي، Pre-K حتى G12",
+   "Student Support Services: الإرشاد وLearning Commons",
+   "صفحة Vacancies + نموذج Substitute Teaching"
+  ],
+  "url": "https://www.acsamman.edu.jo/",
+  "limited": false,
+  "warn": "school@acsamman.edu.jo من الدليل ولم يظهر في الصفحات التي فحصتها (النطاق يستقبل البريد).",
+  "careers_url": "https://www.acsamman.edu.jo/employment/vacancies",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 19,
+  "fact": "معتمدة لبرنامج دبلوم البكالوريا الدولية منذ 2004، وتقدم أيضاً برنامج MYP.",
+  "about": "مدرسة كامبردج الثانوية (CHS) في عمّان مدرسة متعددة الجنسيات، وهي مدرسة IB معتمدة لبرنامج الدبلوم منذ 2004، وتقدم مراحل الروضة والابتدائي وبرنامج MYP وIBDP.",
+  "facts": [
+   "IB World School، الدبلوم منذ 2004",
+   "MYP وIBDP",
+   "مدرسة متعددة الجنسيات"
+  ],
+  "url": "https://cambridge.edu.jo/about-us/",
+  "limited": false,
+  "warn": "cambridge@cambridge.edu.jo ظاهر في الموقع. لا توجد صفحة وظائف ظاهرة.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 20,
+  "fact": "مدرسة من مجموعة Global Schools Group في الرياض، تتبع إطار IB PYP، ولها فرعان في المروج والجزيرة.",
+  "about": "مدرسة One World International School في الرياض من مدارس Global Schools Group السنغافورية، وتتبع إطار برنامج السنوات الابتدائية IB PYP في فرعي المروج والجزيرة، وطلابها من أكثر من 40 جنسية. تذكر أن لديها مساحات تعلم متخصصة لاحتياجات وأساليب تعلم مختلفة.",
+  "facts": [
+   "Global Schools Group",
+   "IB PYP، فرعا المروج والجزيرة",
+   "أكثر من 40 جنسية",
+   "صفحة Careers ضمن موقع المجموعة"
+  ],
+  "url": "https://owis.org/sa/riyadh/",
+  "limited": false,
+  "warn": "admissions.riyadh@owis.org إيميل قبول من الدليل، ولم يظهر في الصفحات التي فحصتها (النطاق يستقبل البريد).",
+  "careers_url": "https://owis.org/sa/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 21,
+  "fact": "تأسست عام 2016، وفيها أكثر من 4,700 طالب من 36 جنسية في ثلاثة فروع شمال الرياض، بمناهج أمريكية وكامبردج وIB.",
+  "about": "مدارس القبة الدولية (Dome) في شمال الرياض تأسست عام 2016، وتخدم أكثر من 4,700 طالب من 36 جنسية في ثلاثة فروع، وتقدم المنهاج الأمريكي وكامبردج (IGCSE وA-Level) وبرامج IB. صفحة الوظائف ترحب بالسير الذاتية حتى بدون شواغر معلنة عبر hrm@dome.edu.sa.",
+  "facts": [
+   "تأسست 2016",
+   "4,700+ طالب، 36 جنسية، 3 فروع",
+   "أمريكي + كامبردج + IB",
+   "إيميل التوظيف hrm@dome.edu.sa"
+  ],
+  "url": "https://dome.edu.sa/about-us/careers/",
+  "limited": false,
+  "warn": "الإيميل في الملف qureshi.h@dome.edu.sa إيميل شخصي، واستبدلته بإيميل الموارد البشرية الرسمي من صفحة الوظائف.",
+  "careers_url": "https://dome.edu.sa/about-us/careers/",
+  "better_email": "hrm@dome.edu.sa",
+  "better_email_src": "https://dome.edu.sa/about-us/careers/",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 22,
+  "fact": "تعمل منذ 1963، وطلابها من أكثر من 68 جنسية.",
+  "about": "المدرسة الأمريكية الدولية في الرياض (AIS-R) تعمل منذ 1963، وتدرّس المراحل الابتدائية والمتوسطة والثانوية لطلاب من أكثر من 68 جنسية. لها صفحة وظائف (Current Openings) وتجيب عن أسئلة التوظيف عبر join_us@aisr.org.",
+  "facts": [
+   "منذ 1963",
+   "68+ جنسية",
+   "صفحة Careers وCurrent Openings",
+   "إيميل التوظيف join_us@aisr.org"
+  ],
+  "url": "https://www.aisr.org/",
+  "limited": false,
+  "warn": "الإيميل في الملف admissions@aisr.org (قبول)، واستبدلته بـ join_us@aisr.org المنشور في صفحة أسئلة التوظيف. المدرسة توظف غالباً معلمين بشهادات تدريس عبر معارض التوظيف.",
+  "careers_url": "https://www.aisr.org/",
+  "better_email": "join_us@aisr.org",
+  "better_email_src": "https://www.aisr.org/employment/faqs",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 23,
+  "fact": "يقدم المركز في دبي برامج تحليل السلوك التطبيقي (ABA) والنطق والعلاج الوظيفي والتدخل المبكر، وخدمات دعم التعلم والدمج في المدارس.",
+  "about": "مركز إثراء السلوك (Behaviour Enrichment) في دبي، بفرعي البرشاء والنهدة، يعمل مع الأطفال ذوي اضطراب طيف التوحد والاحتياجات الأخرى. يقدم التقييم الشامل، وعلاج ABA والنطق والعلاج الوظيفي، والتدخل المبكر وبرنامج نهاري، ومجموعات المهارات الاجتماعية، وخدمات دعم التعلم والدمج المدرسي، إلى جانب دورات تدريب ABA وRBT.",
+  "facts": [
+   "فرعا البرشاء والنهدة – دبي",
+   "ABA، نطق، علاج وظيفي، تدخل مبكر",
+   "دعم التعلم والدمج في المدارس",
+   "صفحة Careers بنموذج لرفع السيرة"
+  ],
+  "url": "https://www.behaviourenrichment.com/",
+  "limited": false,
+  "warn": "hr@behaviourenrichment.com ظاهر في الموقع (في صفحة الوظائف للتدريب)، والتقديم للوظائف عبر نموذج في الصفحة نفسها. لا توجد وظيفة معلنة الآن.",
+  "careers_url": "https://www.behaviourenrichment.com/careers/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "org",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 24,
+  "fact": "مركز الابتسامة في الشارقة لأصحاب الهمم، تملكه وتديره الجمعية الهندية بالشارقة.",
+  "about": "مركز الابتسامة لأصحاب الهمم في الشارقة مركز تملكه وتديره الجمعية الهندية بالشارقة، ويقدم التعليم والتأهيل للأشخاص ذوي الإعاقة. صفحة الوظائف تعرض حالياً وظيفة أخصائي علاج طبيعي فقط، وتطلب إرسال السيرة ورسالة التقديم إلى career@alibtisama.com.",
+  "facts": [
+   "الشارقة، تابع للجمعية الهندية",
+   "مركز لأصحاب الهمم",
+   "الشاغر الحالي: علاج طبيعي فقط",
+   "إيميل التوظيف career@alibtisama.com"
+  ],
+  "url": "https://alibtisama.com/careers.php",
+  "limited": false,
+  "warn": "الشاغر المعلن ليس في التربية الخاصة. المركز يتبع جمعية هندية، وموقعه بالإنجليزية؛ كتبت بالعربية حسب قاعدة الجهات المحلية.",
+  "careers_url": "https://alibtisama.com/careers.php",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "org",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 25,
+  "fact": "تعمل منذ 59 عاماً، وفيها 1,884 طالباً و290 من الكادر من 50 جنسية.",
+  "about": "المدرسة الأمريكية في الكويت (ASK) مدرسة أمريكية المنهاج تعمل منذ 59 عاماً، وفيها 1,884 طالباً و290 معلماً وموظفاً من 50 جنسية. تقبل الطلبات طوال العام للشواغر المعلنة، وتطلب من المعلمين المعتمدين بخبرة سنتين على الأقل إرسال رسالة اهتمام وسيرة إلى careers@ask.edu.kw.",
+  "facts": [
+   "منذ 59 عاماً",
+   "1,884 طالباً، 290 كادراً، 50 جنسية",
+   "إيميل التوظيف careers@ask.edu.kw",
+   "التوظيف غالباً عبر معارض ووكالات دولية"
+  ],
+  "url": "https://www.ask.edu.kw/employment",
+  "limited": false,
+  "warn": "الإيميل في الملف ask@ask.edu.kw، واستبدلته بـ careers@ask.edu.kw المنشور في صفحة التوظيف. المدرسة تطلب شهادة تدريس (certified teachers).",
+  "careers_url": "https://www.ask.edu.kw/employment",
+  "better_email": "careers@ask.edu.kw",
+  "better_email_src": "https://www.ask.edu.kw/employment",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 26,
+  "fact": "مدرسة أمريكية المنهاج تقدم مساقات Advanced Placement (AP) في المرحلة الثانوية.",
+  "about": "المدرسة الكويتية الأمريكية (KAS) تتبع المنهاج الأمريكي من الروضة حتى الثانوية مع مساقات AP. صفحة الوظائف تذكر أن كل وظائف التدريس للعام 2026–2027 امتلأت، وترحب بإرسال السيرة مع الشهادة إلى kas@kas.edu.kw للشواغر القادمة.",
+  "facts": [
+   "منهاج أمريكي + AP",
+   "وظائف 2026–2027 ممتلئة",
+   "ترحب بالسير لشواغر قادمة على kas@kas.edu.kw"
+  ],
+  "url": "https://www.kas.edu.kw/career.html",
+  "limited": false,
+  "warn": "وظائف التدريس للعام الحالي ممتلئة حسب صفحة الوظائف، والطلب سيُحفظ لشواغر قادمة. تطلب الشهادة وكشف العلامات وخطابي توصية.",
+  "careers_url": "https://www.kas.edu.kw/career.html",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 27,
+  "fact": "تأسست عام 2015، ولديها قسم لدعم التعلم ضمن الشؤون الأكاديمية.",
+  "about": "مدرسة الشموخ الدولية الخاصة في عُمان مدرسة دولية تأسست عام 2015، وتدرّس من الروضة حتى المرحلة الثانوية العليا، ولديها قسم معلن لدعم التعلم (Learning Support) ضمن الشؤون الأكاديمية.",
+  "facts": [
+   "تأسست 2015",
+   "KG حتى Upper Secondary",
+   "قسم Learning Support",
+   "إيميل الموارد البشرية hr@alshomoukh.com"
+  ],
+  "url": "https://www.alshomoukh.com/",
+  "limited": false,
+  "warn": "الإيميل في الملف admission@alshomoukh.com (قبول)، واستبدلته بـ hr@alshomoukh.com الظاهر في الموقع.",
+  "careers_url": "",
+  "better_email": "hr@alshomoukh.com",
+  "better_email_src": "https://www.alshomoukh.com/",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 28,
+  "fact": "أُسست عام 1990 في ثيمسا بنزوى، وتتبع منهاج CBSE، وفيها نحو 65 معلماً وأكثر من 1,500 طالب.",
+  "about": "المدرسة الهندية في نزوى (ISN) مدرسة مختلطة تدرّس بالإنجليزية وتتبع منهاج CBSE، أُسست عام 1990 وتقع في ثيمسا. تضم المراحل من ما قبل الابتدائي حتى الثانوي العلمي، وفيها نحو 65 معلماً وأكثر من 1,500 طالب.",
+  "facts": [
+   "تأسست 1990، ثيمسا – نزوى",
+   "منهاج CBSE",
+   "~65 معلماً و1,500+ طالب",
+   "صفحة Careers في الموقع"
+  ],
+  "url": "https://www.isnizwa.org/about/indian-school-nizwa.php",
+  "limited": false,
+  "warn": "الإيميل في الملف isnoman@isnizwa.org، واستبدلته بـ careers@isnizwa.org الظاهر في الموقع. المدارس الهندية في عُمان توظف غالباً من الجالية الهندية، فاحتمال الرد أقل.",
+  "careers_url": "https://www.isnizwa.org/career/careers.php",
+  "better_email": "careers@isnizwa.org",
+  "better_email_src": "https://www.isnizwa.org/",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 29,
+  "fact": "مدرسة من مدارس Esol Education، وتنشر شواغرها الحالية مع موعد نهائي للتقديم في 30 أبريل 2027.",
+  "about": "المدرسة الأمريكية في البحرين (ASB) من مدارس مجموعة Esol Education ذات الخبرة لأكثر من 50 عاماً، وتقدم برنامجاً ثنائي اللغة في الطفولة المبكرة ومنهاجاً أمريكياً مع IB. صفحة الشواغر تطلب إرسال السيرة ورسالة قصيرة ومرجعين إلى jobs@asb.bh حتى 30 أبريل 2027، وفيها حالياً: معلم بديل (تعيين فوري)، وعميد طلاب، ومعلم IB رياضيات وإنجليزي، ومرشد جامعي.",
+  "facts": [
+   "مجموعة Esol Education",
+   "التقديم إلى jobs@asb.bh حتى 30/04/2027",
+   "شواغر حالية: Substitute Teacher (تعيين فوري)، Dean of Students، IB Math، IB English، University Counselor"
+  ],
+  "url": "https://www.asb.bh/about/careers/current-vacancies",
+  "limited": false,
+  "warn": "لا توجد وظيفة تربية خاصة معلنة. أقرب شاغر لعامر: Substitute Teacher ES/MS/HS (بكالوريوس + رخصة تدريس + 3 سنوات خبرة)، لم أعتبره وظيفة مناسبة مؤكدة. الشواغر تطلب رسالة تقديم ومرجعين.",
+  "careers_url": "https://www.asb.bh/about/careers/current-vacancies",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 30,
+  "fact": "مدرسة IB World School في البحرين تقدم برنامج دبلوم البكالوريا الدولية، ولها برامج للموهوبين.",
+  "about": "مدرسة الحكمة الدولية (AHIS) في البحرين مدرسة IB World School تقدم دبلوم البكالوريا الدولية من الروضة حتى الثانوية، ولها برنامج للموهوبين والمتميزين. صفحة الوظائف تعرض شواغر (معلم عربي، أعمال، روضة، أخصائي اجتماعي، دراسات اجتماعية، رياضيات) وتطلب توثيق الشهادات عبر منصة QuadraBay.",
+  "facts": [
+   "IB World School (DP)",
+   "برنامج Gifted & Talented",
+   "شواغر حالية بلا وظيفة تربية خاصة",
+   "توثيق الشهادات عبر QuadraBay"
+  ],
+  "url": "https://alhekma.com/",
+  "limited": false,
+  "warn": "الإيميل نفسه مكرر في ملف البحرين لثلاثة صفوف ومذكور أيضاً في ملف قطر (صف 604)، فأرسلت لصف واحد فقط. لا توجد وظيفة تربية خاصة معلنة.",
+  "careers_url": "https://alhekma.com/job-openings/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 31,
+  "fact": "مدرسة ابتدائية تقدم منهاج كامبردج الابتدائي، وهي عضو في الاعتماد الوطني للمدارس في قطر (QNSA).",
+  "about": "مدرسة ستيب ون الدولية في قطر مدرسة ابتدائية تقدم منهاج كامبردج الابتدائي وفق المنهاج الوطني الإنجليزي، مع اختبارات كامبردج (Progression وCheckpoint)، وهي عضو في الاعتماد الوطني للمدارس QNSA.",
+  "facts": [
+   "مدرسة ابتدائية",
+   "منهاج كامبردج الابتدائي",
+   "عضو QNSA"
+  ],
+  "url": "https://www.sis-qatar.com/about",
+  "limited": true,
+  "warn": "admission@sis-qatar.com إيميل قبول من الدليل؛ الموقع (Wix) لم يُظهر إيميلاً نصياً.",
+  "careers_url": "https://www.sis-qatar.com/",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 32,
+  "fact": "تأسست عام 2000 لخدمة أبناء العمالة الفلبينية في الخارج، وتقدم المراحل من الروضة حتى الثانوية العليا (K-12).",
+  "about": "المدرسة الفلبينية الدولية في قطر (PISQ) مؤسسة تعليمية خاصة تأسست عام 2000 لخدمة أبناء العمالة الفلبينية، وتقدم برنامج K-12 الفلبيني من الروضة حتى الثانوية العليا.",
+  "facts": [
+   "تأسست 2000",
+   "منهاج K-12 الفلبيني (DepEd)",
+   "تخدم أبناء الجالية الفلبينية"
+  ],
+  "url": "https://pis-qatar.com/",
+  "limited": false,
+  "warn": "مدرسة بمنهاج فلبيني لأبناء الجالية، فاحتمال توظيف أخصائي غير فلبيني أقل. الإيميل philippineintl@education.qa ظاهر في الموقع.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 33,
+  "fact": "افتُتح مركز المستقبل للتأهيل في سبتمبر 2000، ويخدم الأطفال ذوي التوحد ومتلازمة داون والإعاقة العقلية والإعاقات المتعددة.",
+  "about": "مركز المستقبل للتأهيل (Future Rehabilitation Centre) في أبوظبي مدرسة لأصحاب الهمم افتتحت في سبتمبر 2000 بستين طالباً، وتخدم الأطفال ذوي اضطراب طيف التوحد ومتلازمة داون والإعاقة العقلية والإعاقات المتعددة، مع التدخل المبكر والخدمات المتكاملة. بعض صفوفها تدرس مساقات ASDAN البريطانية منذ 2015.",
+  "facts": [
+   "افتتح 09/2000 – أبوظبي",
+   "توحد، داون، إعاقة عقلية، إعاقات متعددة",
+   "مساقات ASDAN منذ 2015",
+   "التقديم بنموذج في صفحة Career"
+  ],
+  "url": "https://future-centre.org/career/",
+  "limited": false,
+  "warn": "الإيميل في الملف futurecn@emirates.net.ae قديم، واستبدلته بـ frc@futurecn.ae الظاهر في الموقع. صفحة الوظائف تقول إنهم يبحثون دائماً عن متخصصين في التربية الخاصة، لكن بلا وظيفة محددة.",
+  "careers_url": "https://future-centre.org/career/",
+  "better_email": "frc@futurecn.ae",
+  "better_email_src": "https://future-centre.org/",
+  "kind": "org",
+  "drop": false,
+  "drop_reason": ""
+ },
+ {
+  "id": 34,
+  "fact": "مدرسة أمريكية المنهاج لديها خدمات دعم التعلم وبرنامج تدخل وسياسة لتنوع التعلم.",
+  "about": "مدرسة إقرأ الأمريكية في الكويت تتبع المنهاج الأمريكي من الروضة حتى الثانوية. يذكر موقعها خدمات Learning And Support وبرنامج تدخل (Intervention Program) وسياسة لتنوع التعلم (Learning Diversity Policy) إلى جانب الإرشاد.",
+  "facts": [
+   "منهاج أمريكي KG–High School",
+   "Learning And Support + Intervention Program",
+   "Learning Diversity Policy"
+  ],
+  "url": "https://www.iqraa.edu.kw/",
+  "limited": false,
+  "warn": "contact@iqraa.edu.kw إيميل التواصل العام الظاهر في الموقع، ولا توجد صفحة وظائف.",
+  "careers_url": "",
+  "better_email": "",
+  "better_email_src": "",
+  "kind": "international",
+  "drop": false,
+  "drop_reason": ""
+ }
+]

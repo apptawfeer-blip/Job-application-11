@@ -1,0 +1,242 @@
+[
+ {
+  "doc_id": "2026-11-26-0745-email-01",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-03",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-04",
+  "verdict": "PASS",
+  "field": "warn",
+  "old": "الإيميل المختار contact.ilc.sa@gmail.com يظهر فقط في دليل IBCCES وليس في الموقع الرسمي؛ الموقع الرسمي يعرض contact@ilctherapy.com ← يُنصح باستخدامه بدلاً منه.",
+  "new": "الإيميل contact@ilctherapy.com ظاهر في الموقع الرسمي، واستُخدم بدلاً من contact.ilc.sa@gmail.com الظاهر فقط في دليل IBCCES.",
+  "reason": "Optional: warn is stale (says to switch to contact@ilctherapy.com, which is already the 'to')."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-05",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-06",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-08",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-09",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-10",
+  "verdict": "FAIL",
+  "field": "_action",
+  "old": null,
+  "new": "drop: do not add to desk queue; promote reserve 2026-11-26-0745-email-06 if a replacement is wanted",
+  "reason": "Duplicate: same recipient already on the desk as b01-33 (HOPE Qatar, info@hope-qatar.org, status approved; ledger batch_01 drafted, Targets_Qatar row 129). log_tool check says no match only because it has not been sent yet. Targets_Qatar row 146 is a duplicate row of the same entity; mark it as contacted."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-11",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-12",
+  "verdict": "FAIL",
+  "field": "_action",
+  "old": null,
+  "new": "drop: do not add to desk queue; promote reserve 2026-11-26-0745-email-06 if a replacement is wanted",
+  "reason": "Duplicate: same recipient already on the desk as b01-31 (Awsaj Academy, awsajacademy@qf.org.qa, status approved; ledger batch_01 drafted, Targets_Qatar row 125). log_tool check says no match only because it has not been sent yet. Targets_Qatar row 569 is a duplicate row of the same entity; mark it as contacted."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-13",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-15",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-17",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-19",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-20",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-21",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-22",
+  "verdict": "PASS",
+  "field": "warn",
+  "old": " (المدخل الحالي AR/Full يحتاج تعديل)",
+  "new": "",
+  "reason": "Optional: warn is stale; message is already EN/NoPhD."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-23",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-24",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-27",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-28",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-29",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0745-email-31",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-01",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-02",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-03",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-05",
+  "verdict": "FAIL",
+  "field": "body",
+  "old": "Delivered behaviour modification training programmes for children with disabilities and learning difficulties, including the preparation of shadow teachers.",
+  "new": "Delivered training programmes in behaviour modification for children with disabilities and learning difficulties, and in shadow teacher preparation.",
+  "reason": "CV lists 'behaviour modification for children with disabilities and learning difficulties' and 'shadow teacher preparation' as separate training programmes (Al-Mubtakiroun); 'including' presents shadow-teacher preparation as part of behaviour-modification training."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-05",
+  "verdict": "FAIL",
+  "field": "body_ar",
+  "old": "قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، ومنها إعداد معلمي الظل.",
+  "new": "قدّمت برامج تدريبية في تعديل السلوك للأطفال ذوي الإعاقة وصعوبات التعلم، وفي إعداد معلمي الظل.",
+  "reason": "Same fix in the Arabic translation."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-07",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ },
+ {
+  "doc_id": "2026-11-26-0755-email-08",
+  "verdict": "PASS",
+  "field": null,
+  "old": null,
+  "new": null,
+  "reason": "All checks passed."
+ }
+]

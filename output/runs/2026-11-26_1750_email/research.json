@@ -1,0 +1,27 @@
+[
+ {
+  "id": 1,
+  "fact": "",
+  "about": "مدرسة دولية في الدوحة. صفحة الوظائف عندهم لا تعرض حالياً وظيفة تربية خاصة؛ الرسالة طلب توظيف عام.",
+  "facts": [
+   "صفحة الوظائف: nobleqatar.com/careers"
+  ],
+  "url": "https://www.nobleqatar.com/careers",
+  "limited": true,
+  "warn": "لا وظيفة تربية خاصة معلنة الآن؛ طلب عام بطلبك.",
+  "careers_url": "https://www.nobleqatar.com/careers"
+ },
+ {
+  "id": 2,
+  "fact": "",
+  "about": "أكاديمية قطر مشيرب تابعة لمؤسسة قطر في الدوحة. بوابة التوظيف لا تعرض وظائف مدارس الآن؛ الرسالة طلب توظيف عام.",
+  "facts": [
+   "تابعة لمؤسسة قطر",
+   "صفحة الانضمام: qam.qa/join-us"
+  ],
+  "url": "https://qam.qa/join-us/",
+  "limited": true,
+  "warn": "لا وظائف معلنة الآن؛ طلب عام بطلبك.",
+  "careers_url": "https://qam.qa/join-us/"
+ }
+]

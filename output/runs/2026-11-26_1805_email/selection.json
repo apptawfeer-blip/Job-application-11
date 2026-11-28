@@ -1,0 +1,23 @@
+{
+ "channel": "email",
+ "created": "2026-11-26_1805",
+ "targets": [
+  {
+   "country": "Qatar",
+   "row": 577,
+   "name": "مركز أوميجا لتعليم ذوي الاحتياجات الخاصة - Omega (HR)",
+   "type": "مركز تربية خاصة",
+   "email": "HR@omegaqatar.org",
+   "whatsapp": "",
+   "phone": "",
+   "city": "الدوحة",
+   "website": "http://www.omegaqatar.org/",
+   "careers": "",
+   "source": "رد الاستقبال 26/11",
+   "lang": "EN",
+   "cv": "Full",
+   "relevance": "عالية",
+   "id": 1
+  }
+ ]
+}

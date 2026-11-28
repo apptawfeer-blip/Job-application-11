@@ -2573,5 +2573,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1030-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 679,
+  "name": "Lycee Bonaparte School",
+  "email": "secretariat@lycee-bonaparte.fr",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, Lycée Bonaparte | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

@@ -2934,5 +2934,23 @@
   "type": "مدرسة",
   "send_day": 0,
   "sent_date": "2026-11-28"
+ },
+ {
+  "date": "2026-11-28",
+  "run": "2026-11-26-1130-email",
+  "channel": "email",
+  "status": "sent",
+  "country": "Qatar",
+  "row": 9,
+  "name": "ACS Doha International School",
+  "email": "careers@acsdoha.school",
+  "phone": "",
+  "subject": "Application | Special Education Teacher, ACS Doha | Amer AlSaaideh",
+  "draft_id": "",
+  "lang": "EN",
+  "cv": "NoPhD",
+  "type": "مدرسة",
+  "send_day": 0,
+  "sent_date": "2026-11-28"
  }
 ]

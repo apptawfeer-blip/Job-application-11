@@ -1,10 +1,10 @@
 {
- "generated": "2026-11-28 12:00",
+ "generated": "2026-11-28 13:00",
  "quota": {
   "email": {
    "allowed": 30,
    "week": 1,
-   "used": 28
+   "used": 29
   },
   "whatsapp": {
    "allowed": 10,
@@ -13,19 +13,19 @@
   }
  },
  "today": {
-  "email_drafted": 29,
-  "email_sent": 13,
+  "email_drafted": 30,
+  "email_sent": 14,
   "whatsapp_queued": 0,
   "whatsapp_sent": 0
  },
  "week": {
-  "email_sent": 83,
+  "email_sent": 84,
   "whatsapp_sent": 0
  },
  "totals": {
   "drafted": 75,
   "queued": 10,
-  "sent": 75,
+  "sent": 76,
   "replied": 1,
   "bounced": 7
  },
@@ -36,8 +36,8 @@
    "whatsapp_ready": 396
   },
   "Qatar": {
-   "remaining": 815,
-   "email_ready": 367,
+   "remaining": 814,
+   "email_ready": 366,
    "whatsapp_ready": 266
   },
   "Saudi": {
@@ -94,8 +94,8 @@
   },
   {
    "date": "2026-11-28",
-   "email_prepared": 29,
-   "email_sent": 13,
+   "email_prepared": 30,
+   "email_sent": 14,
    "whatsapp_prepared": 0,
    "whatsapp_sent": 0
   }

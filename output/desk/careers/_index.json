@@ -16,16 +16,16 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-634.json"
  },
  {
+  "doc_id": "qatar-661",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-661.json"
+ },
+ {
   "doc_id": "qatar-36",
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-36.json"
  },
  {
   "doc_id": "qatar-772",
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-772.json"
- },
- {
-  "doc_id": "qatar-773",
-  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-773.json"
  },
  {
   "doc_id": "qatar-608",
@@ -40,8 +40,16 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-669.json"
  },
  {
+  "doc_id": "qatar-612",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-612.json"
+ },
+ {
   "doc_id": "qatar-659",
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-659.json"
+ },
+ {
+  "doc_id": "qatar-34",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-34.json"
  },
  {
   "doc_id": "qatar-650",
@@ -104,8 +112,12 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-79.json"
  },
  {
-  "doc_id": "qatar-680",
-  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-680.json"
+  "doc_id": "qatar-50",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-50.json"
+ },
+ {
+  "doc_id": "qatar-11",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/qatar-11.json"
  },
  {
   "doc_id": "qatar-174",
@@ -164,6 +176,10 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/jordan-17.json"
  },
  {
+  "doc_id": "jordan-33",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/jordan-33.json"
+ },
+ {
   "doc_id": "saudi-54",
   "file_path": "/home/user/Job-application-11/output/desk/careers/saudi-54.json"
  },
@@ -192,6 +208,14 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/uae-1001.json"
  },
  {
+  "doc_id": "kuwait-35",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/kuwait-35.json"
+ },
+ {
+  "doc_id": "kuwait-48",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/kuwait-48.json"
+ },
+ {
   "doc_id": "kuwait-59",
   "file_path": "/home/user/Job-application-11/output/desk/careers/kuwait-59.json"
  },
@@ -208,11 +232,23 @@
   "file_path": "/home/user/Job-application-11/output/desk/careers/oman-29.json"
  },
  {
+  "doc_id": "oman-7",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/oman-7.json"
+ },
+ {
+  "doc_id": "oman-9",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/oman-9.json"
+ },
+ {
   "doc_id": "bahrain-857",
   "file_path": "/home/user/Job-application-11/output/desk/careers/bahrain-857.json"
  },
  {
   "doc_id": "bahrain-850",
   "file_path": "/home/user/Job-application-11/output/desk/careers/bahrain-850.json"
+ },
+ {
+  "doc_id": "bahrain-17",
+  "file_path": "/home/user/Job-application-11/output/desk/careers/bahrain-17.json"
  }
 ]

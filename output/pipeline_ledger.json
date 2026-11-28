@@ -1614,7 +1614,7 @@
   "date": "2026-11-27",
   "run": "2026-11-27_0745_email",
   "channel": "email",
-  "status": "drafted",
+  "status": "sent",
   "country": "UAE",
   "row": 994,
   "name": "Dubai Center for Special Needs",
@@ -1625,7 +1625,8 @@
   "lang": "EN",
   "cv": "NoPhD",
   "type": "مدرسة",
-  "send_day": 1
+  "send_day": 1,
+  "sent_date": "2026-11-28"
  },
  {
   "date": "2026-11-27",
